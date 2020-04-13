@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 
 import 'Api.dart';
 
-class HttpUtils {
+abstract class HttpUtils {
   // 超时时间 1min dio中是以毫秒计算的
   static var timeout = 60000;
 

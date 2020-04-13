@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'HttpUtils/Request.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -54,7 +56,14 @@ class _MyHomePageState extends State<MyHomePage> {
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter++;
+      netWorkRequestTest();
     });
+  }
+
+  void netWorkRequestTest() async {
+    var response = await Request.getBanner();
+    var model = response.data;
+    print(model);
   }
 
   @override
