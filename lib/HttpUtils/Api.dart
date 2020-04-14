@@ -19,7 +19,7 @@ abstract class Api {
   // 项目分类
   static const String getProjectClassify = baseUrl + 'project/tree/json';
 
-  // 项目分类列表
+  // 项目分类列表 https://www.wanandroid.com/project/list/0/json
   static const String getProjectClassifyList  = baseUrl + 'project/list/';
 
   // 公众号
