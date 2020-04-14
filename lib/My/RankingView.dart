@@ -19,7 +19,7 @@ class RankingView extends StatefulWidget {
 class _RankingViewState extends State<RankingView> {
   var _page = 1;
 
-  var _dataSoures = List<DataElement>();
+  var _dataSource = List<DataElement>();
 
   var _refreshController = RefreshController(initialRefresh: false);
 
@@ -37,7 +37,7 @@ class _RankingViewState extends State<RankingView> {
         iconTheme: IconThemeData(color: Colors.white),
         elevation: 0.1,
       ),
-      body: _contentView(context, _dataSoures),
+      body: _contentView(context, _dataSource),
     );
   }
 
@@ -68,9 +68,9 @@ class _RankingViewState extends State<RankingView> {
     var model = await Request.getRankingList(page: page);
     if (model.errorCode == 0) {
         if (_page == 1) {
-          _dataSoures.clear();
+          _dataSource.clear();
         }
-        _dataSoures.addAll(model.data.datas);
+        _dataSource.addAll(model.data.datas);
         if (mounted) setState(() {});
     }
     return model;
@@ -100,13 +100,13 @@ class _RankingViewState extends State<RankingView> {
         //请求完成
         if (snapshot.connectionState == ConnectionState.done) {
           RankListResponse model = snapshot.data;
-          _dataSoures.addAll(model.data.datas);
+          _dataSource.addAll(model.data.datas);
           //发生错误
           if (snapshot.hasError) {
             ToastView.show(model.errorMsg);
           }
           //请求成功，通过项目信息构建用于显示项目名称的ListView
-          return _contentView(context, _dataSoures);
+          return _contentView(context, _dataSource);
         }
         //请求未完成时弹出loading
         return LoadingView();
