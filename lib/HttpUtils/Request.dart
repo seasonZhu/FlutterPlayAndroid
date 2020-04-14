@@ -17,6 +17,10 @@ import 'package:play_android/Responses/PublicNumberListResponse.dart';
 import 'package:play_android/Responses/LogoutResponse.dart';
 import 'package:play_android/Responses/CollectArticleActionResponse.dart';
 //收藏文章列表响应
+import 'package:play_android/Responses/RankListResponse.dart';
+//个人获取积分的历史记录响应
+//个人积分信息响应
+/* 以上写了注释的与下面Future<Void>相对应,是需要登录后才能获取到的数据登录后再进行解析 */
 
 // Dart的分类需要在Dart2.6以上的版本才能使用,修改了配置文件
 extension Request on HttpUtils {
@@ -116,4 +120,21 @@ extension Request on HttpUtils {
     print(json);
   }
   
+  // 积分排行榜
+  static Future<RankListResponse> getRankingList({int page}) async {
+    var json = await HttpUtils.get(api: Api.getRankingList + page.toString() + "/json");
+    return RankListResponse.fromJson(json);
+  }
+
+  // 个人获取积分的历史记录
+  static Future<Void> getCoinList({int page}) async {
+    var json = await HttpUtils.get(api: Api.getCoinList + page.toString() + "/json");
+    print(json);
+  }
+  
+  // 个人积分信息
+  static Future<Void> getUserCoinInfo() async {
+    var json = await HttpUtils.get(api: Api.getUserCoinInfo);
+    print(json);
+  }
 }
