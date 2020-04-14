@@ -12,10 +12,14 @@ class ArticleView extends StatefulWidget {
   _ArticleViewState createState() => _ArticleViewState();
 }
 
-class _ArticleViewState extends State<ArticleView> with TickerProviderStateMixin {
+class _ArticleViewState extends State<ArticleView> with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
 
   List<Datum> _dataSource = List<Datum>();
+
   TabController _tabController;
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
@@ -25,11 +29,8 @@ class _ArticleViewState extends State<ArticleView> with TickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return futureBuilder();//_contentView();
-  }
-
-  Widget _contentView() {
-    return (_dataSource.isNotEmpty && _tabController != null) ? _mainBody() : LoadingView();
   }
 
   Widget futureBuilder() {
@@ -101,6 +102,17 @@ class _ArticleViewState extends State<ArticleView> with TickerProviderStateMixin
     return model;
   }
 
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  Widget _contentView() {
+    return (_dataSource.isNotEmpty && _tabController != null) ? _mainBody() : LoadingView();
+  }
+
+  // 用于initState函数中
   Future<ProjectClassifyResponse> _getProjectClassify() async {
     var model = await Request.getProjectClassify();
     if (model.errorCode == 0) {
