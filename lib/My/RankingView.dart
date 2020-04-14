@@ -57,7 +57,7 @@ class _RankingViewState extends State<RankingView> {
       onLoading: _onLoadingMore,
       child: ListView.builder(
         itemBuilder: (context, index) {
-          return RankingCell(dataSoures[index]);
+          return RankingCell(model: dataSoures[index]);
         },
         itemCount: dataSoures.length,
       ),
