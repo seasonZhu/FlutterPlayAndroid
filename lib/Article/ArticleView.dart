@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:play_android/HttpUtils/Request.dart';
+import 'package:play_android/Responses/TopicInfo.dart';
 import 'package:play_android/Responses/ProjectClassifyResponse.dart';
 
+import 'package:play_android/Compose/InformationFlowView.dart';
 import 'package:play_android/Compose/LoadingView.dart';
 import 'package:play_android/Compose/EmptyView.dart';
 import 'package:play_android/Compose/ToastView.dart';
@@ -14,7 +16,7 @@ class ArticleView extends StatefulWidget {
 
 class _ArticleViewState extends State<ArticleView> with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
 
-  List<Datum> _dataSource = List<Datum>();
+  List<TopicInfo> _dataSource = List<TopicInfo>();
 
   TabController _tabController;
 
@@ -112,7 +114,7 @@ class _ArticleViewState extends State<ArticleView> with TickerProviderStateMixin
   List<Widget> _createTabPage() {
     var widgets = List<Widget>() ;
     for (var model in _dataSource) {
-      widgets.add(Center(child: Text(model.id.toString()),));
+      widgets.add(InformationFlowView(model: model, type: InformationType.project,));
     }
     return widgets;
   }
