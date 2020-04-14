@@ -40,7 +40,7 @@ abstract class Api {
   // 收藏站内文章 lg/collect/1165/json
   static const String postCollectArticle = baseUrl + 'lg/collect/';
 
-  // 取消收藏站内文章 lg/collect/1165/json
+  // 取消收藏站内文章 lg/uncollect_originId/1165/json
   static const String postUnCollectArticle = baseUrl + 'lg/uncollect_originId/';
 
   // 收藏文章列表

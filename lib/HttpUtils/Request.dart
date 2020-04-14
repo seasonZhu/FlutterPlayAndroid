@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ffi';
 
 import 'Api.dart';
 import 'HttpUtils.dart';
@@ -11,6 +12,11 @@ import 'package:play_android/Responses/ProjectClassifyResponse.dart';
 import 'package:play_android/Responses/ProjectClassifyListResponse.dart';
 import 'package:play_android/Responses/PublicNumberResponse.dart';
 import 'package:play_android/Responses/PublicNumberListResponse.dart';
+//登录响应
+//注册响应
+import 'package:play_android/Responses/LogoutResponse.dart';
+import 'package:play_android/Responses/CollectArticleActionResponse.dart';
+//收藏文章列表响应
 
 // Dart的分类需要在Dart2.6以上的版本才能使用,修改了配置文件
 extension Request on HttpUtils {
@@ -71,4 +77,43 @@ extension Request on HttpUtils {
     var json = await HttpUtils.get(api: Api.getPubilicNumberList + id.toString() + "/" + page.toString() + "/json");
     return PublicNumberListResponse.fromJson(json);
   }
+
+  // 登录
+  static Future<Void> login({String username, String password}) async {
+    Map<String, String> params = Map();
+    params["username"] = username;
+    params["password"] = password;
+    var json = await HttpUtils.post(api: Api.postLogin, params: params);
+    print(json);
+  }
+
+  // 注册
+  static Future<Void> register({String username, String password, String rePassword}) async {
+    Map<String, String> params = Map();
+    params["username"] = username;
+    params["password"] = password;
+    params["repassword"] = rePassword;
+    var json = await HttpUtils.post(api: Api.postRegister, params: params);
+    print(json);
+  }
+
+  // 登出
+  static Future<LogoutResponse> logout() async {
+    var json = await HttpUtils.get(api: Api.getLogout);
+    return LogoutResponse.fromJson(json);
+  }
+
+  // 文章收藏与取消收藏操作
+  static Future<CollectArticleActionResponse> collectAction({int id, bool isCollect}) async {
+    var api = isCollect ? Api.postCollectArticle : Api.postUnCollectArticle;
+    var json = await HttpUtils.post(api: api + id.toString() + "/json");
+    return CollectArticleActionResponse.fromJson(json);
+  }
+
+  // 收藏文章列表
+  static Future<Void> getCollectArticleList({int page}) async {
+    var json = await HttpUtils.get(api: Api.getCollectArticleList + page.toString() + "/json");
+    print(json);
+  }
+  
 }
