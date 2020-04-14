@@ -61,7 +61,10 @@ class _ArticleViewState extends State<ArticleView> with TickerProviderStateMixin
   Scaffold _mainBody() {
     return Scaffold(
             appBar: AppBar(
-              title: TabBar(
+              title: Text("项目", style: TextStyle(color: Colors.white)),
+              iconTheme: IconThemeData(color: Colors.white),
+              elevation: 0.1,
+              bottom: TabBar(
                 tabs: _dataSource.map((model) {
                   return Tab(
                     child: Container(
