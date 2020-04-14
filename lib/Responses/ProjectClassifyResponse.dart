@@ -57,7 +57,7 @@ class Datum {
         children: List<dynamic>.from(json["children"].map((x) => x)),
         courseId: json["courseId"],
         id: json["id"],
-        name: json["name"],
+        name: (json["name"] as String).replaceAll("&amp;", "&") ,
         order: json["order"],
         parentChapterId: json["parentChapterId"],
         userControlSetTop: json["userControlSetTop"],
