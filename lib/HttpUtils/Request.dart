@@ -8,10 +8,8 @@ import 'package:play_android/Responses/BannerResponse.dart';
 import 'package:play_android/Responses/ArticleListResponse.dart';
 import 'package:play_android/Responses/HotKeyResponse.dart';
 import 'package:play_android/Responses/SearchResultResponse.dart';
-import 'package:play_android/Responses/ProjectClassifyResponse.dart';
-import 'package:play_android/Responses/ProjectClassifyListResponse.dart';
-import 'package:play_android/Responses/PublicNumberResponse.dart';
-import 'package:play_android/Responses/PublicNumberListResponse.dart';
+import 'package:play_android/Responses/InformationFlowTopicResponse.dart';
+import 'package:play_android/Responses/InformationFlowListResponse.dart';
 //登录响应
 //注册响应
 import 'package:play_android/Responses/LogoutResponse.dart';
@@ -57,29 +55,29 @@ extension Request on HttpUtils {
   }
 
   // 项目分类
-  static Future<ProjectClassifyResponse> getProjectClassify() async {
+  static Future<InformationFlowTopicResponse> getProjectClassify() async {
     var json = await HttpUtils.get(api: Api.getProjectClassify);
-    return ProjectClassifyResponse.fromJson(json);
+    return InformationFlowTopicResponse.fromJson(json);
   }
 
   // 通过id与page获取单个项目分类的列表
-  static Future<ProjectClassifyListResponse> getProjectClassifyList({int page, int id}) async {
+  static Future<InformationFlowListResponse> getProjectClassifyList({int page, int id}) async {
     Map<String, String> params = Map();
     params["cid"] = id.toString();
     var json = await HttpUtils.get(api: Api.getProjectClassifyList + page.toString() + "/json", params: params);
-    return ProjectClassifyListResponse.fromJson(json);
+    return InformationFlowListResponse.fromJson(json);
   }
 
   // 公众号分类
-  static Future<PublicNumberResponse> getPubilicNumber() async {
+  static Future<InformationFlowTopicResponse> getPubilicNumber() async {
     var json = await HttpUtils.get(api: Api.getPubilicNumber);
-    return PublicNumberResponse.fromJson(json);
+    return InformationFlowTopicResponse.fromJson(json);
   }
 
   // 通过id与page获取单个公众号分类的列表
-  static Future<PublicNumberListResponse> getPubilicNumberList({int page, int id}) async {
+  static Future<InformationFlowListResponse> getPubilicNumberList({int page, int id}) async {
     var json = await HttpUtils.get(api: Api.getPubilicNumberList + id.toString() + "/" + page.toString() + "/json");
-    return PublicNumberListResponse.fromJson(json);
+    return InformationFlowListResponse.fromJson(json);
   }
 
   // 登录

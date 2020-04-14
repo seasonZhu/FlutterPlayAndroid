@@ -1,28 +1,27 @@
 // To parse this JSON data, do
 //
-//     final publicNumberResponse = publicNumberResponseFromJson(jsonString);
+//     final InformationFlowTopicResponse = InformationFlowTopicResponseFromJson(jsonString);
 
 import 'dart:convert';
 
 import 'TopicInfo.dart';
 
-PublicNumberResponse publicNumberResponseFromJson(String str) => PublicNumberResponse.fromJson(json.decode(str));
+InformationFlowTopicResponse informationFlowTopicResponseFromJson(String str) => InformationFlowTopicResponse.fromJson(json.decode(str));
 
-String publicNumberResponseToJson(PublicNumberResponse data) => json.encode(data.toJson());
+String informationFlowTopicResponseToJson(InformationFlowTopicResponse data) => json.encode(data.toJson());
 
-// 合并使用InformationFlowListResponse 废弃
-class PublicNumberResponse {
+class InformationFlowTopicResponse {
     List<TopicInfo> data;
     int errorCode;
     String errorMsg;
 
-    PublicNumberResponse({
+    InformationFlowTopicResponse({
         this.data,
         this.errorCode,
         this.errorMsg,
     });
 
-    factory PublicNumberResponse.fromJson(Map<String, dynamic> json) => PublicNumberResponse(
+    factory InformationFlowTopicResponse.fromJson(Map<String, dynamic> json) => InformationFlowTopicResponse(
         data: List<TopicInfo>.from(json["data"].map((x) => TopicInfo.fromJson(x))),
         errorCode: json["errorCode"],
         errorMsg: json["errorMsg"],

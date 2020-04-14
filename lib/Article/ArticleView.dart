@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:play_android/HttpUtils/Request.dart';
 import 'package:play_android/Responses/TopicInfo.dart';
-import 'package:play_android/Responses/ProjectClassifyResponse.dart';
+import 'package:play_android/Responses/InformationFlowTopicResponse.dart';
 
 import 'package:play_android/Compose/InformationFlowView.dart';
-import 'package:play_android/Compose/LoadingView.dart';
 import 'package:play_android/Compose/EmptyView.dart';
 import 'package:play_android/Compose/ToastView.dart';
 
@@ -41,7 +40,7 @@ class _ArticleViewState extends State<ArticleView> with TickerProviderStateMixin
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         //请求完成
         if (snapshot.connectionState == ConnectionState.done) {
-          ProjectClassifyResponse model = snapshot.data;
+          InformationFlowTopicResponse model = snapshot.data;
           _dataSource = model.data;
           _tabController = TabController(length: model.data.length, vsync: this);
 
@@ -82,7 +81,7 @@ class _ArticleViewState extends State<ArticleView> with TickerProviderStateMixin
         iconTheme: IconThemeData(color: Colors.white),
         elevation: 0.1,
       ),
-      body: LoadingView(),
+      body: Container(),
     );
   }
 
@@ -119,7 +118,7 @@ class _ArticleViewState extends State<ArticleView> with TickerProviderStateMixin
     return widgets;
   }
 
-  Future<ProjectClassifyResponse> _getProjectClassifyUseInFutureBuilder() async {
+  Future<InformationFlowTopicResponse> _getProjectClassifyUseInFutureBuilder() async {
     var model = await Request.getProjectClassify();
     return model;
   }
@@ -135,7 +134,7 @@ class _ArticleViewState extends State<ArticleView> with TickerProviderStateMixin
   }
 
   // 用于initState函数中
-  Future<ProjectClassifyResponse> _getProjectClassify() async {
+  Future<InformationFlowTopicResponse> _getProjectClassify() async {
     var model = await Request.getProjectClassify();
     if (model.errorCode == 0) {
         _dataSource = model.data;

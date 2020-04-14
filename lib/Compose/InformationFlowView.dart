@@ -5,8 +5,6 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'package:play_android/HttpUtils/Request.dart';
 import 'package:play_android/Responses/DataInfo.dart';
-import 'package:play_android/Responses/ProjectClassifyListResponse.dart';
-import 'package:play_android/Responses/PublicNumberListResponse.dart';
 import 'package:play_android/Responses/InformationFlowListResponse.dart';
 
 import 'package:play_android/Compose/LoadingView.dart';
@@ -32,11 +30,14 @@ class InformationFlowView extends StatefulWidget {
   _InformationFlowViewState createState() => _InformationFlowViewState();
 }
 
-class _InformationFlowViewState extends State<InformationFlowView> {
+class _InformationFlowViewState extends State<InformationFlowView> with  AutomaticKeepAliveClientMixin {
   List<DataInfo> _dataSource = List();
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
   int _page = 0;
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
@@ -46,6 +47,7 @@ class _InformationFlowViewState extends State<InformationFlowView> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Container(
       child: _dataSource.length > 0
           ? SmartRefresher(
@@ -75,7 +77,7 @@ class _InformationFlowViewState extends State<InformationFlowView> {
     _refreshController.loadComplete();
   }
 
-  Future<List<DataInfo>> _getList() async {
+  Future<InformationFlowListResponse> _getList() async {
     var model;
     switch (widget._type) {
       case InformationType.project:
@@ -93,7 +95,7 @@ class _InformationFlowViewState extends State<InformationFlowView> {
         if (mounted) setState(() {});
     }
 
-    return model.data.datas;  
+    return model;  
   }
 
   @override
