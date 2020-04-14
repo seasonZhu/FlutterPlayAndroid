@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:play_android/ThemeUtils/ThemeUtils.dart';
+import 'MainView.dart';
 
 class PlayAndroidApp extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -10,7 +11,7 @@ class PlayAndroidApp extends StatelessWidget {
         primaryColor: ThemeUtils.currentColor,
         platform: TargetPlatform.iOS, 
       ),
-      home: Center(child: Text("Hello world"),),
+      home: MainView(),
     );
   }
 }
