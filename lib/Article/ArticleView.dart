@@ -53,43 +53,60 @@ class _ArticleViewState extends State<ArticleView> with TickerProviderStateMixin
           }          
         }
         //请求未完成时弹出loading
-        return LoadingView();
+        return _loadingBody();
       }
     );
   }
 
   Scaffold _mainBody() {
     return Scaffold(
-            appBar: AppBar(
-              title: Text("项目", style: TextStyle(color: Colors.white)),
-              iconTheme: IconThemeData(color: Colors.white),
-              elevation: 0.1,
-              bottom: TabBar(
-                tabs: _dataSource.map((model) {
-                  return Tab(
-                    child: Container(
-                      padding: EdgeInsets.all(10),
-                      child: Text(model.name),
-                    ),
-                  );
-                }).toList(),
-                controller: _tabController,
-                isScrollable: true,
-                indicatorColor: Colors.white,
-                indicatorSize: TabBarIndicatorSize.tab,
-                labelStyle: TextStyle(color: Colors.white, fontSize: 20),
-                unselectedLabelStyle:
-                    TextStyle(color: Colors.grey, fontSize: 18),
-                labelColor: Colors.white,
-                labelPadding: EdgeInsets.all(0.0),
-                indicatorPadding: EdgeInsets.all(0.0),
-                indicatorWeight: 2.3,
-                unselectedLabelColor: Colors.white,
-              ),
-            ),
-            body: TabBarView(
-                controller: _tabController, children: _createTabPage()),
-          );
+      appBar: AppBar(
+        title: Text("项目", style: TextStyle(color: Colors.white)),
+        iconTheme: IconThemeData(color: Colors.white),
+        elevation: 0.1,
+        bottom: tabBar()
+      ),
+      body: TabBarView(
+          controller: _tabController, 
+          children: _createTabPage()
+      ),
+    );
+  }
+
+  Scaffold _loadingBody() {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("项目", style: TextStyle(color: Colors.white)),
+        iconTheme: IconThemeData(color: Colors.white),
+        elevation: 0.1,
+      ),
+      body: LoadingView(),
+    );
+  }
+
+  TabBar tabBar() {
+    return TabBar(
+      tabs: _dataSource.map((model) {
+        return Tab(
+          child: Container(
+            padding: EdgeInsets.all(10),
+            child: Text(model.name),
+          ),
+        );
+      }).toList(),
+      controller: _tabController,
+      isScrollable: true,
+      indicatorColor: Colors.white,
+      indicatorSize: TabBarIndicatorSize.tab,
+      labelStyle: TextStyle(color: Colors.white, fontSize: 20),
+      unselectedLabelStyle:
+          TextStyle(color: Colors.grey, fontSize: 18),
+      labelColor: Colors.white,
+      labelPadding: EdgeInsets.all(0.0),
+      indicatorPadding: EdgeInsets.all(0.0),
+      indicatorWeight: 2.3,
+      unselectedLabelColor: Colors.white,
+    );
   }
 
   List<Widget> _createTabPage() {
@@ -112,7 +129,7 @@ class _ArticleViewState extends State<ArticleView> with TickerProviderStateMixin
   }
 
   Widget _contentView() {
-    return (_dataSource.isNotEmpty && _tabController != null) ? _mainBody() : LoadingView();
+    return (_dataSource.isNotEmpty && _tabController != null) ? _mainBody() : _loadingBody();
   }
 
   // 用于initState函数中
