@@ -11,26 +11,23 @@ import 'package:play_android/Compose/LoadingView.dart';
 import 'package:play_android/Compose/ToastView.dart';
 //import 'package:play_android/Compose/EmptyView.dart';
 
-enum InformationType {
-  project,
-  publicNumber
-}
+import 'InfomationType.dart';
 
 // 这个页面用于项目与公众号的列表页
-class InformationFlowView extends StatefulWidget {
+class InformationFlowListView extends StatefulWidget {
   final InformationType _type;
   final TopicInfo _model;
 
-  InformationFlowView({Key key, @required InformationType type, @required TopicInfo model}):  
+  InformationFlowListView({Key key, @required InformationType type, @required TopicInfo model}):  
     _type = type,
     _model = model,
     super(key: key);
 
   @override
-  _InformationFlowViewState createState() => _InformationFlowViewState();
+  _InformationFlowListViewState createState() => _InformationFlowListViewState();
 }
 
-class _InformationFlowViewState extends State<InformationFlowView> with  AutomaticKeepAliveClientMixin {
+class _InformationFlowListViewState extends State<InformationFlowListView> with  AutomaticKeepAliveClientMixin {
   List<DataInfo> _dataSource = List();
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);

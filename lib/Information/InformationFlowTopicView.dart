@@ -4,16 +4,23 @@ import 'package:play_android/HttpUtils/Request.dart';
 import 'package:play_android/Responses/TopicInfo.dart';
 import 'package:play_android/Responses/InformationFlowTopicResponse.dart';
 
-import 'package:play_android/Compose/InformationFlowView.dart';
+import 'package:play_android/Information/InfomationType.dart';
+import 'package:play_android/Information/InformationFlowListView.dart';
 import 'package:play_android/Compose/EmptyView.dart';
 import 'package:play_android/Compose/ToastView.dart';
 
-class PublicNumberView extends StatefulWidget {
+class InformationFlowTopicView extends StatefulWidget {
+  final InformationType _type;
+
+  InformationFlowTopicView({Key key, @required InformationType type}):  
+    _type = type,
+    super(key: key);
+
   @override
-  _PublicNumberViewState createState() => _PublicNumberViewState();
+  _InformationFlowTopicViewState createState() => _InformationFlowTopicViewState();
 }
 
-class _PublicNumberViewState extends State<PublicNumberView> with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
+class _InformationFlowTopicViewState extends State<InformationFlowTopicView> with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
 
   List<TopicInfo> _dataSource = List<TopicInfo>();
 
@@ -36,7 +43,7 @@ class _PublicNumberViewState extends State<PublicNumberView> with TickerProvider
 
   Widget futureBuilder() {
     return FutureBuilder(
-      future: _getPubilicNumberUseInFutureBuilder(),
+      future: _getTopicUseInFutureBuilder(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         //请求完成
         if (snapshot.connectionState == ConnectionState.done) {
@@ -62,7 +69,7 @@ class _PublicNumberViewState extends State<PublicNumberView> with TickerProvider
   Scaffold _mainBody() {
     return Scaffold(
       appBar: AppBar(
-        title: Text("公众号", style: TextStyle(color: Colors.white)),
+        title: Text(title(), style: TextStyle(color: Colors.white)),
         iconTheme: IconThemeData(color: Colors.white),
         elevation: 0.1,
         bottom: tabBar()
@@ -74,10 +81,23 @@ class _PublicNumberViewState extends State<PublicNumberView> with TickerProvider
     );
   }
 
+  String title() {
+    var title;
+    switch (widget._type) {
+      case InformationType.project:
+        title = "项目";
+        break;
+      case InformationType.publicNumber:
+        title = "公众号";
+        break;
+    }
+    return title;
+  }
+
   Scaffold _loadingBody() {
     return Scaffold(
       appBar: AppBar(
-        title: Text("公众号", style: TextStyle(color: Colors.white)),
+        title: Text(title(), style: TextStyle(color: Colors.white)),
         iconTheme: IconThemeData(color: Colors.white),
         elevation: 0.1,
       ),
@@ -113,13 +133,21 @@ class _PublicNumberViewState extends State<PublicNumberView> with TickerProvider
   List<Widget> _createTabPage() {
     var widgets = List<Widget>() ;
     for (var model in _dataSource) {
-      widgets.add(InformationFlowView(model: model, type: InformationType.publicNumber,));
+      widgets.add(InformationFlowListView(model: model, type: InformationType.publicNumber,));
     }
     return widgets;
   }
 
-  Future<InformationFlowTopicResponse> _getPubilicNumberUseInFutureBuilder() async {
-    var model = await Request.getPubilicNumber();
+  Future<InformationFlowTopicResponse> _getTopicUseInFutureBuilder() async {
+    var model;
+    switch (widget._type) {
+      case InformationType.project:
+        model = await Request.getProjectClassify();
+        break;
+      case InformationType.publicNumber:
+        model = await Request.getPubilicNumber();
+        break;
+    }
     return model;
   }
 
@@ -134,7 +162,7 @@ class _PublicNumberViewState extends State<PublicNumberView> with TickerProvider
   }
 
   // 用于initState函数中
-  Future<InformationFlowTopicResponse> _getPubilicNumber() async {
+  Future<InformationFlowTopicResponse> _getTopic() async {
     var model = await Request.getPubilicNumber();
     if (model.errorCode == 0) {
         _dataSource = model.data;

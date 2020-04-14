@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:play_android/Home/HomeView.dart';
-import 'package:play_android/Article/ArticleView.dart';
-import 'package:play_android/PublicNumber/PublicNumberView.dart';
+import 'package:play_android/Information/InfomationType.dart';
+import 'package:play_android/Information/InformationFlowTopicView.dart';
 import 'package:play_android/My/MyView.dart';
 
 class MainView extends StatefulWidget {
@@ -13,7 +13,7 @@ class MainView extends StatefulWidget {
 class _MainViewState extends State<MainView> {
   int _selectedIndex = 0;
 
-  final _views = [HomeView(), ArticleView(), PublicNumberView(), MyView()];
+  final _views = [HomeView(), InformationFlowTopicView(type: InformationType.project,), InformationFlowTopicView(type: InformationType.publicNumber,), MyView()];
 
   @override
   Widget build(BuildContext context) {

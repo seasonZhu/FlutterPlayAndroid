@@ -1,0 +1,4 @@
+enum InformationType {
+  project,
+  publicNumber
+}
