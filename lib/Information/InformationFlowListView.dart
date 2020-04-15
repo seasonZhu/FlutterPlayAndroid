@@ -11,7 +11,7 @@ import 'package:play_android/Compose/LoadingView.dart';
 //import 'package:play_android/Compose/ToastView.dart';
 //import 'package:play_android/Compose/EmptyView.dart';
 
-import 'InfomationType.dart';
+import 'InformationType.dart';
 import 'InformationFlowListCell.dart';
 
 // 这个页面用于项目与公众号的列表页

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:play_android/Home/HomeView.dart';
-import 'package:play_android/Information/InfomationType.dart';
+import 'package:play_android/Information/InformationType.dart';
 import 'package:play_android/Information/InformationFlowTopicView.dart';
 import 'package:play_android/My/MyView.dart';
 
