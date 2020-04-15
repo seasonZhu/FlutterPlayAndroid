@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'BannerView.dart';
+
 class HomeView extends StatefulWidget {
   @override
   _HomeViewState createState() => _HomeViewState();
@@ -22,7 +24,7 @@ class _HomeViewState extends State<HomeView> {
             )
         ],
       ),
-      body: Center(child: Text("首页")),
+      body: BannerView(),//Center(child: Text("首页")),
     );
   }
 }
