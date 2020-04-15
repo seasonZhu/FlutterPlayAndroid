@@ -12,6 +12,7 @@ import 'package:play_android/Compose/ToastView.dart';
 //import 'package:play_android/Compose/EmptyView.dart';
 
 import 'InfomationType.dart';
+import 'InformationFlowListCell.dart';
 
 // 这个页面用于项目与公众号的列表页
 class InformationFlowListView extends StatefulWidget {
@@ -53,8 +54,8 @@ class _InformationFlowListViewState extends State<InformationFlowListView> with 
               onRefresh: _onRefresh,
               onLoading: _onLoading,
               child: ListView.builder(
-                itemBuilder: (c, i) =>
-                    Container(child: Text(_dataSource[i].title), height: 44),
+                itemBuilder: (context, index) =>
+                    InformationFlowListCell(model: _dataSource[index],),
                 itemCount: _dataSource.length,
               ),
             )

@@ -66,6 +66,15 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  assets:
+    - assets/images/welcome_bg.jpeg
+    - assets/images/ic_head.jpeg
+    - assets/images/ic_eye.png
+    - assets/images/placeholder.png
+    - assets/images/we_chart_mark.jpg
+    - assets/images/alipay.jpg
+    - assets/images/we_chart_pay.jpg
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #  - images/a_dot_burr.jpeg
