@@ -15,10 +15,18 @@ class _MainViewState extends State<MainView> {
 
   final _views = [HomeView(), InformationFlowTopicView(type: InformationType.project,), InformationFlowTopicView(type: InformationType.publicNumber,), MyView()];
 
+  var _body;
+
   @override
   Widget build(BuildContext context) {
+    // 通过这个方案保证tabbar的四个页面都保持存活状态,避免反复刷新
+    _body = IndexedStack(
+      children: _views,
+      index: _selectedIndex,
+    );
+
     return Scaffold(
-      body:_views[_selectedIndex],
+      body:_body,
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("首页")),
