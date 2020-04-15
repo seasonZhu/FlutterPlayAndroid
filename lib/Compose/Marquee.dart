@@ -62,6 +62,7 @@ class _MarqueeState extends State<Marquee> {
 
   @override
   Widget build(BuildContext context) {
+    //return SingleChildScrollView(controller: _controller, scrollDirection: Axis.horizontal, child: _child(),);
     return ListView.builder(
       scrollDirection: Axis.horizontal,  // 横向滚动
       controller: _controller,  // 滚动的controller

@@ -5,7 +5,21 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Flutter",
+            "name": "Flutter: Run all Tests",
+            "type": "dart",
+            "request": "launch",
+            "program": "./test/"
+        },
+
+        
+        {
+            "name": "Flutter:连接到设备上已有该App",
+            "type": "dart",
+            "request": "attach"
+        },
+        
+        {
+            "name": "Flutter:Debug",
             "request": "launch",
             "type": "dart"
         }
