@@ -38,7 +38,7 @@ class _InformationFlowWebViewState extends State<InformationFlowWebView> {
   }
 
   Widget normalText() {
-    return Text(_model.title, style: TextStyle(color: Colors.white));
+    return SingleChildScrollView(child: Text(_model.title, style: TextStyle(color: Colors.white)),scrollDirection: Axis.horizontal,);
   }
 
   Widget loading() {
@@ -56,7 +56,7 @@ class _InformationFlowWebViewState extends State<InformationFlowWebView> {
     return WebviewScaffold(
       url: _model.link,
       appBar: AppBar(
-        title: Text(_model.title, style: TextStyle(color: Colors.white)),
+        title: normalText(),
         iconTheme: IconThemeData(color: Colors.white),
         elevation: 0.1,
         actions: <Widget>[
