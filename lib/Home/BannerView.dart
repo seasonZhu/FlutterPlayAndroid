@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 import 'package:play_android/HttpUtils/Request.dart';
@@ -27,7 +26,7 @@ class BannerView extends StatelessWidget {
           return bannerView(context, model);
         }
         //请求未完成时弹出loading
-        return Container();
+        return placeHolderView();
       }
     );
   }

@@ -8,7 +8,7 @@ import 'package:play_android/Responses/DataInfo.dart';
 import 'package:play_android/Responses/InformationFlowListResponse.dart';
 
 import 'package:play_android/Compose/LoadingView.dart';
-import 'package:play_android/Compose/ToastView.dart';
+//import 'package:play_android/Compose/ToastView.dart';
 //import 'package:play_android/Compose/EmptyView.dart';
 
 import 'InfomationType.dart';

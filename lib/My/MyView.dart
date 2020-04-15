@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:play_android/View/Routes.dart';
-import 'package:play_android/Compose/Marquee.dart';
 
 class MyView extends StatefulWidget {
   @override
