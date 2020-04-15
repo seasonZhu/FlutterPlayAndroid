@@ -4,6 +4,7 @@ import 'package:flutter_html/flutter_html.dart';
 
 import 'package:play_android/View/Routes.dart';
 import 'package:play_android/Responses/DataInfo.dart';
+import 'package:play_android/Responses/InformationFlow.dart';
 
 class InformationFlowListCell extends StatelessWidget {
   final DataInfo _model;
@@ -108,6 +109,7 @@ class InformationFlowListCell extends StatelessWidget {
   }
 
   void _pushToWebView(BuildContext context) {
-    Navigator.pushNamed(context, Routes.informationFlowWebView, arguments: _model);
+    var info = InformationFlow(collect: _model.collect, id: _model.id, link: _model.link, title: _model.title);
+    Navigator.pushNamed(context, Routes.informationFlowWebView, arguments: info);
   }
 }

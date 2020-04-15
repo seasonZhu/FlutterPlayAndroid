@@ -4,9 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
-import 'package:play_android/Compose/LoadingView.dart';
 
-import 'package:play_android/Responses/DataInfo.dart';
+import 'package:play_android/Responses/InformationFlow.dart';
+import 'package:play_android/Compose/LoadingView.dart';
 import 'package:play_android/Compose/ToastView.dart';
 import 'package:play_android/Compose/Marquee.dart';
 
@@ -15,10 +15,11 @@ class InformationFlowWebView extends StatefulWidget {
   _InformationFlowWebViewState createState() => _InformationFlowWebViewState();
 }
 
+// 使用的WebviewScaffold这个框架中无法支持iOS的侧滑,准确说的是web表现的内容无法侧滑
 class _InformationFlowWebViewState extends State<InformationFlowWebView> {
   FlutterWebviewPlugin _flutterWebviewPlugin = FlutterWebviewPlugin();
 
-  DataInfo _model;
+  InformationFlow _model;
 
   var _isLoading = true;
 
