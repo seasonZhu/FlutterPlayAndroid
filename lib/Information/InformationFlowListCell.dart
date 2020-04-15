@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_html/flutter_html.dart';
 
+import 'package:play_android/View/Routes.dart';
 import 'package:play_android/Responses/DataInfo.dart';
 
 class InformationFlowListCell extends StatelessWidget {
@@ -18,7 +19,7 @@ class InformationFlowListCell extends StatelessWidget {
     return Card(
         child: InkWell(
       onTap: () {
-        _pushToWebView();
+        _pushToWebView(context);
       },
       child: Container(
         padding: EdgeInsets.all(10),
@@ -106,5 +107,7 @@ class InformationFlowListCell extends StatelessWidget {
     );
   }
 
-  void _pushToWebView() {}
+  void _pushToWebView(BuildContext context) {
+    Navigator.pushNamed(context, Routes.informationFlowWebView, arguments: _model);
+  }
 }

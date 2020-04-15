@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:play_android/View/Routes.dart';
+import 'package:play_android/Compose/Marquee.dart';
+
 class MyView extends StatefulWidget {
   @override
   _MyViewState createState() => _MyViewState();
@@ -20,12 +23,12 @@ class _MyViewState extends State<MyView> {
               color: Colors.white,
             ),
             onPressed: () {
-              Navigator.pushNamed(context, '/RankingView');
+              Navigator.pushNamed(context, Routes.rankingView);
             }
           )
         ],
       ),
-      body: Center(child: Text("我的")),
+      body: Center(child: Text("我的"),),
     );
   }
 }
