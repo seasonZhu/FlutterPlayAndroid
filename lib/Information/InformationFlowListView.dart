@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:play_android/Responses/TopicInfo.dart';
 
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'package:play_android/HttpUtils/Request.dart';
 import 'package:play_android/Responses/DataInfo.dart';
+import 'package:play_android/Responses/TopicInfo.dart';
 import 'package:play_android/Responses/InformationFlowListResponse.dart';
 
 import 'package:play_android/Compose/LoadingView.dart';
@@ -13,6 +13,7 @@ import 'package:play_android/Compose/LoadingView.dart';
 
 import 'InformationType.dart';
 import 'InformationFlowListCell.dart';
+import 'package:play_android/Home/BannerView.dart';
 
 // 这个页面用于项目与公众号的列表页
 class InformationFlowListView extends StatefulWidget {
@@ -55,12 +56,23 @@ class _InformationFlowListViewState extends State<InformationFlowListView> with 
               onLoading: _onLoading,
               child: ListView.builder(
                 itemBuilder: (context, index) =>
-                    InformationFlowListCell(model: _dataSource[index],),
+                    Column(children: <Widget>[
+                      sectionHeader(index),
+                      InformationFlowListCell(model: _dataSource[index],),
+                    ],),
+                    
                 itemCount: _dataSource.length,
               ),
             )
           : LoadingView(),
     );
+  }
+
+  Widget sectionHeader(int index) {
+    if (index == 0) {
+      return BannerView();
+    }
+    return Container();
   }
 
   void _onRefresh() async {

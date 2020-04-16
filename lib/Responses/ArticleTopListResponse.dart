@@ -1,26 +1,26 @@
 // To parse this JSON data, do
 //
-//     final articleListResponse = articleListResponseFromJson(jsonString);
+//     final ArticleTopListResponse = ArticleTopListResponseFromJson(jsonString);
 
 import 'dart:convert';
 import 'DataInfo.dart';
 
-ArticleListResponse articleListResponseFromJson(String str) => ArticleListResponse.fromJson(json.decode(str));
+ArticleTopListResponse articleTopListResponseFromJson(String str) => ArticleTopListResponse.fromJson(json.decode(str));
 
-String articleListResponseToJson(ArticleListResponse data) => json.encode(data.toJson());
+String articleTopListResponseToJson(ArticleTopListResponse data) => json.encode(data.toJson());
 
-class ArticleListResponse {
+class ArticleTopListResponse {
     List<DataInfo> data;
     int errorCode;
     String errorMsg;
 
-    ArticleListResponse({
+    ArticleTopListResponse({
         this.data,
         this.errorCode,
         this.errorMsg,
     });
 
-    factory ArticleListResponse.fromJson(Map<String, dynamic> json) => ArticleListResponse(
+    factory ArticleTopListResponse.fromJson(Map<String, dynamic> json) => ArticleTopListResponse(
         data: List<DataInfo>.from(json["data"].map((x) => DataInfo.fromJson(x))),
         errorCode: json["errorCode"],
         errorMsg: json["errorMsg"],

@@ -5,7 +5,8 @@ import 'Api.dart';
 import 'HttpUtils.dart';
 
 import 'package:play_android/Responses/BannerResponse.dart';
-import 'package:play_android/Responses/ArticleListResponse.dart';
+import 'package:play_android/Responses/ArticleTopListResponse.dart';
+import 'package:play_android/Responses/ArticleNormalListResponse.dart';
 import 'package:play_android/Responses/HotKeyResponse.dart';
 import 'package:play_android/Responses/SearchResultResponse.dart';
 import 'package:play_android/Responses/InformationFlowTopicResponse.dart';
@@ -29,15 +30,15 @@ extension Request on HttpUtils {
   }
 
   // 获取首页置顶文章
-  static Future<ArticleListResponse> getTopArticleList() async {
+  static Future<ArticleTopListResponse> getTopArticleList() async {
     var json = await HttpUtils.get(api: Api.getTopArticleList);
-    return ArticleListResponse.fromJson(json);
+    return ArticleTopListResponse.fromJson(json);
   }
 
   // 通过page获取首页文章
-  static Future<ArticleListResponse> getArticleList({int page}) async {
+  static Future<ArticleNormalListResponse> getArticleList({int page}) async {
     var json = await HttpUtils.get(api: Api.getArticleList + page.toString() + "/json");
-    return ArticleListResponse.fromJson(json);
+    return ArticleNormalListResponse.fromJson(json);
   }
 
   // 搜索热词
