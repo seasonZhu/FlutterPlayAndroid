@@ -30,6 +30,8 @@ dependencies:
   flutter_swiper: ^1.1.6
   # webView插件,不支持iOS的侧滑
   flutter_webview_plugin: ^0.3.11
+  # 上面那个性能不好 换这个
+  webview_flutter: ^0.3.19+9
   # 下拉刷新与上拉加载
   pull_to_refresh: ^1.5.8
   # 暂时没有用,不知道是啥
