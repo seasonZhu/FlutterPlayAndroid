@@ -55,24 +55,13 @@ class _InformationFlowListViewState extends State<InformationFlowListView> with 
               onRefresh: _onRefresh,
               onLoading: _onLoading,
               child: ListView.builder(
-                itemBuilder: (context, index) =>
-                    Column(children: <Widget>[
-                      sectionHeader(index),
-                      InformationFlowListCell(model: _dataSource[index],),
-                    ],),
-                    
+                itemBuilder: (context, index) => 
+                  InformationFlowListCell(model: _dataSource[index],),
                 itemCount: _dataSource.length,
               ),
             )
           : LoadingView(),
     );
-  }
-
-  Widget sectionHeader(int index) {
-    if (index == 0) {
-      return BannerView();
-    }
-    return Container();
   }
 
   void _onRefresh() async {
