@@ -1,6 +1,10 @@
 // 路由表
 abstract class Routes {
-  static var rankingView = "/rankingView";
+  static final rankingView = "/rankingView";
 
-  static var informationFlowWebView = "/informationFlowWebView";
+  static final informationFlowWebView = "/informationFlowWebView";
+
+  static final hotKeyView = "/hotKeyView";
+
+  static final searchResultView = "/searchResultView";
 }

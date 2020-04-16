@@ -13,7 +13,6 @@ import 'package:play_android/Compose/LoadingView.dart';
 
 import 'InformationType.dart';
 import 'InformationFlowListCell.dart';
-import 'package:play_android/Home/BannerView.dart';
 
 // 这个页面用于项目与公众号的列表页
 class InformationFlowListView extends StatefulWidget {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+import 'package:play_android/View/Routes.dart';
 import 'package:play_android/HttpUtils/Request.dart';
 import 'package:play_android/Responses/DataInfo.dart';
 import 'package:play_android/Responses/ArticleTopListResponse.dart';
@@ -46,7 +47,7 @@ class _HomeViewState extends State<HomeView> {
           IconButton(
               icon: Icon(Icons.search),
               onPressed: () {
-                
+                _pushToHotkeView(context);
               }
             )
         ],
@@ -115,6 +116,10 @@ class _HomeViewState extends State<HomeView> {
     }
 
     return model;  
+  }
+
+  void _pushToHotkeView(BuildContext context) {
+    Navigator.pushNamed(context, Routes.hotKeyView);
   }
 
   @override

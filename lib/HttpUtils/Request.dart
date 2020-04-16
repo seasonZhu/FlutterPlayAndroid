@@ -48,9 +48,9 @@ extension Request on HttpUtils {
   }
 
   // 通过关键词与page进行搜索,获取搜索结果
-  static Future<SearchResultResponse> postQueryKey({int page, String keyWord}) async {
+  static Future<SearchResultResponse> postQueryKey({int page, String keyword}) async {
     Map<String, String> params = Map();
-    params["k"] = keyWord;
+    params["k"] = keyword;
     var json = await HttpUtils.post(api: Api.postQueryKey + page.toString() + "/json", params: params);
     return SearchResultResponse.fromJson(json);
   }
