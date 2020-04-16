@@ -7,8 +7,6 @@ import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 import 'package:play_android/Responses/InformationFlowProtocol.dart';
 
-import 'package:play_android/Compose/LoadingView.dart';
-import 'package:play_android/Compose/ToastView.dart';
 import 'package:play_android/Compose/Marquee.dart';
 
 class InformationFlowWebView extends StatefulWidget {

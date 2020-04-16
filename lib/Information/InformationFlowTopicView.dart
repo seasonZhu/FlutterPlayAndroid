@@ -152,7 +152,8 @@ class _InformationFlowTopicViewState extends State<InformationFlowTopicView> wit
     _tabController.dispose();
     super.dispose();
   }
-
+  
+  /*
   Widget _contentView() {
     return (_dataSource.isNotEmpty && _tabController != null) ? _mainBody() : _loadingBody();
   }
@@ -170,4 +171,5 @@ class _InformationFlowTopicViewState extends State<InformationFlowTopicView> wit
     }
     return model;
   }
+  */
 }
