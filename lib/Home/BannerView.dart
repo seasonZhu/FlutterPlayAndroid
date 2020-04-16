@@ -4,7 +4,6 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 
 import 'package:play_android/HttpUtils/Request.dart';
 import 'package:play_android/Responses/BannerResponse.dart';
-import 'package:play_android/Responses/InformationFlow.dart';
 
 import 'package:play_android/View/Routes.dart';
 import 'package:play_android/Compose/ToastView.dart';
@@ -63,9 +62,7 @@ class BannerView extends StatelessWidget {
   }
 
   void _pushToWebView(BuildContext context, Datum model) {
-    var info = InformationFlow(
-        collect: false, id: model.id, link: model.url, title: model.title);
     Navigator.pushNamed(context, Routes.informationFlowWebView,
-        arguments: info);
+        arguments: model);
   }
 }

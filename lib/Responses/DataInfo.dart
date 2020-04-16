@@ -1,6 +1,7 @@
 import 'Tag.dart';
+import 'InformationFlowProtocol.dart';
 
-class DataInfo {
+class DataInfo implements InformationFlowProtocol {
     String apkLink;
     int audit;
     String author;

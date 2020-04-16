@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'InformationFlowProtocol.dart';
+
 BannerResponse bannerResponseFromJson(String str) => BannerResponse.fromJson(json.decode(str));
 
 String bannerResponseToJson(BannerResponse data) => json.encode(data.toJson());
@@ -32,7 +34,7 @@ class BannerResponse {
     };
 }
 
-class Datum {
+class Datum implements InformationFlowProtocol {
     String desc;
     int id;
     String imagePath;
@@ -40,7 +42,8 @@ class Datum {
     int order;
     String title;
     int type;
-    String url;
+    String link;
+    bool collect;
 
     Datum({
         this.desc,
@@ -50,7 +53,8 @@ class Datum {
         this.order,
         this.title,
         this.type,
-        this.url,
+        this.link,
+        this.collect
     });
 
     factory Datum.fromJson(Map<String, dynamic> json) => Datum(
@@ -61,7 +65,8 @@ class Datum {
         order: json["order"],
         title: json["title"],
         type: json["type"],
-        url: json["url"],
+        link: json["url"],
+        collect: false
     );
 
     Map<String, dynamic> toJson() => {
@@ -72,6 +77,6 @@ class Datum {
         "order": order,
         "title": title,
         "type": type,
-        "url": url,
+        "url": link,
     };
 }
