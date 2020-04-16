@@ -71,8 +71,12 @@ class _InformationFlowListViewState extends State<InformationFlowListView> with 
 
   void _onLoading() async {
     _page++;
-    _getList();
-    _refreshController.loadComplete();
+    var model = await _getList();
+    if (model.data.pageCount == model.data.curPage) {
+      _refreshController.loadNoData();
+    }else {
+      _refreshController.loadComplete();
+    }
   }
 
   Future<InformationFlowListResponse> _getList() async {

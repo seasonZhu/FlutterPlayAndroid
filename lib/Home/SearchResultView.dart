@@ -75,8 +75,12 @@ class _SearchResultViewState extends State<SearchResultView> {
 
   void _onLoading() async {
     _page++;
-    _postQueryKey(widget._keyword);
-    _refreshController.loadComplete();
+    var model = await _postQueryKey(widget._keyword);
+    if (model.data.pageCount == model.data.curPage) {
+      _refreshController.loadNoData();
+    }else {
+      _refreshController.loadComplete();
+    }
   }
 
   Future<SearchResultResponse> _postQueryKey(String keyword) async {

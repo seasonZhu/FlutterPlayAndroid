@@ -93,8 +93,12 @@ class _HomeViewState extends State<HomeView> {
 
   void _onLoading() async {
     _page++;
-    _getArticleList();
-    _refreshController.loadComplete();
+    var model = await _getArticleList();
+    if (model.data.pageCount == model.data.curPage) {
+      _refreshController.loadNoData();
+    }else {
+      _refreshController.loadComplete();
+    }
   }
 
   Future<ArticleTopListResponse> _getTopArticleList() async {

@@ -54,7 +54,7 @@ class _RankingViewState extends State<RankingView> {
       enablePullUp: true,
       controller: _refreshController,
       onRefresh: _onRefresh,
-      onLoading: _onLoadingMore,
+      onLoading: _onLoading,
       child: ListView.builder(
         itemBuilder: (context, index) {
           return RankingCell(model: dataSoures[index]);
@@ -82,7 +82,7 @@ class _RankingViewState extends State<RankingView> {
     _refreshController.refreshCompleted();
   }
 
-  void _onLoadingMore() async {
+  void _onLoading() async {
     _page = _page + 1;
     var model = await _getRankList(_page);
     if (model.data.pageCount == model.data.curPage) {
