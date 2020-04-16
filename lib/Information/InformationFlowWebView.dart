@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 
+import 'package:flutter_html/flutter_html.dart';
+
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 import 'package:play_android/Responses/InformationFlowProtocol.dart';
@@ -55,7 +57,9 @@ class _InformationFlowWebViewState extends State<InformationFlowWebView> {
     return WebviewScaffold(
       url: _model.link,
       appBar: AppBar(
-        title: normalText(),
+        // 参考了微信的做法,直接就没有标题,这个title有h5元素,
+        //用Text或者框架Html都不能很好解决,加上跑马灯的问题
+        //title: normalText(),
         iconTheme: IconThemeData(color: Colors.white),
         elevation: 0.1,
         actions: <Widget>[
