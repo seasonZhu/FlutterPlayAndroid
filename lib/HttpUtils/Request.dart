@@ -6,9 +6,7 @@ import 'HttpUtils.dart';
 
 import 'package:play_android/Responses/BannerResponse.dart';
 import 'package:play_android/Responses/ArticleTopListResponse.dart';
-import 'package:play_android/Responses/ArticleNormalListResponse.dart';
 import 'package:play_android/Responses/HotKeyResponse.dart';
-import 'package:play_android/Responses/SearchResultResponse.dart';
 import 'package:play_android/Responses/InformationFlowTopicResponse.dart';
 import 'package:play_android/Responses/InformationFlowListResponse.dart';
 //登录响应
@@ -36,9 +34,9 @@ extension Request on HttpUtils {
   }
 
   // 通过page获取首页文章
-  static Future<ArticleNormalListResponse> getArticleList({int page}) async {
+  static Future<InformationFlowListResponse> getArticleList({int page}) async {
     var json = await HttpUtils.get(api: Api.getArticleList + page.toString() + "/json");
-    return ArticleNormalListResponse.fromJson(json);
+    return InformationFlowListResponse.fromJson(json);
   }
 
   // 搜索热词
@@ -48,11 +46,11 @@ extension Request on HttpUtils {
   }
 
   // 通过关键词与page进行搜索,获取搜索结果
-  static Future<SearchResultResponse> postQueryKey({int page, String keyword}) async {
+  static Future<InformationFlowListResponse> postQueryKey({int page, String keyword}) async {
     Map<String, String> params = Map();
     params["k"] = keyword;
     var json = await HttpUtils.post(api: Api.postQueryKey + page.toString() + "/json", params: params);
-    return SearchResultResponse.fromJson(json);
+    return InformationFlowListResponse.fromJson(json);
   }
 
   // 项目分类

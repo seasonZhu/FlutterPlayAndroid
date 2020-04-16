@@ -6,7 +6,7 @@ import 'package:play_android/View/Routes.dart';
 import 'package:play_android/HttpUtils/Request.dart';
 import 'package:play_android/Responses/DataInfo.dart';
 import 'package:play_android/Responses/ArticleTopListResponse.dart';
-import 'package:play_android/Responses/ArticleNormalListResponse.dart';
+import 'package:play_android/Responses/InformationFlowListResponse.dart';
 
 import 'package:play_android/Compose/LoadingView.dart';
 //import 'package:play_android/Compose/ToastView.dart';
@@ -112,7 +112,7 @@ class _HomeViewState extends State<HomeView> {
     return model;  
   }
 
-  Future<ArticleNormalListResponse> _getArticleList() async {
+  Future<InformationFlowListResponse> _getArticleList() async {
     var model = await Request.getArticleList(page: _page - 1);
     if (model.errorCode == 0) {
         _dataSource.addAll(model.data.datas);

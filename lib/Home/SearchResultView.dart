@@ -4,7 +4,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'package:play_android/HttpUtils/Request.dart';
 import 'package:play_android/Responses/DataInfo.dart';
-import 'package:play_android/Responses/SearchResultResponse.dart';
+import 'package:play_android/Responses/InformationFlowListResponse.dart';
 
 import 'package:play_android/Compose/LoadingView.dart';
 //import 'package:play_android/Compose/ToastView.dart';
@@ -83,7 +83,7 @@ class _SearchResultViewState extends State<SearchResultView> {
     }
   }
 
-  Future<SearchResultResponse> _postQueryKey(String keyword) async {
+  Future<InformationFlowListResponse> _postQueryKey(String keyword) async {
     var model = await Request.postQueryKey(keyword: keyword, page: _page);
     if (model.errorCode == 0) {
       if (_page == 0) {

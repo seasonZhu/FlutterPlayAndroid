@@ -6,6 +6,7 @@ InformationFlowListResponse informationFlowListResponseFromJson(String str) => I
 
 String informationFlowListResponseToJson(InformationFlowListResponse data) => json.encode(data.toJson());
 
+// 此模型用途广泛,首页的常规文章/搜索后的结果列表 项目页 公众号页都是使用的这个模型
 class InformationFlowListResponse {
     InformationFlowListResponseData data;
     int errorCode;
