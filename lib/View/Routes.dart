@@ -9,4 +9,6 @@ abstract class Routes {
   static final searchResultView = "/searchResultView";
 
   static final themeSettingView = "/themeSettingView";
+
+  static final aboutAppAndMeView = "/aboutAppAndMeView";
 }

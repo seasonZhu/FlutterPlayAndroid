@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:play_android/EventBus/EventBus.dart';
 import 'package:play_android/ThemeUtils/ThemeUtils.dart';
+import 'MyListModel.dart';
 
 class ThemeSettingView extends StatefulWidget {
   @override
@@ -18,9 +19,10 @@ class _ThemeSettingViewState extends State<ThemeSettingView> {
 
   @override
   Widget build(BuildContext context) {
+    MyListModel model = ModalRoute.of(context).settings.arguments;
     return Scaffold(
         appBar: AppBar(
-          title: Text('切换主题', style: TextStyle(color: Colors.white)),
+          title: Text(model.title, style: TextStyle(color: Colors.white)),
           iconTheme: IconThemeData(color: Colors.white),
           centerTitle: true, //设置标题是否局中
         ),

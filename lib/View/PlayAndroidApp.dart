@@ -5,6 +5,7 @@ import 'MainView.dart';
 
 import 'Routes.dart';
 import 'package:play_android/EventBus/EventBus.dart';
+import 'package:play_android/My/AboutAppAndMeView.dart';
 import 'package:play_android/My/RankingView.dart';
 import 'package:play_android/My/ThemeSettingView.dart';
 import 'package:play_android/Information/InformationFlowWebView.dart';
@@ -45,6 +46,7 @@ class _PlayAndroidAppState extends State<PlayAndroidApp>  {
         Routes.hotKeyView: (context) => HotKeyView(),
         Routes.searchResultView: (context) => SearchResultView(keyword: PlayAndroidApp.any,),
         Routes.themeSettingView: (context) => ThemeSettingView(),
+        Routes.aboutAppAndMeView: (context) => AboutAppAndMeView(),
       },
     );
   }

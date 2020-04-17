@@ -6,9 +6,9 @@ import 'TargetType.dart';
 class MyViewCell extends StatelessWidget {
   final MyListModel _model;
 
-  final ValueChanged<TargetType> _onTapCallback;
+  final ValueChanged<MyListModel> _onTapCallback;
 
-  MyViewCell({Key key, @required MyListModel model, ValueChanged<TargetType> onTapCallback})
+  MyViewCell({Key key, @required MyListModel model, ValueChanged<MyListModel> onTapCallback})
       : _model = model,
         _onTapCallback = onTapCallback,
         super(key: key);
@@ -20,7 +20,7 @@ class MyViewCell extends StatelessWidget {
       title: Text(_model.title),
       trailing: Icon(Icons.arrow_forward_ios),
       onTap: () {
-        _onTapCallback(_model.type);
+        _onTapCallback(_model);
       }
     );
   }
