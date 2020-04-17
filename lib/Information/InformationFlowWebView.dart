@@ -17,6 +17,7 @@ class InformationFlowWebView extends StatefulWidget {
 }
 
 // 使用的WebviewScaffold这个框架中无法支持iOS的侧滑,准确说的是web表现的内容无法侧滑
+// 后面使用了webview_flutter这个框架,最终调用的是原生的WKWebKit框架,效果好,并且支持侧滑
 class _InformationFlowWebViewState extends State<InformationFlowWebView> {
   FlutterWebviewPlugin _flutterWebviewPlugin = FlutterWebviewPlugin();
 
