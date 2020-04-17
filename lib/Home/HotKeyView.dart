@@ -154,8 +154,8 @@ class _SearchField extends StatelessWidget {
   }
 
   void _inputComplete(BuildContext context) {
+    FocusScope.of(context).requestFocus(FocusNode());
     if (searchKeyCtrl.text.trim().isEmpty) {
-      FocusScope.of(context).requestFocus(FocusNode());
       ToastView.show("搜索关键字不能为空");
       return;
     }
