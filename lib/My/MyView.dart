@@ -91,7 +91,7 @@ class _MyViewState extends State<MyView> {
         return _tableHeaderView();
       }
       return MyViewCell(model: MyListModel.dataSource[index], onTapCallback: (type){
-        print(type);
+        _pushToTargetView(type: type);
       },);
     },
     separatorBuilder: (context, index) {
@@ -100,5 +100,15 @@ class _MyViewState extends State<MyView> {
       );
     },
     itemCount: MyListModel.dataSource.length);
+  }
+
+  void _pushToTargetView({TargetType type}) {
+    switch (type) {
+      case TargetType.themeSetting:
+        Navigator.pushNamed(context, Routes.themeSettingView);
+        break;
+      default:
+        break;
+    }
   }
 }

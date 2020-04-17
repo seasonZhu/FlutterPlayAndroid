@@ -7,4 +7,6 @@ abstract class Routes {
   static final hotKeyView = "/hotKeyView";
 
   static final searchResultView = "/searchResultView";
+
+  static final themeSettingView = "/themeSettingView";
 }
