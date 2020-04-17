@@ -8,7 +8,7 @@ import 'package:play_android/Responses/InformationFlowListResponse.dart';
 
 import 'package:play_android/Compose/LoadingView.dart';
 //import 'package:play_android/Compose/ToastView.dart';
-//import 'package:play_android/Compose/EmptyView.dart';
+import 'package:play_android/Compose/EmptyView.dart';
 
 import 'package:play_android/Information/InformationFlowListCell.dart';
 
@@ -28,6 +28,7 @@ class _SearchResultViewState extends State<SearchResultView> {
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
   int _page = 0;
+  bool _isRequestFinish = false;
 
   @override
   void initState() {
@@ -49,22 +50,26 @@ class _SearchResultViewState extends State<SearchResultView> {
   Widget _body() {
     return SafeArea(
       child: Container(
-        child: _dataSource.length > 0
-            ? SmartRefresher(
-                enablePullUp: true,
-                controller: _refreshController,
-                onRefresh: _onRefresh,
-                onLoading: _onLoading,
-                child: ListView.builder(
-                  itemBuilder: (context, index) => InformationFlowListCell(
-                    model: _dataSource[index],
-                  ),
-                  itemCount: _dataSource.length,
-                ),
-              )
-            : LoadingView(),
+        child: _isRequestFinish ? _contentView() : LoadingView()
       ),
     );
+  }
+
+  Widget _contentView() {
+    return _dataSource.length > 0
+          ? SmartRefresher(
+              enablePullUp: true,
+              controller: _refreshController,
+              onRefresh: _onRefresh,
+              onLoading: _onLoading,
+              child: ListView.builder(
+                itemBuilder: (context, index) => InformationFlowListCell(
+                  model: _dataSource[index],
+                ),
+                itemCount: _dataSource.length,
+              ),
+            )
+          : EmptyView();
   }
 
   void _onRefresh() async {
@@ -85,6 +90,7 @@ class _SearchResultViewState extends State<SearchResultView> {
 
   Future<InformationFlowListResponse> _postQueryKey(String keyword) async {
     var model = await Request.postQueryKey(keyword: keyword, page: _page);
+    _isRequestFinish = true;
     if (model.errorCode == 0) {
       if (_page == 0) {
         _dataSource.clear();
