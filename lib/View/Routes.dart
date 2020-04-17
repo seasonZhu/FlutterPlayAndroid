@@ -1,5 +1,8 @@
 // 路由表
 abstract class Routes {
+  // 系统默认'/'是根view,这个不能更改
+  static final root = "/";
+
   static final rankingView = "/rankingView";
 
   static final informationFlowWebView = "/informationFlowWebView";

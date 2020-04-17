@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:play_android/ThemeUtils/ThemeUtils.dart';
 import 'package:play_android/View/Routes.dart';
+import 'package:play_android/Account/LoginView.dart';
 import 'MyListModel.dart';
 import 'TargetType.dart';
 import 'MyViewCell.dart';
@@ -37,7 +38,7 @@ class _MyViewState extends State<MyView> {
   Widget _tableHeaderView() {
     return Container(
       color: ThemeUtils.currentColor,
-      padding: EdgeInsets.symmetric(vertical:20),
+      padding: EdgeInsets.symmetric(vertical: 20),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -58,25 +59,21 @@ class _MyViewState extends State<MyView> {
                   ),
                 ),
               ),
-              onTap: () {
-                
-              },
+              onTap: () {},
             ),
             SizedBox(
               height: 10,
             ),
             Text(
               "未登录",
-              style: TextStyle(
-                  color: Colors.white, fontSize: 18),
+              style: TextStyle(color: Colors.white, fontSize: 18),
             ),
             SizedBox(
               height: 5,
             ),
             Text(
               "等级 0  排名 0   积分 0",
-              style: TextStyle(
-                  color: Colors.white, fontSize: 12),
+              style: TextStyle(color: Colors.white, fontSize: 12),
             ),
           ],
         ),
@@ -86,20 +83,23 @@ class _MyViewState extends State<MyView> {
 
   ListView _tableView() {
     return ListView.separated(
-    itemBuilder: (context, index) {
-      if (index == 0) {
-        return _tableHeaderView();
-      }
-      return MyViewCell(model: MyListModel.dataSource[index], onTapCallback: (model){
-        _pushToTargetView(model: model);
-      },);
-    },
-    separatorBuilder: (context, index) {
-      return Divider(
-        height: 1.0,
-      );
-    },
-    itemCount: MyListModel.dataSource.length);
+        itemBuilder: (context, index) {
+          if (index == 0) {
+            return _tableHeaderView();
+          }
+          return MyViewCell(
+            model: MyListModel.dataSource[index],
+            onTapCallback: (model) {
+              _pushToTargetView(model: model);
+            },
+          );
+        },
+        separatorBuilder: (context, index) {
+          return Divider(
+            height: 1.0,
+          );
+        },
+        itemCount: MyListModel.dataSource.length);
   }
 
   void _pushToTargetView({MyListModel model}) {
@@ -112,9 +112,19 @@ class _MyViewState extends State<MyView> {
         routeName = Routes.aboutAppAndMeView;
         break;
       default:
-        routeName = Routes.registerView;
-        break;
+        _presentToLoginView();
+        return;
     }
     Navigator.pushNamed(context, routeName, arguments: model);
+  }
+
+  void _presentToLoginView() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (context) => LoginView(),
+      ),
+    );
   }
 }
