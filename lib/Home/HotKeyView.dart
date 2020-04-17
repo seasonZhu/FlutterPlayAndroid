@@ -19,20 +19,25 @@ class HotKeyView extends StatefulWidget {
 class _HotKeyViewState extends State<HotKeyView> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Container(
-          height: 33,
-          child: _SearchField(
-            keywordCallback: (keyword) {
-              _pushToSearchResultView(keyword);
-            },
+    return GestureDetector(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Container(
+            height: 33,
+            child: _SearchField(
+              keywordCallback: (keyword) {
+                _pushToSearchResultView(keyword);
+              },
+            ),
           ),
+          iconTheme: IconThemeData(color: Colors.white),
+          elevation: 0.1,
         ),
-        iconTheme: IconThemeData(color: Colors.white),
-        elevation: 0.1,
+        body: futureBuilder(),
       ),
-      body: futureBuilder(),
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
     );
   }
 
@@ -110,17 +115,23 @@ class _SearchField extends StatelessWidget {
         Container(
           child: Expanded(
             child: TextField(
-              controller: searchKeyCtrl,
-              cursorColor: Colors.white,
-              decoration: InputDecoration(
-                  focusColor: Colors.white,
-                  hintText: "请输入搜索关键字",
-                  hintStyle: TextStyle(color: Colors.white, fontSize: 16),
-                  border: OutlineInputBorder(
-                      borderRadius:
-                          const BorderRadius.all(const Radius.circular(4.0))),
-                  contentPadding: const EdgeInsets.all(4.0)),
-            ),
+                keyboardType: TextInputType.text,
+                controller: searchKeyCtrl,
+                cursorColor: Colors.white,
+                decoration: InputDecoration(
+                    focusColor: Colors.white,
+                    hintText: "请输入搜索关键字",
+                    hintStyle: TextStyle(color: Colors.white, fontSize: 16),
+                    border: OutlineInputBorder(
+                        borderRadius:
+                            const BorderRadius.all(const Radius.circular(4.0))),
+                    contentPadding: const EdgeInsets.all(4.0)),
+                onEditingComplete: () {
+                  _inputComplete(context);
+                },
+                onSubmitted: (input) {
+                  print(input);
+                }),
           ),
         ),
         InkWell(
@@ -135,15 +146,20 @@ class _SearchField extends StatelessWidget {
             ),
           ),
           onTap: () {
-            if (searchKeyCtrl.text.trim().isEmpty) {
-              ToastView.show("搜索关键字不能为空");
-              return;
-            }
-            _keywordCallback(searchKeyCtrl.text.trim());
+            _inputComplete(context);
           },
         )
       ],
     );
+  }
+
+  void _inputComplete(BuildContext context) {
+    if (searchKeyCtrl.text.trim().isEmpty) {
+      FocusScope.of(context).requestFocus(FocusNode());
+      ToastView.show("搜索关键字不能为空");
+      return;
+    }
+    _keywordCallback(searchKeyCtrl.text.trim());
   }
 
   // 已经通过回调,到所谓的控制器层面去进行push了,另外发现了stf控件context用不传,但是stl控件context非传不可
