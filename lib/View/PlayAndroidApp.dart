@@ -5,12 +5,18 @@ import 'MainView.dart';
 
 import 'Routes.dart';
 import 'package:play_android/EventBus/EventBus.dart';
+
 import 'package:play_android/My/AboutAppAndMeView.dart';
 import 'package:play_android/My/RankingView.dart';
 import 'package:play_android/My/ThemeSettingView.dart';
+
 import 'package:play_android/Information/InformationFlowWebView.dart';
+
 import 'package:play_android/Home/HotKeyView.dart';
 import 'package:play_android/Home/SearchResultView.dart';
+
+import 'package:play_android/Account/LoginView.dart';
+import 'package:play_android/Account/RegisterView.dart';
 
 class PlayAndroidApp extends StatefulWidget {
   static var any;
@@ -47,6 +53,8 @@ class _PlayAndroidAppState extends State<PlayAndroidApp>  {
         Routes.searchResultView: (context) => SearchResultView(keyword: PlayAndroidApp.any,),
         Routes.themeSettingView: (context) => ThemeSettingView(),
         Routes.aboutAppAndMeView: (context) => AboutAppAndMeView(),
+        Routes.loginView: (context) => LoginView(),
+        Routes.registerView: (context) => RegisterView(),
       },
     );
   }

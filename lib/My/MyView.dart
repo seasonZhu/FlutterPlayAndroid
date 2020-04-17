@@ -112,6 +112,7 @@ class _MyViewState extends State<MyView> {
         routeName = Routes.aboutAppAndMeView;
         break;
       default:
+        routeName = Routes.registerView;
         break;
     }
     Navigator.pushNamed(context, routeName, arguments: model);

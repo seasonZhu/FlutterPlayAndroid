@@ -11,4 +11,8 @@ abstract class Routes {
   static final themeSettingView = "/themeSettingView";
 
   static final aboutAppAndMeView = "/aboutAppAndMeView";
+
+  static final loginView = "/loginView";
+
+  static final registerView = "/registerView";
 }
