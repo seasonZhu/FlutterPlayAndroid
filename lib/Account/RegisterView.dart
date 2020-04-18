@@ -181,12 +181,19 @@ class _RegisterViewState extends State<RegisterView> {
   }
 
   void _registerAction() {
+    // 登录与注册有关的账号与密码的正则没有做,这里只是展示了基本逻辑
+
     if (_isRegisterNow) return;
 
     if (_userNameTextFiledDelegate.text.trim().isEmpty ||
         _passwordTextFiledDelegate.text.trim().isEmpty ||
         _checkPasswordTextFiledDelegate.text.trim().isEmpty) {
       ToastView.show("手机号或者密码不能为空!");
+      return;
+    }
+
+    if (_passwordTextFiledDelegate.text.trim().isEmpty != _checkPasswordTextFiledDelegate.text.trim().isEmpty) {
+      ToastView.show("两次密码输入不一致!");
       return;
     }
 
