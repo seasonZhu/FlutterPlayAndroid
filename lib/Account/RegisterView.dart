@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
 
 import 'package:play_android/View/Routes.dart';
-import 'package:play_android/Compose/Space.dart';
 
-class RegisterView extends StatelessWidget {
+class RegisterView extends StatefulWidget {
+  @override
+  _RegisterViewState createState() => _RegisterViewState();
+}
+
+class _RegisterViewState extends State<RegisterView> {
+  var _userNameTextFiledDelegate = TextEditingController(text: "");
+
+  var _passwordTextFiledDelegate = TextEditingController(text: "");
+
+  var _checkPasswordTextFiledDelegate = TextEditingController(text: "");
+
+  var _passwordObscureText = true;
+
+  var _checkPasswordObscureText = true;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -30,27 +44,81 @@ class RegisterView extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  TextField(
-                    decoration: InputDecoration(
-                        hintText: '用户名或邮箱',
-                        //labelText: '用户名',
-                        prefixIcon: Icon(Icons.person)),
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: TextField(
+                          controller: _userNameTextFiledDelegate,
+                          decoration: InputDecoration(
+                              hintText: '手机号',
+                              labelText: '用户名',
+                              prefixIcon: Icon(Icons.person)),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 40,
+                        width: 40,
+                        child: InkWell(
+                          child: Icon(Icons.clear),
+                          onTap: () {
+                            print("clear");
+                            _userNameTextFiledDelegate.text = "";
+                          },
+                        ),
+                      ),
+                    ],
                   ),
-                  SizedBox(height: 10,),
-                  TextField(
-                    decoration: InputDecoration(
-                        hintText: '密码',
-                        //labelText: '密码',
-                        prefixIcon: Icon(Icons.lock)),
-                    obscureText: true,
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: TextField(
+                          controller: _passwordTextFiledDelegate,
+                          decoration: InputDecoration(
+                              hintText: '密码',
+                              labelText: '密码',
+                              prefixIcon: Icon(Icons.lock)),
+                          obscureText: _passwordObscureText,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                        width: 38,
+                        child: InkWell(
+                          child: Image.asset("assets/images/ic_eye.png", width: 20, height: 20,),
+                          onTap: () {
+                            setState(() {
+                              _passwordObscureText = !_passwordObscureText;
+                            });
+                          },
+                        ),
+                      ),
+                    ],
                   ),
-                  SizedBox(height: 10,),
-                  TextField(
-                    decoration: InputDecoration(
-                        hintText: '确认密码',
-                        //labelText: '确认密码',
-                        prefixIcon: Icon(Icons.lock)),
-                    obscureText: true,
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: TextField(
+                          controller: _checkPasswordTextFiledDelegate,
+                          decoration: InputDecoration(
+                              hintText: '确认密码',
+                              labelText: '确认密码',
+                              prefixIcon: Icon(Icons.lock)),
+                          obscureText: _checkPasswordObscureText,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                        width: 38,
+                        child: InkWell(
+                          child: Image.asset("assets/images/ic_eye.png", width: 20, height: 20,),
+                          onTap: () {
+                            setState(() {
+                              _checkPasswordObscureText = !_checkPasswordObscureText;
+                            });
+                          },
+                        ),
+                      ),
+                    ],
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 20, left: 15, right: 15),
@@ -78,8 +146,10 @@ class RegisterView extends StatelessWidget {
 
   // 各种pop研究
   void _popToRoot(BuildContext context) {
-    Navigator.popUntil(context, ModalRoute.withName(Routes.root));
+    Navigator.pop(context);
+    //Navigator.popUntil(context, ModalRoute.withName(Routes.root));
     //Navigator.pop(context);
     //Navigator.popAndPushNamed(context, "/");
   }
 }
+

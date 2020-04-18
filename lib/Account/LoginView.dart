@@ -3,7 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:play_android/View/Routes.dart';
 import 'package:play_android/Compose/Space.dart';
 
-class LoginView extends StatelessWidget {
+class LoginView extends StatefulWidget {
+  @override
+  _LoginViewState createState() => _LoginViewState();
+}
+
+class _LoginViewState extends State<LoginView> {
+  var _userNameTextFiledDelegate = TextEditingController(text: "");
+
+  var _passwordTextFiledDelegate = TextEditingController(text: "");
+
+  var _obscureText = true;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -24,18 +35,55 @@ class LoginView extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  TextField(
-                    decoration: InputDecoration(
-                        hintText: '用户名或邮箱',
-                        labelText: '用户名',
-                        prefixIcon: Icon(Icons.person)),
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: TextField(
+                          controller: _userNameTextFiledDelegate,
+                          decoration: InputDecoration(
+                              hintText: '手机号',
+                              labelText: '用户名',
+                              prefixIcon: Icon(Icons.person)),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 40,
+                        width: 40,
+                        child: InkWell(
+                          child: Icon(Icons.clear),
+                          onTap: () {
+                            print("clear");
+                            _userNameTextFiledDelegate.text = "";
+                          },
+                        ),
+                      ),
+                    ],
                   ),
-                  TextField(
-                    decoration: InputDecoration(
-                        hintText: '密码',
-                        labelText: '密码',
-                        prefixIcon: Icon(Icons.lock)),
-                    obscureText: true,
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: TextField(
+                          controller: _passwordTextFiledDelegate,
+                          decoration: InputDecoration(
+                              hintText: '密码',
+                              labelText: '密码',
+                              prefixIcon: Icon(Icons.lock)),
+                          obscureText: _obscureText,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                        width: 38,
+                        child: InkWell(
+                          child: Image.asset("assets/images/ic_eye.png", width: 20, height: 20,),
+                          onTap: () {
+                            setState(() {
+                              _obscureText = !_obscureText;
+                            });
+                          },
+                        ),
+                      ),
+                    ],
                   ),
                   Row(
                     children: <Widget>[
@@ -82,7 +130,8 @@ class LoginView extends StatelessWidget {
 
   // 各种push的研究
   void _pushToRegisterView(BuildContext context) {
-    Navigator.pushNamed(context, Routes.registerView);
+    Navigator.pushReplacementNamed(context, Routes.registerView);
+    //Navigator.pushNamed(context, Routes.registerView);
     //Navigator.pushNamedAndRemoveUntil(context, Routes.registerView, ModalRoute.withName(Routes.loginView));
 
     //Navigator.pop(context);
