@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:play_android/View/Routes.dart';
+import 'package:play_android/Compose/Space.dart';
 
 class RegisterView extends StatelessWidget {
   @override
@@ -32,34 +33,24 @@ class RegisterView extends StatelessWidget {
                   TextField(
                     decoration: InputDecoration(
                         hintText: '用户名或邮箱',
-                        labelText: '用户名',
+                        //labelText: '用户名',
                         prefixIcon: Icon(Icons.person)),
                   ),
+                  SizedBox(height: 10,),
                   TextField(
                     decoration: InputDecoration(
                         hintText: '密码',
-                        labelText: '密码',
+                        //labelText: '密码',
                         prefixIcon: Icon(Icons.lock)),
                     obscureText: true,
                   ),
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Container(),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 20, right: 15),
-                        child: GestureDetector(
-                          child: Text(
-                            "还没有注册?",
-                            style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 15),
-                          ),
-                          onTap: () {},
-                        ),
-                      ),
-                    ],
+                  SizedBox(height: 10,),
+                  TextField(
+                    decoration: InputDecoration(
+                        hintText: '确认密码',
+                        //labelText: '确认密码',
+                        prefixIcon: Icon(Icons.lock)),
+                    obscureText: true,
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 20, left: 15, right: 15),

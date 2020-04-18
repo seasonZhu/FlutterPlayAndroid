@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:play_android/View/Routes.dart';
+import 'package:play_android/Compose/Space.dart';
 
 class LoginView extends StatelessWidget {
   @override
@@ -38,9 +39,7 @@ class LoginView extends StatelessWidget {
                   ),
                   Row(
                     children: <Widget>[
-                      Expanded(
-                        child: Container(),
-                      ),
+                      Space(),
                       Padding(
                         padding: EdgeInsets.only(top: 20, right: 15),
                         child: GestureDetector(
