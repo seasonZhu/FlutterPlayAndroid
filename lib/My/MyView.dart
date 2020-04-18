@@ -155,6 +155,7 @@ class _MyViewState extends State<MyView> {
     if (model.errorCode == 0) {
       AccountManager.getInstance().info = null;
       AccountManager.getInstance().isLogin = false;
+      AccountManager.getInstance().password = "";
       eventBus.fire(LogoutEvent());
       ToastView.show("退出登录成功");
     }else {
@@ -166,6 +167,24 @@ class _MyViewState extends State<MyView> {
   void _pushToTargetView({MyListModel model}) {
     var routeName;
     switch (model.type) {
+      case TargetType.myDetail:
+        if(!AccountManager.getInstance().isLogin) {
+          _presentToLoginView();
+          return;
+        }
+        break;
+      case TargetType.myCoin:
+        if(!AccountManager.getInstance().isLogin) {
+          _presentToLoginView();
+          return;
+        }
+        break;
+      case TargetType.myCollect:
+        if(!AccountManager.getInstance().isLogin) {
+          _presentToLoginView();
+          return;
+        }
+        break;
       case TargetType.themeSetting:
         routeName = Routes.themeSettingView;
         break;
@@ -178,9 +197,6 @@ class _MyViewState extends State<MyView> {
           return;
         }
         _logout();
-        return;
-      default:
-        _presentToLoginView();
         return;
     }
     Navigator.pushNamed(context, routeName, arguments: model);
