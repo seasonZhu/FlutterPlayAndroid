@@ -4,6 +4,7 @@ import 'package:play_android/EventBus/EventBus.dart';
 import 'package:play_android/ThemeUtils/ThemeUtils.dart';
 import 'package:play_android/View/Routes.dart';
 import 'package:play_android/Account/LoginView.dart';
+import 'package:play_android/Account/AccountManager.dart';
 import 'MyListModel.dart';
 import 'TargetType.dart';
 import 'MyViewCell.dart';
@@ -15,15 +16,31 @@ class MyView extends StatefulWidget {
 
 class _MyViewState extends State<MyView> {
 
+  String _icon;
+  String _nickname;
+  int _level = 0;
+  int _rank = 0;
+  int _coinCount = 0;
+
   @override
   void initState() { 
     super.initState();
     eventBus.on<LoginEvent>().listen((event) {
-      
+      setState(() {
+        _nickname = AccountManager.getInstance().info.nickname;
+        _icon = AccountManager.getInstance().info.icon;
+        // 获取个人积分的网络请求
+      });
     });
 
     eventBus.on<LogoutEvent>().listen((event) {
-      
+      setState(() {
+        _nickname = null;
+        _icon = null;
+        _level = 0;
+        _rank = 0;
+        _coinCount = 0;
+      });
     });
   }
 
@@ -68,7 +85,9 @@ class _MyViewState extends State<MyView> {
                     width: 1.0,
                   ),
                   image: DecorationImage(
-                    image: AssetImage("assets/images/ic_head.jpeg"),
+                    image: (_icon != null && _icon.isNotEmpty)
+                        ? NetworkImage(_icon)
+                        : AssetImage("assets/images/ic_head.jpeg"),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -79,14 +98,14 @@ class _MyViewState extends State<MyView> {
               height: 10,
             ),
             Text(
-              "未登录",
+              _nickname ?? "未登录",
               style: TextStyle(color: Colors.white, fontSize: 18),
             ),
             SizedBox(
               height: 5,
             ),
             Text(
-              "等级 0  排名 0   积分 0",
+              "等级 $_level  排名 $_rank   积分 $_coinCount",
               style: TextStyle(color: Colors.white, fontSize: 12),
             ),
           ],

@@ -7,6 +7,7 @@ import 'package:play_android/View/Routes.dart';
 import 'package:play_android/Compose/Space.dart';
 import 'package:play_android/Compose/ToastView.dart';
 import 'package:play_android/EventBus/EventBus.dart';
+import 'AccountManager.dart';
 
 class LoginView extends StatefulWidget {
   @override
@@ -203,6 +204,9 @@ class _LoginViewState extends State<LoginView> {
     } else {
       ToastView.show(model.errorMsg);
     }
+    
+    AccountManager.getInstance().info = model.data;
+    AccountManager.getInstance().isLogin = true;
 
     setState(() {
       _isLoginNow = false;
