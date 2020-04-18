@@ -87,6 +87,7 @@ flutter:
     - assets/images/we_chart_mark.jpg
     - assets/images/alipay.jpg
     - assets/images/we_chart_pay.jpg
+    - assets/images/saber.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:

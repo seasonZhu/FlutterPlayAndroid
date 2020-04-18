@@ -1,4 +1,5 @@
 abstract class Api {
+  // baseUrl
   static const String baseUrl = 'https://www.wanandroid.com/';
 
   // 首页banner

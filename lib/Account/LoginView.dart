@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:play_android/Compose/LoadingView.dart';
 
 import 'package:play_android/HttpUtils/Request.dart';
 import 'package:play_android/Responses/AccountInfoResponse.dart';
+import 'package:play_android/EventBus/EventBus.dart';
 import 'package:play_android/View/Routes.dart';
 import 'package:play_android/Compose/Space.dart';
 import 'package:play_android/Compose/ToastView.dart';
-import 'package:play_android/EventBus/EventBus.dart';
+import 'package:play_android/Compose/LoadingView.dart';
 import 'AccountManager.dart';
 
 class LoginView extends StatefulWidget {
@@ -200,9 +200,10 @@ class _LoginViewState extends State<LoginView> {
     if (model.errorCode == 0) {
       Navigator.pop(context);
       eventBus.fire(LoginEvent());
-      AccountManager.getInstance().info = model.data;
-      AccountManager.getInstance().isLogin = true;
-      AccountManager.getInstance().password = _passwordTextFiledDelegate.text.trim();
+      AccountManager.getInstance().save(
+          info: model.data,
+          isLogin: true,
+          password: _passwordTextFiledDelegate.text.trim());
       ToastView.show("登录成功！");
     } else {
       ToastView.show(model.errorMsg);

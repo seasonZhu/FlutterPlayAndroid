@@ -18,7 +18,6 @@ class MyView extends StatefulWidget {
 }
 
 class _MyViewState extends State<MyView> {
-
   String _icon;
   String _nickname;
   String _level = "0";
@@ -26,12 +25,14 @@ class _MyViewState extends State<MyView> {
   String _coinCount = "0";
 
   @override
-  void initState() { 
+  void initState() {
     super.initState();
     eventBus.on<LoginEvent>().listen((event) {
       setState(() {
         _nickname = AccountManager.getInstance().info.nickname;
-        _icon = AccountManager.getInstance().info.icon;
+        _icon = AccountManager.getInstance().info.icon.isNotEmpty
+            ? AccountManager.getInstance().info.icon
+            : "";
       });
       _getUserCoinInfo();
     });
@@ -87,12 +88,7 @@ class _MyViewState extends State<MyView> {
                     color: Color(0xffffffff),
                     width: 1.0,
                   ),
-                  image: DecorationImage(
-                    image: (_icon != null && _icon.isNotEmpty)
-                        ? NetworkImage(_icon)
-                        : AssetImage("assets/images/ic_head.jpeg"),
-                    fit: BoxFit.cover,
-                  ),
+                  image: _userIcon(),
                 ),
               ),
               onTap: () {},
@@ -115,6 +111,20 @@ class _MyViewState extends State<MyView> {
         ),
       ),
     );
+  }
+
+  DecorationImage _userIcon() {
+    if (AccountManager.getInstance().isLogin) {
+      return DecorationImage(
+          image: (_icon != null && _icon.isNotEmpty)
+              ? NetworkImage(_icon)
+              : AssetImage("assets/images/saber.jpg"),
+          fit: BoxFit.cover);
+    } else {
+      return DecorationImage(
+          image: AssetImage("assets/images/ic_head.jpeg"),
+          fit: BoxFit.cover);
+    }
   }
 
   ListView _tableView() {
@@ -153,12 +163,10 @@ class _MyViewState extends State<MyView> {
   Future<LogoutResponse> _logout() async {
     var model = await Request.logout();
     if (model.errorCode == 0) {
-      AccountManager.getInstance().info = null;
-      AccountManager.getInstance().isLogin = false;
-      AccountManager.getInstance().password = "";
+      AccountManager.getInstance().clear();
       eventBus.fire(LogoutEvent());
       ToastView.show("退出登录成功");
-    }else {
+    } else {
       ToastView.show(model.errorMsg);
     }
     return model;
@@ -168,19 +176,19 @@ class _MyViewState extends State<MyView> {
     var routeName;
     switch (model.type) {
       case TargetType.myDetail:
-        if(!AccountManager.getInstance().isLogin) {
+        if (!AccountManager.getInstance().isLogin) {
           _presentToLoginView();
           return;
         }
         break;
       case TargetType.myCoin:
-        if(!AccountManager.getInstance().isLogin) {
+        if (!AccountManager.getInstance().isLogin) {
           _presentToLoginView();
           return;
         }
         break;
       case TargetType.myCollect:
-        if(!AccountManager.getInstance().isLogin) {
+        if (!AccountManager.getInstance().isLogin) {
           _presentToLoginView();
           return;
         }
@@ -192,7 +200,7 @@ class _MyViewState extends State<MyView> {
         routeName = Routes.aboutAppAndMeView;
         break;
       case TargetType.logout:
-        if(!AccountManager.getInstance().isLogin) {
+        if (!AccountManager.getInstance().isLogin) {
           ToastView.show("您还未登录,无法进行登出操作!");
           return;
         }

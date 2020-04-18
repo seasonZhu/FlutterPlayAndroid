@@ -3,7 +3,7 @@ import 'package:play_android/Responses/AccountInfoResponse.dart';
 class AccountManager {
   AccountManager._();
 
-  var info;
+  AccountInfo info;
 
   var isLogin = false;
 
@@ -15,6 +15,18 @@ class AccountManager {
     }else {
       return "loginUserName=${info.nickname};loginUserPassword=$password";
     }
+  }
+
+  void save({AccountInfo info, bool isLogin, String password}) {
+    this.info = info;
+    this.isLogin = true;
+    this.password = password;
+  }
+
+  void clear() {
+    info = null;
+    isLogin = false;
+    password = "";
   }
 
   static AccountManager _instance;
