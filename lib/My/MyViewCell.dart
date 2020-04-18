@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'MyListModel.dart';
-import 'TargetType.dart';
 
 class MyViewCell extends StatelessWidget {
   final MyListModel _model;

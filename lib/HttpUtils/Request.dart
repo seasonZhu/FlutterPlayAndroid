@@ -9,8 +9,7 @@ import 'package:play_android/Responses/ArticleTopListResponse.dart';
 import 'package:play_android/Responses/HotKeyResponse.dart';
 import 'package:play_android/Responses/InformationFlowTopicResponse.dart';
 import 'package:play_android/Responses/InformationFlowListResponse.dart';
-//登录响应
-//注册响应
+import 'package:play_android/Responses/AccountInfoResponse.dart';
 import 'package:play_android/Responses/LogoutResponse.dart';
 import 'package:play_android/Responses/CollectArticleActionResponse.dart';
 //收藏文章列表响应
@@ -80,22 +79,22 @@ extension Request on HttpUtils {
   }
 
   // 登录
-  static Future<Void> login({String username, String password}) async {
+  static Future<AccountInfoResponse> login({String username, String password}) async {
     Map<String, String> params = Map();
     params["username"] = username;
     params["password"] = password;
     var json = await HttpUtils.post(api: Api.postLogin, params: params);
-    print(json);
+    return AccountInfoResponse.fromJson(json);
   }
 
   // 注册
-  static Future<Void> register({String username, String password, String rePassword}) async {
+  static Future<AccountInfoResponse> register({String username, String password, String rePassword}) async {
     Map<String, String> params = Map();
     params["username"] = username;
     params["password"] = password;
     params["repassword"] = rePassword;
     var json = await HttpUtils.post(api: Api.postRegister, params: params);
-    print(json);
+    return AccountInfoResponse.fromJson(json);
   }
 
   // 登出

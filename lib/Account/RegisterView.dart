@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:play_android/View/Routes.dart';
+//import 'package:play_android/View/Routes.dart';
 
 class RegisterView extends StatefulWidget {
   @override
