@@ -151,5 +151,12 @@ class _RegisterViewState extends State<RegisterView> {
     //Navigator.pop(context);
     //Navigator.popAndPushNamed(context, "/");
   }
+
+  void dispose() {
+    _userNameTextFiledDelegate.dispose();
+    _passwordTextFiledDelegate.dispose();
+    _checkPasswordTextFiledDelegate.dispose();
+    super.dispose();
+  }
 }
 

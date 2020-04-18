@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:play_android/Compose/LoadingView.dart';
 
+import 'package:play_android/HttpUtils/Request.dart';
+import 'package:play_android/Responses/AccountInfoResponse.dart';
 import 'package:play_android/View/Routes.dart';
 import 'package:play_android/Compose/Space.dart';
+import 'package:play_android/Compose/ToastView.dart';
+import 'package:play_android/EventBus/EventBus.dart';
 
 class LoginView extends StatefulWidget {
   @override
@@ -14,6 +19,8 @@ class _LoginViewState extends State<LoginView> {
   var _passwordTextFiledDelegate = TextEditingController(text: "");
 
   var _obscureText = true;
+
+  var _isLoginNow = false;
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +82,11 @@ class _LoginViewState extends State<LoginView> {
                         height: 20,
                         width: 38,
                         child: InkWell(
-                          child: Image.asset("assets/images/ic_eye.png", width: 20, height: 20,),
+                          child: Image.asset(
+                            "assets/images/ic_eye.png",
+                            width: 20,
+                            height: 20,
+                          ),
                           onTap: () {
                             setState(() {
                               _obscureText = !_obscureText;
@@ -115,10 +126,13 @@ class _LoginViewState extends State<LoginView> {
                           "登录",
                           style: TextStyle(color: Colors.white, fontSize: 18),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          _loginAction();
+                        },
                       ),
                     ),
                   ),
+                  _showLoginView(),
                 ],
               ),
             ),
@@ -148,5 +162,59 @@ class _LoginViewState extends State<LoginView> {
     //   MaterialPageRoute(fullscreenDialog: true, builder: (BuildContext context) => RegisterView()),
     //   ModalRoute.withName(Routes.loginView),
     // );
+  }
+
+  Widget _showLoginView() {
+    return _isLoginNow
+        ? Container(
+            padding: EdgeInsets.only(top: 20),
+            child: LoadingView(message: "正在登录..."),
+          )
+        : Container();
+  }
+
+  void _loginAction() {
+    if (_isLoginNow) return;
+
+    if (_userNameTextFiledDelegate.text.trim().isEmpty ||
+        _passwordTextFiledDelegate.text.trim().isEmpty) {
+      ToastView.show("手机号或者密码不能为空!");
+      return;
+    }
+
+    // 关闭键盘
+    FocusScope.of(context).requestFocus(FocusNode());
+
+    login();
+  }
+
+  Future<AccountInfoResponse> login() async {
+    setState(() {
+      _isLoginNow = true;
+    });
+
+    var model = await Request.login(
+        username: _userNameTextFiledDelegate.text.trim(),
+        password: _passwordTextFiledDelegate.text.trim());
+    if (model.errorCode == 0) {
+      Navigator.pop(context);
+      eventBus.fire(LoginEvent());
+      ToastView.show("登录成功！");
+    } else {
+      ToastView.show(model.errorMsg);
+    }
+
+    setState(() {
+      _isLoginNow = false;
+    });
+
+    return model;
+  }
+
+  @override
+  void dispose() {
+    _userNameTextFiledDelegate.dispose();
+    _passwordTextFiledDelegate.dispose();
+    super.dispose();
   }
 }

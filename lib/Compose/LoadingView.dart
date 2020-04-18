@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class LoadingView extends StatelessWidget {
-  const LoadingView({Key key}) : super(key: key);
+  final String _message;
+
+  LoadingView({Key key, String message}) : 
+    _message = message, 
+    super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +22,7 @@ class LoadingView extends StatelessWidget {
             SizedBox(
               height: 10.0,
             ),
-            Text('正在加载...'),
+            Text(_message ?? '正在加载...'),
           ],
         )
       ),

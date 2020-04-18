@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:play_android/EventBus/EventBus.dart';
 import 'package:play_android/ThemeUtils/ThemeUtils.dart';
 import 'package:play_android/View/Routes.dart';
 import 'package:play_android/Account/LoginView.dart';
@@ -13,6 +14,19 @@ class MyView extends StatefulWidget {
 }
 
 class _MyViewState extends State<MyView> {
+
+  @override
+  void initState() { 
+    super.initState();
+    eventBus.on<LoginEvent>().listen((event) {
+      
+    });
+
+    eventBus.on<LogoutEvent>().listen((event) {
+      
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
