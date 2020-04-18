@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 
 import 'Api.dart';
+import 'package:play_android/Account/AccountManager.dart';
 
 abstract class HttpUtils {
   // 超时时间 1min dio中是以毫秒计算的
@@ -17,14 +19,21 @@ abstract class HttpUtils {
 
   // Get请求
   static Future<Map<String, dynamic>> get({String api, Map<String, dynamic> params}) async {
-    Response response = await _dio.get(api, queryParameters: params);
+    
+    Response response = await _dio.get(api, queryParameters: params, options: getCookieHeaderOptions());
     return response.data;
   }
 
   // Post请求
   static Future<Map<String, dynamic>> post({String api, Map<String, dynamic> params}) async {
-    Response response = await _dio.post(api, queryParameters: params);
+    Response response = await _dio.post(api, queryParameters: params, options: getCookieHeaderOptions());
     return response.data;
+  }
+
+  static Options getCookieHeaderOptions() {
+    var value = AccountManager.getInstance().cookieHeaderValue;
+    Options options = Options(headers: {HttpHeaders.cookieHeader: value});
+    return options;
   }
 }
 

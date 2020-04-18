@@ -200,13 +200,13 @@ class _LoginViewState extends State<LoginView> {
     if (model.errorCode == 0) {
       Navigator.pop(context);
       eventBus.fire(LoginEvent());
+      AccountManager.getInstance().info = model.data;
+      AccountManager.getInstance().isLogin = true;
+      AccountManager.getInstance().password = _passwordTextFiledDelegate.text.trim();
       ToastView.show("登录成功！");
     } else {
       ToastView.show(model.errorMsg);
     }
-    
-    AccountManager.getInstance().info = model.data;
-    AccountManager.getInstance().isLogin = true;
 
     setState(() {
       _isLoginNow = false;

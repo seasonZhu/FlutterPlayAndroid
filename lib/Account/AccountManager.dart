@@ -3,9 +3,19 @@ import 'package:play_android/Responses/AccountInfoResponse.dart';
 class AccountManager {
   AccountManager._();
 
-  var info = AccountInfo();
+  var info;
 
   var isLogin = false;
+
+  var password = "";
+
+  get cookieHeaderValue {
+    if (info == null) {
+      return "";
+    }else {
+      return "loginUserName=${info.nickname};loginUserPassword=$password";
+    }
+  }
 
   static AccountManager _instance;
 

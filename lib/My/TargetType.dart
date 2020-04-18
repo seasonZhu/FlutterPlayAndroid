@@ -1,5 +1,5 @@
 enum TargetType { 
-  none, 
+  myDetail, 
   myCoin, 
   myCollect, 
   themeSetting, 

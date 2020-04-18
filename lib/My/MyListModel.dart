@@ -11,7 +11,7 @@ class MyListModel {
 
   static final List<MyListModel> dataSource = [
     MyListModel(
-        title: "tableHeaderView", icon: Icons.close, type: TargetType.none),
+        title: "tableHeaderView", icon: Icons.close, type: TargetType.myDetail),
     MyListModel(title: "我的积分", icon: Icons.message, type: TargetType.myCoin),
     MyListModel(title: "我的收藏", icon: Icons.map, type: TargetType.myCollect),
     MyListModel(

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'package:play_android/HttpUtils/Request.dart';
+import 'package:play_android/Responses/CoinResponse.dart';
+import 'package:play_android/Responses/LogoutResponse.dart';
 import 'package:play_android/EventBus/EventBus.dart';
-import 'package:play_android/ThemeUtils/ThemeUtils.dart';
 import 'package:play_android/View/Routes.dart';
 import 'package:play_android/Account/LoginView.dart';
 import 'package:play_android/Account/AccountManager.dart';
+import 'package:play_android/Compose/ToastView.dart';
 import 'MyListModel.dart';
 import 'TargetType.dart';
 import 'MyViewCell.dart';
@@ -18,9 +21,9 @@ class _MyViewState extends State<MyView> {
 
   String _icon;
   String _nickname;
-  int _level = 0;
-  int _rank = 0;
-  int _coinCount = 0;
+  String _level = "0";
+  String _rank = "0";
+  String _coinCount = "0";
 
   @override
   void initState() { 
@@ -29,17 +32,17 @@ class _MyViewState extends State<MyView> {
       setState(() {
         _nickname = AccountManager.getInstance().info.nickname;
         _icon = AccountManager.getInstance().info.icon;
-        // 获取个人积分的网络请求
       });
+      _getUserCoinInfo();
     });
 
     eventBus.on<LogoutEvent>().listen((event) {
       setState(() {
         _nickname = null;
         _icon = null;
-        _level = 0;
-        _rank = 0;
-        _coinCount = 0;
+        _level = "0";
+        _rank = "0";
+        _coinCount = "0";
       });
     });
   }
@@ -68,7 +71,7 @@ class _MyViewState extends State<MyView> {
 
   Widget _tableHeaderView() {
     return Container(
-      color: ThemeUtils.currentColor,
+      color: Theme.of(context).primaryColor,
       padding: EdgeInsets.symmetric(vertical: 20),
       child: Center(
         child: Column(
@@ -135,6 +138,31 @@ class _MyViewState extends State<MyView> {
         itemCount: MyListModel.dataSource.length);
   }
 
+  Future<CoinResponse> _getUserCoinInfo() async {
+    var model = await Request.getUserCoinInfo();
+    if (model.errorCode == 0) {
+      setState(() {
+        _coinCount = model.data.coinCount;
+        _level = model.data.level;
+        _rank = model.data.rank;
+      });
+    }
+    return model;
+  }
+
+  Future<LogoutResponse> _logout() async {
+    var model = await Request.logout();
+    if (model.errorCode == 0) {
+      AccountManager.getInstance().info = null;
+      AccountManager.getInstance().isLogin = false;
+      eventBus.fire(LogoutEvent());
+      ToastView.show("退出登录成功");
+    }else {
+      ToastView.show(model.errorMsg);
+    }
+    return model;
+  }
+
   void _pushToTargetView({MyListModel model}) {
     var routeName;
     switch (model.type) {
@@ -144,6 +172,13 @@ class _MyViewState extends State<MyView> {
       case TargetType.aboutAppAndMe:
         routeName = Routes.aboutAppAndMeView;
         break;
+      case TargetType.logout:
+        if(!AccountManager.getInstance().isLogin) {
+          ToastView.show("您还未登录,无法进行登出操作!");
+          return;
+        }
+        _logout();
+        return;
       default:
         _presentToLoginView();
         return;
