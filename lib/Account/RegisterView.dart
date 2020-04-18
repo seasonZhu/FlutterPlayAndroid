@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:play_android/View/Routes.dart';
+
 class RegisterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -9,6 +11,12 @@ class RegisterView extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.close),
+            onPressed: () {
+              _popToRoot(context);
+            },
+          ),
           title: Text("注册", style: TextStyle(color: Colors.white)),
           iconTheme: IconThemeData(color: Colors.white),
           elevation: 0.1,
@@ -48,9 +56,7 @@ class RegisterView extends StatelessWidget {
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 15),
                           ),
-                          onTap: () {
-                            
-                          },
+                          onTap: () {},
                         ),
                       ),
                     ],
@@ -77,5 +83,12 @@ class RegisterView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  // 各种pop研究
+  void _popToRoot(BuildContext context) {
+    Navigator.popUntil(context, ModalRoute.withName(Routes.root));
+    //Navigator.pop(context);
+    //Navigator.popAndPushNamed(context, "/");
   }
 }

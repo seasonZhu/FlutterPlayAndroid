@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:play_android/View/Routes.dart';
+
 class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -49,7 +51,7 @@ class LoginView extends StatelessWidget {
                                 fontSize: 15),
                           ),
                           onTap: () {
-                            
+                            _pushToRegisterView(context);
                           },
                         ),
                       ),
@@ -77,5 +79,26 @@ class LoginView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  // 各种push的研究
+  void _pushToRegisterView(BuildContext context) {
+    Navigator.pushNamed(context, Routes.registerView);
+    //Navigator.pushNamedAndRemoveUntil(context, Routes.registerView, ModalRoute.withName(Routes.loginView));
+
+    //Navigator.pop(context);
+    //Navigator.push(
+    //   context,
+    //   MaterialPageRoute(
+    //     fullscreenDialog: true,
+    //     builder: (context) => RegisterView(),
+    //   ),
+    // );
+
+    // Navigator.pushAndRemoveUntil(
+    //   context,
+    //   MaterialPageRoute(fullscreenDialog: true, builder: (BuildContext context) => RegisterView()),
+    //   ModalRoute.withName(Routes.loginView),
+    // );
   }
 }
