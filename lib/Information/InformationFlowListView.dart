@@ -8,7 +8,7 @@ import 'package:play_android/Responses/TopicInfo.dart';
 import 'package:play_android/Responses/InformationFlowListResponse.dart';
 
 import 'package:play_android/Compose/LoadingView.dart';
-//import 'package:play_android/Compose/ToastView.dart';
+import 'package:play_android/Compose/ToastView.dart';
 //import 'package:play_android/Compose/EmptyView.dart';
 
 import 'InformationType.dart';
@@ -95,6 +95,8 @@ class _InformationFlowListViewState extends State<InformationFlowListView> with 
         }
         _dataSource.addAll(model.data.datas);
         if (mounted) setState(() {});
+    }else {
+      ToastView.show(model.errorMsg);
     }
 
     return model;  

@@ -9,7 +9,7 @@ import 'package:play_android/Responses/ArticleTopListResponse.dart';
 import 'package:play_android/Responses/InformationFlowListResponse.dart';
 
 import 'package:play_android/Compose/LoadingView.dart';
-//import 'package:play_android/Compose/ToastView.dart';
+import 'package:play_android/Compose/ToastView.dart';
 //import 'package:play_android/Compose/EmptyView.dart';
 
 import 'package:play_android/Information/InformationFlowListCell.dart';
@@ -107,6 +107,8 @@ class _HomeViewState extends State<HomeView> {
         _dataSource.clear();
         _dataSource.addAll(model.data);
         if (mounted) setState(() {});
+    }else {
+      ToastView.show(model.errorMsg);
     }
 
     return model;  
@@ -117,6 +119,8 @@ class _HomeViewState extends State<HomeView> {
     if (model.errorCode == 0) {
         _dataSource.addAll(model.data.datas);
         if (mounted) setState(() {});
+    }else {
+      ToastView.show(model.errorMsg);
     }
 
     return model;  

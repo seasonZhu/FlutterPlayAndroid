@@ -7,7 +7,7 @@ import 'package:play_android/Responses/DataInfo.dart';
 import 'package:play_android/Responses/InformationFlowListResponse.dart';
 
 import 'package:play_android/Compose/LoadingView.dart';
-//import 'package:play_android/Compose/ToastView.dart';
+import 'package:play_android/Compose/ToastView.dart';
 import 'package:play_android/Compose/EmptyView.dart';
 
 import 'package:play_android/Information/InformationFlowListCell.dart';
@@ -97,6 +97,8 @@ class _SearchResultViewState extends State<SearchResultView> {
       }
       _dataSource.addAll(model.data.datas);
       if (mounted) setState(() {});
+    }else {
+      ToastView.show(model.errorMsg);
     }
 
     return model;

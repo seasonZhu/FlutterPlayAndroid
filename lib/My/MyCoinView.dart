@@ -6,7 +6,7 @@ import 'package:play_android/HttpUtils/Request.dart';
 import 'package:play_android/Responses/MyCoinResponse.dart';
 
 import 'package:play_android/Compose/LoadingView.dart';
-//import 'package:play_android/Compose/ToastView.dart';
+import 'package:play_android/Compose/ToastView.dart';
 import 'package:play_android/Compose/EmptyView.dart';
 
 import 'MyCoinViewCell.dart';
@@ -93,6 +93,8 @@ class _MyCoinViewState extends State<MyCoinView> {
         _refreshController.loadNoData();
       } 
       if (mounted) setState(() {});
+    }else {
+      ToastView.show(model.errorMsg);
     }
 
     return model;
