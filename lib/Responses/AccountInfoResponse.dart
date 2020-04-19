@@ -35,8 +35,8 @@ class AccountInfoResponse {
 
 class AccountInfo {
     bool admin;
-    List<String> chapterTops;
-    List<String> collectIds;
+    List<int> chapterTops;
+    List<int> collectIds;
     String email;
     String icon;
     int id;
@@ -64,8 +64,8 @@ class AccountInfo {
 
     factory AccountInfo.fromJson(Map<String, dynamic> json) => AccountInfo(
         admin: json["admin"],
-        chapterTops: List<String>.from(json["chapterTops"].map((x) => x)),
-        collectIds: List<String>.from(json["collectIds"].map((x) => x)),
+        chapterTops: List<int>.from(json["chapterTops"].map((x) => x)),
+        collectIds: List<int>.from(json["collectIds"].map((x) => x)),
         email: json["email"],
         icon: json["icon"],
         id: json["id"],
@@ -79,8 +79,8 @@ class AccountInfo {
 
     Map<String, dynamic> toJson() => {
         "admin": admin,
-        "chapterTops": List<String>.from(chapterTops.map((x) => x)),
-        "collectIds": List<String>.from(collectIds.map((x) => x)),
+        "chapterTops": List<int>.from(chapterTops.map((x) => x)),
+        "collectIds": List<int>.from(collectIds.map((x) => x)),
         "email": email,
         "icon": icon,
         "id": id,

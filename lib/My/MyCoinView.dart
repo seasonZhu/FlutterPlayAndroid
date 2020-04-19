@@ -74,7 +74,7 @@ class _MyCoinViewState extends State<MyCoinView> {
   void _onLoading() async {
     _page++;
     var model = await _getCoinList();
-    if (model.data.pageCount - 1 == model.data.curPage) {
+    if (model.data.pageCount == model.data.curPage) {
       _refreshController.loadNoData();
     }else {
       _refreshController.loadComplete();

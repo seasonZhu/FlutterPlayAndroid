@@ -66,7 +66,7 @@ class Datum implements InformationFlowProtocol {
         title: json["title"],
         type: json["type"],
         link: json["url"],
-        collect: false
+        collect: null // 这是输入null,是用来区分收藏和没有收藏两种之外的状态,注意就是从轮播图跳转进来的,目前打算不现实这个按钮
     );
 
     Map<String, dynamic> toJson() => {
