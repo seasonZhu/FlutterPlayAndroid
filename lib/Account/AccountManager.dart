@@ -6,6 +6,8 @@ class AccountManager {
 
   final kLastLoginPassword = "kLastLoginPassword";
 
+  final kLastThemeSettingIndex = "kLastThemeSettingIndex";
+
   AccountManager._();
 
   AccountInfo info;
@@ -32,9 +34,19 @@ class AccountManager {
     userDefine.setString(kLastLoginPassword, password);
   }
 
+  void saveLastThemeSettingIndex(int index) async {
+    var userDefine = await SharedPreferences.getInstance();
+    userDefine.setInt(kLastThemeSettingIndex, index);
+  }
+
   Future<String> getLastLoginUserName() async {
     var userDefine = await SharedPreferences.getInstance();
     return userDefine.getString(kLastLoginUserName) ?? "";
+  }
+
+  Future<int> getLastThemeSettingIndex() async {
+    var userDefine = await SharedPreferences.getInstance();
+    return userDefine.getInt(kLastThemeSettingIndex) ?? 0;
   }
 
   Future<String> getLastLoginPassword() async {

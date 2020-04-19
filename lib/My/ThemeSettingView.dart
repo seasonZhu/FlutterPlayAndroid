@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:play_android/EventBus/EventBus.dart';
 import 'package:play_android/ThemeUtils/ThemeUtils.dart';
 import 'MyListModel.dart';
+import 'package:play_android/Account/AccountManager.dart';
 
 class ThemeSettingView extends StatefulWidget {
   @override
@@ -35,6 +36,7 @@ class _ThemeSettingViewState extends State<ThemeSettingView> {
                   onTap: () {
                     ThemeUtils.currentColor = colors[index];
                     changeColorTheme(colors[index]);
+                    AccountManager.getInstance().saveLastThemeSettingIndex(index);
                   },
                   child: Container(
                     color: colors[index],
