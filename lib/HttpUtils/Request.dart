@@ -12,7 +12,7 @@ import 'package:play_android/Responses/InformationFlowListResponse.dart';
 import 'package:play_android/Responses/AccountInfoResponse.dart';
 import 'package:play_android/Responses/LogoutResponse.dart';
 import 'package:play_android/Responses/CollectArticleActionResponse.dart';
-//收藏文章列表响应
+import 'package:play_android/Responses/MyCollectResponse.dart';
 import 'package:play_android/Responses/RankListResponse.dart';
 import 'package:play_android/Responses/MyCoinResponse.dart';
 import 'package:play_android/Responses/CoinResponse.dart';
@@ -111,9 +111,9 @@ extension Request on HttpUtils {
   }
 
   // 收藏文章列表
-  static Future<Void> getCollectArticleList({int page}) async {
+  static Future<MyCollectResponse> getCollectArticleList({int page}) async {
     var json = await HttpUtils.get(api: Api.getCollectArticleList + page.toString() + "/json");
-    print(json);
+    return MyCollectResponse.fromJson(json);
   }
   
   // 积分排行榜
