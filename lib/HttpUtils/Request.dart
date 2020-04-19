@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ffi';
 
 import 'Api.dart';
 import 'HttpUtils.dart';
@@ -16,7 +15,6 @@ import 'package:play_android/Responses/MyCollectResponse.dart';
 import 'package:play_android/Responses/RankListResponse.dart';
 import 'package:play_android/Responses/MyCoinResponse.dart';
 import 'package:play_android/Responses/CoinResponse.dart';
-/* 以上写了注释的与下面Future<Void>相对应,是需要登录后才能获取到的数据登录后再进行解析 */
 
 // Dart的分类需要在Dart2.6以上的版本才能使用,修改了配置文件
 extension Request on HttpUtils {
