@@ -24,7 +24,14 @@ class _LoginViewState extends State<LoginView> {
   var _isLoginNow = false;
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
+    // 有些函数方法在build中使用还是在initState中使用真的需要谨慎起来
+    _lastLoginSetting();
+  }
+
+  @override
+  Widget build(BuildContext context) { 
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).requestFocus(FocusNode());
@@ -141,6 +148,11 @@ class _LoginViewState extends State<LoginView> {
         ),
       ),
     );
+  }
+
+  void _lastLoginSetting() async {
+    _userNameTextFiledDelegate.text = await AccountManager.getInstance().getLastLoginUserName();
+    _passwordTextFiledDelegate.text = await AccountManager.getInstance().getLastLoginPassword();
   }
 
   // 各种push的研究
