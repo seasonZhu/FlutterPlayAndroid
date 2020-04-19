@@ -186,6 +186,7 @@ class _MyViewState extends State<MyView> {
           _presentToLoginView();
           return;
         }
+        routeName = Routes.myCoinView;
         break;
       case TargetType.myCollect:
         if (!AccountManager.getInstance().isLogin) {
