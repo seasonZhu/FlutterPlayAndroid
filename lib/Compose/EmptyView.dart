@@ -11,7 +11,7 @@ class EmptyView extends StatelessWidget {
           child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('暂无数据', style: TextStyle(fontSize: 25),),
+            Text('暂无数据', style: TextStyle(fontSize: 20),),
           ],
         )
       ),
