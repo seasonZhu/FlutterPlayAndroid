@@ -193,6 +193,7 @@ class _MyViewState extends State<MyView> {
           _presentToLoginView();
           return;
         }
+        routeName = Routes.myCollectView;
         break;
       case TargetType.themeSetting:
         routeName = Routes.themeSettingView;

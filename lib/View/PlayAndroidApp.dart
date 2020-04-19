@@ -10,6 +10,7 @@ import 'package:play_android/My/AboutAppAndMeView.dart';
 import 'package:play_android/My/RankingView.dart';
 import 'package:play_android/My/ThemeSettingView.dart';
 import 'package:play_android/My/MyCoinView.dart';
+import 'package:play_android/My/MyCollectView.dart';
 
 import 'package:play_android/Information/InformationFlowWebView.dart';
 
@@ -65,6 +66,7 @@ class _PlayAndroidAppState extends State<PlayAndroidApp>  {
         Routes.loginView: (context) => LoginView(),
         Routes.registerView: (context) => RegisterView(),
         Routes.myCoinView: (context) => MyCoinView(),
+        Routes.myCollectView: (context) => MyCollectView(),
       },
     );
   }
