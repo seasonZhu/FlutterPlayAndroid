@@ -101,10 +101,15 @@ extension Request on HttpUtils {
     return LogoutResponse.fromJson(json);
   }
 
-  // 文章收藏与取消收藏操作
-  static Future<CollectArticleActionResponse> collectAction({int id, bool isCollect}) async {
-    var api = isCollect ? Api.postCollectArticle : Api.postUnCollectArticle;
-    var json = await HttpUtils.post(api: api + id.toString() + "/json");
+  // 文章收藏
+  static Future<CollectArticleActionResponse> collectAction({int id}) async {
+    var json = await HttpUtils.post(api: Api.postCollectArticle + id.toString() + "/json");
+    return CollectArticleActionResponse.fromJson(json);
+  }
+
+  // 取消收藏
+  static Future<CollectArticleActionResponse> unCollectAction({int originId,}) async {
+    var json = await HttpUtils.post(api: Api.postUnCollectArticle + originId.toString() + "/json");
     return CollectArticleActionResponse.fromJson(json);
   }
 

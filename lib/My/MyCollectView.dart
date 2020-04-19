@@ -125,7 +125,7 @@ class _MyCollectViewState extends State<MyCollectView> {
   }
 
   Future<CollectArticleActionResponse> _unCollectAction(int index) async {
-    var model = await Request.collectAction(id: _dataSource[index].originId, isCollect: false);
+    var model = await Request.unCollectAction(originId: _dataSource[index].originId);
     if (model.errorCode == 0) {
       _dataSource.removeAt(index);
       ToastView.show("取消收藏成功");
