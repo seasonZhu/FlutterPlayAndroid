@@ -27,7 +27,7 @@ class _PAWebViewState extends State<PAWebView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(widget.title, style: TextStyle(color: Colors.white),),
         iconTheme: IconThemeData(color: Colors.white),
         elevation: 0.1,
         actions: <Widget>[
