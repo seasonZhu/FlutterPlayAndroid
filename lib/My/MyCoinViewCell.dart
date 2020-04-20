@@ -14,23 +14,26 @@ class MyCoinViewCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 44,
-      child: Row(
-        children: <Widget>[
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 15),
-            child: Text(_model.reason),
-          ),
-          Container(
-            child: Text(_model.desc),
-          ),
-          Space(),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 15),
-            child: Text(_model.coinCount.toString()),
-          ),
-        ],
+    return Card(
+      child: Container(
+        height: 66,
+        child: Row(
+          children: <Widget>[
+            // Container(
+            //   padding: EdgeInsets.symmetric(horizontal: 15),
+            //   child: Text(_model.reason),
+            // ),
+            Expanded(child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: Text(_model.desc),
+            ),),
+            //Space(),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: Text(_model.coinCount.toString()),
+            ),
+          ],
+        ),
       ),
     );
   }
