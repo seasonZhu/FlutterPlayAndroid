@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'package:url_launcher/url_launcher.dart';
+
 import 'package:play_android/ThemeUtils/ThemeUtils.dart';
 import 'package:play_android/Responses/InformationFlowProtocol.dart';
 import 'package:play_android/HttpUtils/Request.dart';
@@ -144,7 +146,11 @@ class _BottomFunctionViewState extends State<BottomFunctionView> {
   }
 
   void _openByBrowser() async {
-    ToastView.show("该功能暂未实现");
+    if (await canLaunch(widget._model.link)) {
+      await launch(widget._model.link);
+    } else {
+      ToastView.show("无法打开该网页,请尝试复制");
+    }
   }
 
   void _weChatShare() {

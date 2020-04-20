@@ -55,6 +55,9 @@ dependencies:
   #网络请求库
   dio: ^2.1.0
 
+  #跳转 拨打电话和浏览器
+  url_launcher:
+
   #json序列化与反序列化
   json_annotation: ^2.0.0
 
