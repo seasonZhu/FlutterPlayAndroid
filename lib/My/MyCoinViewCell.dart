@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:play_android/Responses/MyCoinResponse.dart';
-import 'package:play_android/Compose/Space.dart';
+//import 'package:play_android/Compose/Space.dart';
 
 class MyCoinViewCell extends StatelessWidget {
   final DataElement _model;
