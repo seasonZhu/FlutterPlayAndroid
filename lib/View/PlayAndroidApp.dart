@@ -6,11 +6,12 @@ import 'MainView.dart';
 import 'Routes.dart';
 import 'package:play_android/EventBus/EventBus.dart';
 
-import 'package:play_android/My/AboutAppAndMeView.dart';
 import 'package:play_android/My/RankingView.dart';
-import 'package:play_android/My/ThemeSettingView.dart';
+import 'package:play_android/My/MyDetailView.dart';
 import 'package:play_android/My/MyCoinView.dart';
 import 'package:play_android/My/MyCollectView.dart';
+import 'package:play_android/My/ThemeSettingView.dart';
+import 'package:play_android/My/AboutAppAndMeView.dart';
 
 import 'package:play_android/Information/InformationFlowWebView.dart';
 
@@ -57,16 +58,24 @@ class _PlayAndroidAppState extends State<PlayAndroidApp>  {
       ),
       home: MainView(),
       routes: {
-        Routes.rankingView: (context) => RankingView(),
-        Routes.informationFlowWebView: (context) => InformationFlowWebView(),
+        // 首页路由
         Routes.hotKeyView: (context) => HotKeyView(),
         Routes.searchResultView: (context) => SearchResultView(keyword: PlayAndroidApp.any,),
-        Routes.themeSettingView: (context) => ThemeSettingView(),
-        Routes.aboutAppAndMeView: (context) => AboutAppAndMeView(),
+
+        // 项目和公众号路由
+        Routes.informationFlowWebView: (context) => InformationFlowWebView(),
+
+        // 登录与注册路由
         Routes.loginView: (context) => LoginView(),
         Routes.registerView: (context) => RegisterView(),
+
+        // 我的路由
+        Routes.rankingView: (context) => RankingView(),
+        Routes.myDetailView: (context) => MyDetailView(),
         Routes.myCoinView: (context) => MyCoinView(),
         Routes.myCollectView: (context) => MyCollectView(),
+        Routes.themeSettingView: (context) => ThemeSettingView(),
+        Routes.aboutAppAndMeView: (context) => AboutAppAndMeView(),
       },
     );
   }

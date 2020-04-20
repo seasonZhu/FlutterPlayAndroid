@@ -11,7 +11,7 @@ abstract class Routes {
 
   static final searchResultView = "/searchResultView";
 
-  static final myDetailView = "/myCoinView";
+  static final myDetailView = "/myDetailView";
 
   static final myCoinView = "/myCoinView";
 

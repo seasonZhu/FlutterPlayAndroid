@@ -70,16 +70,16 @@ class _MyViewState extends State<MyView> {
     );
   }
 
-  Widget _tableHeaderView() {
-    return Container(
-      color: Theme.of(context).primaryColor,
-      padding: EdgeInsets.symmetric(vertical: 20),
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            GestureDetector(
-              child: Container(
+  Widget _tableHeaderView(MyListModel model) {
+    return GestureDetector(
+      child: Container(
+        color: Theme.of(context).primaryColor,
+        padding: EdgeInsets.symmetric(vertical: 20),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
                 width: 40,
                 height: 40,
                 decoration: BoxDecoration(
@@ -91,25 +91,27 @@ class _MyViewState extends State<MyView> {
                   image: _userIcon(),
                 ),
               ),
-              onTap: () {},
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              _nickname ?? "未登录",
-              style: TextStyle(color: Colors.white, fontSize: 18),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Text(
-              "等级 $_level  排名 $_rank   积分 $_coinCount",
-              style: TextStyle(color: Colors.white, fontSize: 12),
-            ),
-          ],
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                _nickname ?? "未登录",
+                style: TextStyle(color: Colors.white, fontSize: 18),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Text(
+                "等级 $_level  排名 $_rank   积分 $_coinCount",
+                style: TextStyle(color: Colors.white, fontSize: 12),
+              ),
+            ],
+          ),
         ),
       ),
+      onTap: () {
+        _pushToTargetView(model: model);
+      },
     );
   }
 
@@ -122,8 +124,7 @@ class _MyViewState extends State<MyView> {
           fit: BoxFit.cover);
     } else {
       return DecorationImage(
-          image: AssetImage("assets/images/ic_head.jpeg"),
-          fit: BoxFit.cover);
+          image: AssetImage("assets/images/ic_head.jpeg"), fit: BoxFit.cover);
     }
   }
 
@@ -131,7 +132,7 @@ class _MyViewState extends State<MyView> {
     return ListView.separated(
         itemBuilder: (context, index) {
           if (index == 0) {
-            return _tableHeaderView();
+            return _tableHeaderView(MyListModel.dataSource[index]);
           }
           return MyViewCell(
             model: MyListModel.dataSource[index],
@@ -172,27 +173,80 @@ class _MyViewState extends State<MyView> {
     return model;
   }
 
+  Widget _showToLoginViewDialog() {
+    return AlertDialog(
+      title: Text("提示"),
+      content: Text("您还没有登录,是否进行登录?"),
+      actions: <Widget>[
+        FlatButton(
+          child: Text("取消"),
+          onPressed: () => Navigator.pop(context), //关闭对话框
+        ),
+        FlatButton(
+          child: Text("确定"),
+          onPressed: () {
+            Navigator.pop(context);
+            _presentToLoginView();
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget _sureToLogoutDialog() {
+    return AlertDialog(
+      title: Text("提示"),
+      content: Text("是否登出?"),
+      actions: <Widget>[
+        FlatButton(
+          child: Text("取消"),
+          onPressed: () => Navigator.pop(context), //关闭对话框
+        ),
+        FlatButton(
+          child: Text("确定"),
+          onPressed: () {
+            Navigator.pop(context);
+            _logout();
+          },
+        ),
+      ],
+    );
+  }
+
+  void _logoutAction() {
+    if (!AccountManager.getInstance().isLogin) {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return _showToLoginViewDialog();
+          });
+    } else {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return _sureToLogoutDialog();
+          });
+    }
+  }
+
   void _pushToTargetView({MyListModel model}) {
+    if (!AccountManager.getInstance().isLogin &&
+        (model.type != TargetType.aboutAppAndMe &&
+            model.type != TargetType.themeSetting &&
+            model.type != TargetType.logout)) {
+      _presentToLoginView();
+      return;
+    }
+
     var routeName;
     switch (model.type) {
       case TargetType.myDetail:
-        if (!AccountManager.getInstance().isLogin) {
-          _presentToLoginView();
-          return;
-        }
+        routeName = Routes.myDetailView;
         break;
       case TargetType.myCoin:
-        if (!AccountManager.getInstance().isLogin) {
-          _presentToLoginView();
-          return;
-        }
         routeName = Routes.myCoinView;
         break;
       case TargetType.myCollect:
-        if (!AccountManager.getInstance().isLogin) {
-          _presentToLoginView();
-          return;
-        }
         routeName = Routes.myCollectView;
         break;
       case TargetType.themeSetting:
@@ -202,11 +256,7 @@ class _MyViewState extends State<MyView> {
         routeName = Routes.aboutAppAndMeView;
         break;
       case TargetType.logout:
-        if (!AccountManager.getInstance().isLogin) {
-          ToastView.show("您还未登录,无法进行登出操作!");
-          return;
-        }
-        _logout();
+        _logoutAction();
         return;
     }
     Navigator.pushNamed(context, routeName, arguments: model);
