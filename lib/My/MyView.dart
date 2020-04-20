@@ -11,6 +11,7 @@ import 'package:play_android/Compose/ToastView.dart';
 import 'MyListModel.dart';
 import 'TargetType.dart';
 import 'MyViewCell.dart';
+//import 'package:play_android/Compose/CustomRoute.dart';
 
 class MyView extends StatefulWidget {
   @override
@@ -269,6 +270,7 @@ class _MyViewState extends State<MyView> {
         fullscreenDialog: true,
         builder: (context) => LoginView(),
       ),
+      //CustomRoute(type: TransitionType.scale, widget: LoginView()),
     );
   }
 }
