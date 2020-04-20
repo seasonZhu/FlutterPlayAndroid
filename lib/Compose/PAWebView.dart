@@ -4,8 +4,6 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:webview_flutter/webview_flutter.dart';
 
-import 'LoadingView.dart';
-
 class PAWebView extends StatefulWidget {
   final String title;
 
