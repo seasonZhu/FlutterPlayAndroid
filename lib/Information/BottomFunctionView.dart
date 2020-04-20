@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:play_android/ThemeUtils/ThemeUtils.dart';
 import 'package:play_android/Responses/InformationFlowProtocol.dart';
 import 'package:play_android/HttpUtils/Request.dart';
+import 'package:play_android/Account/AccountManager.dart';
 
 import 'package:play_android/Compose/ToastView.dart';
 
@@ -28,7 +29,7 @@ class _BottomFunctionViewState extends State<BottomFunctionView> {
   @override
   void initState() {
     super.initState();
-    _settingList(widget._model);
+    _settingList();
   }
 
   @override
@@ -113,6 +114,7 @@ class _BottomFunctionViewState extends State<BottomFunctionView> {
     var model = await Request.collectAction(id: widget._model.id);
     if (model.errorCode == 0) {
       ToastView.show("收藏成功");
+      AccountManager.getInstance().info.collectIds.add(widget._model.id);
       widget._model.collect = true;
     } else {
       ToastView.show(model.errorMsg);
@@ -121,11 +123,14 @@ class _BottomFunctionViewState extends State<BottomFunctionView> {
 
   //这个地方的取消收藏是失败的 
   //因为不管是在InformationFlowResponse中的DataInfo还是在BannerResponse中都没有originId这个属性
-  //另外,这个收藏和取消收藏是一个全局的变量,这样的操作还是有问题 
+  //另外,这个收藏和取消收藏是一个全局的变量,这样的操作还是有问题,目前这个问题已经解决,自己手动对用户单例中的collectIds进行增删;其实也可以用过刷新登录接口解决;
   void _unCollect() async {
     var model = await Request.unCollectAction(originId: widget._model.id);
     if (model.errorCode == 0) {
       ToastView.show("取消收藏成功");
+      if (AccountManager.getInstance().info.collectIds.contains(widget._model.id)) {
+        AccountManager.getInstance().info.collectIds.remove(widget._model.id);
+      }
       widget._model.collect = false;
     } else {
       ToastView.show(model.errorMsg);
@@ -150,7 +155,11 @@ class _BottomFunctionViewState extends State<BottomFunctionView> {
     ToastView.show("该功能暂未实现");
   }
 
-  void _settingList(InformationFlowProtocol model) {
+  void _settingList() {
+    var collectIds = AccountManager.getInstance().info.collectIds;
+    var collectId = widget._model.id;
+    var isContain = collectIds.contains(collectId);
+    widget._model.collect = isContain;
     if (widget._model.collect == null) {
       _list
         ..add(BottomFunctionModel(
@@ -172,9 +181,9 @@ class _BottomFunctionViewState extends State<BottomFunctionView> {
     } else {
       _list
         ..add(BottomFunctionModel(
-            title: model.collect ? "取消收藏" : "收藏",
-            iconData: model.collect ? Icons.favorite_border : Icons.favorite,
-            type: model.collect
+            title: widget._model.collect ? "取消收藏" : "收藏",
+            iconData: widget._model.collect ? Icons.favorite_border : Icons.favorite,
+            type: widget._model.collect
                 ? BottomFunctionType.unCollect
                 : BottomFunctionType.collect))
         ..add(BottomFunctionModel(

@@ -6,6 +6,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:play_android/HttpUtils/Request.dart';
 import 'package:play_android/Responses/MyCollectResponse.dart';
 import 'package:play_android/Responses/CollectArticleActionResponse.dart';
+import 'package:play_android/Account/AccountManager.dart';
 
 import 'package:play_android/Compose/LoadingView.dart';
 import 'package:play_android/Compose/ToastView.dart';
@@ -127,6 +128,9 @@ class _MyCollectViewState extends State<MyCollectView> {
   Future<CollectArticleActionResponse> _unCollectAction(int index) async {
     var model = await Request.unCollectAction(originId: _dataSource[index].originId);
     if (model.errorCode == 0) {
+      if (AccountManager.getInstance().info.collectIds.contains(_dataSource[index].originId)) {
+        AccountManager.getInstance().info.collectIds.remove(_dataSource[index].originId);
+      }
       _dataSource.removeAt(index);
       ToastView.show("取消收藏成功");
       if (mounted) setState(() {});
