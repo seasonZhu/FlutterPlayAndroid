@@ -1,15 +1,13 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
 
-import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import 'package:play_android/Responses/InformationFlowProtocol.dart';
 import 'package:play_android/Compose/Marquee.dart';
+import 'BottomFunctionView.dart';
 
 class InformationFlowWebView extends StatefulWidget {
   @override
@@ -69,7 +67,14 @@ class _InformationFlowWebViewState extends State<InformationFlowWebView> {
       elevation: 0.1,
       actions: <Widget>[
         _isLoading ? loading() : Container(),
-        IconButton(icon: Icon(Icons.more_vert), onPressed: () {})
+        IconButton(icon: Icon(Icons.more_vert), onPressed: () {
+          showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return BottomFunctionView(model: _model);
+      },
+    );
+        })
       ],
     );
   }

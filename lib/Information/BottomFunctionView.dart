@@ -1,0 +1,199 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'package:play_android/ThemeUtils/ThemeUtils.dart';
+import 'package:play_android/Responses/InformationFlowProtocol.dart';
+import 'package:play_android/HttpUtils/Request.dart';
+
+import 'package:play_android/Compose/ToastView.dart';
+
+import 'BottomFunctionModel.dart';
+
+class BottomFunctionView extends StatefulWidget {
+  final InformationFlowProtocol _model;
+
+  BottomFunctionView({
+    Key key,
+    @required InformationFlowProtocol model,
+  })  : _model = model,
+        super(key: key);
+
+  @override
+  _BottomFunctionViewState createState() => _BottomFunctionViewState();
+}
+
+class _BottomFunctionViewState extends State<BottomFunctionView> {
+  List<BottomFunctionModel> _list = List<BottomFunctionModel>();
+
+  @override
+  void initState() {
+    super.initState();
+    _settingList(widget._model);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: _list.length == 4 ? 160 : 260,
+      color: Colors.black12,
+      padding: EdgeInsets.all(15),
+      alignment: Alignment.center,
+      child: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 4,
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 10,
+          childAspectRatio: 0.8,
+        ),
+        itemBuilder: (BuildContext context, int index) {
+          return GestureDetector(
+            child: _createBottomSheetItem(_list[index]),
+            onTap: () {
+              _handleBottomSheetItemClick(_list[index]);
+            },
+          );
+        },
+        itemCount: _list.length,
+      ),
+    );
+  }
+
+  Widget _createBottomSheetItem(BottomFunctionModel model) {
+    return Column(
+      children: <Widget>[
+        Container(
+          margin: EdgeInsets.symmetric(vertical: 5),
+          padding: EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Icon(
+            model.iconData,
+            color: ThemeUtils.currentColor,
+            size: 32,
+          ),
+        ),
+        Text(
+          model.title,
+          maxLines: 1,
+          style: TextStyle(
+            fontSize: 14,
+          ),
+        ),
+      ],
+    );
+  }
+
+  void _handleBottomSheetItemClick(BottomFunctionModel model) {
+    switch (model.type) {
+      case BottomFunctionType.collect:
+        _collect();
+        break;
+      case BottomFunctionType.unCollect:
+        _unCollect();
+        break;
+      case BottomFunctionType.copyLink:
+        _copyLink();
+        break;
+      case BottomFunctionType.openByBrowser:
+        _openByBrowser();
+        break;
+      case BottomFunctionType.weChatShare:
+        _weChatShare();
+        break;
+      case BottomFunctionType.refresh:
+        _refresh();
+        break;
+    }
+    Navigator.pop(context);
+  }
+
+  void _collect() async {
+    var model = await Request.collectAction(id: widget._model.id);
+    if (model.errorCode == 0) {
+      ToastView.show("收藏成功");
+      widget._model.collect = true;
+    } else {
+      ToastView.show(model.errorMsg);
+    }
+  }
+
+  //这个地方的取消收藏是失败的 
+  //因为不管是在InformationFlowResponse中的DataInfo还是在BannerResponse中都没有originId这个属性
+  //另外,这个收藏和取消收藏是一个全局的变量,这样的操作还是有问题 
+  void _unCollect() async {
+    var model = await Request.unCollectAction(originId: widget._model.id);
+    if (model.errorCode == 0) {
+      ToastView.show("取消收藏成功");
+      widget._model.collect = false;
+    } else {
+      ToastView.show(model.errorMsg);
+    }
+  }
+
+  void _copyLink() {
+    ClipboardData data = new ClipboardData(text: widget._model.link);
+    Clipboard.setData(data);
+    ToastView.show("复制成功");
+  }
+
+  void _openByBrowser() async {
+    ToastView.show("该功能暂未实现");
+  }
+
+  void _weChatShare() {
+    ToastView.show("该功能暂未实现");
+  }
+
+  void _refresh() {
+    ToastView.show("该功能暂未实现");
+  }
+
+  void _settingList(InformationFlowProtocol model) {
+    if (widget._model.collect == null) {
+      _list
+        ..add(BottomFunctionModel(
+            title: "复制链接",
+            iconData: Icons.link,
+            type: BottomFunctionType.copyLink))
+        ..add(BottomFunctionModel(
+            title: "浏览器打开",
+            iconData: Icons.link,
+            type: BottomFunctionType.openByBrowser))
+        ..add(BottomFunctionModel(
+            title: "微信分享",
+            iconData: Icons.link,
+            type: BottomFunctionType.weChatShare))
+        ..add(BottomFunctionModel(
+            title: "刷新",
+            iconData: Icons.link,
+            type: BottomFunctionType.refresh));
+    } else {
+      _list
+        ..add(BottomFunctionModel(
+            title: model.collect ? "取消收藏" : "收藏",
+            iconData: model.collect ? Icons.favorite_border : Icons.favorite,
+            type: model.collect
+                ? BottomFunctionType.unCollect
+                : BottomFunctionType.collect))
+        ..add(BottomFunctionModel(
+            title: "复制链接",
+            iconData: Icons.link,
+            type: BottomFunctionType.copyLink))
+        ..add(BottomFunctionModel(
+            title: "浏览器打开",
+            iconData: Icons.link,
+            type: BottomFunctionType.openByBrowser))
+        ..add(BottomFunctionModel(
+            title: "微信分享",
+            iconData: Icons.link,
+            type: BottomFunctionType.weChatShare))
+        ..add(BottomFunctionModel(
+            title: "刷新",
+            iconData: Icons.link,
+            type: BottomFunctionType.refresh));
+    }
+  }
+}
+
