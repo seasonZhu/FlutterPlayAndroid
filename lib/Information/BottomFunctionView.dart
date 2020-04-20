@@ -168,15 +168,15 @@ class _BottomFunctionViewState extends State<BottomFunctionView> {
             type: BottomFunctionType.copyLink))
         ..add(BottomFunctionModel(
             title: "浏览器打开",
-            iconData: Icons.link,
+            iconData: Icons.open_in_browser,
             type: BottomFunctionType.openByBrowser))
         ..add(BottomFunctionModel(
             title: "微信分享",
-            iconData: Icons.link,
+            iconData: Icons.share,
             type: BottomFunctionType.weChatShare))
         ..add(BottomFunctionModel(
             title: "刷新",
-            iconData: Icons.link,
+            iconData: Icons.refresh,
             type: BottomFunctionType.refresh));
     } else {
       _list
@@ -192,15 +192,15 @@ class _BottomFunctionViewState extends State<BottomFunctionView> {
             type: BottomFunctionType.copyLink))
         ..add(BottomFunctionModel(
             title: "浏览器打开",
-            iconData: Icons.link,
+            iconData: Icons.open_in_browser,
             type: BottomFunctionType.openByBrowser))
         ..add(BottomFunctionModel(
             title: "微信分享",
-            iconData: Icons.link,
+            iconData: Icons.share,
             type: BottomFunctionType.weChatShare))
         ..add(BottomFunctionModel(
             title: "刷新",
-            iconData: Icons.link,
+            iconData: Icons.refresh,
             type: BottomFunctionType.refresh));
     }
   }
