@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+//import 'package:fluwx/fluwx.dart';
+
 import 'package:play_android/ThemeUtils/ThemeUtils.dart';
 import 'MainView.dart';
 
@@ -47,6 +49,9 @@ class _PlayAndroidAppState extends State<PlayAndroidApp>  {
         themeColor = event.color;
       });
     });
+
+    // 微信SDK注册 这里只是一个例子,实际还要做双端的配置
+    //registerWxApi(appId: "",universalLink: "");
   }
 
   Widget build(BuildContext context) {

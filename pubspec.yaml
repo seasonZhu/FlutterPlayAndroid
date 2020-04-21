@@ -61,6 +61,12 @@ dependencies:
   #json序列化与反序列化
   json_annotation: ^2.0.0
 
+  #flutter调用微信SDK,虽然我估计不会集成微信分享功能
+  #fluwx: ^2.0.8+1
+
+  #BLoC框架
+  flutter_bloc:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
