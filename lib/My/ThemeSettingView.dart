@@ -11,11 +11,18 @@ class ThemeSettingView extends StatefulWidget {
 }
 
 class _ThemeSettingViewState extends State<ThemeSettingView> {
-  
   List<Color> colors = ThemeUtils.supportColors;
+
+  var _selectIndex;
 
   changeColorTheme(Color c) {
     eventBus.fire(ChangeThemeEvent(c));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _setLastSelectIndex();
   }
 
   @override
@@ -36,16 +43,43 @@ class _ThemeSettingViewState extends State<ThemeSettingView> {
                   onTap: () {
                     ThemeUtils.currentColor = colors[index];
                     changeColorTheme(colors[index]);
-                    AccountManager.getInstance().saveLastThemeSettingIndex(index);
+                    AccountManager.getInstance()
+                        .saveLastThemeSettingIndex(index);
+                    setState(() {
+                      _selectIndex = index;
+                    });
                   },
-                  child: Container(
-                    color: colors[index],
-                    margin: const EdgeInsets.all(3.0),
-                  ),
+                  child: _colorBlock(index),
                 );
               }),
             )
         )
     );
+  }
+
+  // 显示可选择的色块,使用了Stack和Opacity
+  Widget _colorBlock(int index) {
+    return Container(
+      margin: const EdgeInsets.all(3.0),
+      child: Stack(
+        alignment: AlignmentDirectional.bottomEnd,
+        children: <Widget>[
+          Container(color: colors[index]),
+          Opacity(
+              opacity: _selectIndex == index ? 1 : 0,
+              child: Icon(
+                Icons.check_circle,
+                color: Colors.white,
+              ))
+        ],
+      ),
+    );
+  }
+
+  void _setLastSelectIndex() async {
+    var index = await AccountManager.getInstance().getLastThemeSettingIndex();
+    setState(() {
+      _selectIndex = index;
+    });
   }
 }
