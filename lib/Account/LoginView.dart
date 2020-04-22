@@ -7,6 +7,7 @@ import 'package:play_android/View/Routes.dart';
 import 'package:play_android/Compose/Space.dart';
 import 'package:play_android/Compose/ToastView.dart';
 import 'package:play_android/Compose/LoadingView.dart';
+import 'package:play_android/Compose/ResignFirstResponder.dart';
 import 'AccountManager.dart';
 
 class LoginView extends StatefulWidget {
@@ -34,7 +35,7 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) { 
     return GestureDetector(
       onTap: () {
-        FocusScope.of(context).requestFocus(FocusNode());
+        ResignFirstResponder.of(context);
       },
       child: Scaffold(
         appBar: AppBar(
@@ -196,7 +197,7 @@ class _LoginViewState extends State<LoginView> {
     }
 
     // 关闭键盘
-    FocusScope.of(context).requestFocus(FocusNode());
+    ResignFirstResponder.of(context);
 
     login();
   }

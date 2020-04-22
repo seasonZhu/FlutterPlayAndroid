@@ -5,6 +5,7 @@ import 'package:play_android/Responses/AccountInfoResponse.dart';
 import 'package:play_android/EventBus/EventBus.dart';
 import 'package:play_android/Compose/ToastView.dart';
 import 'package:play_android/Compose/LoadingView.dart';
+import 'package:play_android/Compose/ResignFirstResponder.dart';
 import 'AccountManager.dart';
 
 class RegisterView extends StatefulWidget {
@@ -29,7 +30,7 @@ class _RegisterViewState extends State<RegisterView> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        FocusScope.of(context).requestFocus(FocusNode());
+        ResignFirstResponder.of(context);
       },
       child: Scaffold(
         appBar: AppBar(
@@ -198,7 +199,7 @@ class _RegisterViewState extends State<RegisterView> {
     }
 
     // 关闭键盘
-    FocusScope.of(context).requestFocus(FocusNode());
+    ResignFirstResponder.of(context);
 
     register();
   }

@@ -7,6 +7,7 @@ import 'package:play_android/Responses/HotKeyResponse.dart';
 import 'package:play_android/Compose/LoadingView.dart';
 import 'package:play_android/Compose/ToastView.dart';
 import 'package:play_android/Compose/EmptyView.dart';
+import 'package:play_android/Compose/ResignFirstResponder.dart';
 
 import 'package:play_android/View/Routes.dart';
 import 'package:play_android/View/PlayAndroidApp.dart';
@@ -36,7 +37,7 @@ class _HotKeyViewState extends State<HotKeyView> {
         body: futureBuilder(),
       ),
       onTap: () {
-        FocusScope.of(context).requestFocus(FocusNode());
+        ResignFirstResponder.of(context);
       },
     );
   }
@@ -154,7 +155,7 @@ class _SearchField extends StatelessWidget {
   }
 
   void _inputComplete(BuildContext context) {
-    FocusScope.of(context).requestFocus(FocusNode());
+    ResignFirstResponder.of(context);
     if (searchKeyCtrl.text.trim().isEmpty) {
       ToastView.show("搜索关键字不能为空");
       return;
