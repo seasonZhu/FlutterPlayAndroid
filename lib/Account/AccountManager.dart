@@ -8,35 +8,33 @@ class AccountManager {
 
   final kLastThemeSettingIndex = "kLastThemeSettingIndex";
 
-  AccountManager._();
-
   AccountInfo info;
 
   var isLogin = false;
 
-  var password = "";
-
-  get cookieHeaderValue {
+  // 只读计算属性
+  String get cookieHeaderValue {
     if (info == null) {
       return "";
     }else {
-      return "loginUserName=${info.nickname};loginUserPassword=$password";
+      return "loginUserName=${info.username};loginUserPassword=${info.password}";
     }
   }
 
   void save({AccountInfo info, bool isLogin, String password}) async {
     this.info = info;
     this.isLogin = true;
-    this.password = password;
+    this.info.password = password;
 
     var userDefine = await SharedPreferences.getInstance();
     userDefine.setString(kLastLoginUserName, info.username);
     userDefine.setString(kLastLoginPassword, password);
+    // 本来想尝试保存一个字典的,结果没这个方法,只有List<String>
   }
 
-  void saveLastThemeSettingIndex(int index) async {
+  Future<bool> saveLastThemeSettingIndex(int index) async {
     var userDefine = await SharedPreferences.getInstance();
-    userDefine.setInt(kLastThemeSettingIndex, index);
+    return userDefine.setInt(kLastThemeSettingIndex, index);
   }
 
   Future<String> getLastLoginUserName() async {
@@ -57,8 +55,11 @@ class AccountManager {
   void clear() {
     info = null;
     isLogin = false;
-    password = "";
   }
+
+  // 单例模式写法
+
+  AccountManager._();
 
   static AccountManager _instance;
 
