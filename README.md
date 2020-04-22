@@ -55,8 +55,11 @@ Dart中最蛋疼就是json转模型,真的是蛋疼到有的时候无力吐槽,�
 ## 推荐与感谢
 
 [推荐一个json转模型网站](https://app.quicktype.io/)
+
 [推荐介绍Flutter组件的短视频集合](https://www.bilibili.com/video/BV1Pt411v78y)
 
 [特别感谢:历时三天，完成了Flutter版本的玩安卓](https://juejin.im/post/5e901fff51882573bd5f3f88),我学习了里面很多代码,并进行了封装与抽取,没错,我就是一个搬运工.
+
+## 项目地址
 
 [项目地址](https://github.com/seasonZhu/playAndroid),记得给一个Star
