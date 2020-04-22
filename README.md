@@ -47,6 +47,13 @@ SwiftUI和Flutter真的已经特别像了,SwiftUI中虽然没有stf和stl两个�
 
 Dart中最蛋疼就是json转模型,真的是蛋疼到有的时候无力吐槽,所幸有各种工具网站一键转换,否则真的要手撕代码.而Swift中的Codable协议基本上让json转模型即写即用.
 
+## 后续计划
+
+1.页面的状态枚举与页面进行打通,并使其逻辑更加合理与完善.
+2.使用flutter_bloc框架来进行MVVM模式改造.
+
+## 推荐与感谢
+
 [推荐一个json转模型网站](https://app.quicktype.io/)
 [推荐介绍Flutter组件的短视频集合](https://www.bilibili.com/video/BV1Pt411v78y)
 
