@@ -4,6 +4,11 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+// void main() {
+//   BlocSupervisor.delegate = SimpleBlocDelegate();
+//   runApp(BlocExampleApp());
+// }
+
 class SimpleBlocDelegate extends BlocDelegate {
   @override
   void onEvent(Bloc bloc, Object event) {
@@ -24,12 +29,7 @@ class SimpleBlocDelegate extends BlocDelegate {
   }
 }
 
-void main() {
-  BlocSupervisor.delegate = SimpleBlocDelegate();
-  runApp(App());
-}
-
-class App extends StatelessWidget {
+class BlocExampleApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
