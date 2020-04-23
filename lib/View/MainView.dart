@@ -30,10 +30,15 @@ class _MainViewState extends State<MainView> {
 
   var _body;
 
+  var _pages;
+
+  var _pageController;
+
   @override
   void initState() {
     super.initState();
     autoLogin();
+    //pageViewControllerAndListener()
   }
 
   @override
@@ -46,7 +51,7 @@ class _MainViewState extends State<MainView> {
     );
 
     return Scaffold(
-      body: _body,
+      body: _body,//_pageViews
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("首页")),
@@ -68,6 +73,7 @@ class _MainViewState extends State<MainView> {
     setState(() {
       _selectedIndex = index; //刷新界面
     });
+    //pageViewScrollToSelectedIndexPage();
   }
 
   void autoLogin() async {
@@ -81,5 +87,41 @@ class _MainViewState extends State<MainView> {
             .save(info: model.data, isLogin: true, password: password);
       }
     }
+  }
+
+  // pageView的初始化
+  void pageViewSetting() {
+    _pages = PageView(
+      physics: ClampingScrollPhysics(),
+      children: _views,
+      controller: _pageController,
+      onPageChanged: (index) {
+        setState(() {
+          _selectedIndex = index; //刷新界面
+        });
+      },
+    );
+  }
+
+  // pageView跳转到指定页面去
+  void pageViewScrollToSelectedIndexPage() {
+    _pageController.animateTo(
+        MediaQuery.of(context).size.width * _selectedIndex,
+        duration: Duration(milliseconds: 200),
+        curve: Curves.linear);
+  }
+
+  // PageController的初始化与监听
+  void pageViewControllerAndListener() {
+    _pageController = PageController(initialPage: _selectedIndex);
+    _pageController.addListener(() {
+      print("offset: ${_pageController.offset}");
+    });
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 }
