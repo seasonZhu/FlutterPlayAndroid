@@ -139,7 +139,7 @@ class _MyDetailViewState extends State<MyDetailView> {
                     style: TextStyle(fontSize: 16),
                   ),
                   Text(
-                    "******",
+                    "*" * AccountManager.getInstance().info.password.length,
                     style: TextStyle(fontSize: 16),
                   ),
                 ],
