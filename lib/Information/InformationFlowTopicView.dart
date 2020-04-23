@@ -29,12 +29,12 @@ class _InformationFlowTopicViewState extends State<InformationFlowTopicView> wit
   @override
   void initState() {
     super.initState();
-    //_getProjectClassify();
+    _getTopic();
   }
 
   @override
   Widget build(BuildContext context) {
-    return futureBuilder();//_contentView();
+    return _contentView();//futureBuilder()
   }
 
   Widget futureBuilder() {
@@ -153,14 +153,22 @@ class _InformationFlowTopicViewState extends State<InformationFlowTopicView> wit
     super.dispose();
   }
   
-  /*
   Widget _contentView() {
     return (_dataSource.isNotEmpty && _tabController != null) ? _mainBody() : _loadingBody();
   }
 
   // 用于initState函数中
   Future<InformationFlowTopicResponse> _getTopic() async {
-    var model = await Request.getPubilicNumber();
+    var model;
+    switch (widget._type) {
+      case InformationType.project:
+        model = await Request.getProjectClassify();
+        break;
+      case InformationType.publicNumber:
+        model = await Request.getPubilicNumber();
+        break;
+    }
+
     if (model.errorCode == 0) {
         _dataSource = model.data;
         if (mounted) {
@@ -171,5 +179,5 @@ class _InformationFlowTopicViewState extends State<InformationFlowTopicView> wit
     }
     return model;
   }
-  */
+  
 }

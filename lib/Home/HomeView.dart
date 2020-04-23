@@ -27,9 +27,6 @@ class _HomeViewState extends State<HomeView> {
       RefreshController(initialRefresh: false);
   int _page = 0;
 
-  // @override
-  // bool get wantKeepAlive => true;
-
   @override
   void initState() {
     super.initState();
