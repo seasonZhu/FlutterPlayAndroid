@@ -71,6 +71,16 @@ class _RankingViewState extends State<RankingView> {
           _dataSource.clear();
         }
         _dataSource.addAll(model.data.datas);
+        /* 
+        Whether this State object is currently in a tree.
+        After creating a State object and before calling initState, 
+        the framework "mounts" the State object by associating it with a BuildContext. 
+        The State object remains mounted until the framework calls dispose, 
+        after which time the framework will never ask the State object to build again.
+        It is an error to call setState unless mounted is true.
+
+        mounted是State<T>类中的属性,这里我可以理解为属性页面,tableView.reloadData()
+         */
         if (mounted) setState(() {});
     }
     return model;
