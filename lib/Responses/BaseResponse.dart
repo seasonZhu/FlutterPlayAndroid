@@ -6,7 +6,13 @@ abstract class BaseResponse<T> {
   int errorCode;
   String errorMsg;
 
-  ResponseState get responseState {
+  ResponseState get responseState => _responseState;
+
+  ResponseSuccessState get successState => _successState;
+}
+
+extension Get on BaseResponse {
+  ResponseState get _responseState {
     if (errorCode == null) {
       return ResponseState.loading;
     }else if (errorCode == 0) {
@@ -16,7 +22,7 @@ abstract class BaseResponse<T> {
     }
   }
 
-  ResponseSuccessState get successState {
+  ResponseSuccessState get _successState {
       if (data is List) {
         var listData = data as List;
         if (listData.length > 0) {

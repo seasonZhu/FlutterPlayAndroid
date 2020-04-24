@@ -4,11 +4,17 @@
 
 import 'dart:convert';
 
+import 'package:play_android/Responses/BaseResponse.dart';
+
 RankListResponse rankListResponseFromJson(String str) => RankListResponse.fromJson(json.decode(str));
 
 String rankListResponseToJson(RankListResponse data) => json.encode(data.toJson());
 
-class RankListResponse {
+/* 
+这个居然要继承才行!!!而且在VSCode的断点调试下,无法显示下面属性的类型和内容,
+全部都是null,但是单独打印却能打出数据
+ */
+class RankListResponse extends BaseResponse<RankListResponseData> {
     RankListResponseData data;
     int errorCode;
     String errorMsg;
@@ -32,7 +38,7 @@ class RankListResponse {
     };
 }
 
-class RankListResponseData {
+class RankListResponseData implements BaseResponseData<DataElement> {
     int curPage;
     List<DataElement> datas;
     int offset;
