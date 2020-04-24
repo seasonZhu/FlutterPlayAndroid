@@ -10,6 +10,7 @@ class ThemeSettingView extends StatefulWidget {
   _ThemeSettingViewState createState() => _ThemeSettingViewState();
 }
 
+// 本页面显示了一个stf控件的LifeCycle
 class _ThemeSettingViewState extends State<ThemeSettingView> {
   List<Color> colors = ThemeUtils.supportColors;
 
@@ -23,6 +24,7 @@ class _ThemeSettingViewState extends State<ThemeSettingView> {
   void initState() {
     super.initState();
     _setLastSelectIndex();
+    print("initState");
   }
 
   @override
@@ -55,6 +57,31 @@ class _ThemeSettingViewState extends State<ThemeSettingView> {
             )
         )
     );
+  }
+
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    print("didChangeDependencies");
+  }
+
+  @override
+  void didUpdateWidget(ThemeSettingView oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    print("didUpdateWidget");
+  }
+
+  @override
+  void reassemble() {
+    super.reassemble();
+    print("reassemble");
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    print("dispose");
   }
 
   // 显示可选择的色块,使用了Stack和Opacity
