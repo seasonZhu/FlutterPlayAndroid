@@ -2,13 +2,13 @@
 // 对于一个UI = f(state)的框架,枚举真的很重要
 // 和Swift的枚举比真的太弱鸡了
 
-enum RequestState {
+enum ResponseState {
   success,
   loading,
   fail
 }
 
-enum RequestSuccessState {
+enum ResponseSuccessState {
   hasContent,
   empty
 }
