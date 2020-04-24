@@ -53,6 +53,38 @@ Dart中最蛋疼就是json转模型,真的是蛋疼到有的时候无力吐槽,�
 
 2.使用flutter_bloc框架来进行MVVM模式改造.
 
+## 没有找到fluttre命令
+
+command not found: flutter
+执行下面句子试试
+source $HOME/.bash_profile
+
+## 获取Flutter的包
+
+flutter packages get
+
+## 字典转模型的注意事项
+
+Dart没有Swift中那样的Codable协议或者像Java中的反射
+一般是通过json_serializable框架进行脚本化的编写
+会生成与模型文件名.dart对应的模型文件名.g.dart文件
+而且如果之前有生成过其他模型的.g.dart文件,build_runner可能会报错
+需要找到更好的解决方案,大致思路知道了
+
+flutter packages pub run json_model
+
+## 打Release模式下的包
+
+flutter run --release
+
+### 构建Android Release包
+
+flutter build apk
+
+### 构建iOS Release包
+
+flutter build ios
+
 ## 推荐与感谢
 
 [推荐一个json转模型网站](https://app.quicktype.io/)
