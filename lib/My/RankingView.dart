@@ -10,7 +10,10 @@ import 'package:play_android/Compose/ToastView.dart';
 //import 'package:play_android/Compose/EmptyView.dart';
 
 import 'RankingCell.dart';
-
+/* 
+ 该页面是新思路和特性的试验田
+ 我会把想到的思路都在这个页面进行实现,其他页面的改造就会这个页面大同小异
+ */
 class RankingView extends StatefulWidget {
   @override
   _RankingViewState createState() => _RankingViewState();
@@ -19,14 +22,24 @@ class RankingView extends StatefulWidget {
 class _RankingViewState extends State<RankingView> {
   var _page = 1;
 
+  var _offset = 0.0;
+
   var _dataSource = List<DataElement>();
 
   var _refreshController = RefreshController(initialRefresh: false);
+
+  var _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
     _getRankList(_page);
+
+    // 监听滑动的offset
+    _scrollController.addListener(() {
+      _offset = _scrollController.offset;
+      print("offset: ${_scrollController.offset}");
+    });
   }
 
   @override
@@ -38,6 +51,7 @@ class _RankingViewState extends State<RankingView> {
         elevation: 0.1,
       ),
       body: _contentView(context, _dataSource),
+      floatingActionButton: _buildFloatingActionButton(),
     );
   }
 
@@ -56,11 +70,35 @@ class _RankingViewState extends State<RankingView> {
       onRefresh: _onRefresh,
       onLoading: _onLoading,
       child: ListView.builder(
+        controller: _scrollController,
         itemBuilder: (context, index) {
           return RankingCell(model: dataSoures[index]);
         },
         itemCount: dataSoures.length,
       ),
+    );
+  }
+
+  // 由于Flutter的使用会使得iOS中点击statusBar滑动到顶部的方案失效,这个floatButton不思维一直解决方法
+  Widget _buildFloatingActionButton() {
+    if (_offset <= 120) {
+      return Container();
+    }
+
+    // 换了一个思路,其实用_page也是可以进行floatButtton设置的
+    // if (_page == 0) {
+    //   return Container();
+    // }
+
+    return FloatingActionButton(
+      backgroundColor: Theme.of(context).primaryColor,
+      child: Icon(
+        Icons.keyboard_arrow_up,
+      ),
+      onPressed: () {
+        _scrollController.animateTo(0.0,
+            duration: Duration(milliseconds: 300), curve: Curves.linear);
+      }
     );
   }
 
@@ -122,5 +160,12 @@ class _RankingViewState extends State<RankingView> {
         return LoadingView();
       }
     );
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    _refreshController.dispose();
+    super.dispose();
   }
 }

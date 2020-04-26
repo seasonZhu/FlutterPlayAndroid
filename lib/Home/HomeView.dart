@@ -25,22 +25,11 @@ class _HomeViewState extends State<HomeView> {
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
 
-  ScrollController _scrollController = ScrollController();
-
   int _page = 0;
-
-  double _offset = 0;
 
   @override
   void initState() {
     super.initState();
-
-    // 监听滑动的offset
-    _scrollController.addListener(() {
-      _offset = _scrollController.offset;
-      print("offset: ${_scrollController.offset}");
-    });
-
     _getTopArticleList();
   }
 
@@ -60,7 +49,6 @@ class _HomeViewState extends State<HomeView> {
         ],
       ),
       body: _body(),
-      floatingActionButton: _buildFloatingActionButton(),
     );
   }
 
@@ -73,7 +61,6 @@ class _HomeViewState extends State<HomeView> {
               onRefresh: _onRefresh,
               onLoading: _onLoading,
               child: ListView.builder(
-                controller: _scrollController,
                 itemBuilder: (context, index) => Column(
                   children: <Widget>[
                     _sectionHeader(index),
@@ -94,29 +81,6 @@ class _HomeViewState extends State<HomeView> {
       return BannerView();
     }
     return Container();
-  }
-
-  // 由于Flutter的使用会使得iOS中点击statusBar滑动到顶部的方案失效,这个floatButton不思维一直解决方法
-  Widget _buildFloatingActionButton() {
-    if (_offset <= 120) {
-      return Container();
-    }
-
-    // 换了一个思路,其实用_page也是可以进行floatButtton设置的
-    // if (_page == 0) {
-    //   return Container();
-    // }
-
-    return FloatingActionButton(
-      backgroundColor: Theme.of(context).primaryColor,
-      child: Icon(
-        Icons.keyboard_arrow_up,
-      ),
-      onPressed: () {
-        _scrollController.animateTo(0.0,
-            duration: Duration(milliseconds: 300), curve: Curves.linear);
-      }
-    );
   }
 
   void _onRefresh() async {
@@ -167,7 +131,6 @@ class _HomeViewState extends State<HomeView> {
   @override
   void dispose() {
     _refreshController.dispose();
-    _scrollController.dispose();
     super.dispose();
   }
 }
