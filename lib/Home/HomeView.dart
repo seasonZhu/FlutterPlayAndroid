@@ -21,10 +21,12 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-
   List<DataInfo> _dataSource = List<DataInfo>();
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
+
+  ScrollController _scrollController = ScrollController();
+
   int _page = 0;
 
   @override
@@ -45,11 +47,11 @@ class _HomeViewState extends State<HomeView> {
               icon: Icon(Icons.search),
               onPressed: () {
                 _pushToHotkeView(context);
-              }
-            )
+              })
         ],
       ),
-      body: _body()
+      body: _body(),
+      floatingActionButton: _buildFloatingActionButton(),
     );
   }
 
@@ -62,12 +64,15 @@ class _HomeViewState extends State<HomeView> {
               onRefresh: _onRefresh,
               onLoading: _onLoading,
               child: ListView.builder(
-                itemBuilder: (context, index) =>
-                    Column(children: <Widget>[
-                      sectionHeader(index),
-                      InformationFlowListCell(model: _dataSource[index],),
-                    ],),
-                    
+                controller: _scrollController,
+                itemBuilder: (context, index) => Column(
+                  children: <Widget>[
+                    _sectionHeader(index),
+                    InformationFlowListCell(
+                      model: _dataSource[index],
+                    ),
+                  ],
+                ),
                 itemCount: _dataSource.length,
               ),
             )
@@ -75,11 +80,25 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  Widget sectionHeader(int index) {
+  Widget _sectionHeader(int index) {
     if (index == 0) {
       return BannerView();
     }
     return Container();
+  }
+
+  // 由于Flutter的使用会使得iOS中点击statusBar滑动到顶部的方案失效,这个floatButton不思维一直解决方法
+  Widget _buildFloatingActionButton() {
+    return FloatingActionButton(
+      backgroundColor: Theme.of(context).primaryColor,
+      child: Icon(
+        Icons.keyboard_arrow_up,
+      ),
+      onPressed: () {
+        _scrollController.animateTo(0.0,
+            duration: Duration(milliseconds: 300), curve: Curves.linear);
+      }
+    );
   }
 
   void _onRefresh() async {
@@ -93,7 +112,7 @@ class _HomeViewState extends State<HomeView> {
     var model = await _getArticleList();
     if (model.data.pageCount == model.data.curPage) {
       _refreshController.loadNoData();
-    }else {
+    } else {
       _refreshController.loadComplete();
     }
   }
@@ -101,26 +120,26 @@ class _HomeViewState extends State<HomeView> {
   Future<ArticleTopListResponse> _getTopArticleList() async {
     var model = await Request.getTopArticleList();
     if (model.errorCode == 0) {
-        _dataSource.clear();
-        _dataSource.addAll(model.data);
-        if (mounted) setState(() {});
-    }else {
+      _dataSource.clear();
+      _dataSource.addAll(model.data);
+      if (mounted) setState(() {});
+    } else {
       ToastView.show(model.errorMsg);
     }
 
-    return model;  
+    return model;
   }
 
   Future<InformationFlowListResponse> _getArticleList() async {
     var model = await Request.getArticleList(page: _page - 1);
     if (model.errorCode == 0) {
-        _dataSource.addAll(model.data.datas);
-        if (mounted) setState(() {});
-    }else {
+      _dataSource.addAll(model.data.datas);
+      if (mounted) setState(() {});
+    } else {
       ToastView.show(model.errorMsg);
     }
 
-    return model;  
+    return model;
   }
 
   void _pushToHotkeView(BuildContext context) {
