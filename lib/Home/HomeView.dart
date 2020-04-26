@@ -102,6 +102,11 @@ class _HomeViewState extends State<HomeView> {
       return Container();
     }
 
+    // 换了一个思路,其实用_page也是可以进行floatButtton设置的
+    // if (_page == 0) {
+    //   return Container();
+    // }
+
     return FloatingActionButton(
       backgroundColor: Theme.of(context).primaryColor,
       child: Icon(

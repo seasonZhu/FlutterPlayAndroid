@@ -11,7 +11,7 @@ abstract class BaseResponse<T> {
   ResponseSuccessState get successState => _successState;
 }
 
-extension Get on BaseResponse {
+extension State on BaseResponse {
   ResponseState get _responseState {
     if (errorCode == null) {
       return ResponseState.loading;
