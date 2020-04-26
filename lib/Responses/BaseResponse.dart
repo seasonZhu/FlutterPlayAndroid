@@ -1,4 +1,4 @@
-import 'ResponseStateState.dart';
+import 'ResponseState.dart';
 
 /* 思考如果通过协议进行泛型化 */
 abstract class BaseResponse<T> {
