@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:play_android/Responses/AccountInfoResponse.dart';
 
@@ -7,6 +9,8 @@ class AccountManager {
   final kLastLoginPassword = "kLastLoginPassword";
 
   final kLastThemeSettingIndex = "kLastThemeSettingIndex";
+
+  final kAccountInfo = "kAccountInfo";
 
   AccountInfo info;
 
@@ -29,7 +33,9 @@ class AccountManager {
     var userDefine = await SharedPreferences.getInstance();
     userDefine.setString(kLastLoginUserName, info.username);
     userDefine.setString(kLastLoginPassword, password);
-    // 本来想尝试保存一个字典的,结果没这个方法,只有List<String>
+    // 本来想尝试保存一个字典的,结果没这个方法,只有List<String>,但是我可以将Map转为String在存呀
+    var infoJsonString = json.encode(info.toJson());
+    userDefine.setString(kAccountInfo, infoJsonString);
   }
 
   Future<bool> saveLastThemeSettingIndex(int index) async {
@@ -40,6 +46,11 @@ class AccountManager {
   Future<String> getLastLoginUserName() async {
     var userDefine = await SharedPreferences.getInstance();
     return userDefine.getString(kLastLoginUserName) ?? "";
+  }
+
+  Future<String> getLastAccountInfo() async {
+    var userDefine = await SharedPreferences.getInstance();
+    return userDefine.getString(kAccountInfo) ?? "";
   }
 
   Future<int> getLastThemeSettingIndex() async {
