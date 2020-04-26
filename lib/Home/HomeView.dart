@@ -29,9 +29,18 @@ class _HomeViewState extends State<HomeView> {
 
   int _page = 0;
 
+  double _offset = 0;
+
   @override
   void initState() {
     super.initState();
+
+    // 监听滑动的offset
+    _scrollController.addListener(() {
+      _offset = _scrollController.offset;
+      print("offset: ${_scrollController.offset}");
+    });
+
     _getTopArticleList();
   }
 
@@ -89,6 +98,10 @@ class _HomeViewState extends State<HomeView> {
 
   // 由于Flutter的使用会使得iOS中点击statusBar滑动到顶部的方案失效,这个floatButton不思维一直解决方法
   Widget _buildFloatingActionButton() {
+    if (_offset <= 120) {
+      return Container();
+    }
+
     return FloatingActionButton(
       backgroundColor: Theme.of(context).primaryColor,
       child: Icon(
