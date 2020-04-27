@@ -17,7 +17,7 @@ extension Value on ResponseState {
       case ResponseState.loading:
         return 0;
       case ResponseState.fail:
-        return -1;
+        return 1;
     }
   }
 }
@@ -25,4 +25,15 @@ extension Value on ResponseState {
 enum ResponseSuccessState {
   hasContent,
   empty
+}
+
+extension SuccessValue on ResponseSuccessState {
+  get value {
+    switch (this) {
+      case ResponseSuccessState.hasContent:
+        return 2;
+      case ResponseSuccessState.empty:
+        return 3;
+    }
+  }
 }

@@ -4,12 +4,15 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'package:play_android/HttpUtils/Request.dart';
 import 'package:play_android/Responses/RankListResponse.dart';
+import 'package:play_android/Responses/ResponseState.dart';
 
 import 'package:play_android/Compose/LoadingView.dart';
 import 'package:play_android/Compose/ToastView.dart';
-//import 'package:play_android/Compose/EmptyView.dart';
+import 'package:play_android/Compose/EmptyView.dart';
+import 'package:play_android/Compose/ErrorView.dart';
 
 import 'RankingCell.dart';
+
 /* 
  该页面是新思路和特性的试验田
  我会把想到的思路都在这个页面进行实现,其他页面的改造就会这个页面大同小异
@@ -30,6 +33,10 @@ class _RankingViewState extends State<RankingView> {
 
   var _scrollController = ScrollController();
 
+  var _value = 0;
+
+  var _body;
+
   @override
   void initState() {
     super.initState();
@@ -44,13 +51,22 @@ class _RankingViewState extends State<RankingView> {
 
   @override
   Widget build(BuildContext context) {
+    _body = IndexedStack(
+      children: [
+        LoadingView(),
+        ErrorView(),
+        SafeArea(child: _listView(context, _dataSource)),
+        EmptyView()
+      ],
+      index: _value,
+    );
     return Scaffold(
       appBar: AppBar(
         title: Text("排行榜", style: TextStyle(color: Colors.white)),
         iconTheme: IconThemeData(color: Colors.white),
         elevation: 0.1,
       ),
-      body: _contentView(context, _dataSource),
+      body: _body, //_contentView(context, _dataSource),
       floatingActionButton: _buildFloatingActionButton(),
     );
   }
@@ -91,25 +107,24 @@ class _RankingViewState extends State<RankingView> {
     // }
 
     return FloatingActionButton(
-      backgroundColor: Theme.of(context).primaryColor,
-      child: Icon(
-        Icons.keyboard_arrow_up,
-      ),
-      onPressed: () {
-        _scrollController.animateTo(0.0,
-            duration: Duration(milliseconds: 300), curve: Curves.linear);
-      }
-    );
+        backgroundColor: Theme.of(context).primaryColor,
+        child: Icon(
+          Icons.keyboard_arrow_up,
+        ),
+        onPressed: () {
+          _scrollController.animateTo(0.0,
+              duration: Duration(milliseconds: 300), curve: Curves.linear);
+        });
   }
 
   Future<RankListResponse> _getRankList(int page) async {
     var model = await Request.getRankingList(page: page);
     if (model.errorCode == 0) {
-        if (_page == 1) {
-          _dataSource.clear();
-        }
-        _dataSource.addAll(model.data.datas);
-        /* 
+      if (_page == 1) {
+        _dataSource.clear();
+      }
+      _dataSource.addAll(model.data.datas);
+      /* 
         Whether this State object is currently in a tree.
         After creating a State object and before calling initState, 
         the framework "mounts" the State object by associating it with a BuildContext. 
@@ -119,7 +134,20 @@ class _RankingViewState extends State<RankingView> {
 
         mounted是State<T>类中的属性,这里我可以理解为属性页面,tableView.reloadData()
          */
-        if (mounted) setState(() {});
+      if (mounted)
+        setState(() {
+          switch (model.responseState) {
+            case ResponseState.loading:
+              _value = model.responseState.value;
+              break;
+            case ResponseState.success:
+              _value = model.successState.value;
+              break;
+            case ResponseState.fail:
+              _value = model.responseState.value;
+              break;
+          }
+        });
     }
     return model;
   }
@@ -135,7 +163,7 @@ class _RankingViewState extends State<RankingView> {
     var model = await _getRankList(_page);
     if (model.data.pageCount == model.data.curPage) {
       _refreshController.loadNoData();
-    }else {
+    } else {
       _refreshController.loadComplete();
     }
   }
@@ -143,23 +171,22 @@ class _RankingViewState extends State<RankingView> {
   // futureBuilder对于上下拉的还是不太好
   Widget futureBuilder() {
     return FutureBuilder(
-      future: _getRankList(_page),
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
-        //请求完成
-        if (snapshot.connectionState == ConnectionState.done) {
-          RankListResponse model = snapshot.data;
-          _dataSource.addAll(model.data.datas);
-          //发生错误
-          if (snapshot.hasError) {
-            ToastView.show(model.errorMsg);
+        future: _getRankList(_page),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          //请求完成
+          if (snapshot.connectionState == ConnectionState.done) {
+            RankListResponse model = snapshot.data;
+            _dataSource.addAll(model.data.datas);
+            //发生错误
+            if (snapshot.hasError) {
+              ToastView.show(model.errorMsg);
+            }
+            //请求成功，通过项目信息构建用于显示项目名称的ListView
+            return _contentView(context, _dataSource);
           }
-          //请求成功，通过项目信息构建用于显示项目名称的ListView
-          return _contentView(context, _dataSource);
-        }
-        //请求未完成时弹出loading
-        return LoadingView();
-      }
-    );
+          //请求未完成时弹出loading
+          return LoadingView();
+        });
   }
 
   @override
