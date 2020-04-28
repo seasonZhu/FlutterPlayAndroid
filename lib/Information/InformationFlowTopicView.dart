@@ -65,7 +65,7 @@ class _InformationFlowTopicViewState extends State<InformationFlowTopicView> wit
   Scaffold _mainBody() {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title(), style: TextStyle(color: Colors.white)),
+        title: Text(widget._type.title, style: TextStyle(color: Colors.white)),
         iconTheme: IconThemeData(color: Colors.white),
         elevation: 0.1,
         bottom: tabBar()
@@ -77,23 +77,10 @@ class _InformationFlowTopicViewState extends State<InformationFlowTopicView> wit
     );
   }
 
-  String title() {
-    var title;
-    switch (widget._type) {
-      case InformationType.project:
-        title = "项目";
-        break;
-      case InformationType.publicNumber:
-        title = "公众号";
-        break;
-    }
-    return title;
-  }
-
   Scaffold _loadingBody() {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title(), style: TextStyle(color: Colors.white)),
+        title: Text(widget._type.title, style: TextStyle(color: Colors.white)),
         iconTheme: IconThemeData(color: Colors.white),
         elevation: 0.1,
       ),
@@ -135,15 +122,7 @@ class _InformationFlowTopicViewState extends State<InformationFlowTopicView> wit
   }
 
   Future<InformationFlowTopicResponse> _getTopicUseInFutureBuilder() async {
-    var model;
-    switch (widget._type) {
-      case InformationType.project:
-        model = await Request.getProjectClassify();
-        break;
-      case InformationType.publicNumber:
-        model = await Request.getPubilicNumber();
-        break;
-    }
+    var model = await widget._type.model;
     return model;
   }
 
@@ -159,15 +138,7 @@ class _InformationFlowTopicViewState extends State<InformationFlowTopicView> wit
 
   // 用于initState函数中
   Future<InformationFlowTopicResponse> _getTopic() async {
-    var model;
-    switch (widget._type) {
-      case InformationType.project:
-        model = await Request.getProjectClassify();
-        break;
-      case InformationType.publicNumber:
-        model = await Request.getPubilicNumber();
-        break;
-    }
+    var model = await widget._type.model;
 
     if (model.errorCode == 0) {
         _dataSource = model.data;

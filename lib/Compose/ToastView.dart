@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 class ToastView {
 
   static void show(String message){
+    // 看了Fluttertoast的源代码,是发了一个消息给原生,最后由原生实现
     Fluttertoast.showToast(
         msg: message,
         toastLength: Toast.LENGTH_LONG,

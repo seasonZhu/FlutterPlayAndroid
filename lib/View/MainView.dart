@@ -28,7 +28,16 @@ class _MainViewState extends State<MainView> {
     MyView()
   ];
 
-  var _body;
+  get _body {
+    // 通过这个方案保证tabbar的四个页面都保持存活状态,避免反复刷新,这里其实四个页面落在一起,通过index控制是否显示
+    // IndexedStack是Stack的子类，Stack是将所有的子组件叠加显示，而IndexedStack只显示指定的子组件
+    var body = IndexedStack(
+      children: _views,
+      index: _selectedIndex,
+    );
+
+    return body;
+  }
 
   var _pages;
 
@@ -43,13 +52,6 @@ class _MainViewState extends State<MainView> {
 
   @override
   Widget build(BuildContext context) {
-    // 通过这个方案保证tabbar的四个页面都保持存活状态,避免反复刷新,这里其实四个页面落在一起,通过index控制是否显示
-    // IndexedStack是Stack的子类，Stack是将所有的子组件叠加显示，而IndexedStack只显示指定的子组件
-    _body = IndexedStack(
-      children: _views,
-      index: _selectedIndex,
-    );
-
     return Scaffold(
       body: _body,//_pageViews
       bottomNavigationBar: BottomNavigationBar(
