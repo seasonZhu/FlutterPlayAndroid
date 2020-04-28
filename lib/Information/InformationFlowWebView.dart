@@ -6,7 +6,6 @@ import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import 'package:play_android/Responses/InformationFlowProtocol.dart';
-import 'package:play_android/Compose/Marquee.dart';
 import 'BottomFunctionView.dart';
 
 class InformationFlowWebView extends StatefulWidget {
@@ -30,14 +29,6 @@ class _InformationFlowWebViewState extends State<InformationFlowWebView> {
   void initState() {
     super.initState();
     //_startWebViewListen();
-  }
-
-  Widget marqueeText() {
-    return Container(
-      width: 100,
-      child: Marquee(Text(_model.title, style: TextStyle(color: Colors.white)),
-          200.0, Duration(seconds: 2), 230.0),
-    );
   }
 
   Widget normalText() {
