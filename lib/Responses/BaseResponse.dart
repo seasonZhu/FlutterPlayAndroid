@@ -11,6 +11,7 @@ abstract class BaseResponse<T> {
   ResponseSuccessState get successState => _successState;
 }
 
+// 这种匿名分类只能在该文件内进行使用,如果去import该文件,是找不到这个方法的,对外可用的分类必须取名
 extension on BaseResponse {
   ResponseState get _responseState {
     if (errorCode == null) {
