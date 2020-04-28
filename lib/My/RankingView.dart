@@ -5,6 +5,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:play_android/HttpUtils/Request.dart';
 import 'package:play_android/Responses/RankListResponse.dart';
 import 'package:play_android/Responses/ResponseState.dart';
+import 'package:play_android/Compose/ResponseView.dart';
 
 import 'package:play_android/Compose/LoadingView.dart';
 import 'package:play_android/Compose/ToastView.dart';
@@ -37,6 +38,8 @@ class _RankingViewState extends State<RankingView> {
 
   var _body;
 
+  RankListResponse _response;
+
   @override
   void initState() {
     super.initState();
@@ -66,7 +69,7 @@ class _RankingViewState extends State<RankingView> {
         iconTheme: IconThemeData(color: Colors.white),
         elevation: 0.1,
       ),
-      body: _body, //_contentView(context, _dataSource),
+      body: ResponseView(response: _response, contentBuilder: () { return SafeArea(child: _listView(context, _dataSource));}),//_body, //_contentView(context, _dataSource),
       floatingActionButton: _buildFloatingActionButton(),
     );
   }
@@ -117,6 +120,20 @@ class _RankingViewState extends State<RankingView> {
         });
   }
 
+  void _valueSetting(RankListResponse model) {
+    switch (model.responseState) {
+            case ResponseState.loading:
+              _value = model.responseState.value;
+              break;
+            case ResponseState.success:
+              _value = model.successState.value;
+              break;
+            case ResponseState.fail:
+              _value = model.responseState.value;
+              break;
+          }
+  }
+
   Future<RankListResponse> _getRankList(int page) async {
     var model = await Request.getRankingList(page: page);
     if (model.errorCode == 0) {
@@ -136,17 +153,8 @@ class _RankingViewState extends State<RankingView> {
          */
       if (mounted)
         setState(() {
-          switch (model.responseState) {
-            case ResponseState.loading:
-              _value = model.responseState.value;
-              break;
-            case ResponseState.success:
-              _value = model.successState.value;
-              break;
-            case ResponseState.fail:
-              _value = model.responseState.value;
-              break;
-          }
+          _valueSetting(model);
+          _response = model;
         });
     }
     return model;
