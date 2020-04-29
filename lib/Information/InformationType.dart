@@ -21,6 +21,7 @@ extension Property on InformationType {
     return title;
   }
 
+  // 只读计算属性也可以玩异步async
   Future<InformationFlowTopicResponse> get model async {
     var model;
     switch (this) {
