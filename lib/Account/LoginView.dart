@@ -8,6 +8,7 @@ import 'package:play_android/Compose/Space.dart';
 import 'package:play_android/Compose/ToastView.dart';
 import 'package:play_android/Compose/LoadingView.dart';
 import 'package:play_android/Compose/ResignFirstResponder.dart';
+import 'package:play_android/Compose/Bundle.dart';
 import 'AccountManager.dart';
 
 class LoginView extends StatefulWidget {
@@ -92,7 +93,7 @@ class _LoginViewState extends State<LoginView> {
                         width: 38,
                         child: InkWell(
                           child: Image.asset(
-                            "assets/images/ic_eye.png",
+                            Bundle.imageName("ic_eye"),
                             width: 20,
                             height: 20,
                           ),
