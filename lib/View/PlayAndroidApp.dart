@@ -31,13 +31,58 @@ class PlayAndroidApp extends StatefulWidget {
   _PlayAndroidAppState createState() => _PlayAndroidAppState();
 }
 
-class _PlayAndroidAppState extends State<PlayAndroidApp>  {
-  Color themeColor = ThemeUtils.currentColor;
+class _PlayAndroidAppState extends State<PlayAndroidApp> {
+  var themeColor = ThemeUtils.currentColor;
+
+  var themeBrightness = Brightness.light;
 
   @override
   void initState() {
     super.initState();
 
+    _themeColorListener();
+    _themeModeListener();
+
+    // 微信SDK注册 这里只是一个例子,实际还要做双端的配置
+    //registerWxApi(appId: "",universalLink: "");
+  }
+
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Play Android',
+      theme: _themeData(),
+      home: MainView(),
+      routes: _routes(),
+    );
+  }
+
+  // 路由
+  Map<String, WidgetBuilder> _routes() {
+    return {
+      // 首页路由
+      Routes.hotKeyView: (context) => HotKeyView(),
+      Routes.searchResultView: (context) => SearchResultView(
+            keyword: PlayAndroidApp.any,
+          ),
+
+      // 项目和公众号路由
+      Routes.informationFlowWebView: (context) => InformationFlowWebView(),
+
+      // 登录与注册路由
+      Routes.loginView: (context) => LoginView(),
+      Routes.registerView: (context) => RegisterView(),
+
+      // 我的路由
+      Routes.rankingView: (context) => RankingView(),
+      Routes.myDetailView: (context) => MyDetailView(),
+      Routes.myCoinView: (context) => MyCoinView(),
+      Routes.myCollectView: (context) => MyCollectView(),
+      Routes.themeSettingView: (context) => ThemeSettingView(),
+      Routes.aboutAppAndMeView: (context) => AboutAppAndMeView(),
+    };
+  }
+
+  void _themeColorListener() {
     // 我一直都很喜欢用await 这个算是第一次使用then然后在闭包中进行计算
     AccountManager.getInstance().getLastThemeSettingIndex().then((index) {
       ThemeUtils.currentColor = ThemeUtils.supportColors[index];
@@ -49,39 +94,39 @@ class _PlayAndroidAppState extends State<PlayAndroidApp>  {
         themeColor = event.color;
       });
     });
-
-    // 微信SDK注册 这里只是一个例子,实际还要做双端的配置
-    //registerWxApi(appId: "",universalLink: "");
   }
 
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Play Android',
-      theme: ThemeData(
-        primaryColor: themeColor,
-        platform: TargetPlatform.iOS, 
-      ),
-      home: MainView(),
-      routes: {
-        // 首页路由
-        Routes.hotKeyView: (context) => HotKeyView(),
-        Routes.searchResultView: (context) => SearchResultView(keyword: PlayAndroidApp.any,),
+  void _themeModeListener() {
+    AccountManager.getInstance().getIsOpenDardMode().then((isOpenDarkMode) {
+      eventBus.fire(ChangeThemeBrightness(
+          isOpenDarkMode ? Brightness.dark : Brightness.light));
+    });
 
-        // 项目和公众号路由
-        Routes.informationFlowWebView: (context) => InformationFlowWebView(),
+    eventBus.on<ChangeThemeBrightness>().listen((event) {
+      setState(() {
+        themeBrightness = event.brightnessType;
+      });
+    });
+  }
 
-        // 登录与注册路由
-        Routes.loginView: (context) => LoginView(),
-        Routes.registerView: (context) => RegisterView(),
-
-        // 我的路由
-        Routes.rankingView: (context) => RankingView(),
-        Routes.myDetailView: (context) => MyDetailView(),
-        Routes.myCoinView: (context) => MyCoinView(),
-        Routes.myCollectView: (context) => MyCollectView(),
-        Routes.themeSettingView: (context) => ThemeSettingView(),
-        Routes.aboutAppAndMeView: (context) => AboutAppAndMeView(),
-      },
-    );
+  // 主题数据
+  ThemeData _themeData() {
+    switch (themeBrightness) {
+      case Brightness.dark:
+        return ThemeData.dark();
+        break;
+      case Brightness.light:
+        return ThemeData(
+            primaryColor: themeColor,
+            platform: TargetPlatform.iOS,
+            brightness: Brightness.light);
+        break;
+      default:
+        return ThemeData(
+            primaryColor: themeColor,
+            platform: TargetPlatform.iOS,
+            brightness: Brightness.light);
+        break;
+    }
   }
 }

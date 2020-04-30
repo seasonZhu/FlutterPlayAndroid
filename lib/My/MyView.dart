@@ -24,17 +24,21 @@ class _MyViewState extends State<MyView> {
   String _level = "0";
   String _rank = "0";
   String _coinCount = "0";
+  bool _isOpenDarkMode;
 
   @override
   void initState() {
     super.initState();
     eventBus.on<LoginEvent>().listen((event) {
-      setState(() {
-        _nickname = AccountManager.getInstance().info.nickname;
-        _icon = AccountManager.getInstance().info.icon.isNotEmpty
+      _nickname = AccountManager.getInstance().info.nickname;
+      _icon = AccountManager.getInstance().info.icon.isNotEmpty
             ? AccountManager.getInstance().info.icon
             : "";
+
+      AccountManager.getInstance().getIsOpenDardMode().then((onValue) {
+        _isOpenDarkMode = onValue;
       });
+
       _getUserCoinInfo();
     });
 
@@ -53,6 +57,14 @@ class _MyViewState extends State<MyView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            icon: Icon(
+              Icons.brightness_6,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              _themeModeChange();
+            }),
         title: Text("我的", style: TextStyle(color: Colors.white)),
         iconTheme: IconThemeData(color: Colors.white),
         elevation: 0.1,
@@ -148,6 +160,12 @@ class _MyViewState extends State<MyView> {
           );
         },
         itemCount: MyListModel.dataSource.length);
+  }
+
+  void _themeModeChange() {
+    _isOpenDarkMode = !_isOpenDarkMode;
+    AccountManager.getInstance().saveOpenDarkMode(_isOpenDarkMode);
+    eventBus.fire(ChangeThemeBrightness(_isOpenDarkMode ? Brightness.dark : Brightness.light));
   }
 
   Future<CoinResponse> _getUserCoinInfo() async {

@@ -12,6 +12,8 @@ class AccountManager {
 
   final kAccountInfo = "kAccountInfo";
 
+  final kOpenDarkMode = "kOpenDarkMode";
+
   AccountInfo info;
 
   var isLogin = false;
@@ -43,6 +45,11 @@ class AccountManager {
     return userDefine.setInt(kLastThemeSettingIndex, index);
   }
 
+  Future<bool> saveOpenDarkMode(bool isOpenDarkMode) async {
+    var userDefine = await SharedPreferences.getInstance();
+    return userDefine.setBool(kOpenDarkMode, isOpenDarkMode);
+  }
+
   Future<String> getLastLoginUserName() async {
     var userDefine = await SharedPreferences.getInstance();
     return userDefine.getString(kLastLoginUserName) ?? "";
@@ -61,6 +68,11 @@ class AccountManager {
   Future<String> getLastLoginPassword() async {
     var userDefine = await SharedPreferences.getInstance();
     return userDefine.getString(kLastLoginPassword) ?? "";
+  }
+
+  Future<bool> getIsOpenDardMode() async {
+    var userDefine = await SharedPreferences.getInstance();
+    return userDefine.getBool(kOpenDarkMode) ?? false;
   }
 
   void clear() {

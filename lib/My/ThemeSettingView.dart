@@ -32,7 +32,7 @@ class _ThemeSettingViewState extends State<ThemeSettingView> {
     MyListModel model = ModalRoute.of(context).settings.arguments;
     return Scaffold(
         appBar: AppBar(
-          title: Text(model.title, style: TextStyle(color: Colors.white)),
+          title: Text(model.title + "(仅对白天模式有效)", style: TextStyle(color: Colors.white)),
           iconTheme: IconThemeData(color: Colors.white),
           centerTitle: true, //设置标题是否局中
         ),
