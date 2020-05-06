@@ -97,6 +97,8 @@ flutter build ios
 
 [特别感谢:历时三天，完成了Flutter版本的玩安卓](https://juejin.im/post/5e901fff51882573bd5f3f88),我学习了里面很多代码,并进行了封装与抽取,没错,我就是一个搬运工.
 
+[牛逼的WanAndroid版本](https://github.com/Sky24n/flutter_wanandroid)
+
 ## 项目地址
 
 [项目地址](https://github.com/seasonZhu/playAndroid),记得给一个Star
