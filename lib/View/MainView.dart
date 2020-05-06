@@ -43,10 +43,13 @@ class _MainViewState extends State<MainView> {
 
   var _pageController;
 
+  var brightnessType = Brightness.light;
+
   @override
   void initState() {
     super.initState();
     autoLogin();
+    _listenThemeMode();
     //pageViewControllerAndListener()
   }
 
@@ -64,7 +67,7 @@ class _MainViewState extends State<MainView> {
           BottomNavigationBarItem(icon: Icon(Icons.person), title: Text("我的")),
         ],
         currentIndex: _selectedIndex, //默认选中的 index
-        fixedColor: Theme.of(context).primaryColor, //选中时颜色变为黑色
+        fixedColor: _bottomNavigationBarItemColor(),
         type: BottomNavigationBarType.fixed, //类型为 fixed
         onTap: _onItemTapped,
       ),
@@ -89,6 +92,18 @@ class _MainViewState extends State<MainView> {
             .save(info: model.data, isLogin: true, password: password);
       }
     }
+  }
+
+  void _listenThemeMode() {
+    eventBus.on<ChangeThemeBrightness>().listen((event) {
+      setState(() {
+        brightnessType = event.brightnessType;
+      });
+    });
+  }
+
+  Color _bottomNavigationBarItemColor() {
+    return brightnessType == Brightness.light ? Theme.of(context).primaryColor : Colors.white38;
   }
 
   // pageView的初始化
