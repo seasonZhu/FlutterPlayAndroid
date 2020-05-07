@@ -87,6 +87,14 @@ flutter build apk
 
 flutter build ios
 
+### 一些问题
+
+项目卡死在Downloading ios tools...这一行
+开热点还是百度,都是要求切换到国内的镜像,然而没有什么用
+最后,如果不行就使用命令行解决!!!
+
+flutter run
+
 ## 推荐与感谢
 
 [推荐一个json转模型网站](https://app.quicktype.io/)
