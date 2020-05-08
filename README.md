@@ -94,6 +94,14 @@ flutter build ios
 最后,如果不行就使用命令行解决!!!
 
 flutter run
+flutter packages get
+pod install
+
+### Flutter1.17.0
+
+这个版本,折腾了我很久,dio报错,导致整个项目都跑不起来,原来是dio的版本太老了.
+一些涉及trunk分支上的cocopods一直都无法安装,问题还需要继续解决.
+Flutter的这个版本,宿主程序里面空空如也,真的是变成了壳.
 
 ## 推荐与感谢
 
