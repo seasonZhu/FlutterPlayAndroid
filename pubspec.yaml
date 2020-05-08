@@ -39,7 +39,7 @@ dependencies:
   # html化
   flutter_html: ^0.11.1
   # 图片选择 选择图片
-  image_picker: ^0.6.4
+  image_picker:
   # 跑马灯
   marquee_flutter:
   # 图片缓存
@@ -55,7 +55,7 @@ dependencies:
   event_bus: ^1.1.1
 
   #网络请求库
-  dio: ^2.1.0
+  dio: ^3.0.9
 
   #跳转 拨打电话和浏览器
   url_launcher:
