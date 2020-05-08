@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:play_android/ThemeUtils/ThemeUtils.dart';
 import 'MainView.dart';
+import 'SplashView.dart';
 
 import 'Routes.dart';
 import 'package:play_android/EventBus/EventBus.dart';
@@ -51,7 +52,7 @@ class _PlayAndroidAppState extends State<PlayAndroidApp> {
     return MaterialApp(
       title: 'Play Android',
       theme: _themeData(),
-      home: MainView(),
+      home: SplashView(),
       routes: _routes(),
     );
   }
