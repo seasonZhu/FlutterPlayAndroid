@@ -6,6 +6,8 @@ import 'package:dio/dio.dart';
 import 'Api.dart';
 import 'package:play_android/Account/AccountManager.dart';
 
+const bool inProduction = const bool.fromEnvironment("dart.vm.product");
+
 abstract class HttpUtils {
   // 超时时间 1min dio中是以毫秒计算的
   static var timeout = 60000000;
@@ -21,12 +23,14 @@ abstract class HttpUtils {
   static Future<Map<String, dynamic>> get({String api, Map<String, dynamic> params}) async {
     
     Response response = await _dio.get(api, queryParameters: params, options: getCookieHeaderOptions());
+    Log._httpLog(response);
     return response.data;
   }
 
   // Post请求
   static Future<Map<String, dynamic>> post({String api, Map<String, dynamic> params}) async {
     Response response = await _dio.post(api, queryParameters: params, options: getCookieHeaderOptions());
+    Log._httpLog(response);
     return response.data;
   }
 
@@ -34,6 +38,34 @@ abstract class HttpUtils {
     var value = AccountManager.getInstance().cookieHeaderValue;
     Options options = Options(headers: {HttpHeaders.cookieHeader: value});
     return options;
+  }
+}
+
+extension Log on HttpUtils {
+  /// print Http Log.
+  static void _httpLog(Response response) {
+    if (inProduction) {
+      return;
+    }
+    try {
+      print("----------------Http Log----------------");
+      print("----------------request-----------------");
+      print("[requestMethon]:" + response.request.method);
+      print("[requestUrl]:" + response.request.uri.toString());
+      _printDataString("requestData", response.request.data);
+      print("----------------response----------------");
+      print( "[statusCode]:" + response.statusCode.toString());
+      _printDataString("response", response.data);
+    } catch (error) {
+      print("Http Log" + " error......");
+      print(error);
+    }
+  }
+
+  /// print Data Str.
+  static void _printDataString(String tag, Object value) {
+    String jsonString = value.toString();
+    print("[$tag]:" + jsonString);
   }
 }
 
