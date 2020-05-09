@@ -40,8 +40,8 @@ class BannerView extends StatelessWidget {
   }
 
   Widget bannerView(BuildContext context, BannerResponse model) {
-    return Container(
-      height: 200,
+    return AspectRatio(
+      aspectRatio: 16.0 / 9.0,
       child: Swiper(
           itemBuilder: (BuildContext itemContext, int index) {
             return FadeInImage.assetNetwork(

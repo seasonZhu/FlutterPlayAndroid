@@ -6,6 +6,7 @@ import 'package:dio/dio.dart';
 import 'Api.dart';
 import 'package:play_android/Account/AccountManager.dart';
 
+// 这个是用来判断是否是生产环境
 const bool inProduction = const bool.fromEnvironment("dart.vm.product");
 
 abstract class HttpUtils {

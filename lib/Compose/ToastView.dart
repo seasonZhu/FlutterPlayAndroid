@@ -16,4 +16,10 @@ class ToastView {
     );
   }
 
+  // 系统的SnackBar
+  static void showSnackBar(BuildContext context, String msg) {
+    Scaffold.of(context).showSnackBar(
+      SnackBar(content: Text("$msg")),
+    );
+  }
 }
