@@ -65,7 +65,15 @@ extension Log on HttpUtils {
   /// print Data Str.
   static void _printDataString(String tag, Object value) {
     String jsonString = value.toString();
-    print("[$tag]:" + jsonString);
+    while (jsonString.isNotEmpty) {
+      if (jsonString.length > 512) {
+        print("[$tag]:" + jsonString.substring(0, 512));
+        jsonString = jsonString.substring(512, jsonString.length);
+      } else {
+        print("[$tag]:" + jsonString);
+        jsonString = "";
+      }
+    }
   }
 }
 
