@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 //import 'package:fluwx/fluwx.dart';
 
 import 'package:play_android/ThemeUtils/ThemeUtils.dart';
-import 'MainView.dart';
 import 'SplashView.dart';
 
 import 'Routes.dart';
