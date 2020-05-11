@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:play_android/Compose/CustomRoute.dart';
+import 'package:play_android/Account/AccountManager.dart';
 import 'MainView.dart';
 
 class WelcomeView extends StatefulWidget {
@@ -85,10 +86,17 @@ class _WelcomeViewState extends State<WelcomeView> {
   }
 
   void _goMainView() {
+    AccountManager.getInstance().saveNotFirstLanuch();
     Navigator.pushAndRemoveUntil(
       context,
       CustomRoute(type: TransitionType.fade, widget: MainView()),
       (route) => route == null,
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _pageController.dispose();
   }
 }

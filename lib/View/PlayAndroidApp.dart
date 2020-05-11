@@ -37,10 +37,12 @@ class _PlayAndroidAppState extends State<PlayAndroidApp> {
 
   var themeBrightness = Brightness.light;
 
+  Widget _home = Container();
+
   @override
   void initState() {
     super.initState();
-
+    _homeView();
     _themeColorListener();
     _themeModeListener();
 
@@ -52,7 +54,7 @@ class _PlayAndroidAppState extends State<PlayAndroidApp> {
     return MaterialApp(
       title: 'Play Android',
       theme: _themeData(),
-      home: WelcomeView(),
+      home: _home,
       routes: _routes(),
     );
   }
@@ -129,5 +131,13 @@ class _PlayAndroidAppState extends State<PlayAndroidApp> {
             brightness: Brightness.light);
         break;
     }
+  }
+
+  void _homeView() async {
+    AccountManager.getInstance().getIsFirstLaunch().then((isFirstLaunch) {
+      setState(() {
+        _home = isFirstLaunch ? WelcomeView() : SplashView();
+      });
+    }); 
   }
 }

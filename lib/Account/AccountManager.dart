@@ -52,6 +52,11 @@ class AccountManager {
     return userDefine.setBool(kOpenDarkMode, isOpenDarkMode);
   }
 
+  Future<bool> saveNotFirstLanuch() async {
+    var userDefine = await SharedPreferences.getInstance();
+    return userDefine.setBool(kIsFirstLaunch, false);
+  }
+
   Future<String> getLastLoginUserName() async {
     var userDefine = await SharedPreferences.getInstance();
     return userDefine.getString(kLastLoginUserName) ?? "";
@@ -75,6 +80,11 @@ class AccountManager {
   Future<bool> getIsOpenDardMode() async {
     var userDefine = await SharedPreferences.getInstance();
     return userDefine.getBool(kOpenDarkMode) ?? false;
+  }
+
+  Future<bool> getIsFirstLaunch() async {
+    var userDefine = await SharedPreferences.getInstance();
+    return userDefine.getBool(kIsFirstLaunch) ?? true;
   }
 
   void clear() {
