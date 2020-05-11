@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 //import 'package:fluwx/fluwx.dart';
 
 import 'package:play_android/ThemeUtils/ThemeUtils.dart';
+import 'WelcomeView.dart';
 import 'SplashView.dart';
 
 import 'Routes.dart';
@@ -51,7 +52,7 @@ class _PlayAndroidAppState extends State<PlayAndroidApp> {
     return MaterialApp(
       title: 'Play Android',
       theme: _themeData(),
-      home: SplashView(),
+      home: WelcomeView(),
       routes: _routes(),
     );
   }

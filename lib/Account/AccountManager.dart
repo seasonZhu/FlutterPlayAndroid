@@ -14,6 +14,8 @@ class AccountManager {
 
   final kOpenDarkMode = "kOpenDarkMode";
 
+  final kIsFirstLaunch = "kIsFirstLaunch";
+
   AccountInfo info;
 
   var isLogin = false;

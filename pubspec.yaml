@@ -99,7 +99,8 @@ flutter:
     - assets/images/saber.jpg
     - assets/images/season_ali_pay.jpg
     - assets/images/saber_logo.jpg
-    - assets/images/spash_logo.jpg
+    - assets/images/welcome_1.png
+    - assets/images/welcome_2.jpg
     - assets/images/launchImage.png
 
   # To add assets to your application, add an assets section, like this:

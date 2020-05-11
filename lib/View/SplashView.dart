@@ -13,11 +13,10 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
-
   Timer _timer;
   int seconds = 5;
 
-    @override
+  @override
   void initState() {
     super.initState();
     //countDown();
@@ -27,36 +26,35 @@ class _SplashViewState extends State<SplashView> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return Container(
-      width: size.width,
-      height: size.height,
-      decoration: BoxDecoration(
-        //设置背景图片
-        image: DecorationImage(
-          image: AssetImage("assets/images/launchImage.png"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Stack(
-        alignment: AlignmentDirectional.bottomEnd,
-        children: <Widget>[
-          Container(),
-          Positioned(
-            right: 20,
-            top: 40,
-            child: FlatButton(
-              child: Text("跳过$seconds" + "s"),
-              color: Colors.grey,
-              shape: RoundedRectangleBorder(
-                  side: BorderSide.none,
-                  borderRadius: BorderRadius.all(Radius.circular(20))),
-              onPressed: () {
-                _goMainView();
-              },
-            )
+    return Stack(
+      alignment: AlignmentDirectional.bottomEnd,
+      children: <Widget>[
+        Container(
+          width: size.width,
+          height: size.height,
+          decoration: BoxDecoration(
+            //设置背景图片
+            image: DecorationImage(
+              image: AssetImage("assets/images/launchImage.png"),
+              fit: BoxFit.cover,
+            ),
           ),
-        ],
-      )
+        ),
+        Positioned(
+          right: 20,
+          top: 40,
+          child: FlatButton(
+            child: Text("跳过$seconds" + "s"),
+            color: Colors.grey,
+            shape: RoundedRectangleBorder(
+                side: BorderSide.none,
+                borderRadius: BorderRadius.all(Radius.circular(20))),
+            onPressed: () {
+              _goMainView();
+            },
+          )
+        ),
+      ],
     );
   }
 
@@ -66,7 +64,7 @@ class _SplashViewState extends State<SplashView> {
     Future.delayed(duration, _goMainView);
   }
 
-  _goMainView() {
+  void _goMainView() {
     Navigator.pushAndRemoveUntil(
       context,
       CustomRoute(type: TransitionType.fade, widget: MainView()),
