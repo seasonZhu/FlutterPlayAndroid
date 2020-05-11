@@ -81,7 +81,7 @@ class RankListResponseData implements BaseResponseData<DataElement> {
 class DataElement {
     int coinCount;
     int level;
-    int rank;
+    dynamic rank;
     int userId;
     String username;
 
