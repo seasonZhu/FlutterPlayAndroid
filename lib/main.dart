@@ -6,6 +6,7 @@ import 'View/PlayAndroidApp.dart';
 
 void main() {
   // 强制竖屏
+  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(PlayAndroidApp());
