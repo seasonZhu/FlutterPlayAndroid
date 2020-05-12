@@ -18,13 +18,16 @@ class MyView extends StatefulWidget {
   _MyViewState createState() => _MyViewState();
 }
 
-class _MyViewState extends State<MyView> {
+class _MyViewState extends State<MyView> with AutomaticKeepAliveClientMixin {
   String _icon;
   String _nickname;
   String _level = "0";
   String _rank = "0";
   String _coinCount = "0";
   bool _isOpenDarkMode;
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
@@ -55,6 +58,7 @@ class _MyViewState extends State<MyView> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(

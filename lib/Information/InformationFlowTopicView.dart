@@ -19,11 +19,14 @@ class InformationFlowTopicView extends StatefulWidget {
   _InformationFlowTopicViewState createState() => _InformationFlowTopicViewState();
 }
 
-class _InformationFlowTopicViewState extends State<InformationFlowTopicView> with TickerProviderStateMixin {
+class _InformationFlowTopicViewState extends State<InformationFlowTopicView> with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
 
   List<TopicInfo> _dataSource = List<TopicInfo>();
 
   TabController _tabController;
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
@@ -33,6 +36,7 @@ class _InformationFlowTopicViewState extends State<InformationFlowTopicView> wit
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return _contentView();//futureBuilder()
   }
 
