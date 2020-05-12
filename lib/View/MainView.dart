@@ -39,7 +39,25 @@ class _MainViewState extends State<MainView> with SingleTickerProviderStateMixin
     return body;
   }
 
-  var _pages;
+  /* 
+    使用这个是没有问题的,但是涉及自动登录的总线是不会传递到MyView里面的
+    在使用的_pages的时候,是先自动登录,fire之后,点击到我的界面,我的界面才initState
+    而使用_body的时候,是我的页面先initState,然后再自动登录,fire,所以能接收到
+    优化的方案倒是有,就是在MyView界面直接使用AccountManager单例里面的变量即可
+   */
+  get _pages {
+    var pages = PageView(
+      physics: ClampingScrollPhysics(),
+      children: _views,
+      controller: _pageController,
+      onPageChanged: (index) {
+        setState(() {
+          _selectedIndex = index; //刷新界面
+        });
+      },
+    );
+    return pages;
+  }
 
   var _pageController;
 
@@ -50,13 +68,13 @@ class _MainViewState extends State<MainView> with SingleTickerProviderStateMixin
     super.initState();
     autoLogin();
     _listenThemeMode();
-    //pageViewControllerAndListener()
+    //pageViewControllerAndListener();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _body,//_pageViews
+      body: _body,//_pages
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("首页")),
@@ -106,24 +124,11 @@ class _MainViewState extends State<MainView> with SingleTickerProviderStateMixin
     return brightnessType == Brightness.light ? Theme.of(context).primaryColor : Colors.white38;
   }
 
-  // pageView的初始化
-  void pageViewSetting() {
-    _pages = PageView(
-      physics: ClampingScrollPhysics(),
-      children: _views,
-      controller: _pageController,
-      onPageChanged: (index) {
-        setState(() {
-          _selectedIndex = index; //刷新界面
-        });
-      },
-    );
-  }
-
   // pageView跳转到指定页面去
   void pageViewScrollToSelectedIndexPage() {
+    var offset = MediaQuery.of(context).size.width * _selectedIndex;
     _pageController.animateTo(
-        MediaQuery.of(context).size.width * _selectedIndex,
+        offset,
         duration: Duration(milliseconds: 200),
         curve: Curves.linear);
   }
