@@ -1,3 +1,5 @@
+import 'StringExtension.dart';
+
 class TopicInfo {
     List<dynamic> children;
     int courseId;
@@ -23,7 +25,7 @@ class TopicInfo {
         children: List<dynamic>.from(json["children"].map((x) => x)),
         courseId: json["courseId"],
         id: json["id"],
-        name: (json["name"] as String).replaceAll("&amp;", "&"),
+        name: (json["name"] as String).replaceHtmlElement,
         order: json["order"],
         parentChapterId: json["parentChapterId"],
         userControlSetTop: json["userControlSetTop"],
