@@ -22,7 +22,7 @@ abstract class HttpUtils {
 
   // Get请求
   static Future<Map<String, dynamic>> get({String api, Map<String, dynamic> params, Map<String, dynamic> headers = const {}}) async {
-    getCookieHeaderOptions().headers.addAll({});
+    getCookieHeaderOptions().headers.addAll(headers);
     Response response = await _dio.get(api, queryParameters: params, options: getCookieHeaderOptions());
     Log._httpLog(response);
     return response.data;
@@ -30,7 +30,7 @@ abstract class HttpUtils {
 
   // Post请求
   static Future<Map<String, dynamic>> post({String api, Map<String, dynamic> params, Map<String, dynamic> headers = const {}}) async {
-    getCookieHeaderOptions().headers.addAll({});
+    getCookieHeaderOptions().headers.addAll(headers);
     Response response = await _dio.post(api, queryParameters: params, options: getCookieHeaderOptions());
     Log._httpLog(response);
     return response.data;
