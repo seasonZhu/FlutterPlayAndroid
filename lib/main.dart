@@ -4,7 +4,9 @@ import 'package:flutter/services.dart';
 //import 'View/BlocExampleApp.dart';
 import 'View/PlayAndroidApp.dart';
 
-void main() {
+void main() => run();
+  
+run() {
   // 强制竖屏
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
