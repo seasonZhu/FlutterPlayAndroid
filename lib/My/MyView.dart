@@ -35,8 +35,8 @@ class _MyViewState extends State<MyView> with AutomaticKeepAliveClientMixin {
     eventBus.on<LoginEvent>().listen((event) {
       _nickname = AccountManager.getInstance().info.nickname;
       _icon = AccountManager.getInstance().info.icon.isNotEmpty
-            ? AccountManager.getInstance().info.icon
-            : "";
+          ? AccountManager.getInstance().info.icon
+          : "";
 
       AccountManager.getInstance().getIsOpenDardMode().then((onValue) {
         _isOpenDarkMode = onValue;
@@ -169,7 +169,8 @@ class _MyViewState extends State<MyView> with AutomaticKeepAliveClientMixin {
   void _themeModeChange() {
     _isOpenDarkMode = !_isOpenDarkMode;
     AccountManager.getInstance().saveOpenDarkMode(_isOpenDarkMode);
-    eventBus.fire(ChangeThemeBrightness(_isOpenDarkMode ? Brightness.dark : Brightness.light));
+    eventBus.fire(ChangeThemeBrightness(
+        _isOpenDarkMode ? Brightness.dark : Brightness.light));
   }
 
   Future<CoinResponse> _getUserCoinInfo() async {
@@ -293,6 +294,59 @@ class _MyViewState extends State<MyView> with AutomaticKeepAliveClientMixin {
         builder: (context) => LoginView(),
       ),
       //CustomRoute(type: TransitionType.scale, widget: LoginView()),
+    );
+  }
+
+  // 随便写了一个NestedScrollView练习用
+  Widget _nestedScrollView() {
+     return NestedScrollView(
+      headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+        return <Widget>[
+          SliverAppBar(
+            leading: IconButton(
+                icon: Icon(
+                  Icons.brightness_6,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  _themeModeChange();
+                }),
+            title: Text("我的", style: TextStyle(color: Colors.white)),
+            iconTheme: IconThemeData(color: Colors.white),
+            elevation: 0.1,
+            expandedHeight: 200,
+            flexibleSpace: _tableHeaderView(MyListModel.dataSource[0]),
+            actions: <Widget>[
+              IconButton(
+                  icon: Icon(
+                    Icons.assessment,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, Routes.rankingView);
+                  })
+            ],
+          ),
+        ];
+      },
+      body: ListView.separated(
+        itemBuilder: (context, index) {
+          if (index == 0) {
+            return Container();
+          }
+          return MyViewCell(
+            model: MyListModel.dataSource[index],
+            onTapCallback: (model) {
+              _pushToTargetView(model: model);
+            },
+          );
+        },
+        separatorBuilder: (context, index) {
+          return Divider(
+            height: 1.0,
+          );
+        },
+        itemCount: MyListModel.dataSource.length),
     );
   }
 }

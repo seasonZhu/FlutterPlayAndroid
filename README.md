@@ -107,6 +107,10 @@ Flutter的这个版本,宿主程序里面空空如也,真的是变成了壳.
 
 然后,我查看了一下其他项目的工程,import都是好的,真的不知道是怎么回事.
 
+## 组件学习
+
+学习好CustomScrollView和NestedScrollView感觉基本的App布局就都会了.
+
 ## 推荐与感谢
 
 [推荐一个json转模型网站](https://app.quicktype.io/)
