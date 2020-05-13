@@ -7,6 +7,7 @@ import 'package:play_android/Responses/RankListResponse.dart';
 import 'package:play_android/Responses/ResponseState.dart';
 import 'package:play_android/Compose/ResponseView.dart';
 
+import 'package:play_android/Compose/PABackButton.dart';
 import 'package:play_android/Compose/LoadingView.dart';
 import 'package:play_android/Compose/ToastView.dart';
 import 'package:play_android/Compose/EmptyView.dart';
@@ -65,6 +66,7 @@ class _RankingViewState extends State<RankingView> {
     );
     return Scaffold(
       appBar: AppBar(
+        leading: PABackButton(),
         title: Text("排行榜", style: TextStyle(color: Colors.white)),
         iconTheme: IconThemeData(color: Colors.white),
         elevation: 0.1,
