@@ -107,6 +107,12 @@ Flutter的这个版本,宿主程序里面空空如也,真的是变成了壳.
 
 然后,我查看了一下其他项目的工程,import都是好的,真的不知道是怎么回事.
 
+可以通过import './'来进行引入
+
+## Flr
+
+使用了网易出品的Flutter-R工具,可以像安卓中的R函数以及SwiftR进行资源包的引入了,当然,它也可能导致项目总的pubspec不受自己的控制了.
+
 ## 组件学习
 
 学习好CustomScrollView和NestedScrollView感觉基本的App布局就都会了.
