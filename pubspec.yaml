@@ -53,6 +53,9 @@ dependencies:
   #iOS中的UserDefine
   shared_preferences: ^0.5.3+4 #SharedPreferences
 
+  #文件读写
+  path_provider:
+
   #Android中的EventBus
   event_bus: ^1.1.1
 
