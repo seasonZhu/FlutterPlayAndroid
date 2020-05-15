@@ -25,7 +25,7 @@ class _PAWebViewState extends State<PAWebView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title, style: TextStyle(color: Colors.white),),
+        title: SingleChildScrollView(child: Text(widget.title, style: TextStyle(color: Colors.white),), scrollDirection: Axis.horizontal,),
         iconTheme: IconThemeData(color: Colors.white),
         elevation: 0.1,
         actions: <Widget>[

@@ -66,7 +66,8 @@ class _RankingViewState extends State<RankingView> {
     );
     return Scaffold(
       appBar: AppBar(
-        leading: PABackButton(),
+        // 没有必要使用自定义的返回按钮
+        //leading: PABackButton(),
         title: Text("排行榜", style: TextStyle(color: Colors.white)),
         iconTheme: IconThemeData(color: Colors.white),
         elevation: 0.1,
