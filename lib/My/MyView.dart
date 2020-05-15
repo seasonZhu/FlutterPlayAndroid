@@ -203,11 +203,11 @@ class _MyViewState extends State<MyView> with AutomaticKeepAliveClientMixin {
       content: Text("您还没有登录,是否进行登录?"),
       actions: <Widget>[
         FlatButton(
-          child: Text("取消"),
+          child: Text("取消", style: _dialogTextStyle()),
           onPressed: () => Navigator.pop(context), //关闭对话框
         ),
         FlatButton(
-          child: Text("确定"),
+          child: Text("确定", style: _dialogTextStyle()),
           onPressed: () {
             Navigator.pop(context);
             _presentToLoginView();
@@ -223,11 +223,11 @@ class _MyViewState extends State<MyView> with AutomaticKeepAliveClientMixin {
       content: Text("是否登出?"),
       actions: <Widget>[
         FlatButton(
-          child: Text("取消"),
+          child: Text("取消", style: _dialogTextStyle()),
           onPressed: () => Navigator.pop(context), //关闭对话框
         ),
         FlatButton(
-          child: Text("确定"),
+          child: Text("确定", style: _dialogTextStyle()),
           onPressed: () {
             Navigator.pop(context);
             _logout();
@@ -235,6 +235,10 @@ class _MyViewState extends State<MyView> with AutomaticKeepAliveClientMixin {
         ),
       ],
     );
+  }
+
+  TextStyle _dialogTextStyle() {
+    return _isOpenDarkMode ? TextStyle(color: Colors.white) : TextStyle(color: Theme.of(context).primaryColor,);
   }
 
   void _logoutAction() {
