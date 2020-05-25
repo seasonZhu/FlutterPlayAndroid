@@ -119,6 +119,10 @@ popUtil还是用的有问题.
 
 学习好CustomScrollView和NestedScrollView感觉基本的App布局就都会了.
 
+## 项目情况
+
+目前项目在1.1.0版本,我将develop分支合到了master分支上面,针对BLoC的逻辑与优化,一直都没有特别好的思路,目前打算先着手边学习,边进行尝试.
+
 ## 推荐与感谢
 
 [推荐一个json转模型网站](https://app.quicktype.io/)
