@@ -1,11 +1,23 @@
-/*
- * @Author: your name
- * @Date: 2020-04-15 09:45:47
- * @LastEditTime: 2020-05-29 11:21:17
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /play_android/lib/View/Routes.dart
- */ 
+import 'package:flutter/material.dart';
+
+import 'package:play_android/My/RankingView.dart';
+import 'package:play_android/My/MyDetailView.dart';
+import 'package:play_android/My/MyCoinView.dart';
+import 'package:play_android/My/MyCollectView.dart';
+import 'package:play_android/My/ThemeSettingView.dart';
+import 'package:play_android/My/AboutAppAndMeView.dart';
+
+import 'package:play_android/Information/InformationFlowWebView.dart';
+
+import 'package:play_android/Home/HotKeyView.dart';
+import 'package:play_android/Home/SearchResultView.dart';
+
+import 'package:play_android/Account/LoginView.dart';
+import 'package:play_android/Account/RegisterView.dart';
+
+import 'package:play_android/Test/View/TodayHotNavigatorView.dart';
+import 'package:play_android/Test/View/MixinCountView.dart';
+
 // 路由表
 abstract class Routes {
   // 系统默认'/'是根view,这个不能更改
@@ -36,4 +48,35 @@ abstract class Routes {
   static final todayHotNavigatorView = "/todayHotNavigatorView";
 
   static final mixinCountView = "/mixinCountView";
+
+  // 路由需要传递的参数
+  static var arguments;
+
+  // 路由
+  static Map<String, WidgetBuilder> maps() {
+    return {
+      // 首页路由
+      Routes.hotKeyView: (context) => HotKeyView(),
+      Routes.searchResultView: (context) => SearchResultView(keyword: arguments,),
+
+      // 项目和公众号路由
+      Routes.informationFlowWebView: (context) => InformationFlowWebView(),
+
+      // 登录与注册路由
+      Routes.loginView: (context) => LoginView(),
+      Routes.registerView: (context) => RegisterView(),
+
+      // 我的路由
+      Routes.rankingView: (context) => RankingView(),
+      Routes.myDetailView: (context) => MyDetailView(),
+      Routes.myCoinView: (context) => MyCoinView(),
+      Routes.myCollectView: (context) => MyCollectView(),
+      Routes.themeSettingView: (context) => ThemeSettingView(),
+      Routes.aboutAppAndMeView: (context) => AboutAppAndMeView(),
+
+      // 测试页面的路由
+      Routes.todayHotNavigatorView: (context) => TodayHotNavigatorView(),
+      Routes.mixinCountView: (context) => MixinCountView(),
+    };
+  }
 }

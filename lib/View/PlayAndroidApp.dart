@@ -5,32 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:play_android/ThemeUtils/ThemeUtils.dart';
 import 'WelcomeView.dart';
 import 'SplashView.dart';
-
 import 'Routes.dart';
 import 'package:play_android/EventBus/EventBus.dart';
-
-import 'package:play_android/My/RankingView.dart';
-import 'package:play_android/My/MyDetailView.dart';
-import 'package:play_android/My/MyCoinView.dart';
-import 'package:play_android/My/MyCollectView.dart';
-import 'package:play_android/My/ThemeSettingView.dart';
-import 'package:play_android/My/AboutAppAndMeView.dart';
-
-import 'package:play_android/Information/InformationFlowWebView.dart';
-
-import 'package:play_android/Home/HotKeyView.dart';
-import 'package:play_android/Home/SearchResultView.dart';
-
-import 'package:play_android/Account/LoginView.dart';
-import 'package:play_android/Account/RegisterView.dart';
 import 'package:play_android/Account/AccountManager.dart';
 
-import 'package:play_android/Test/View/TodayHotNavigatorView.dart';
-import 'package:play_android/Test/View/MixinCountView.dart';
-
 class PlayAndroidApp extends StatefulWidget {
-  static var any;
-
+  
   @override
   _PlayAndroidAppState createState() => _PlayAndroidAppState();
 }
@@ -40,7 +20,17 @@ class _PlayAndroidAppState extends State<PlayAndroidApp> {
 
   var themeBrightness = Brightness.light;
 
-  Widget _home = Container();
+  Widget _home = Container(
+          width: 1080,
+          height: 1920,
+          decoration: BoxDecoration(
+            //设置背景图片
+            image: DecorationImage(
+              image: AssetImage("assets/images/launchImage.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
+      );
 
   @override
   void initState() {
@@ -58,38 +48,8 @@ class _PlayAndroidAppState extends State<PlayAndroidApp> {
       title: 'Play Android',
       theme: _themeData(),
       home: _home,
-      routes: _routes(),
+      routes: Routes.maps(),
     );
-  }
-
-  // 路由
-  Map<String, WidgetBuilder> _routes() {
-    return {
-      // 首页路由
-      Routes.hotKeyView: (context) => HotKeyView(),
-      Routes.searchResultView: (context) => SearchResultView(
-            keyword: PlayAndroidApp.any,
-          ),
-
-      // 项目和公众号路由
-      Routes.informationFlowWebView: (context) => InformationFlowWebView(),
-
-      // 登录与注册路由
-      Routes.loginView: (context) => LoginView(),
-      Routes.registerView: (context) => RegisterView(),
-
-      // 我的路由
-      Routes.rankingView: (context) => RankingView(),
-      Routes.myDetailView: (context) => MyDetailView(),
-      Routes.myCoinView: (context) => MyCoinView(),
-      Routes.myCollectView: (context) => MyCollectView(),
-      Routes.themeSettingView: (context) => ThemeSettingView(),
-      Routes.aboutAppAndMeView: (context) => AboutAppAndMeView(),
-
-      // 测试页面的路由
-      Routes.todayHotNavigatorView: (context) => TodayHotNavigatorView(),
-      Routes.mixinCountView: (context) => MixinCountView(),
-    };
   }
 
   void _themeColorListener() {

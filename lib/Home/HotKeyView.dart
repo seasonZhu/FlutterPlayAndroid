@@ -94,7 +94,7 @@ class _HotKeyViewState extends State<HotKeyView> {
 
   void _pushToSearchResultView(String keyword) {
     // 我目前还没有想到特别好的办法,需要研究FutureBuilder在上下刷新中的使用
-    PlayAndroidApp.any = keyword;
+    Routes.arguments = keyword;
     Navigator.pushNamed(context, Routes.searchResultView, arguments: keyword);
   }
 }
