@@ -5,12 +5,12 @@ class MixinCountView extends StatefulWidget {
   _MixinCountViewState createState() => _MixinCountViewState();
 }
 
-class _MixinCountViewState extends State<MixinCountView> with _MixinCountViewStateMixin {
+class _MixinCountViewState extends State<MixinCountView> with _CountLogicMixin {
 
   @override
   void initState() { 
     super.initState();
-    print("我是_MixinCountViewState里面的哈哈");
+    print("我是_MixinCountViewState里面的initState");
   }
 
   @override
@@ -40,6 +40,12 @@ class _MixinCountViewState extends State<MixinCountView> with _MixinCountViewSta
       ),
     );
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+    print("我是_MixinCountViewState里面的dispose");
+  }
 }
 
 /*
@@ -51,13 +57,13 @@ extension Logic on _MixinCountViewState {
 
 }
 
-mixin _MixinCountViewStateMixin < T extends StatefulWidget> on State<T> {
+mixin _CountLogicMixin < T extends StatefulWidget> on State<T> {
   int _counter = 0;
 
   @override
   void initState() {
     super.initState();
-    print("我是mixin里面的哈哈");
+    print("我是mixin里面的initState");
   }
 
   void _incrementCounter() {
@@ -69,7 +75,7 @@ mixin _MixinCountViewStateMixin < T extends StatefulWidget> on State<T> {
   @override
   void dispose() {
     super.dispose();
-    print("被销毁了");
+    print("我是mixin里面的dispose");
   }
 
 }
