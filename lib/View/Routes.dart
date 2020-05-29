@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2020-04-15 09:45:47
+ * @LastEditTime: 2020-05-29 11:21:17
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /play_android/lib/View/Routes.dart
+ */ 
 // 路由表
 abstract class Routes {
   // 系统默认'/'是根view,这个不能更改
@@ -24,4 +32,8 @@ abstract class Routes {
   static final loginView = "/loginView";
 
   static final registerView = "/registerView";
+
+  static final todayHotNavigatorView = "/todayHotNavigatorView";
+
+  static final mixinCountView = "/mixinCountView";
 }

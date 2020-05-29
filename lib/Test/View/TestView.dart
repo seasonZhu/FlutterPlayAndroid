@@ -7,6 +7,11 @@ class TestView extends StatefulWidget {
 }
 
 class _TestViewState extends State<TestView> {
+  final titiles = [
+    {"头条客户端举报场景": "/todayHotNavigatorView"},
+    {"通过Mixin进行view与逻辑分离": "/mixinCountView"}
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +23,21 @@ class _TestViewState extends State<TestView> {
           IconButton(icon: Icon(Icons.search), onPressed: () {})
         ],
       ),
-      body: Container(),
+      body: ListView.separated(
+          itemBuilder: (cxt, index) {
+            return ListTile(
+              title: Text(titiles[index].keys.first),
+              onTap: () {
+                Navigator.of(context).pushNamed(titiles[index].values.first);
+              },
+            );
+          },
+          separatorBuilder: (context, index) {
+          return Divider(
+            height: 1.0,
+          );
+        },
+          itemCount: titiles.length),
     );
   }
 }

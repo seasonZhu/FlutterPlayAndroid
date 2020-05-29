@@ -25,6 +25,9 @@ import 'package:play_android/Account/LoginView.dart';
 import 'package:play_android/Account/RegisterView.dart';
 import 'package:play_android/Account/AccountManager.dart';
 
+import 'package:play_android/Test/View/TodayHotNavigatorView.dart';
+import 'package:play_android/Test/View/MixinCountView.dart';
+
 class PlayAndroidApp extends StatefulWidget {
   static var any;
 
@@ -82,6 +85,10 @@ class _PlayAndroidAppState extends State<PlayAndroidApp> {
       Routes.myCollectView: (context) => MyCollectView(),
       Routes.themeSettingView: (context) => ThemeSettingView(),
       Routes.aboutAppAndMeView: (context) => AboutAppAndMeView(),
+
+      // 测试页面的路由
+      Routes.todayHotNavigatorView: (context) => TodayHotNavigatorView(),
+      Routes.mixinCountView: (context) => MixinCountView(),
     };
   }
 
