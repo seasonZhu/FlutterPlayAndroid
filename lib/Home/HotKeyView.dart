@@ -10,7 +10,6 @@ import 'package:play_android/Compose/EmptyView.dart';
 import 'package:play_android/Compose/ResignFirstResponder.dart';
 
 import 'package:play_android/View/Routes.dart';
-import 'package:play_android/View/PlayAndroidApp.dart';
 
 class HotKeyView extends StatefulWidget {
   @override

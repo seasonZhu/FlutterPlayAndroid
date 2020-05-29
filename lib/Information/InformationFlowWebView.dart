@@ -130,7 +130,7 @@ class _InformationFlowWebViewState extends State<InformationFlowWebView> {
     );
   }
 
-  void _startWebViewListen() {
+  void startWebViewListen() {
     //监听url变化
     _flutterWebviewPlugin.onStateChanged.listen((state) {
       if (state.type == WebViewState.finishLoad) {

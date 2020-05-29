@@ -28,7 +28,7 @@ class _MixinCountViewState extends State<MixinCountView> with _CountLogicMixin {
             ),
             Text(
               '$_counter',
-              style: Theme.of(context).textTheme.display1,
+              style: TextStyle(color: Theme.of(context).primaryColor)
             ),
           ],
         ),

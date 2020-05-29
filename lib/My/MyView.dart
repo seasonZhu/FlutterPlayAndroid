@@ -302,7 +302,7 @@ class _MyViewState extends State<MyView> with AutomaticKeepAliveClientMixin {
   }
 
   // 随便写了一个NestedScrollView练习用
-  Widget _nestedScrollView() {
+  Widget nestedScrollView() {
      return NestedScrollView(
       headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
         return <Widget>[
