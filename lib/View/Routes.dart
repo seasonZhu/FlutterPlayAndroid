@@ -17,6 +17,7 @@ import 'package:play_android/Account/RegisterView.dart';
 
 import 'package:play_android/Test/View/TodayHotNavigatorView.dart';
 import 'package:play_android/Test/View/MixinCountView.dart';
+import 'package:play_android/Test/View/NanigationRailView.dart';
 
 // 路由表
 abstract class Routes {
@@ -49,6 +50,8 @@ abstract class Routes {
 
   static final mixinCountView = "/mixinCountView";
 
+  static final nanigationRailView = "/nanigationRailView";
+
   // 路由需要传递的参数
   static var arguments;
 
@@ -77,6 +80,7 @@ abstract class Routes {
       // 测试页面的路由
       Routes.todayHotNavigatorView: (context) => TodayHotNavigatorView(),
       Routes.mixinCountView: (context) => MixinCountView(),
+      Routes.nanigationRailView: (context) => NanigationRailView()
     };
   }
 }

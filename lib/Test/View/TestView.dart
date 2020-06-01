@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:play_android/View/Routes.dart';
+
 /* 专用的测试界面入口View */
 class TestView extends StatefulWidget {
   @override
@@ -8,8 +10,9 @@ class TestView extends StatefulWidget {
 
 class _TestViewState extends State<TestView> {
   final titiles = [
-    {"头条客户端举报场景": "/todayHotNavigatorView"},
-    {"通过Mixin进行view与逻辑分离": "/mixinCountView"}
+    {"头条客户端举报场景": Routes.todayHotNavigatorView},
+    {"通过Mixin进行view与逻辑分离": Routes.mixinCountView},
+    {"新组件NanigationRail": Routes.nanigationRailView},
   ];
 
   @override
@@ -20,7 +23,7 @@ class _TestViewState extends State<TestView> {
         iconTheme: IconThemeData(color: Colors.white),
         elevation: 0.1,
         actions: <Widget>[
-          IconButton(icon: Icon(Icons.search), onPressed: () {})
+          //IconButton(icon: Icon(Icons.search), onPressed: () {})
         ],
       ),
       body: ListView.separated(
@@ -33,9 +36,7 @@ class _TestViewState extends State<TestView> {
             );
           },
           separatorBuilder: (context, index) {
-          return Divider(
-            height: 1.0,
-          );
+          return Divider();
         },
           itemCount: titiles.length),
     );
