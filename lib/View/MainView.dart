@@ -63,7 +63,7 @@ class _MainViewState extends State<MainView> with SingleTickerProviderStateMixin
 
   var _pageController;
 
-  var brightnessType = Brightness.light;
+  var brightnessType;
 
   @override
   void initState() {
@@ -71,6 +71,10 @@ class _MainViewState extends State<MainView> with SingleTickerProviderStateMixin
     autoLogin();
     _listenThemeMode();
     //pageViewControllerAndListener();
+
+    AccountManager.getInstance().getIsOpenDardMode().then((isOpenDarkMode) {
+        isOpenDarkMode ? brightnessType = Brightness.dark: brightnessType = Brightness.light;
+    });
   }
 
   @override

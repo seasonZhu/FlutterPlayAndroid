@@ -37,11 +37,6 @@ class _MyViewState extends State<MyView> with AutomaticKeepAliveClientMixin {
       _icon = AccountManager.getInstance().info.icon.isNotEmpty
           ? AccountManager.getInstance().info.icon
           : "";
-
-      AccountManager.getInstance().getIsOpenDardMode().then((onValue) {
-        _isOpenDarkMode = onValue;
-      });
-
       _getUserCoinInfo();
     });
 
@@ -53,6 +48,11 @@ class _MyViewState extends State<MyView> with AutomaticKeepAliveClientMixin {
         _rank = "0";
         _coinCount = "0";
       });
+    });
+
+    // 黑暗模式和账号没有关系,和设备本地存储有关
+    AccountManager.getInstance().getIsOpenDardMode().then((onValue) {
+        _isOpenDarkMode = onValue;
     });
   }
 
