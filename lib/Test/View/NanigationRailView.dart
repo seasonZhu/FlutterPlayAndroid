@@ -157,8 +157,8 @@ class ContentSpace extends StatelessWidget {
               ),
 
 
-              for (var i in images) ImageCard(i),
-
+              //for (var i in images) ImageCard(i),
+              Column(children: images.map((url) => ImageCard(url)).toList(),),
 
             ],
           ),

@@ -36,6 +36,7 @@ class _TestViewState extends State<TestView> {
             );
           },
           separatorBuilder: (context, index) {
+          // 注意height和thickness联合起来使用才能体现其意义,单独使用thickness也是可以的,但是单独把height设置很大也是没有意义的
           return Divider();
         },
           itemCount: titiles.length),
