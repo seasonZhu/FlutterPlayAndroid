@@ -19,6 +19,8 @@ import 'package:play_android/Test/View/TodayHotNavigatorView.dart';
 import 'package:play_android/Test/View/MixinCountView.dart';
 import 'package:play_android/Test/View/NanigationRailView.dart';
 
+import 'package:play_android/Compose/ErrorView.dart';
+
 // 路由表
 abstract class Routes {
   // 系统默认'/'是根view,这个不能更改
@@ -60,7 +62,9 @@ abstract class Routes {
     return {
       // 首页路由
       Routes.hotKeyView: (context) => HotKeyView(),
-      Routes.searchResultView: (context) => SearchResultView(keyword: arguments,),
+      Routes.searchResultView: (context) => SearchResultView(
+            keyword: arguments,
+          ),
 
       // 项目和公众号路由
       Routes.informationFlowWebView: (context) => InformationFlowWebView(),
@@ -82,5 +86,11 @@ abstract class Routes {
       Routes.mixinCountView: (context) => MixinCountView(),
       Routes.nanigationRailView: (context) => NanigationRailView()
     };
+  }
+
+  static Route<dynamic> unknowMap(RouteSettings settings) {
+    final name = settings.name;
+    print("未匹配到路由$name");
+    return MaterialPageRoute(builder: (context) => ErrorView());
   }
 }

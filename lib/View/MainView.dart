@@ -15,7 +15,8 @@ class MainView extends StatefulWidget {
   _MainViewState createState() => _MainViewState();
 }
 
-class _MainViewState extends State<MainView> with SingleTickerProviderStateMixin {
+class _MainViewState extends State<MainView>
+    with SingleTickerProviderStateMixin {
   int _selectedIndex = 0;
 
   final _views = [
@@ -73,14 +74,16 @@ class _MainViewState extends State<MainView> with SingleTickerProviderStateMixin
     //pageViewControllerAndListener();
 
     AccountManager.getInstance().getIsOpenDardMode().then((isOpenDarkMode) {
-        isOpenDarkMode ? brightnessType = Brightness.dark: brightnessType = Brightness.light;
+      isOpenDarkMode
+          ? brightnessType = Brightness.dark
+          : brightnessType = Brightness.light;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _body,//_pages
+      body: _body, //_pages
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("首页")),
@@ -128,16 +131,16 @@ class _MainViewState extends State<MainView> with SingleTickerProviderStateMixin
   }
 
   Color _bottomNavigationBarItemColor() {
-    return brightnessType == Brightness.light ? Theme.of(context).primaryColor : Colors.white38;
+    return brightnessType == Brightness.light
+        ? Theme.of(context).primaryColor
+        : Colors.white38;
   }
 
   // pageView跳转到指定页面去
   void pageViewScrollToSelectedIndexPage() {
     var offset = MediaQuery.of(context).size.width * _selectedIndex;
-    _pageController.animateTo(
-        offset,
-        duration: Duration(milliseconds: 200),
-        curve: Curves.linear);
+    _pageController.animateTo(offset,
+        duration: Duration(milliseconds: 200), curve: Curves.linear);
   }
 
   // PageController的初始化与监听
@@ -148,7 +151,7 @@ class _MainViewState extends State<MainView> with SingleTickerProviderStateMixin
     });
   }
 
-  @override
+@override
   void dispose() {
     _pageController.dispose();
     super.dispose();

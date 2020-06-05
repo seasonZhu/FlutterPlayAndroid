@@ -8,6 +8,7 @@ import 'SplashView.dart';
 import 'Routes.dart';
 import 'package:play_android/EventBus/EventBus.dart';
 import 'package:play_android/Account/AccountManager.dart';
+import 'package:play_android/DeviceSize/DeviceSize.dart';
 
 class PlayAndroidApp extends StatefulWidget {
   
@@ -44,12 +45,23 @@ class _PlayAndroidAppState extends State<PlayAndroidApp> {
   }
 
   Widget build(BuildContext context) {
+    // MaterialApp初始化之前使用context获取屏幕的信息也是也没有意义的,会报错
+    _sizeInfo();
     return MaterialApp(
       title: 'Play Android',
       theme: _themeData(),
       home: _home,
       routes: Routes.maps(),
+      onUnknownRoute: Routes.unknowMap,
     );
+  }
+
+  void _sizeInfo() {
+    print("状态栏高度: ${DeviceSize.statusBarHeight}");
+    print("底部间距: ${DeviceSize.bottomPadding}");
+    print("屏幕宽高: ${DeviceSize.screenWidth} * ${DeviceSize.screenHeight}");
+    print("屏幕物理宽高: ${DeviceSize.physicalWidth} * ${DeviceSize.physicalHeight}");
+    print("屏幕系数: ${DeviceSize.dpr}");
   }
 
   void _themeColorListener() {
