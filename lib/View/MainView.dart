@@ -15,6 +15,7 @@ class MainView extends StatefulWidget {
   _MainViewState createState() => _MainViewState();
 }
 
+// 有关于SingleTickerProviderStateMixin,最后可以追溯到TickerProvider,这个协议作用是阻止在屏幕锁定时,执行动画以避免必要的资源浪费
 class _MainViewState extends State<MainView>
     with SingleTickerProviderStateMixin {
   int _selectedIndex = 0;

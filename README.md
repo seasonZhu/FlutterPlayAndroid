@@ -49,6 +49,10 @@ Dart中最蛋疼就是json转模型,真的是蛋疼到有的时候无力吐槽,�
 
 尝试使用了Dart的extension用法,和Swift的有点不一样,更像OC的分类,用起来还是有差异的,没有所谓的虚基类的默认方法实现,可能还需要研究一下.并且要注意这个特性是的Dart2.6之后才有的.
 
+## SingleTickerProviderStateMixin
+
+有关于SingleTickerProviderStateMixin,最后可以追溯到TickerProvider,这个协议作用是阻止在屏幕锁定时,执行动画以避免必要的资源浪费.
+
 ## 后续计划
 
 1.页面的状态枚举与页面进行打通,并使其逻辑更加合理与完善.

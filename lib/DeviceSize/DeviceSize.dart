@@ -1,4 +1,5 @@
 import 'dart:ui';
+//import 'package:device_info/device_info.dart';
 
 abstract class DeviceSize {
 
