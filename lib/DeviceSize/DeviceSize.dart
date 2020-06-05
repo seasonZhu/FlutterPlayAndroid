@@ -41,7 +41,7 @@ abstract class DeviceSize {
   /// devicePixelRatio 单位px
   static double get dpr => window.devicePixelRatio;
     
-  // 按照rpx来设置
+  /// 按照rpx来设置
   static double setRpx(double size) => DeviceSize.rpx * size;
 }
 

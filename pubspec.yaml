@@ -50,6 +50,9 @@ dependencies:
   #屏幕适配,没有使用
   flutter_screenutil: ^0.5.3
 
+  #设备信息
+  device_info:
+
   #iOS中的UserDefine
   shared_preferences: ^0.5.3+4 #SharedPreferences
 
