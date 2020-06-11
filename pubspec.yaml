@@ -43,7 +43,7 @@ dependencies:
   # 跑马灯
   marquee_flutter:
   # 图片缓存
-  #cached_network_image: 
+  cached_network_image: 
   # FlutterUIKit
   flukit: 
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:play_android/HttpUtils/Request.dart';
 import 'package:play_android/Responses/BannerResponse.dart';
@@ -12,22 +13,21 @@ class BannerView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: getBanner(),
-      builder: (BuildContext futureContext, AsyncSnapshot snapshot) {
-        //请求完成
-        if (snapshot.connectionState == ConnectionState.done) {
-          BannerResponse model = snapshot.data;
+        future: getBanner(),
+        builder: (BuildContext futureContext, AsyncSnapshot snapshot) {
+          //请求完成
+          if (snapshot.connectionState == ConnectionState.done) {
+            BannerResponse model = snapshot.data;
 
-          //发生错误
-          if (snapshot.hasError) {
-            ToastView.show(model.errorMsg);
+            //发生错误
+            if (snapshot.hasError) {
+              ToastView.show(model.errorMsg);
+            }
+            return bannerView(context, model);
           }
-          return bannerView(context, model);
-        }
-        //请求未完成时弹出loading
-        return placeHolderView();
-      }
-    );
+          //请求未完成时弹出loading
+          return placeHolderView();
+        });
   }
 
   Future<BannerResponse> getBanner() async {
@@ -41,24 +41,30 @@ class BannerView extends StatelessWidget {
 
   Widget bannerView(BuildContext context, BannerResponse model) {
     return AspectRatio(
-      aspectRatio: 16.0 / 9.0,
-      child: Swiper(
-          itemBuilder: (BuildContext itemContext, int index) {
-            return FadeInImage.assetNetwork(
-              placeholder: "assets/images/placeholder.png",
-              image: model.data[index].imagePath,
-              fit: BoxFit.fill,
-            );
-          },
-          itemCount: model.data.length,
-          pagination: SwiperPagination(),
-          autoplay: true,
-          autoplayDisableOnInteraction: true,
-          onTap: (index) {
-            _pushToWebView(context, model.data[index]);
-          }
-        )
-      );
+        aspectRatio: 16.0 / 9.0,
+        child: Swiper(
+            itemBuilder: (BuildContext itemContext, int index) {
+              return CachedNetworkImage(
+                fit: BoxFit.fill,
+                imageUrl: model.data[index].imagePath,
+                placeholder: (context, url) => Image.asset(
+                  "assets/images/placeholder.png",
+                ),
+              );
+
+              // return FadeInImage.assetNetwork(
+              //   placeholder: "assets/images/placeholder.png",
+              //   image: model.data[index].imagePath,
+              //   fit: BoxFit.fill,
+              // );
+            },
+            itemCount: model.data.length,
+            pagination: SwiperPagination(),
+            autoplay: true,
+            autoplayDisableOnInteraction: true,
+            onTap: (index) {
+              _pushToWebView(context, model.data[index]);
+            }));
   }
 
   void _pushToWebView(BuildContext context, Datum model) {
