@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_html/flutter_html.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:play_android/Responses/MyCollectResponse.dart';
 
 import 'package:play_android/View/Routes.dart';
@@ -31,12 +33,16 @@ class MyCollectViewCell extends StatelessWidget {
 
   Widget _imageView() {
     return _model.envelopePic != ""
-        ? FadeInImage.assetNetwork(
-            placeholder: "assets/images/placeholder.png",
+        ? Container(
+            child: CachedNetworkImage(
+              fit: BoxFit.fill,
+              imageUrl: _model.envelopePic,
+              placeholder: (context, url) => Image.asset(
+                "assets/images/placeholder.png",
+              ),
+            ),
             width: 60,
             height: 60,
-            image: _model.envelopePic,
-            fit: BoxFit.cover,
           )
         : Container();
   }
