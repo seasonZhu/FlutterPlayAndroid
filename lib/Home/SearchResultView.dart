@@ -28,7 +28,6 @@ class _SearchResultViewState extends State<SearchResultView> {
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
   int _page = 0;
-  bool _isRequestFinish = false;
 
   @override
   void initState() {
@@ -50,7 +49,7 @@ class _SearchResultViewState extends State<SearchResultView> {
   Widget _body() {
     return SafeArea(
       child: Container(
-        child: _isRequestFinish ? _contentView() : LoadingView()
+        child: _dataSource.length > 0 ? _contentView() : LoadingView()
       ),
     );
   }
@@ -90,7 +89,6 @@ class _SearchResultViewState extends State<SearchResultView> {
 
   Future<InformationFlowListResponse> _postQueryKey(String keyword) async {
     var model = await Request.postQueryKey(keyword: keyword, page: _page);
-    _isRequestFinish = true;
     if (model.errorCode == 0) {
       if (_page == 0) {
         _dataSource.clear();

@@ -25,7 +25,6 @@ class _MyCollectViewState extends State<MyCollectView> {
       RefreshController(initialRefresh: false);
   SlidableController _slidableController = SlidableController();
   int _page = 0;
-  bool _isRequestFinish = false;
 
   @override
   void initState() {
@@ -47,7 +46,7 @@ class _MyCollectViewState extends State<MyCollectView> {
   Widget _body() {
     return SafeArea(
       child:
-          Container(child: _isRequestFinish ? _contentView() : LoadingView()),
+          Container(child: _dataSource.length > 0 ? _contentView() : LoadingView()),
     );
   }
 
@@ -108,7 +107,6 @@ class _MyCollectViewState extends State<MyCollectView> {
 
   Future<MyCollectResponse> _getCollectArticleList() async {
     var model = await Request.getCollectArticleList(page: _page);
-    _isRequestFinish = true;
     if (model.errorCode == 0) {
       if (_page == 0) {
         _dataSource.clear();

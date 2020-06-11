@@ -21,7 +21,6 @@ class _MyCoinViewState extends State<MyCoinView> {
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
   int _page = 0;
-  bool _isRequestFinish = false;
 
   @override
   void initState() {
@@ -43,7 +42,7 @@ class _MyCoinViewState extends State<MyCoinView> {
   Widget _body() {
     return SafeArea(
       child: Container(
-        child: _isRequestFinish ? _contentView() : LoadingView()
+        child: _dataSource.length > 0 ? _contentView() : LoadingView()
       ),
     );
   }
@@ -83,7 +82,6 @@ class _MyCoinViewState extends State<MyCoinView> {
 
   Future<MyCoinResponse> _getCoinList() async {
     var model = await Request.getCoinList(page: _page);
-    _isRequestFinish = true;
     if (model.errorCode == 0) {
       if (_page == 0) {
         _dataSource.clear();
