@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:play_android/View/Routes.dart';
 
@@ -23,7 +24,7 @@ class _TestViewState extends State<TestView> {
         iconTheme: IconThemeData(color: Colors.white),
         elevation: 0.1,
         actions: <Widget>[
-          //IconButton(icon: Icon(Icons.search), onPressed: () {})
+          IconButton(icon: Icon(Icons.search), onPressed: () { _showCupertinoInputAlert(); })
         ],
       ),
       body: ListView.separated(
@@ -36,10 +37,42 @@ class _TestViewState extends State<TestView> {
             );
           },
           separatorBuilder: (context, index) {
-          // 注意height和thickness联合起来使用才能体现其意义,单独使用thickness也是可以的,但是单独把height设置很大也是没有意义的
-          return Divider();
-        },
+            // 注意height和thickness联合起来使用才能体现其意义,单独使用thickness也是可以的,但是单独把height设置很大也是没有意义的
+            return Divider();
+          },
           itemCount: titiles.length),
     );
+  }
+
+  /// 一个显示iOS风格的输入框,仅仅是简单实现,
+  void _showCupertinoInputAlert() {
+    showCupertinoDialog(
+        context: context,
+        builder: (context) {
+          return CupertinoAlertDialog(
+            title: Text('提示'),
+            content: Column(
+              children: <Widget>[
+                CupertinoTextField(),
+                Divider(),
+                CupertinoTextField(),
+              ],
+            ),
+            actions: <Widget>[
+              CupertinoDialogAction(
+                child: Text('取消'),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+              CupertinoDialogAction(
+                child: Text('确认'),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          );
+        });
   }
 }

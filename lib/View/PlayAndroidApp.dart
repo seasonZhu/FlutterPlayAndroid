@@ -45,7 +45,9 @@ class _PlayAndroidAppState extends State<PlayAndroidApp> {
   }
 
   Widget build(BuildContext context) {
-    // MaterialApp初始化之前使用context获取屏幕的信息也是也没有意义的,会报错
+    // MaterialApp初始化之前使用context获取屏幕的信息也是也没有意义的,会报错,但是可以获取平台信息
+    var platform = Theme.of(context).platform;
+    print(platform);
     _sizeInfo();
     return MaterialApp(
       title: 'Play Android',
