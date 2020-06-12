@@ -80,6 +80,9 @@ dependencies:
   # 图片保存框架
   image_gallery_saver:
 
+  # 升级框架
+  r_upgrade:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

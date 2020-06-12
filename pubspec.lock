@@ -597,6 +597,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.1.3"
+  r_upgrade:
+    dependency: "direct main"
+    description:
+      name: r_upgrade
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.2.6"
   rxdart:
     dependency: transitive
     description:

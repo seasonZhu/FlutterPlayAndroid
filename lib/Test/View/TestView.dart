@@ -1,7 +1,8 @@
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'dart:typed_data';
 
+import 'package:r_upgrade/r_upgrade.dart';
 import 'package:dio/dio.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 
@@ -28,10 +29,13 @@ class _TestViewState extends State<TestView> {
         iconTheme: IconThemeData(color: Colors.white),
         elevation: 0.1,
         actions: <Widget>[
-          IconButton(icon: Icon(Icons.search), onPressed: () { 
-            //_showCupertinoInputAlert(); 
-            _saveImage();
-          })
+          IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
+                _showCupertinoInputAlert();
+                //_saveImage();
+                //_appUpdate();
+              })
         ],
       ),
       body: ListView.separated(
@@ -83,10 +87,26 @@ class _TestViewState extends State<TestView> {
         });
   }
 
+  // 保存图片
   void _saveImage() async {
-    final String url = "https://ss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=a62e824376d98d1069d40a31113eb807/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg";
-    var response = await Dio().get(url, options: Options(responseType: ResponseType.bytes));
-    final result = await ImageGallerySaver.saveImage(Uint8List.fromList(response.data));
+    final String url =
+        "https://ss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=a62e824376d98d1069d40a31113eb807/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg";
+    var response = await Dio()
+        .get(url, options: Options(responseType: ResponseType.bytes));
+    final result =
+        await ImageGallerySaver.saveImage(Uint8List.fromList(response.data));
     print('result:$result');
+  }
+
+  void _appUpdate() async {
+    bool isSuccess = await RUpgrade.upgradeFromAppStore(
+      '1358989531', //例如:微信的AppId:414478124
+    );
+    print(isSuccess);
+    String versionName = await RUpgrade.getVersionFromAppStore(
+      '414478124', //例如:微信的AppId:414478124
+    );
+    print(versionName);
+    print("哈哈");
   }
 }
