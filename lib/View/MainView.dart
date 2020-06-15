@@ -32,6 +32,16 @@ class _MainViewState extends State<MainView>
     TestView()
   ];
 
+  final _bottomNavigationBarItems = [
+    BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("首页")),
+    BottomNavigationBarItem(
+        icon: Icon(Icons.perm_contact_calendar), title: Text("项目")),
+    BottomNavigationBarItem(
+        icon: Icon(Icons.account_balance_wallet), title: Text("公众号")),
+    BottomNavigationBarItem(icon: Icon(Icons.person), title: Text("我的")),
+    BottomNavigationBarItem(icon: Icon(Icons.train), title: Text("测试")),
+  ];
+
   get _body {
     // 通过这个方案保证tabbar的四个页面都保持存活状态,避免反复刷新,这里其实四个页面落在一起,通过index控制是否显示
     // IndexedStack是Stack的子类，Stack是将所有的子组件叠加显示，而IndexedStack只显示指定的子组件
@@ -75,9 +85,11 @@ class _MainViewState extends State<MainView>
     //pageViewControllerAndListener();
 
     AccountManager.getInstance().getIsOpenDardMode().then((isOpenDarkMode) {
-      isOpenDarkMode
+      setState(() {
+        isOpenDarkMode
           ? brightnessType = Brightness.dark
           : brightnessType = Brightness.light;
+      });
     });
   }
 
@@ -86,15 +98,7 @@ class _MainViewState extends State<MainView>
     return Scaffold(
       body: _body, //_pages
       bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("首页")),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.perm_contact_calendar), title: Text("项目")),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.account_balance_wallet), title: Text("公众号")),
-          BottomNavigationBarItem(icon: Icon(Icons.person), title: Text("我的")),
-          BottomNavigationBarItem(icon: Icon(Icons.train), title: Text("测试")),
-        ],
+        items: _bottomNavigationBarItems,
         currentIndex: _selectedIndex, //默认选中的 index
         fixedColor: _bottomNavigationBarItemColor(),
         type: BottomNavigationBarType.fixed, //类型为 fixed
@@ -152,7 +156,7 @@ class _MainViewState extends State<MainView>
     });
   }
 
-@override
+  @override
   void dispose() {
     _pageController.dispose();
     super.dispose();
