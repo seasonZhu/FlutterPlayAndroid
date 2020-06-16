@@ -19,6 +19,7 @@ class _TestViewState extends State<TestView> {
     {"头条客户端举报场景": Routes.todayHotNavigatorView},
     {"通过Mixin进行view与逻辑分离": Routes.mixinCountView},
     {"新组件NanigationRail": Routes.nanigationRailView},
+    {"DismissibelView的使用": Routes.dismissibleView}
   ];
 
   @override
