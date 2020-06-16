@@ -25,15 +25,32 @@ class _InformationFlowWebViewState extends State<InformationFlowWebView> {
 
   var _isLoading = true;
 
+  var _scrollController = ScrollController();
+
+  var _timer;
+
   @override
   void initState() {
     super.initState();
     //_startWebViewListen();
+    //startCountdownTimer();
+  }
+
+  void startCountdownTimer() {
+    const oneSec = const Duration(seconds: 1);
+
+    var callback = (timer) => {
+          _scrollController.animateTo(10.0 * timer.tick,
+              duration: Duration(microseconds: 10), curve: Curves.easeInOut)
+        };
+
+    _timer = Timer.periodic(oneSec, callback);
   }
 
   Widget normalText() {
     return SingleChildScrollView(
       child: Text(_model.title, style: TextStyle(color: Colors.white)),
+      controller: _scrollController,
       scrollDirection: Axis.horizontal,
     );
   }
@@ -112,6 +129,14 @@ class _InformationFlowWebViewState extends State<InformationFlowWebView> {
         }),
       ),
     );
+  }
+
+  @override
+  void dispose() { 
+    if (_timer) {
+      _timer.cancel();
+    }
+    super.dispose();
   }
 
   /* 
