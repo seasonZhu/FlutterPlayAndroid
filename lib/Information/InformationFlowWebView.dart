@@ -7,6 +7,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 import 'package:play_android/Responses/InformationFlowProtocol.dart';
 import 'BottomFunctionView.dart';
+import 'package:play_android/Compose/MarqueeLabel.dart';
 
 class InformationFlowWebView extends StatefulWidget {
   @override
@@ -71,6 +72,7 @@ class _InformationFlowWebViewState extends State<InformationFlowWebView> {
       // 参考了微信的做法,直接就没有标题,这个title有h5元素,
       //用Text或者框架Html都不能很好解决,加上跑马灯的问题
       //title: normalText(),
+      title: MarqueeLabel(text: _model.title,),
       iconTheme: IconThemeData(color: Colors.white),
       elevation: 0.1,
       actions: <Widget>[

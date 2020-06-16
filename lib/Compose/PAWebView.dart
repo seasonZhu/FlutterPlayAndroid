@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:webview_flutter/webview_flutter.dart';
 
+import 'MarqueeLabel.dart';
+
 class PAWebView extends StatefulWidget {
   final String title;
 
@@ -25,7 +27,7 @@ class _PAWebViewState extends State<PAWebView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: SingleChildScrollView(child: Text(widget.title, style: TextStyle(color: Colors.white),), scrollDirection: Axis.horizontal,),
+        title: MarqueeLabel(text: widget.title,),
         iconTheme: IconThemeData(color: Colors.white),
         elevation: 0.1,
         actions: <Widget>[

@@ -1,5 +1,6 @@
 import 'Tag.dart';
 import 'InformationFlowProtocol.dart';
+import 'StringExtension.dart';
 
 class DataInfo implements InformationFlowProtocol {
     String apkLink;
@@ -95,7 +96,7 @@ class DataInfo implements InformationFlowProtocol {
         superChapterId: json["superChapterId"],
         superChapterName: json["superChapterName"],
         tags: List<Tag>.from(json["tags"].map((x) => Tag.fromJson(x))),
-        title: json["title"],
+        title: (json["title"] as String).replaceHtmlElement,
         type: json["type"],
         userId: json["userId"],
         visible: json["visible"],
