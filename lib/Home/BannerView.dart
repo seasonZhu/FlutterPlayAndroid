@@ -45,7 +45,7 @@ class BannerView extends StatelessWidget {
         child: Swiper(
             itemBuilder: (BuildContext itemContext, int index) {
               return CachedNetworkImage(
-                fit: BoxFit.fill,
+                fit: BoxFit.fitWidth,
                 imageUrl: model.data[index].imagePath,
                 placeholder: (context, url) => Image.asset(
                   "assets/images/placeholder.png",

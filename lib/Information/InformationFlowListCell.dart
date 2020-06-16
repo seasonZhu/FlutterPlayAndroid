@@ -33,7 +33,7 @@ class InformationFlowListCell extends StatelessWidget {
     return _model.envelopePic != ""
         ? Container(
             child: CachedNetworkImage(
-              fit: BoxFit.fill,
+              fit: BoxFit.fitHeight,
               imageUrl: _model.envelopePic,
               placeholder: (context, url) => Image.asset(
                 "assets/images/placeholder.png",
