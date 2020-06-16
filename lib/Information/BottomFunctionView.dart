@@ -162,11 +162,11 @@ class _BottomFunctionViewState extends State<BottomFunctionView> {
   }
 
   void _settingList() {
-    var collectIds = AccountManager.getInstance().info.collectIds;
+    var collectIds = AccountManager.getInstance().isLogin ? AccountManager.getInstance().info.collectIds : [];
     var collectId = widget._model.id;
     var isContain = collectIds.contains(collectId);
     widget._model.collect = isContain;
-    if (widget._model.collect == null) {
+    if (!AccountManager.getInstance().isLogin) {
       _list
         ..add(BottomFunctionModel(
             title: "复制链接",

@@ -58,14 +58,16 @@ class _InformationFlowWebViewState extends State<InformationFlowWebView> {
       elevation: 0.1,
       actions: <Widget>[
         _isLoading ? loading() : Container(),
-        IconButton(icon: Icon(Icons.more_vert), onPressed: () {
-          showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return BottomFunctionView(model: _model);
-      },
-    );
-        })
+        IconButton(
+            icon: Icon(Icons.more_vert),
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                builder: (BuildContext context) {
+                  return BottomFunctionView(model: _model);
+                },
+              );
+            })
       ],
     );
   }
