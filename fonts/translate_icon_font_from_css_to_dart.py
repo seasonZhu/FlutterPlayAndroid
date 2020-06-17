@@ -6,12 +6,11 @@ from pathlib import Path
 
 root = Path(__file__).resolve().parent
 
-print(root)
-
-
 # 将 iconfont 的 css 自动转换为 dart 代码
 
 def translate():
+    print(root)
+
     print('Begin translate...')
 
     code = """
@@ -53,8 +52,7 @@ class IconF {
     strings = '\n'.join(strings)
     code = code.replace('{icon_codes}', strings)
     
-    lib = "lib/fonts/IconF.dart"
-
+    lib = "lib/Fonts/IconF.dart"
     libPath = str(root).replace("fonts", "") + lib
     print(libPath)
 
