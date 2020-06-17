@@ -35,8 +35,8 @@ class QuickTopFloatButtonState extends State<QuickTopFloatButton> {
     return _visible
         ? Padding(
             child: FloatingActionButton(
-                backgroundColor: Colors.white,
-                foregroundColor: Theme.of(context).primaryColor,
+                foregroundColor: Colors.white,
+                backgroundColor: Theme.of(context).primaryColor,
                 child: Icon(Icons.keyboard_arrow_up),
                 onPressed: widget.onPressed),
             padding: EdgeInsets.all(10.0),

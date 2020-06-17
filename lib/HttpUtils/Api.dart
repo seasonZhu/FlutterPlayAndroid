@@ -59,6 +59,6 @@ abstract class Api {
   // 体系
   static const String getTree = "tree/json";
 
-  // 体系详细 article/list/0/json?cid=1
+  // 体系详细 article/list/0/json?cid=1 其实和getArticleList接口一样
   static const String getTreeDetailList = "article/list/";
 }

@@ -117,7 +117,6 @@ class _RankingViewState extends State<RankingView> {
   // 从针对_scrollController添加监听,到使用NotificationListener,这种方法更为顺滑
   bool _onScrollNotification(ScrollNotification scrollNotification) {
     if (scrollNotification.metrics.axisDirection == AxisDirection.down &&
-        _screenHeight >= 10 &&
         scrollNotification.metrics.pixels >= _screenHeight) {
       _quickTopFloatButtonKey.currentState.refreshVisible(true);
     } else {
