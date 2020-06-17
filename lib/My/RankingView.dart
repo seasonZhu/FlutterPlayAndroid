@@ -1,3 +1,4 @@
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -12,6 +13,7 @@ import 'package:play_android/Compose/LoadingView.dart';
 import 'package:play_android/Compose/ToastView.dart';
 import 'package:play_android/Compose/EmptyView.dart';
 import 'package:play_android/Compose/ErrorView.dart';
+import 'package:play_android/Compose/QuickTopFloatButton.dart';
 
 import 'RankingCell.dart';
 
@@ -39,22 +41,23 @@ class _RankingViewState extends State<RankingView> {
 
   var _body;
 
+  var _screenHeight;
+
+  GlobalKey<QuickTopFloatButtonState> _quickTopFloatButtonKey = GlobalKey();
+
   RankListResponse _response;
 
   @override
   void initState() {
     super.initState();
     _getRankList(_page);
-
-    // 监听滑动的offset
-    _scrollController.addListener(() {
-      _offset = _scrollController.offset;
-      print("offset: ${_scrollController.offset}");
-    });
+    _screenHeight = MediaQueryData.fromWindow(ui.window).size.height;
+    //scrollControllerAddListener();
   }
 
   @override
   Widget build(BuildContext context) {
+    
     _body = IndexedStack(
       children: [
         LoadingView(),
@@ -72,8 +75,15 @@ class _RankingViewState extends State<RankingView> {
         iconTheme: IconThemeData(color: Colors.white),
         elevation: 0.1,
       ),
-      body: ResponseView(response: _response, contentBuilder: () { return SafeArea(child: _listView(context, _dataSource));}),//_body, //_contentView(context, _dataSource),
-      floatingActionButton: _buildFloatingActionButton(),
+      body: ResponseView(
+          response: _response,
+          contentBuilder: () {
+            return SafeArea(child: _listView(context, _dataSource));
+          }), //_body, //_contentView(context, _dataSource),
+      floatingActionButton: QuickTopFloatButton(
+        key: _quickTopFloatButtonKey,
+        onPressed: () => _scrollToTop(),
+      ), //_buildFloatingActionButton(),
     );
   }
 
@@ -86,22 +96,37 @@ class _RankingViewState extends State<RankingView> {
   }
 
   Widget _listView(BuildContext context, List<DataElement> dataSoures) {
-    return SmartRefresher(
-      enablePullUp: true,
-      controller: _refreshController,
-      onRefresh: _onRefresh,
-      onLoading: _onLoading,
-      child: ListView.builder(
-        controller: _scrollController,
-        itemBuilder: (context, index) {
-          return RankingCell(model: dataSoures[index]);
-        },
-        itemCount: dataSoures.length,
+    return NotificationListener<ScrollNotification>(
+      child: SmartRefresher(
+        enablePullUp: true,
+        controller: _refreshController,
+        onRefresh: _onRefresh,
+        onLoading: _onLoading,
+        child: ListView.builder(
+          controller: _scrollController,
+          itemBuilder: (context, index) {
+            return RankingCell(model: dataSoures[index]);
+          },
+          itemCount: dataSoures.length,
+        ),
       ),
+      onNotification: _onScrollNotification,
     );
   }
 
-  // 由于Flutter的使用会使得iOS中点击statusBar滑动到顶部的方案失效,这个floatButton不思维一直解决方法
+  // 从针对_scrollController添加监听,到使用NotificationListener,这种方法更为顺滑
+  bool _onScrollNotification(ScrollNotification scrollNotification) {
+    if (scrollNotification.metrics.axisDirection == AxisDirection.down &&
+        _screenHeight >= 10 &&
+        scrollNotification.metrics.pixels >= _screenHeight) {
+      _quickTopFloatButtonKey.currentState.refreshVisible(true);
+    } else {
+      _quickTopFloatButtonKey.currentState.refreshVisible(false);
+    }
+    return false;
+  }
+
+  // 由于Flutter的使用会使得iOS中点击statusBar滑动到顶部的方案失效,这个floatButton不失为解决方法
   Widget _buildFloatingActionButton() {
     if (_offset <= 120) {
       return Container();
@@ -118,23 +143,35 @@ class _RankingViewState extends State<RankingView> {
           Icons.keyboard_arrow_up,
         ),
         onPressed: () {
-          _scrollController.animateTo(0.0,
-              duration: Duration(milliseconds: 300), curve: Curves.linear);
+          _scrollToTop();
         });
+  }
+
+  void _scrollToTop() {
+    _scrollController.animateTo(0.0,
+        duration: Duration(milliseconds: 300), curve: Curves.linear);
+  }
+
+  void scrollControllerAddListener() {
+    // 监听滑动的offset
+    _scrollController.addListener(() {
+      _offset = _scrollController.offset;
+      print("offset: ${_scrollController.offset}");
+    });
   }
 
   void _valueSetting(RankListResponse model) {
     switch (model.responseState) {
-            case ResponseState.loading:
-              _value = model.responseState.value;
-              break;
-            case ResponseState.success:
-              _value = model.successState.value;
-              break;
-            case ResponseState.fail:
-              _value = model.responseState.value;
-              break;
-          }
+      case ResponseState.loading:
+        _value = model.responseState.value;
+        break;
+      case ResponseState.success:
+        _value = model.successState.value;
+        break;
+      case ResponseState.fail:
+        _value = model.responseState.value;
+        break;
+    }
   }
 
   Future<RankListResponse> _getRankList(int page) async {
