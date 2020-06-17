@@ -114,6 +114,15 @@ flutter:
     - assets/images/welcome_1.png
     - assets/images/welcome_2.jpg
     - assets/images/launchImage.png
+  
+  fonts:
+    - family: iconfont
+      fonts:
+        - asset: fonts/iconfont.ttf
+
+    - family: noto
+      fonts:
+        - asset: fonts/NotoSansCJKsc-Regular.otf
 
   # To add assets to your application, add an assets section, like this:
   # assets:

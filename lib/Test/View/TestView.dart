@@ -89,7 +89,7 @@ class _TestViewState extends State<TestView> {
   }
 
   // 保存图片
-  void _saveImage() async {
+  void saveImage() async {
     final String url =
         "https://ss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=a62e824376d98d1069d40a31113eb807/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg";
     var response = await Dio()
@@ -99,15 +99,16 @@ class _TestViewState extends State<TestView> {
     print('result:$result');
   }
 
-  void _appUpdate() async {
+  void appUpdate() async {
     bool isSuccess = await RUpgrade.upgradeFromAppStore(
       '1358989531', //例如:微信的AppId:414478124
     );
     print(isSuccess);
+    
     String versionName = await RUpgrade.getVersionFromAppStore(
       '414478124', //例如:微信的AppId:414478124
     );
     print(versionName);
-    print("哈哈");
+
   }
 }
