@@ -56,4 +56,9 @@ abstract class Api {
   // 个人积分
   static const String getUserCoinInfo = 'lg/coin/userinfo/json';
 
+  // 体系
+  static const String getTree = "tree/json";
+
+  // 体系详细 article/list/0/json?cid=1
+  static const String getTreeDetailList = "article/list/";
 }
