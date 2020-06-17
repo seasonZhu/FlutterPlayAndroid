@@ -99,7 +99,7 @@ class _ClearableInputFieldState extends State<ClearableInputField> {
       child: InkWell(
         child: Icon(
           IconF.wrong,
-          color: Theme.of(context).textTheme.subhead.color,
+          color: Theme.of(context).textTheme.subtitle1.color,
         ),
         onTap: () {
           controller.clear();
@@ -115,6 +115,6 @@ class _ClearableInputFieldState extends State<ClearableInputField> {
   }
 
   Widget _buildDefaultPrefixIcon() {
-    return Icon(IconF.search, color: Theme.of(context).textTheme.subhead.color);
+    return Icon(IconF.search, color: Theme.of(context).textTheme.subtitle1.color);
   }
 }
