@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:lpinyin/lpinyin.dart';
 
-import 'package:play_android/View/Routes.dart';
 import 'package:play_android/Responses/TopicInfo.dart';
 
 class TreeCell extends StatelessWidget {
@@ -30,24 +29,23 @@ class TreeCell extends StatelessWidget {
   }
 
   List<Widget> _chipTitleItem(TopicInfo model) {
-    if (model.children.length == 0) {
-      return [];
-    }
-    
+
     List<Widget> list = [];
 
-    var text = Text(model.name,
+    // 从这里看出,final已经非常接近let了
+    final text = Text(model.name,
         style: TextStyle(
           fontSize: 16,
           color: Colors.black,
           fontWeight: FontWeight.bold,
         )
     );
-    var space = SizedBox(
+
+    final space = SizedBox(
       height: 10,
     );
 
-    var wrap = Wrap(
+    final wrap = Wrap(
       children: model.children
           .map((topic) => Padding(
               padding: EdgeInsets.all(3.0),
