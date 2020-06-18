@@ -280,6 +280,9 @@ class _MyViewState extends State<MyView> with AutomaticKeepAliveClientMixin {
       case TargetType.themeSetting:
         routeName = Routes.themeSettingView;
         break;
+      case TargetType.tree:
+        routeName = Routes.tree;
+        break;
       case TargetType.aboutAppAndMe:
         routeName = Routes.aboutAppAndMeView;
         break;

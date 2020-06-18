@@ -39,7 +39,7 @@ class _TreeViewState extends State<TreeView> with AutomaticKeepAliveClientMixin 
         iconTheme: IconThemeData(color: Colors.white),
         elevation: 0.1,
       ),
-      body: _body(),
+      body: SafeArea(child: _body()),
     );
   }
 

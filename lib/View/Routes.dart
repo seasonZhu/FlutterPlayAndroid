@@ -6,6 +6,7 @@ import 'package:play_android/My/MyCoinView.dart';
 import 'package:play_android/My/MyCollectView.dart';
 import 'package:play_android/My/ThemeSettingView.dart';
 import 'package:play_android/My/AboutAppAndMeView.dart';
+import 'package:play_android/Tree/TreeView.dart';
 
 import 'package:play_android/Information/InformationFlowWebView.dart';
 
@@ -42,6 +43,8 @@ abstract class Routes {
   static final myCollectView = "/myCollectView";
 
   static final themeSettingView = "/themeSettingView";
+
+  static final tree = "/tree";
 
   static final aboutAppAndMeView = "/aboutAppAndMeView";
 
@@ -82,6 +85,7 @@ abstract class Routes {
       Routes.myCoinView: (context) => MyCoinView(),
       Routes.myCollectView: (context) => MyCollectView(),
       Routes.themeSettingView: (context) => ThemeSettingView(),
+      Routes.tree: (context) => TreeView(),
       Routes.aboutAppAndMeView: (context) => AboutAppAndMeView(),
 
       // 测试页面的路由

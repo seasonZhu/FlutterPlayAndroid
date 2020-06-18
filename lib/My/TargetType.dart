@@ -3,6 +3,7 @@ enum TargetType {
   myCoin, 
   myCollect, 
   themeSetting, 
+  tree,
   aboutAppAndMe, 
   logout 
 }

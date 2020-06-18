@@ -17,6 +17,8 @@ class MyListModel {
     MyListModel(
         title: "主题设置", icon: Icons.settings, type: TargetType.themeSetting),
     MyListModel(
+        title: "体系", icon: Icons.android, type: TargetType.tree),
+    MyListModel(
         title: "关于App与作者", icon: Icons.info, type: TargetType.aboutAppAndMe),
     MyListModel(title: "退出登录", icon: Icons.backspace, type: TargetType.logout),
   ];
