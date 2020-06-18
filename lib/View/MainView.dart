@@ -7,6 +7,7 @@ import 'package:play_android/EventBus/EventBus.dart';
 import 'package:play_android/Home/HomeView.dart';
 import 'package:play_android/Information/InformationType.dart';
 import 'package:play_android/Information/InformationFlowTopicView.dart';
+import 'package:play_android/Tree/TreeView.dart';
 import 'package:play_android/My/MyView.dart';
 import 'package:play_android/Test/View/TestView.dart';
 
@@ -28,6 +29,7 @@ class _MainViewState extends State<MainView>
     InformationFlowTopicView(
       type: InformationType.publicNumber,
     ),
+    TreeView(),
     MyView(),
     TestView()
   ];
@@ -38,6 +40,8 @@ class _MainViewState extends State<MainView>
         icon: Icon(Icons.perm_contact_calendar), title: Text("项目")),
     BottomNavigationBarItem(
         icon: Icon(Icons.account_balance_wallet), title: Text("公众号")),
+    BottomNavigationBarItem(
+        icon: Icon(Icons.android), title: Text("体系")),
     BottomNavigationBarItem(icon: Icon(Icons.person), title: Text("我的")),
     BottomNavigationBarItem(icon: Icon(Icons.train), title: Text("测试")),
   ];

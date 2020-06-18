@@ -1,7 +1,7 @@
 import 'StringExtension.dart';
 
 class TopicInfo {
-    List<dynamic> children;
+    List<TopicInfo> children;
     int courseId;
     int id;
     String name;
@@ -22,7 +22,7 @@ class TopicInfo {
     });
 
     factory TopicInfo.fromJson(Map<String, dynamic> json) => TopicInfo(
-        children: List<dynamic>.from(json["children"].map((x) => x)),
+        children: List<TopicInfo>.from(json["children"].map((x) => TopicInfo.fromJson(x))),
         courseId: json["courseId"],
         id: json["id"],
         name: (json["name"] as String).replaceHtmlElement,

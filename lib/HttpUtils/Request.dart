@@ -15,7 +15,6 @@ import 'package:play_android/Responses/MyCollectResponse.dart';
 import 'package:play_android/Responses/RankListResponse.dart';
 import 'package:play_android/Responses/MyCoinResponse.dart';
 import 'package:play_android/Responses/CoinResponse.dart';
-import 'package:play_android/Responses/TreeResponse.dart';
 
 // Dart的分类需要在Dart2.6以上的版本才能使用,修改了配置文件
 extension Request on HttpUtils {
@@ -139,9 +138,9 @@ extension Request on HttpUtils {
   }
 
   // 体系
-  static Future<TreeResponse> getTree() async {
+  static Future<InformationFlowTopicResponse> getTree() async {
     var json = await HttpUtils.get(api: Api.getTree);
-    return TreeResponse.fromJson(json);
+    return InformationFlowTopicResponse.fromJson(json);
   }
 
   // 体系详细列表
