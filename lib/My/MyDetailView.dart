@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:play_android/Account/AccountManager.dart';
+import 'package:play_android/Compose/ShakeView.dart';
 
 class MyDetailView extends StatefulWidget {
   @override
@@ -55,23 +56,25 @@ class _MyDetailViewState extends State<MyDetailView> {
                     '头像',
                     style: TextStyle(fontSize: 16),
                   ),
-                  Container(
-                    width: 60.0,
-                    height: 60.0,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: Colors.white,
-                        width: 2.0,
-                      ),
-                      image: DecorationImage(
-                        image: _image == null
-                            ? AssetImage("assets/images/saber.jpg")
-                            : FileImage(_image),
-                        fit: BoxFit.cover,
+                  ShakeView(
+                    child: Container(
+                      width: 60.0,
+                      height: 60.0,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.white,
+                          width: 2.0,
+                        ),
+                        image: DecorationImage(
+                          image: _image == null
+                              ? AssetImage("assets/images/saber.jpg")
+                              : FileImage(_image),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
