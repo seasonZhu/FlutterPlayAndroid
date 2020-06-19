@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
-//import 'package:flutter/material.dart'; 参考这个写的,改了一些
+//import 'package:marquee_flutter/marquee_flutter.dart'; 参考这个写的,改了一些
 
 class MarqueeLabel extends StatefulWidget{
 
@@ -21,7 +21,7 @@ class MarqueeLabel extends StatefulWidget{
 
   @override
   State<StatefulWidget> createState() {
-    return  MarqueeLabelState();
+    return MarqueeLabelState();
   }
 }
 
@@ -53,7 +53,7 @@ class MarqueeLabelState extends State<MarqueeLabel> with SingleTickerProviderSta
     timer = Timer.periodic(Duration(milliseconds: _timerRest), (timer) {
       double maxScrollExtent = scroController.position.maxScrollExtent;
       double pixels = scroController.position.pixels;
-      if(pixels + _moveDistance >= maxScrollExtent){
+      if(pixels + _moveDistance >= maxScrollExtent) {
         if(widget.scrollAxis == Axis.horizontal){
           position = (maxScrollExtent - screenWidth * widget.ratioOfBlankToScreen + widgetWidth) / 2 - widgetWidth + pixels - maxScrollExtent;
         }else{

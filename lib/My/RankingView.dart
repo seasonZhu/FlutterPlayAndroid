@@ -43,6 +43,7 @@ class _RankingViewState extends State<RankingView> {
 
   var _screenHeight;
 
+  // 通过GlobalKey获取树上的元素,但是这样的话必须将其元素的State类公有化
   GlobalKey<QuickTopFloatButtonState> _quickTopFloatButtonKey = GlobalKey();
 
   RankListResponse _response;
