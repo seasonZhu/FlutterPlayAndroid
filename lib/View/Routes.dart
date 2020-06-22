@@ -20,6 +20,7 @@ import 'package:play_android/Test/View/TodayHotNavigatorView.dart';
 import 'package:play_android/Test/View/MixinCountView.dart';
 import 'package:play_android/Test/View/NanigationRailView.dart';
 import 'package:play_android/Test/View/DismissibleView.dart';
+import 'package:play_android/Test/View/RoundView.dart';
 
 import 'package:play_android/Compose/ErrorView.dart';
 
@@ -60,6 +61,8 @@ abstract class Routes {
 
   static final dismissibleView = "/dismissibleView";
 
+  static final roundView = "/roundView";
+
   // 路由需要传递的参数
   static var arguments;
 
@@ -93,6 +96,7 @@ abstract class Routes {
       Routes.mixinCountView: (context) => MixinCountView(),
       Routes.nanigationRailView: (context) => NanigationRailView(),
       Routes.dismissibleView: (context) => DismissibleView(),
+      Routes.roundView: (context) => RoundView(),
     };
   }
 
