@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:play_android/Compose/Bundle.dart';
 
 class RoundView extends StatelessWidget {
@@ -17,21 +18,33 @@ class RoundView extends StatelessWidget {
               padding: EdgeInsets.all(16.0),
               child: Column(
                 children: <Widget>[
-                  ClipOval(
-                    child:
-                        Image.asset(Bundle.imageName("saber", format: "jpg")),
-                  ),
+
+                  // 使用ClipOval切圆角的时候,最好不要加宽高限制,会导致图片倒角没有到理想的境界
+                  Container(
+                      width: 88.0,
+                      height: 88.0,
+                      child: ClipOval(
+                        child: Image.asset(
+                            Bundle.imageName("saber", format: "jpg")),
+                      )),
+                  SizedBox(height: 10,),
+
+                  // 完美
                   CircleAvatar(
-                    radius: 36.0,
+                    radius: 44.0,
                     backgroundImage: AssetImage(
                       Bundle.imageName("saber", format: "jpg"),
                     ),
                   ),
+                  SizedBox(height: 10,),
+
+                  // Container的装饰器倒角,也不一定能倒出完美的圆角
                   Container(
-                    width: 72.0,
-                    height: 72.0,
+                    width: 88.0,
+                    height: 88.0,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
+                      //borderRadius: BorderRadius.circular(44.0),
                       image: DecorationImage(
                         image: AssetImage(
                           Bundle.imageName("saber", format: "jpg"),
@@ -39,10 +52,21 @@ class RoundView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  ClipRRect(
+                  SizedBox(height: 10,),
+
+                  // ClipRRect倒部分角 可行
+                  Container(
+                    child: ClipRRect(
                       borderRadius: BorderRadius.circular(6.0),
-                      child: Image.asset(
-                          Bundle.imageName("saber", format: "jpg"))),
+                      child:
+                          Image.asset(Bundle.imageName("saber", format: "jpg")),
+                    ),
+                    width: 88,
+                    height: 88,
+                  ),
+                  SizedBox(height: 10,),
+
+                  // 装饰器倒部分角 可行
                   Container(
                     width: 88.0,
                     height: 88.0,
@@ -60,7 +84,6 @@ class RoundView extends StatelessWidget {
               ),
             ),
           ),
-        )
-    );
+        ));
   }
 }
