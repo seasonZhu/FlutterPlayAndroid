@@ -93,7 +93,7 @@ class AccountManager {
   }
 
   // 单例模式写法
-
+  // 类名._() 是将初始化方法私有化
   AccountManager._();
 
   static AccountManager _instance;

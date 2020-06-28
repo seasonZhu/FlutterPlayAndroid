@@ -44,7 +44,7 @@ void fLog(dynamic msg, {FLogMode mode = FLogMode.debug}) {
       chain.foldFrames((frame) => frame.isCore || frame.package == "flutter");
   // 取出所有信息帧
   final frames = chain.toTrace().frames;
-  // 找到当前函数的信息帧
+  // 找到当前函数的信息帧 字符串"fLog"要与函数名称对应
   final idx = frames.indexWhere((element) => element.member == "fLog");
   if (idx == -1 || idx + 1 >= frames.length) {
     return;
