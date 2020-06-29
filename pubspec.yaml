@@ -53,6 +53,7 @@ dependencies:
   #设备信息
   device_info:
 
+  #转拼音库
   lpinyin:
 
   #iOS中的UserDefine

@@ -261,7 +261,8 @@ class _MyViewState extends State<MyView> with AutomaticKeepAliveClientMixin {
     if (!AccountManager.getInstance().isLogin &&
         (model.type != TargetType.aboutAppAndMe &&
             model.type != TargetType.themeSetting &&
-            model.type != TargetType.logout)) {
+            model.type != TargetType.logout && 
+            model.type != TargetType.tree)) {
       _presentToLoginView();
       return;
     }
