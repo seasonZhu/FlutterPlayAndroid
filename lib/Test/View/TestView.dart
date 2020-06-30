@@ -20,7 +20,8 @@ class _TestViewState extends State<TestView> {
     {"通过Mixin进行view与逻辑分离": Routes.mixinCountView},
     {"新组件NanigationRail": Routes.nanigationRailView},
     {"DismissibelView的使用": Routes.dismissibleView},
-    {"倒圆角的几种方式": Routes.roundView}
+    {"倒圆角的几种方式": Routes.roundView},
+    {"使用StreamBuilder重构排行榜页面": Routes.rankingStreamView}
   ];
 
   @override

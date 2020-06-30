@@ -11,7 +11,6 @@ import 'package:play_android/Account/AccountManager.dart';
 import 'package:play_android/DeviceSize/DeviceSize.dart';
 
 class PlayAndroidApp extends StatefulWidget {
-  
   @override
   _PlayAndroidAppState createState() => _PlayAndroidAppState();
 }
@@ -22,16 +21,16 @@ class _PlayAndroidAppState extends State<PlayAndroidApp> {
   var themeBrightness = Brightness.light;
 
   Widget _home = Container(
-          width: 1080,
-          height: 1920,
-          decoration: BoxDecoration(
-            //设置背景图片
-            image: DecorationImage(
-              image: AssetImage("assets/images/launchImage.png"),
-              fit: BoxFit.cover,
-            ),
-          ),
-      );
+    width: 1080,
+    height: 1920,
+    decoration: BoxDecoration(
+      //设置背景图片
+      image: DecorationImage(
+        image: AssetImage("assets/images/launchImage.png"),
+        fit: BoxFit.cover,
+      ),
+    ),
+  );
 
   @override
   void initState() {
@@ -119,6 +118,6 @@ class _PlayAndroidAppState extends State<PlayAndroidApp> {
       setState(() {
         _home = isFirstLaunch ? WelcomeView() : SplashView();
       });
-    }); 
+    });
   }
 }

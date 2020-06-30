@@ -13,6 +13,7 @@ import 'package:play_android/My/RankingCell.dart';
 /* 
  该页面是新思路和特性的试验田
  我会把想到的思路都在这个页面进行实现,其他页面的改造就会这个页面大同小异
+ 这个暂时没有使用了,使用了RankingStreamView
  */
 class RankingTestView extends StatefulWidget {
   @override
