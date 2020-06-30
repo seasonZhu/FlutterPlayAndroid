@@ -11,13 +11,14 @@ enum RequestCompleteState {
 }
 
 /// 由页面状态衍生出来的StreamState及其对应的State
-class StreamState {}
+abstract class StreamState {}
 
-class InitializedState extends StreamState {}
+class InitializedState implements StreamState {}
 
-class LoadingState extends StreamState {}
+class LoadingState implements StreamState {}
 
-class HasData extends StreamState {
+/// 其实这里我甚至可以细化HasData的状态类,以分清楚是刷新完成/上拉完成/上拉完成没有更多数据
+class HasData implements StreamState {
   final List<DataElement> data;
 
   final RequestCompleteState completeType;
@@ -27,6 +28,6 @@ class HasData extends StreamState {
   bool get hasData => data.length > 0;
 }
 
-class NoDataState extends StreamState {}
+class NoDataState implements StreamState {}
 
-class ErrorState extends StreamState {}
+class ErrorState implements StreamState {}

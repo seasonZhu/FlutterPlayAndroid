@@ -7,7 +7,7 @@ import 'RankingStreamViewEvent.dart';
 import 'RankingStreamViewState.dart';
 
 
-/// ViewModel层
+/// ViewModel层,通过这个ViewModel其实可以将现有的所以请求都替换掉.
 class RankingStreamViewModel {
   final StreamController<StreamState> _stateController =
       StreamController<StreamState>();

@@ -2,10 +2,10 @@
 enum ActionType { refresh, pullUp }
 
 /// 页面事件基类
-class StreamEvent {}
+abstract class StreamEvent {}
 
 /// 请求页面数据事件类
-class FetchDataEvent extends StreamEvent {
+class FetchDataEvent implements StreamEvent {
   final ActionType type;
 
   FetchDataEvent({this.type});
