@@ -37,7 +37,6 @@ class _RankingStreamViewState extends State<RankingStreamView> {
       body: StreamBuilder(
         stream: _viewModel.streamState,
         builder: (buildContext, snapshot) {
-
           /// snapshot的hasError
           if (snapshot.hasError) {
             return ErrorView();
@@ -84,18 +83,20 @@ class _RankingStreamViewState extends State<RankingStreamView> {
             return ErrorView();
           }
 
-          return SafeArea(child: SmartRefresher(
-            enablePullUp: true,
-            controller: _refreshController,
-            onRefresh: _onRefresh,
-            onLoading: _onLoading,
-            child: ListView.builder(
-              itemBuilder: (context, index) {
-                return RankingCell(model: streamState.data[index]);
-              },
-              itemCount: streamState.data.length,
+          return SafeArea(
+            child: SmartRefresher(
+              enablePullUp: true,
+              controller: _refreshController,
+              onRefresh: _onRefresh,
+              onLoading: _onLoading,
+              child: ListView.builder(
+                itemBuilder: (context, index) {
+                  return RankingCell(model: streamState.data[index]);
+                },
+                itemCount: streamState.data.length,
+              ),
             ),
-          ),);
+          );
         },
       ),
     );
@@ -112,6 +113,7 @@ class _RankingStreamViewState extends State<RankingStreamView> {
   @override
   void dispose() {
     _refreshController.dispose();
+    _viewModel.dispose();
     super.dispose();
   }
 }
