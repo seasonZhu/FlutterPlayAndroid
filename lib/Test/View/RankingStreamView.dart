@@ -35,7 +35,7 @@ class _RankingStreamViewState extends State<RankingStreamView> {
         elevation: 0.1,
       ),
       body: StreamBuilder(
-        stream: _viewModel.streamState,
+        stream: _viewModel.stream,
         builder: (buildContext, snapshot) {
           /// snapshot的hasError
           if (snapshot.hasError) {

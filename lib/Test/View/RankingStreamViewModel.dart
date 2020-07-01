@@ -15,7 +15,9 @@ class RankingStreamViewModel {
 
   num _page = 1;
 
-  Stream<StreamState> get streamState => _stateController.stream;
+  Stream<StreamState> get stream => _stateController.stream;
+
+  Sink<StreamState> get _sink => _stateController.sink;
 
   void dispatch(StreamEvent event) {
     print('Event dispatched: $event');
@@ -47,13 +49,13 @@ class RankingStreamViewModel {
       data.clear();
       data.addAll(model.data.datas);
       if (data.length > 0) {
-        return _stateController.add(HasData(
+        return _sink.add(HasData(
             completeType: RequestCompleteState.refreshCompleted, data: data));
       } else {
-        return _stateController.add(NoDataState());
+        return _sink.add(NoDataState());
       }
     } else {
-      return _stateController.add(ErrorState());
+      return _sink.add(ErrorState());
     }
   }
 
@@ -63,14 +65,14 @@ class RankingStreamViewModel {
     if (model.errorCode == 0) {
       data.addAll(model.data.datas);
       if (model.data.pageCount == model.data.curPage) {
-        return _stateController.add(
+        return _sink.add(
             HasData(completeType: RequestCompleteState.loadNoData, data: data));
       } else {
-        return _stateController.add(HasData(
+        return _sink.add(HasData(
             completeType: RequestCompleteState.loadComplete, data: data));
       }
     } else {
-      return _stateController.add(
+      return _sink.add(
           HasData(completeType: RequestCompleteState.loadComplete, data: []));
     }
   }
