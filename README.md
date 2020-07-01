@@ -137,6 +137,26 @@ popUtil还是用的有问题.
 
 fastlane打包和iOS的独立打包没有什么区别,步骤基本上一样.
 
+## StreamBuilder
+
+相比较FutureBuilder,StreamBuilder更为复杂与难以理解(对我而言).
+它更接近于前端的Redux思想.
+详细可以参考Test/View/RankingStreamView及其相关主件的使用.
+
+首先你需要思考,这个页面到底有多少种状态, 加载中,有数据,空数据,出错等等...
+由于我这个页面的是一个列表,我甚至细分出来有数据(下拉刷新完成,上拉加载完成没有更多数据,上拉加载完成开有更多数据,)用于控制_refreshController的状态
+
+viewModel层接受viewEvent的事件,然后viewModel分析事件后,转为viewState传递给Widget层,
+这样看的话:
+viewEvent层仅仅只有事件行为枚举,
+viewState层仅仅只有页面状态,
+所有的逻辑都在viewModel进行,viewModel层将封装好的数据传递给Widget层,
+Widget层仅针对数据改变界面即可.
+
+使用StreamController一直都是我写Flutter的一个目标,以前一直都因为觉得太困难而没有努力尝试,确实,我花了一个下午的时间才把这个小模块写完.
+接受了其思想,在使用这个类Redux的框架应该会简单一些.
+一小步,一大步.
+
 ## 推荐与感谢
 
 [推荐一个json转模型网站](https://app.quicktype.io/)
