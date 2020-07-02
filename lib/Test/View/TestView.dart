@@ -21,7 +21,8 @@ class _TestViewState extends State<TestView> {
     {"新组件NanigationRail": Routes.nanigationRailView},
     {"DismissibelView的使用": Routes.dismissibleView},
     {"倒圆角的几种方式": Routes.roundView},
-    {"使用StreamBuilder重构排行榜页面": Routes.rankingStreamView}
+    {"使用StreamBuilder重构排行榜页面": Routes.rankingStreamView},
+    {"计算器布局思路": Routes.calculatorView},
   ];
 
   @override
@@ -106,11 +107,10 @@ class _TestViewState extends State<TestView> {
       '1358989531', //例如:微信的AppId:414478124
     );
     print(isSuccess);
-    
+
     String versionName = await RUpgrade.getVersionFromAppStore(
       '414478124', //例如:微信的AppId:414478124
     );
     print(versionName);
-
   }
 }
