@@ -11,11 +11,13 @@ PODS:
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
-  - image_gallery_saver (0.0.1):
+  - image_gallery_saver (1.5.0):
     - Flutter
   - image_picker (0.0.1):
     - Flutter
   - path_provider (0.0.1):
+    - Flutter
+  - path_provider_linux (0.0.1):
     - Flutter
   - path_provider_macos (0.0.1):
     - Flutter
@@ -48,6 +50,7 @@ DEPENDENCIES:
   - image_gallery_saver (from `.symlinks/plugins/image_gallery_saver/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
+  - path_provider_linux (from `.symlinks/plugins/path_provider_linux/ios`)
   - path_provider_macos (from `.symlinks/plugins/path_provider_macos/ios`)
   - r_upgrade (from `.symlinks/plugins/r_upgrade/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
@@ -80,6 +83,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/image_picker/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
+  path_provider_linux:
+    :path: ".symlinks/plugins/path_provider_linux/ios"
   path_provider_macos:
     :path: ".symlinks/plugins/path_provider_macos/ios"
   r_upgrade:
@@ -108,19 +113,20 @@ SPEC CHECKSUMS:
   flutter_webview_plugin: ed9e8a6a96baf0c867e90e1bce2673913eeac694
   fluttertoast: b644586ef3b16f67fae9a1f8754cef6b2d6b634b
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
-  image_gallery_saver: 73b3cd8ad9c950c739878af9c311744d1bf5405d
+  image_gallery_saver: 259eab68fb271cfd57d599904f7acdc7832e7ef2
   image_picker: 66aa71bc96850a90590a35d4c4a2907b0d823109
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
+  path_provider_linux: 4d630dc393e1f20364f3e3b4a2ff41d9674a84e4
   path_provider_macos: f760a3c5b04357c380e2fddb6f9db6f3015897e0
   r_upgrade: 44d715c61914cce3d01ea225abffe894fd51c114
-  shared_preferences: 430726339841afefe5142b9c1f50cb6bd7793e01
+  shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
   shared_preferences_macos: f3f29b71ccbb56bf40c9dd6396c9acf15e214087
   shared_preferences_web: 141cce0c3ed1a1c5bf2a0e44f52d31eeb66e5ea9
   sqflite: 4001a31ff81d210346b500c55b17f4d6c7589dd0
-  url_launcher: a1c0cc845906122c4784c542523d8cacbded5626
+  url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
   url_launcher_macos: fd7894421cd39320dce5f292fc99ea9270b2a313
   url_launcher_web: e5527357f037c87560776e36436bf2b0288b965c
-  webview_flutter: bec7599de6bfbe8008a739aa3ebd7b364ea9d0cd
+  webview_flutter: d2b4d6c66968ad042ad94cbb791f5b72b4678a96
 
 PODFILE CHECKSUM: 1b66dae606f75376c5f2135a8290850eeb09ae83
 
