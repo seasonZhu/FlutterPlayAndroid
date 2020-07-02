@@ -49,13 +49,13 @@ class RankingStreamViewModel {
       data.clear();
       data.addAll(model.data.datas);
       if (data.length > 0) {
-        return _sink.add(HasData(
+        _sink.add(HasData(
             completeType: RequestCompleteState.refreshCompleted, data: data));
       } else {
-        return _sink.add(NoDataState());
+        _sink.add(NoDataState());
       }
     } else {
-      return _sink.add(ErrorState());
+      _sink.add(ErrorState());
     }
   }
 
@@ -65,14 +65,14 @@ class RankingStreamViewModel {
     if (model.errorCode == 0) {
       data.addAll(model.data.datas);
       if (model.data.pageCount == model.data.curPage) {
-        return _sink.add(
+        _sink.add(
             HasData(completeType: RequestCompleteState.loadNoData, data: data));
       } else {
-        return _sink.add(HasData(
+        _sink.add(HasData(
             completeType: RequestCompleteState.loadComplete, data: data));
       }
     } else {
-      return _sink.add(
+      _sink.add(
           HasData(completeType: RequestCompleteState.loadComplete, data: []));
     }
   }
