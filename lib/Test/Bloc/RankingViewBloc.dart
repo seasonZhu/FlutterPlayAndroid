@@ -5,14 +5,14 @@ import 'package:play_android/Responses/RankListResponse.dart';
 
 enum RankingViewEvent { onRefresh, onLoading }
 
-class RankingViewState{
+class RankingViewState {
   int _page;
 
   get page => _page;
 
   List<DataElement> _dataSource;
 
-  get  dataSource => _dataSource;
+  get dataSource => _dataSource;
 
   RankingViewState(this._page, this._dataSource);
 
