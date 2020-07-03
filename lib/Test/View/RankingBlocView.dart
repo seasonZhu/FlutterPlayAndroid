@@ -39,17 +39,17 @@ class RankingBloc extends Bloc<RankingViewEvent, RankingViewStateData> {
   List<DataElement> _dataSource = [];
 
   @override
-  RankingViewStateData get initialState => RankingViewStateData(
-      state: RankingViewState.hasDataRefreshComplete, dataSource: []);
+  RankingViewStateData get initialState =>
+      RankingViewStateData(state: RankingViewState.loading, dataSource: []);
 
   @override
   Stream<RankingViewStateData> mapEventToState(RankingViewEvent event) async* {
     switch (event) {
       case RankingViewEvent.refresh:
-        yield await _onRefresh();
+        yield* _onRefresh();
         break;
       case RankingViewEvent.pullUp:
-        yield await _onLoading();
+        yield* _onLoading();
         break;
     }
   }
@@ -59,7 +59,7 @@ class RankingBloc extends Bloc<RankingViewEvent, RankingViewStateData> {
     return model;
   }
 
-  Future<RankingViewStateData> _onRefresh() async {
+  Stream<RankingViewStateData> _onRefresh() async* {
     _page = 1;
     var model = await _getRankList();
     if (model.errorCode == 0) {
@@ -76,10 +76,10 @@ class RankingBloc extends Bloc<RankingViewEvent, RankingViewStateData> {
       state.state = RankingViewState.error;
       state.dataSource = [];
     }
-    return state;
+    yield state;
   }
 
-  Future<RankingViewStateData> _onLoading() async {
+  Stream<RankingViewStateData> _onLoading() async* {
     _page = _page + 1;
     var model = await _getRankList();
     if (model.errorCode == 0) {
@@ -94,7 +94,7 @@ class RankingBloc extends Bloc<RankingViewEvent, RankingViewStateData> {
       state.state = RankingViewState.hasDataPullUpComplete;
       state.dataSource = [];
     }
-    return state;
+    yield state;
   }
 }
 
@@ -184,6 +184,7 @@ class _RankingBlocViewState extends State<RankingBlocView> {
 
   @override
   void dispose() {
+    context.bloc().close();
     _refreshController.dispose();
     super.dispose();
   }
