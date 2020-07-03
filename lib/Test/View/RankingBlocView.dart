@@ -61,53 +61,62 @@ class RankingBloc extends Bloc<RankingViewEvent, RankingViewStateData> {
 
   Stream<RankingViewStateData> _onRefresh() async* {
     _page = 1;
+    var newState;
     var model = await _getRankList();
     if (model.errorCode == 0) {
       _dataSource.clear();
       _dataSource.addAll(model.data.datas);
       if (_dataSource.length > 0) {
-        state.state = RankingViewState.hasDataRefreshComplete;
-        state.dataSource = _dataSource;
+        newState = RankingViewStateData(
+            state: RankingViewState.hasDataRefreshComplete,
+            dataSource: _dataSource);
+        /// 如果仅仅只是更新原有的state是不能重新build页面的
+        // state.state = RankingViewState.hasDataRefreshComplete;
+        // state.dataSource = _dataSource;
       } else {
-        state.state = RankingViewState.noData;
-        state.dataSource = [];
+        newState = RankingViewStateData(
+            state: RankingViewState.noData,
+            dataSource: []);
+        // state.state = RankingViewState.noData;
+        // state.dataSource = [];
       }
     } else {
-      state.state = RankingViewState.error;
-      state.dataSource = [];
+      newState = RankingViewStateData(
+            state: RankingViewState.error,
+            dataSource: []);
+      // state.state = RankingViewState.error;
+      // state.dataSource = [];
     }
-    yield state;
+    yield newState;
   }
 
   Stream<RankingViewStateData> _onLoading() async* {
     _page = _page + 1;
+    var newState;
     var model = await _getRankList();
     if (model.errorCode == 0) {
+      _dataSource.addAll(model.data.datas);
       if (model.data.pageCount == model.data.curPage) {
-        state.state = RankingViewState.hasDataPullUpNoMoreData;
-        state.dataSource = _dataSource;
+        newState = RankingViewStateData(
+            state: RankingViewState.hasDataPullUpNoMoreData,
+            dataSource: _dataSource);
+        // state.state = RankingViewState.hasDataPullUpNoMoreData;
+        // state.dataSource = _dataSource;
       } else {
-        state.state = RankingViewState.hasDataPullUpComplete;
-        state.dataSource = _dataSource;
+        newState = RankingViewStateData(
+            state: RankingViewState.hasDataPullUpComplete,
+            dataSource: _dataSource);
+        // state.state = RankingViewState.hasDataPullUpComplete;
+        // state.dataSource = _dataSource;
       }
     } else {
-      state.state = RankingViewState.hasDataPullUpComplete;
-      state.dataSource = [];
+      newState = RankingViewStateData(
+            state: RankingViewState.hasDataPullUpComplete,
+            dataSource: []);
+      // state.state = RankingViewState.hasDataPullUpComplete;
+      // state.dataSource = [];
     }
-    yield state;
-  }
-}
-
-class RankingBlocApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Ranking Bloc',
-      home: BlocProvider(
-        create: (_) => RankingBloc(),
-        child: RankingBlocView(),
-      ),
-    );
+    yield newState;
   }
 }
 
@@ -129,7 +138,7 @@ class _RankingBlocViewState extends State<RankingBlocView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("排行榜", style: TextStyle(color: Colors.white)),
+        title: Text("排行榜(BLoC)", style: TextStyle(color: Colors.white)),
         iconTheme: IconThemeData(color: Colors.white),
         elevation: 0.1,
       ),
@@ -184,8 +193,23 @@ class _RankingBlocViewState extends State<RankingBlocView> {
 
   @override
   void dispose() {
-    context.bloc().close();
+    /// 有这行代码会报警 Looking up a deactivated widget's ancestor is unsafe. 说明Bloc可以自行干掉自己
+    //context.bloc<RankingBloc>().close();
     _refreshController.dispose();
     super.dispose();
+  }
+}
+
+/// 这个代码 可用可不用
+class RankingBlocApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Ranking Bloc',
+      home: BlocProvider(
+        create: (_) => RankingBloc(),
+        child: RankingBlocView(),
+      ),
+    );
   }
 }

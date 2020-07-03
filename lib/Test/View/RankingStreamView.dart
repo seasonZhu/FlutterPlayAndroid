@@ -30,7 +30,7 @@ class _RankingStreamViewState extends State<RankingStreamView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("排行榜", style: TextStyle(color: Colors.white)),
+        title: Text("排行榜(StreamBuilder)", style: TextStyle(color: Colors.white)),
         iconTheme: IconThemeData(color: Colors.white),
         elevation: 0.1,
       ),

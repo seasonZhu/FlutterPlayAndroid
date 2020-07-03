@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:play_android/My/RankingView.dart';
 import 'package:play_android/My/MyDetailView.dart';
 import 'package:play_android/My/MyCoinView.dart';
@@ -110,7 +112,7 @@ abstract class Routes {
       Routes.dismissibleView: (context) => DismissibleView(),
       Routes.roundView: (context) => RoundView(),
       Routes.rankingStreamView: (context) => RankingStreamView(),
-      Routes.rankingBlocView: (context) => RankingBlocApp(),
+      Routes.rankingBlocView: (context) => BlocProvider(create: (_) => RankingBloc(), child: RankingBlocView(),),
       Routes.calculatorView: (context) => CalculatorView(),
       Routes.blocExampleApp: (context) => BlocExampleApp(),
     };
