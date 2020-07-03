@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ffi';
 
 import 'package:play_android/HttpUtils/Request.dart';
 import 'package:play_android/Responses/RankListResponse.dart';
@@ -45,6 +46,7 @@ class RankingStreamViewModel {
   Future _onRefresh() async {
     _page = 1;
     var model = await _getRankList();
+    if (_stateController.isClosed) return;
     if (model.errorCode == 0) {
       data.clear();
       data.addAll(model.data.datas);
@@ -62,6 +64,7 @@ class RankingStreamViewModel {
   Future _onLoading() async {
     _page = _page + 1;
     var model = await _getRankList();
+    if (_stateController.isClosed) return;
     if (model.errorCode == 0) {
       data.addAll(model.data.datas);
       if (model.data.pageCount == model.data.curPage) {
@@ -80,6 +83,7 @@ class RankingStreamViewModel {
   /// StreamController一般用完都是需要在dispose方法中close的 但是这种没有继承Widget的根本就没有这个方法
   /// 既然工具类没有这个方法,就自己写一个,在Widget层进行释放
   void dispose() {
+    _sink.close();
     _stateController.close();
   }
 }
