@@ -65,6 +65,8 @@ class CounterPage extends StatelessWidget {
           );
         },
       ),
+      /// 这里报了一个错: There are multiple heroes that share the same tag within a subtree,
+      /// 因为我的漂浮button其实一个FloatingActionButton的列表,但是创建FloatingActionButton使用的默认的heroTag,于是报错了
       floatingActionButton: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         mainAxisAlignment: MainAxisAlignment.end,
@@ -72,6 +74,7 @@ class CounterPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 5.0),
             child: FloatingActionButton(
+              heroTag: "add",
               child: const Icon(Icons.add),
               onPressed: () =>
                   context.bloc<CounterBloc>().add(CounterEvent.increment),
@@ -80,6 +83,7 @@ class CounterPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 5.0),
             child: FloatingActionButton(
+              heroTag: "decrement",
               child: const Icon(Icons.remove),
               onPressed: () =>
                   context.bloc<CounterBloc>().add(CounterEvent.decrement),
@@ -88,6 +92,7 @@ class CounterPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 5.0),
             child: FloatingActionButton(
+              heroTag: "themeEvent",
               child: const Icon(Icons.brightness_6),
               onPressed: () => context.bloc<ThemeBloc>().add(ThemeEvent.toggle),
             ),
@@ -95,9 +100,10 @@ class CounterPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 5.0),
             child: FloatingActionButton(
+              heroTag: "error",
               backgroundColor: Colors.red,
               child: const Icon(Icons.error),
-              onPressed: () => context.bloc<CounterBloc>().add(null),
+              onPressed: () => context.bloc<CounterBloc>().add(CounterEvent.error),
             ),
           ),
         ],
@@ -106,7 +112,7 @@ class CounterPage extends StatelessWidget {
   }
 }
 
-enum CounterEvent { increment, decrement }
+enum CounterEvent { increment, decrement, error }
 
 class CounterBloc extends Bloc<CounterEvent, int> {
   @override
@@ -120,6 +126,9 @@ class CounterBloc extends Bloc<CounterEvent, int> {
         break;
       case CounterEvent.increment:
         yield state + 1;
+        break;
+      case CounterEvent.error:
+        yield state;
         break;
       default:
         throw Exception('oops');

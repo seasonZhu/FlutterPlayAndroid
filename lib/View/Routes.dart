@@ -23,6 +23,7 @@ import 'package:play_android/Test/View/DismissibleView.dart';
 import 'package:play_android/Test/View/RoundView.dart';
 import 'package:play_android/Test/View/RankingStreamView.dart';
 import 'package:play_android/Test/View/CalculatorView.dart';
+import 'package:play_android/Test/View/BlocExampleApp.dart';
 
 import 'package:play_android/Compose/ErrorView.dart';
 
@@ -69,6 +70,8 @@ abstract class Routes {
 
   static final calculatorView = "/calculatorView";
 
+  static final blocExampleApp = "/blocExampleApp";
+
   // 路由需要传递的参数
   static var arguments;
 
@@ -105,6 +108,7 @@ abstract class Routes {
       Routes.roundView: (context) => RoundView(),
       Routes.rankingStreamView: (context) => RankingStreamView(),
       Routes.calculatorView: (context) => CalculatorView(),
+      Routes.blocExampleApp: (context) => BlocExampleApp(),
     };
   }
 
@@ -113,4 +117,7 @@ abstract class Routes {
     print("未匹配到路由$name");
     return MaterialPageRoute(builder: (context) => ErrorView());
   }
+
+  // 初始化方法私有化
+  Routes._();
 }

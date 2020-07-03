@@ -23,6 +23,7 @@ class _TestViewState extends State<TestView> {
     {"倒圆角的几种方式": Routes.roundView},
     {"使用StreamBuilder重构排行榜页面": Routes.rankingStreamView},
     {"计算器布局思路": Routes.calculatorView},
+    {"BlocExampleApp": Routes.blocExampleApp},
   ];
 
   @override
