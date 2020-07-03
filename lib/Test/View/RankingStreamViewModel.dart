@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ffi';
 
 import 'package:play_android/HttpUtils/Request.dart';
 import 'package:play_android/Responses/RankListResponse.dart';

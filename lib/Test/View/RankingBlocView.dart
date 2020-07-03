@@ -27,9 +27,9 @@ enum RankingViewState {
 class RankingViewStateData {
   List<DataElement> dataSource;
 
-  RankingViewState state;
+  RankingViewState viewState;
 
-  RankingViewStateData({this.dataSource, this.state});
+  RankingViewStateData({this.dataSource, this.viewState});
 }
 
 /// 页面Bloc
@@ -40,7 +40,7 @@ class RankingBloc extends Bloc<RankingViewEvent, RankingViewStateData> {
 
   @override
   RankingViewStateData get initialState =>
-      RankingViewStateData(state: RankingViewState.loading, dataSource: []);
+      RankingViewStateData(viewState: RankingViewState.loading, dataSource: []);
 
   @override
   Stream<RankingViewStateData> mapEventToState(RankingViewEvent event) async* {
@@ -68,21 +68,21 @@ class RankingBloc extends Bloc<RankingViewEvent, RankingViewStateData> {
       _dataSource.addAll(model.data.datas);
       if (_dataSource.length > 0) {
         newState = RankingViewStateData(
-            state: RankingViewState.hasDataRefreshComplete,
+            viewState: RankingViewState.hasDataRefreshComplete,
             dataSource: _dataSource);
         /// 如果仅仅只是更新原有的state是不能重新build页面的
         // state.state = RankingViewState.hasDataRefreshComplete;
         // state.dataSource = _dataSource;
       } else {
         newState = RankingViewStateData(
-            state: RankingViewState.noData,
+            viewState: RankingViewState.noData,
             dataSource: []);
         // state.state = RankingViewState.noData;
         // state.dataSource = [];
       }
     } else {
       newState = RankingViewStateData(
-            state: RankingViewState.error,
+            viewState: RankingViewState.error,
             dataSource: []);
       // state.state = RankingViewState.error;
       // state.dataSource = [];
@@ -98,20 +98,20 @@ class RankingBloc extends Bloc<RankingViewEvent, RankingViewStateData> {
       _dataSource.addAll(model.data.datas);
       if (model.data.pageCount == model.data.curPage) {
         newState = RankingViewStateData(
-            state: RankingViewState.hasDataPullUpNoMoreData,
+            viewState: RankingViewState.hasDataPullUpNoMoreData,
             dataSource: _dataSource);
-        // state.state = RankingViewState.hasDataPullUpNoMoreData;
+        // state.viewState = RankingViewState.hasDataPullUpNoMoreData;
         // state.dataSource = _dataSource;
       } else {
         newState = RankingViewStateData(
-            state: RankingViewState.hasDataPullUpComplete,
+            viewState: RankingViewState.hasDataPullUpComplete,
             dataSource: _dataSource);
-        // state.state = RankingViewState.hasDataPullUpComplete;
+        // state.viewState = RankingViewState.hasDataPullUpComplete;
         // state.dataSource = _dataSource;
       }
     } else {
       newState = RankingViewStateData(
-            state: RankingViewState.hasDataPullUpComplete,
+            viewState: RankingViewState.hasDataPullUpComplete,
             dataSource: []);
       // state.state = RankingViewState.hasDataPullUpComplete;
       // state.dataSource = [];
@@ -144,7 +144,7 @@ class _RankingBlocViewState extends State<RankingBlocView> {
       ),
       body: BlocBuilder<RankingBloc, RankingViewStateData>(
         builder: (_, stateData) {
-          switch (stateData.state) {
+          switch (stateData.viewState) {
             case RankingViewState.loading:
               return LoadingView();
               break;

@@ -18,7 +18,7 @@ class RankingViewState {
 
 }
 
-class RankingViewBloc extends Bloc<RankingViewEvent,RankingViewState>{
+class RankingOldBloc extends Bloc<RankingViewEvent,RankingViewState>{
 
   var _page = 1;
 
