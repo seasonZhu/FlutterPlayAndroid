@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:play_android/HttpUtils/Request.dart';
-import 'package:play_android/Responses/BaseResponse.dart';
 import 'package:play_android/Responses/RankListResponse.dart';
 
 import 'RankingStreamViewEvent.dart';

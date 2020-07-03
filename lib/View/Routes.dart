@@ -22,6 +22,7 @@ import 'package:play_android/Test/View/NanigationRailView.dart';
 import 'package:play_android/Test/View/DismissibleView.dart';
 import 'package:play_android/Test/View/RoundView.dart';
 import 'package:play_android/Test/View/RankingStreamView.dart';
+import 'package:play_android/Test/View/RankingBlocView.dart';
 import 'package:play_android/Test/View/CalculatorView.dart';
 import 'package:play_android/Test/View/BlocExampleApp.dart';
 
@@ -68,6 +69,8 @@ abstract class Routes {
 
   static final rankingStreamView = "/rankingStreamView";
 
+  static final rankingBlocView = "/rankingBlocView";
+
   static final calculatorView = "/calculatorView";
 
   static final blocExampleApp = "/blocExampleApp";
@@ -107,6 +110,7 @@ abstract class Routes {
       Routes.dismissibleView: (context) => DismissibleView(),
       Routes.roundView: (context) => RoundView(),
       Routes.rankingStreamView: (context) => RankingStreamView(),
+      Routes.rankingBlocView: (context) => RankingBlocApp(),
       Routes.calculatorView: (context) => CalculatorView(),
       Routes.blocExampleApp: (context) => BlocExampleApp(),
     };
