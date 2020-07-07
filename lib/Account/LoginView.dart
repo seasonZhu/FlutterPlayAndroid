@@ -33,10 +33,11 @@ class _LoginViewState extends State<LoginView> {
   }
 
   @override
-  Widget build(BuildContext context) { 
+  Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        ResignFirstResponder.of(context);
+        ResignFirstResponder.unfocus();
+        //ResignFirstResponder.of(context);
       },
       child: Scaffold(
         appBar: AppBar(
@@ -153,8 +154,10 @@ class _LoginViewState extends State<LoginView> {
   }
 
   void _lastLoginSetting() async {
-    _userNameTextFiledDelegate.text = await AccountManager.getInstance().getLastLoginUserName();
-    _passwordTextFiledDelegate.text = await AccountManager.getInstance().getLastLoginPassword();
+    _userNameTextFiledDelegate.text =
+        await AccountManager.getInstance().getLastLoginUserName();
+    _passwordTextFiledDelegate.text =
+        await AccountManager.getInstance().getLastLoginPassword();
   }
 
   // 各种push的研究
