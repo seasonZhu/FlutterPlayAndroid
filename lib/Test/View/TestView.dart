@@ -22,9 +22,10 @@ class _TestViewState extends State<TestView> {
     {"DismissibelView的使用": Routes.dismissibleView},
     {"倒圆角的几种方式": Routes.roundView},
     {"使用StreamBuilder重构排行榜页面": Routes.rankingStreamView},
-    {"使用BLoC重构排行榜页面":Routes.rankingBlocView},
+    {"使用BLoC重构排行榜页面": Routes.rankingBlocView},
     {"计算器布局思路": Routes.calculatorView},
     {"BlocExampleApp": Routes.blocExampleApp},
+    {"底部抽屉效果": Routes.bottomDragView}
   ];
 
   @override

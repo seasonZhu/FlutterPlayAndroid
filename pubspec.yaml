@@ -46,6 +46,8 @@ dependencies:
   cached_network_image: 
   # FlutterUIKit
   flukit: 
+  # 拖拽容器
+  drag_container: ^1.0.1
 
   #屏幕适配,没有使用
   flutter_screenutil: ^0.5.3
