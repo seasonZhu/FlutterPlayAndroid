@@ -24,10 +24,11 @@ enum RankingViewState {
 }
 
 /// 页面状态数据
+/// 从Redux的角度看 唯一改变 state 的方法就是触发 action，action 是一个用于描述已发生事件的普通对象。如果Dart的枚举支持带参数的话,这个类都不应该有
 class RankingViewStateData {
-  List<DataElement> dataSource;
+  final List<DataElement> dataSource;
 
-  RankingViewState viewState;
+  final RankingViewState viewState;
 
   RankingViewStateData({this.dataSource, this.viewState});
 }
