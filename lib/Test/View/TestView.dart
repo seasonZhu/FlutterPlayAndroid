@@ -25,7 +25,8 @@ class _TestViewState extends State<TestView> {
     {"使用BLoC重构排行榜页面": Routes.rankingBlocView},
     {"计算器布局思路": Routes.calculatorView},
     {"BlocExampleApp": Routes.blocExampleApp},
-    {"底部抽屉效果": Routes.bottomDragView}
+    {"底部抽屉效果": Routes.bottomDragView},
+    {"tiledLines": Routes.tiledLines},
   ];
 
   @override

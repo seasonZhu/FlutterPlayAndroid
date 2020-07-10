@@ -28,6 +28,7 @@ import 'package:play_android/Test/View/RankingBlocView.dart';
 import 'package:play_android/Test/View/CalculatorView.dart';
 import 'package:play_android/Test/View/BlocExampleApp.dart';
 import 'package:play_android/Test/View/BottomDragView.dart';
+import 'package:play_android/Test/View/TiledLines.dart';
 
 import 'package:play_android/Compose/ErrorView.dart';
 
@@ -78,7 +79,9 @@ abstract class Routes {
 
   static final blocExampleApp = "/blocExampleApp";
 
-  static final bottomDragView = "/BottomDragView";
+  static final bottomDragView = "/bottomDragView";
+
+  static final tiledLines = "/tiledLines";
 
   // 路由需要传递的参数
   static var arguments;
@@ -122,6 +125,7 @@ abstract class Routes {
       Routes.calculatorView: (context) => CalculatorView(),
       Routes.blocExampleApp: (context) => BlocExampleApp(),
       Routes.bottomDragView: (context) => BottomDragView(),
+      Routes.tiledLines: (context) => TiledLines(),
     };
   }
 
