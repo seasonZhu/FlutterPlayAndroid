@@ -30,10 +30,12 @@ class _WelcomeViewState extends State<WelcomeView> {
   }
 
   get _views {
-    return [
-      "welcome_2.jpg",
-      "welcome_1.png",
-    ].map((imageName) => _welcomeView(imageName)).toList();
+    // return [
+    //   "welcome_2.jpg",
+    //   "welcome_1.png",
+    // ].map((imageName) => _welcomeView(imageName)).toList();
+
+    return [_otherWelcomeView("welcome_2.jpg"), _lastWelcomeView("welcome_1.png"),];
   }
 
   @override
@@ -68,6 +70,20 @@ class _WelcomeViewState extends State<WelcomeView> {
           left: 20,
           right: 20,
           bottom: 44,
+          /* 不论是使用Offstage还是Opacity 都达不到非常好的效果, 感觉还是单独写好*/
+          // child: Offstage(
+          //   offstage: _selectedIndex == 0,
+          //   child: FlatButton(
+          //     child: Text("点击进入"),
+          //     color: Colors.grey,
+          //     shape: RoundedRectangleBorder(
+          //         side: BorderSide.none,
+          //         borderRadius: BorderRadius.all(Radius.circular(20))),
+          //     onPressed: () {
+          //       _goMainView();
+          //     },
+          //   ),
+          // ),
           child: Opacity(
               opacity: _selectedIndex == 1 ? 1 : 0,
               child: FlatButton(
@@ -80,6 +96,61 @@ class _WelcomeViewState extends State<WelcomeView> {
                   _goMainView();
                 },
               )),
+        ),
+      ],
+    );
+  }
+
+  Widget _otherWelcomeView(String imageName) {
+    var size = MediaQuery.of(context).size;
+    return Stack(
+      alignment: AlignmentDirectional.bottomEnd,
+      children: <Widget>[
+        Container(
+          width: size.width,
+          height: size.height,
+          decoration: BoxDecoration(
+            //设置背景图片
+            image: DecorationImage(
+              image: AssetImage("assets/images/$imageName"),
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _lastWelcomeView(String imageName) {
+    var size = MediaQuery.of(context).size;
+    return Stack(
+      alignment: AlignmentDirectional.bottomEnd,
+      children: <Widget>[
+        Container(
+          width: size.width,
+          height: size.height,
+          decoration: BoxDecoration(
+            //设置背景图片
+            image: DecorationImage(
+              image: AssetImage("assets/images/$imageName"),
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        Positioned(
+          left: 20,
+          right: 20,
+          bottom: 44,
+          child: FlatButton(
+            child: Text("点击进入"),
+            color: Colors.grey,
+            shape: RoundedRectangleBorder(
+                side: BorderSide.none,
+                borderRadius: BorderRadius.all(Radius.circular(20))),
+            onPressed: () {
+              _goMainView();
+            },
+          ),
         ),
       ],
     );

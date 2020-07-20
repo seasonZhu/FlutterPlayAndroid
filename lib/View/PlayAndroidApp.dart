@@ -54,6 +54,7 @@ class _PlayAndroidAppState extends State<PlayAndroidApp> {
       home: _home,
       routes: Routes.maps(),
       onUnknownRoute: Routes.unknowMap,
+      //onGenerateRoute: null,
     );
   }
 
