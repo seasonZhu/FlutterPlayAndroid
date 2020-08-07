@@ -140,7 +140,7 @@ class _BottomFunctionViewState extends State<BottomFunctionView> {
   }
 
   void _copyLink() {
-    ClipboardData data = new ClipboardData(text: widget._model.link);
+    ClipboardData data = ClipboardData(text: widget._model.link);
     Clipboard.setData(data);
     ToastView.show("复制成功");
   }

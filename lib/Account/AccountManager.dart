@@ -24,7 +24,7 @@ class AccountManager {
   String get cookieHeaderValue {
     if (info == null) {
       return "";
-    }else {
+    } else {
       return "loginUserName=${info.username};loginUserPassword=${info.password}";
     }
   }
@@ -96,6 +96,10 @@ class AccountManager {
   // 类名._() 是将初始化方法私有化
   AccountManager._();
 
+  /// 类似Swift的单例写法
+  static final shared = AccountManager._();
+
+  /// 传统的单例写法
   static AccountManager _instance;
 
   static AccountManager getInstance() {

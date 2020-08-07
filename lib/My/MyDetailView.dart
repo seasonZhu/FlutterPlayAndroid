@@ -36,6 +36,7 @@ class _MyDetailViewState extends State<MyDetailView> {
     });
   }
 
+  /// 我个人认为这个地方的cell布局写的不够好
   Widget _buildSingleChildScrollView() {
     return SingleChildScrollView(
       child: Column(

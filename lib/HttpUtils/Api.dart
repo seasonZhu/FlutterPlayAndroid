@@ -1,4 +1,8 @@
 abstract class Api {
+
+  /// 初始化方法私有化
+  Api._();
+
   // baseUrl
   static const String baseUrl = 'https://www.wanandroid.com/';
 
@@ -21,7 +25,7 @@ abstract class Api {
   static const String getProjectClassify = 'project/tree/json';
 
   // 项目分类列表 https://www.wanandroid.com/project/list/0/json
-  static const String getProjectClassifyList  = 'project/list/';
+  static const String getProjectClassifyList = 'project/list/';
 
   // 公众号
   static const String getPubilicNumber = 'wxarticle/chapters/json';

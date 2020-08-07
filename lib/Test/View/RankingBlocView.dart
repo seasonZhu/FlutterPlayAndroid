@@ -144,7 +144,7 @@ class _RankingBlocViewState extends State<RankingBlocView> {
         elevation: 0.1,
       ),
       body: BlocBuilder<RankingBloc, RankingViewStateData>(
-        builder: (_, stateData) {
+        builder: (rankingBloc, stateData) {
           switch (stateData.viewState) {
             case RankingViewState.loading:
               return LoadingView();
