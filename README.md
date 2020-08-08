@@ -115,6 +115,16 @@ Flutter的这个版本,宿主程序里面空空如也,真的是变成了壳.
 
 popUtil还是用的有问题.
 
+### Flutter1.20.1
+#### flutter Error: Could not resolve the package ‘characters‘ in ‘package:characters/characters.dart‘.
+在Flutter1.20这个大版本中添加了所谓空安全的机制,也就是和Swift中的Optional相似的机制,关键是报错了
+
+解决方法如下
+```
+flutter pub cache repair (这个也许要很久,久到离谱)
+flutter clean
+```
+
 ## 键盘遮挡问题
 
 讨论了一下,由于原生会有键盘遮挡住输入框的情况,需要自己进行管理.
