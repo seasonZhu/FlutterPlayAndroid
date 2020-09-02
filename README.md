@@ -117,7 +117,9 @@ popUtil还是用的有问题.
 
 ### Flutter1.20.1
 #### flutter Error: Could not resolve the package ‘characters‘ in ‘package:characters/characters.dart‘.
-在Flutter1.20这个大版本中添加了所谓空安全的机制,也就是和Swift中的Optional相似的机制,关键是报错了
+搞错了
+如果一切顺利，我们计划在年底之前发布 null safety 到 stable，从现在开始我们将添加工具来帮助您使用 null safety
+所谓空安全的机制,也就是和Swift中的Optional相似的机制,关键是报错了
 
 解决方法如下
 ```
@@ -146,6 +148,28 @@ flutter clean
 ## fastlane打包
 
 fastlane打包和iOS的独立打包没有什么区别,步骤基本上一样.
+
+## 使用Android命令进行包安装
+
+出现了编译好了.apk包,但是编译安装不上的问题.
+
+可以尝试使用adb命令进行安装
+
+同时可能会出现下面这个问题
+
+### mac中adb: command not found
+
+这个其实和flutter: command not found一样,可能需要在.bash_profile中配置环境变量
+
+安卓相关的SDK路径
+```
+export PATH=/Users/season/Library/Android/sdk/platform-tools/:$PATH
+```
+
+安装
+```
+adb install '/Users/season/Documents/Flutter Git/play_android/build/app/outputs/flutter-apk/app.apk'
+```
 
 ## StreamBuilder
 
@@ -205,3 +229,12 @@ Widget层仅针对数据改变界面即可.
 
 [项目地址](https://github.com/seasonZhu/playAndroid),记得给一个Star
 
+## VS实用快捷键
+
+1.回到上一次编辑的位置：ctrl + -
+2.移除多余的import：option + shift + o
+3.快速定位到代码出错的位置：F8
+4.快捷搜索文件：Cmd + p
+5.快速定位到文件最后一行(第一行)：Cmd + ⬇️ (Cmd + ⬆️ ) 
+6.跳转到指定行：ctrl + g
+7.格式化代码 ：option + shift + f
