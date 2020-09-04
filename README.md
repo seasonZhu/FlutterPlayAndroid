@@ -238,3 +238,51 @@ Widget层仅针对数据改变界面即可.
 5.快速定位到文件最后一行(第一行)：Cmd + ⬇️ (Cmd + ⬆️ ) 
 6.跳转到指定行：ctrl + g
 7.格式化代码 ：option + shift + f
+
+## 从掘金整理的一些flutter控件
+
+Provder：数据动态管理插件
+
+熟悉provider是如何调用build方法去通知页面更新，了解context挂载provider实例，如何通过context在element tree中获取到对应的provider实例。
+
+dio：网络请求插件
+
+ 熟悉dio基本配置，拦截网络请求做业务处理
+
+flutter_screenutil：屏幕适配
+
+了解屏幕适配的基本原理，如何调用全局context for root
+
+shared_preferences：本地持久化
+
+主要应用场景：少量本地化存取，例如：user信息、版信息。大批量、反复调用存取不建议使用。
+
+mqtt_client：mqtt客户端
+
+sqflite：数据库
+
+主要应用场景：大批量数据本地化存取，例如：搜索历史、聊天历史等。注意使用是表的开关，以释放内存。
+
+device_info：设备信息
+
+cached_network_image：图片缓存
+
+cached_video_player：视频播放
+
+wechat_assets_picker：图片视频选择器
+
+仿微信选择图片与视频
+
+
+
+path_provider：设备路径
+
+注意区分临时文件路径和项目文件路径的区别
+
+permission_handler：权限管理
+
+isolate： 线程管理使用
+
+在大批量调用渲染和网络请求等“高消耗”的操作下，Flutter Ui视图会造成卡顿现象，这时候要开启一个线程去跑这些操作。在使用isolate过程中注意使用完后关闭isolate并释放掉内存，否则会因内存占用大而导致应用奔溃。
+
+flutter_sound：音频录取和播放

@@ -29,6 +29,7 @@ import 'package:play_android/Test/View/CalculatorView.dart';
 import 'package:play_android/Test/View/BlocExampleApp.dart';
 import 'package:play_android/Test/View/BottomDragView.dart';
 import 'package:play_android/Test/View/TiledLines.dart';
+import 'package:play_android/Test/View/PressLocationView.dart';
 
 import 'package:play_android/Compose/ErrorView.dart';
 
@@ -83,6 +84,8 @@ abstract class Routes {
 
   static final tiledLines = "/tiledLines";
 
+  static final pressLocationView = "/pressLocationView";
+
   // 路由需要传递的参数
   static var arguments;
 
@@ -126,6 +129,7 @@ abstract class Routes {
       Routes.blocExampleApp: (context) => BlocExampleApp(),
       Routes.bottomDragView: (context) => BottomDragView(),
       Routes.tiledLines: (context) => TiledLines(),
+      Routes.pressLocationView:(context) => PressLocationView(),
     };
   }
 
