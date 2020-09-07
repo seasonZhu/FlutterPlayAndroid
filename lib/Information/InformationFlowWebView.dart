@@ -57,8 +57,22 @@ class _InformationFlowWebViewState extends State<InformationFlowWebView> {
   }
 
   Widget loading() {
+    /// 使用FittedBox终于把安卓风格的菊花转兼容到导航栏里面去了
     return Container(
-        width: 10, height: 10, child: CupertinoActivityIndicator());
+      width: 20,
+      height: 20,
+      child: FittedBox(
+        fit: BoxFit.contain,
+        child: CircularProgressIndicator(
+          valueColor:
+              AlwaysStoppedAnimation<Color>(Colors.white),
+        ),
+      ),
+    );
+
+    /// iOS风格的不用了   
+    // return Container(
+    //     width: 10, height: 10, child: CupertinoActivityIndicator());
   }
 
   @override
@@ -72,7 +86,9 @@ class _InformationFlowWebViewState extends State<InformationFlowWebView> {
       // 参考了微信的做法,直接就没有标题,这个title有h5元素,
       //用Text或者框架Html都不能很好解决,加上跑马灯的问题
       //title: normalText(),
-      title: MarqueeLabel(text: _model.title,),
+      title: MarqueeLabel(
+        text: _model.title,
+      ),
       iconTheme: IconThemeData(color: Colors.white),
       elevation: 0.1,
       actions: <Widget>[
@@ -134,7 +150,7 @@ class _InformationFlowWebViewState extends State<InformationFlowWebView> {
   }
 
   @override
-  void dispose() { 
+  void dispose() {
     if (_timer) {
       _timer.cancel();
     }
