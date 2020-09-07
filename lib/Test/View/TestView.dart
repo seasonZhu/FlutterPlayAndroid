@@ -27,7 +27,8 @@ class _TestViewState extends State<TestView> {
     {"BlocExampleApp": Routes.blocExampleApp},
     {"底部抽屉效果": Routes.bottomDragView},
     {"tiledLines": Routes.tiledLines},
-    {"获取位置进行弹窗": Routes.pressLocationView},
+    {"获取空间位置进行弹窗": Routes.pressLocationView},
+    {"DataLine的刷新思路": Routes.dataLineView},
   ];
 
   @override
