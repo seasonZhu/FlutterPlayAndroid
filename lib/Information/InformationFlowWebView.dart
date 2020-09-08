@@ -8,6 +8,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'package:play_android/Responses/InformationFlowProtocol.dart';
 import 'BottomFunctionView.dart';
 import 'package:play_android/Compose/MarqueeLabel.dart';
+import 'package:play_android/Compose/MaterialProgressIndicator.dart';
 
 class InformationFlowWebView extends StatefulWidget {
   @override
@@ -58,19 +59,11 @@ class _InformationFlowWebViewState extends State<InformationFlowWebView> {
 
   Widget loading() {
     /// 使用FittedBox终于把安卓风格的菊花转兼容到导航栏里面去了
-    return Container(
-      width: 20,
-      height: 20,
-      child: FittedBox(
-        fit: BoxFit.contain,
-        child: CircularProgressIndicator(
-          valueColor:
-              AlwaysStoppedAnimation<Color>(Colors.white),
-        ),
-      ),
+    return MaterialProgressIndicator(
+      size: Size(20, 20),
     );
 
-    /// iOS风格的不用了   
+    /// iOS风格的不用了
     // return Container(
     //     width: 10, height: 10, child: CupertinoActivityIndicator());
   }
