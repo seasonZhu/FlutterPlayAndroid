@@ -132,6 +132,7 @@ class _HomeViewState extends State<HomeView> with AutomaticKeepAliveClientMixin 
     Navigator.pushNamed(context, Routes.hotKeyView);
   }
 
+  /// 注意这个dispose的调用顺序 this->super
   @override
   void dispose() {
     _refreshController.dispose();

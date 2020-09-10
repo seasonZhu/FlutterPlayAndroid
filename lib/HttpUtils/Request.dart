@@ -44,7 +44,7 @@ extension Request on HttpUtils {
 
   // 通过关键词与page进行搜索,获取搜索结果
   static Future<InformationFlowListResponse> postQueryKey({int page, String keyword}) async {
-    Map<String, String> params = Map();
+    var params = <String, String>{};
     params["k"] = keyword;
     var json = await HttpUtils.post(api: Api.postQueryKey + page.toString() + "/json", params: params);
     return InformationFlowListResponse.fromJson(json);
@@ -58,7 +58,7 @@ extension Request on HttpUtils {
 
   // 通过id与page获取单个项目分类的列表
   static Future<InformationFlowListResponse> getProjectClassifyList({int page, int id}) async {
-    Map<String, String> params = Map();
+    var params = <String, String>{};
     params["cid"] = id.toString();
     var json = await HttpUtils.get(api: Api.getProjectClassifyList + page.toString() + "/json", params: params);
     return InformationFlowListResponse.fromJson(json);
@@ -78,7 +78,7 @@ extension Request on HttpUtils {
 
   // 登录
   static Future<AccountInfoResponse> login({String username, String password}) async {
-    Map<String, String> params = Map();
+    var params = <String, String>{};
     params["username"] = username;
     params["password"] = password;
     var json = await HttpUtils.post(api: Api.postLogin, params: params);
@@ -87,7 +87,7 @@ extension Request on HttpUtils {
 
   // 注册
   static Future<AccountInfoResponse> register({String username, String password, String rePassword}) async {
-    Map<String, String> params = Map();
+    var params = <String, String>{};
     params["username"] = username;
     params["password"] = password;
     params["repassword"] = rePassword;

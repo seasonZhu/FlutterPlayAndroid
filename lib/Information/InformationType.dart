@@ -6,7 +6,7 @@ enum InformationType {
   publicNumber
 }
 
-// 分类继续使用
+// 分类使用
 extension Property on InformationType {
   String get title {
     var title;

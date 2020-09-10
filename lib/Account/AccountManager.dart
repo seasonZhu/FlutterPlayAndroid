@@ -4,6 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:play_android/Responses/AccountInfoResponse.dart';
 
 class AccountManager {
+  /// 以下字符串常量私有化比较好
+
   final kLastLoginUserName = "kLastLoginUserName";
 
   final kLastLoginPassword = "kLastLoginPassword";

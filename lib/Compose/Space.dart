@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-// 如果你使用过SwiftUI,一定会发现这是我夹带的私货,对于布局有一定的帮助
+/// 如果你使用过SwiftUI,一定会发现这是我夹带的私货,对于布局有一定的帮助 其实系统有Spacer这个控件
 class Space extends StatelessWidget {
 
   final int _flex;

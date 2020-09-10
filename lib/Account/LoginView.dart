@@ -129,6 +129,7 @@ class _LoginViewState extends State<LoginView> {
                   Padding(
                     padding: EdgeInsets.only(top: 20, left: 15, right: 15),
                     child: Container(
+                      /// 这个地方可以写宽一点 会被Padding卡住
                       width: 400,
                       height: 44,
                       child: FlatButton(
@@ -207,6 +208,8 @@ class _LoginViewState extends State<LoginView> {
   }
 
   Future<AccountInfoResponse> login() async {
+
+    /// 这里使用setState完全是为了_showLoginView这个方法 刷新页面,但是这样的代价比较高,有更好方法,GlobalKey
     setState(() {
       _isLoginNow = true;
     });
