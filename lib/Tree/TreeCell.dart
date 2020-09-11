@@ -29,7 +29,6 @@ class TreeCell extends StatelessWidget {
   }
 
   List<Widget> _chipTitleItem(TopicInfo model) {
-
     List<Widget> list = [];
 
     // 从这里看出,final已经非常接近let了
@@ -38,8 +37,7 @@ class TreeCell extends StatelessWidget {
           fontSize: 16,
           color: Colors.black,
           fontWeight: FontWeight.bold,
-        )
-    );
+        ));
 
     final space = SizedBox(
       height: 10,

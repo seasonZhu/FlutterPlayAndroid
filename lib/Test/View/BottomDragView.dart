@@ -1,5 +1,7 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 
+import 'package:device_info/device_info.dart';
 import 'package:drag_container/drag/drag_container.dart';
 import 'package:drag_container/drag_container.dart';
 
@@ -27,7 +29,7 @@ class _BottomDragViewState extends State<BottomDragView> {
       body: Stack(
         children: <Widget>[
           Center(
-            child: Text("哈哈哈"),
+            child: getMyPatformView(), //Text("哈哈哈"),
           ),
 
           ///抽屉视图
@@ -99,5 +101,34 @@ class _BottomDragViewState extends State<BottomDragView> {
             child: ListTile(title: Text('测试数据 $index')));
       },
     );
+  }
+
+  Widget getMyPatformView() {
+    if (Platform.isAndroid) {
+      return Container(
+        child: Center(
+          child: Text('Android is not yet supported by this plugin'),
+        ),
+      );
+    } else if (Platform.isIOS) {
+      return UiKitView(
+        viewType: 'TestViewObject',
+      );
+    }
+
+    return Text('Not yet supported by this plugin');
+  }
+
+  void getDeviceInfo() async {
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    if (Platform.isIOS) {
+      print('IOS设备：');
+      IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+      print(iosInfo);
+    } else if (Platform.isAndroid) {
+      print('Android设备');
+      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      print(androidInfo);
+    }
   }
 }

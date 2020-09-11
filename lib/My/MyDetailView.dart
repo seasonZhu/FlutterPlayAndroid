@@ -30,6 +30,7 @@ class _MyDetailViewState extends State<MyDetailView> {
 
   /// 头像更新
   Future<void> _portraitUpdate() async {
+    /// 这个方法过期了 但是新方法await ImagePicker().getImage(source: ImageSource.camera); 拿到的Future包裹的东西不知道如何使用
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
     setState(() {
       _image = image;
