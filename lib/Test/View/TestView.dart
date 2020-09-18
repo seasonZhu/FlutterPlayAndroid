@@ -8,13 +8,14 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 import 'package:play_android/View/Routes.dart';
 
+
 /* 专用的测试界面入口View */
 class TestView extends StatefulWidget {
   @override
   _TestViewState createState() => _TestViewState();
 }
 
-class _TestViewState extends State<TestView> {
+class _TestViewState extends State<TestView> with RouteAware {
   final titiles = [
     {"头条客户端举报场景": Routes.todayHotNavigatorView},
     {"通过Mixin进行view与逻辑分离": Routes.mixinCountView},
@@ -119,5 +120,41 @@ class _TestViewState extends State<TestView> {
       '414478124', //例如:微信的AppId:414478124
     );
     print(versionName);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    routeObserver.subscribe(this, ModalRoute.of(context));
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    routeObserver.unsubscribe(this);
+  }
+
+  @override
+  void didPush() {
+    final route = ModalRoute.of(context).settings.name;
+    print('A-didPush route: $route');
+  }
+
+  @override
+  void didPopNext() {
+    final route = ModalRoute.of(context).settings.name;
+    print('A-didPopNext route: $route');
+  }
+
+  @override
+  void didPushNext() {
+    final route = ModalRoute.of(context).settings.name;
+    print('A-didPushNext route: $route');
+  }
+
+  @override
+  void didPop() {
+    final route = ModalRoute.of(context).settings.name;
+    print('A-didPop route: $route');
   }
 }

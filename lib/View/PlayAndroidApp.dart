@@ -53,6 +53,7 @@ class _PlayAndroidAppState extends State<PlayAndroidApp> {
       theme: _themeData(),
       home: _home,
       routes: Routes.maps(),
+      navigatorObservers: [routeObserver],
       onUnknownRoute: Routes.unknowMap,
       //onGenerateRoute: null,
     );

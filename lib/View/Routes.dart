@@ -35,6 +35,9 @@ import 'package:play_android/Test/View/StarPath.dart';
 
 import 'package:play_android/Compose/ErrorView.dart';
 
+/// 全局监听路由堆栈的变化使用 RouteObserve
+RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
+
 // 路由表
 abstract class Routes {
   // 系统默认'/'是根view,这个不能更改
