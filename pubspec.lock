@@ -847,6 +847,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.3.22+1"
+  wrapper:
+    dependency: "direct main"
+    description:
+      name: wrapper
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.1"
   xdg_directories:
     dependency: transitive
     description:
