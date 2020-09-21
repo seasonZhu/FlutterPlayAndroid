@@ -32,6 +32,7 @@ import 'package:play_android/Test/View/TiledLines.dart';
 import 'package:play_android/Test/View/PressLocationView.dart';
 import 'package:play_android/Test/View/DataLineView.dart';
 import 'package:play_android/Test/View/StarPath.dart';
+import 'package:play_android/Test/View/PathProviderView.dart';
 
 import 'package:play_android/Compose/ErrorView.dart';
 
@@ -95,6 +96,8 @@ abstract class Routes {
 
   static final startClip = "/startClip";
 
+  static final pathProviderView = "/pathProviderView";
+
   // 路由需要传递的参数
   static var arguments;
 
@@ -141,13 +144,14 @@ abstract class Routes {
       Routes.pressLocationView: (context) => PressLocationView(),
       Routes.dataLineView: (context) => DataLineView(),
       Routes.startClip: (context) => StartClip(),
+      Routes.pathProviderView:(context) => PathProviderView()
     };
   }
 
   static Route<dynamic> unknowMap(RouteSettings settings) {
     final name = settings.name;
     print("未匹配到路由$name");
-    return MaterialPageRoute(builder: (context) => ErrorView());
+    return MaterialPageRoute(builder: (context) => Scaffold(appBar: AppBar(title: Text("未知路由"),), body: ErrorView(),));
   }
 
   // 初始化方法私有化
