@@ -8,6 +8,7 @@ import 'package:play_android/My/MyCoinView.dart';
 import 'package:play_android/My/MyCollectView.dart';
 import 'package:play_android/My/ThemeSettingView.dart';
 import 'package:play_android/My/AboutAppAndMeView.dart';
+
 import 'package:play_android/Tree/TreeView.dart';
 
 import 'package:play_android/Information/InformationFlowWebView.dart';
@@ -33,6 +34,7 @@ import 'package:play_android/Test/View/PressLocationView.dart';
 import 'package:play_android/Test/View/DataLineView.dart';
 import 'package:play_android/Test/View/StarPath.dart';
 import 'package:play_android/Test/View/PathProviderView.dart';
+import 'package:play_android/Test/View/TweenAnimationView.dart';
 
 import 'package:play_android/Compose/ErrorView.dart';
 
@@ -98,6 +100,8 @@ abstract class Routes {
 
   static final pathProviderView = "/pathProviderView";
 
+  static final tweenAnimationView = "/tweenAnimationView";
+
   // 路由需要传递的参数
   static var arguments;
 
@@ -144,14 +148,21 @@ abstract class Routes {
       Routes.pressLocationView: (context) => PressLocationView(),
       Routes.dataLineView: (context) => DataLineView(),
       Routes.startClip: (context) => StartClip(),
-      Routes.pathProviderView:(context) => PathProviderView()
+      Routes.pathProviderView: (context) => PathProviderView(),
+      Routes.tweenAnimationView: (context) => CurvedAnimationView(),//TweenAnimationView(title: "简单的缩放动画",)
     };
   }
 
   static Route<dynamic> unknowMap(RouteSettings settings) {
     final name = settings.name;
     print("未匹配到路由$name");
-    return MaterialPageRoute(builder: (context) => Scaffold(appBar: AppBar(title: Text("未知路由"),), body: ErrorView(),));
+    return MaterialPageRoute(
+        builder: (context) => Scaffold(
+              appBar: AppBar(
+                title: Text("未知路由"),
+              ),
+              body: ErrorView(),
+            ));
   }
 
   // 初始化方法私有化

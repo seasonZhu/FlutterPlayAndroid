@@ -31,7 +31,8 @@ class _TestViewState extends State<TestView> with RouteAware {
     {"获取空间位置进行弹窗": Routes.pressLocationView},
     {"DataLine的刷新思路": Routes.dataLineView},
     {"五角星":Routes.startClip},
-    {"文件夹路径": Routes.pathProviderView}
+    {"文件夹路径": Routes.pathProviderView},
+    {"简单的缩放动画": Routes.tweenAnimationView}
   ];
 
   @override
