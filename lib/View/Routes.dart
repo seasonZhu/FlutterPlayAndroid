@@ -46,6 +46,7 @@ abstract class Routes {
   // 系统默认'/'是根view,这个不能更改
   static final root = "/";
 
+  // 使用const也是可以的
   static final rankingView = "/rankingView";
 
   static final informationFlowWebView = "/informationFlowWebView";

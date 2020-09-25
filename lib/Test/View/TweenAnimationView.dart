@@ -126,6 +126,7 @@ class AnimatedLogo extends AnimatedWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// 感觉这个没啥用呀
     final animation = listenable;
     return Scaffold(
       appBar: AppBar(
@@ -139,7 +140,7 @@ class AnimatedLogo extends AnimatedWidget {
             margin: EdgeInsets.symmetric(vertical: 10),
             /// 一个类的静态变量不需要写类名也可以直接在实例方法中使用
             height: AnimatedLogo._sizeTween.evaluate(animation),
-            width: _sizeTween.evaluate(animation),
+            width: _sizeTween.evaluate(listenable),
           ),
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:play_android/Compose/PAWebView.dart';
+import 'package:play_android/Test/View/AnimationFlutterLogo.dart';
 
 class AboutAppAndMeView extends StatelessWidget {
   @override
@@ -19,6 +20,13 @@ class AboutAppAndMeView extends StatelessWidget {
     return SingleChildScrollView(
         child: Column(
       children: <Widget>[
+        Padding(
+          padding: EdgeInsets.symmetric(vertical: 10),
+          child: AnimationFlutterLogo(
+            size: 100,
+          ),
+        ),
+        Divider(),
         ListTile(
             leading: Text("玩安卓App Flutter版本"),
             trailing: Text("作者:seasonZhu"),
@@ -63,7 +71,9 @@ class AboutAppAndMeView extends StatelessWidget {
                   builder: (context) {
                     return AlertDialog(
                       title: Center(child: Text("打赏")),
-                      content: Image(image: AssetImage("assets/images/season_ali_pay.jpg"),),
+                      content: Image(
+                        image: AssetImage("assets/images/season_ali_pay.jpg"),
+                      ),
                     );
                   });
             }),
