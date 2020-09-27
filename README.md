@@ -291,3 +291,48 @@ isolate： 线程管理使用
 ***
 flutter_sound：音频录取和播放
 ***
+
+### 报错异常
+
+```
+Traceback (most recent call last):
+  File "/tmp/D6B22571-D0E4-4BF7-B2E1-D542D1180179/fruitstrap_00008030_000D68C81A08802E.py", line 25, in connect_command
+    process = lldb.target.ConnectRemote(listener, connect_url, None, error)
+AttributeError: 'NoneType' object has no attribute 'ConnectRemote'
+Traceback (most recent call last):
+  File "/tmp/D6B22571-D0E4-4BF7-B2E1-D542D1180179/fruitstrap_00008030_000D68C81A08802E.py", line 45, in run_command
+    lldb.target.modules[0].SetPlatformFileSpec(lldb.SBFileSpec(device_app))
+AttributeError: 'NoneType' object has no attribute 'modules'
+Traceback (most recent call last):
+  File "/tmp/D6B22571-D0E4-4BF7-B2E1-D542D1180179/fruitstrap_00008030_000D68C81A08802E.py", line 74, in safequit_command
+    process = lldb.target.process
+AttributeError: 'NoneType' object has no attribute 'process'
+════════════════════════════════════════════════════════════════════════════════
+No Provisioning Profile was found for your project's Bundle Identifier or your 
+device. You can create a new Provisioning Profile for your project in Xcode for 
+your team by:
+  1- Open the Flutter project's Xcode target with
+       open ios/Runner.xcworkspace
+  2- Select the 'Runner' project in the navigator then the 'Runner' target
+     in the project settings
+  3- Make sure a 'Development Team' is selected. 
+     - For Xcode 10, look under General > Signing > Team.
+     - For Xcode 11 and newer, look under Signing & Capabilities > Team.
+     You may need to:
+         - Log in with your Apple ID in Xcode first
+         - Ensure you have a valid unique Bundle ID
+         - Register your device with your Apple Developer Account
+         - Let Xcode automatically provision a profile for your app
+  4- Build or run your project again
+
+It's also possible that a previously installed app with the same Bundle 
+Identifier was signed with a different certificate.
+
+For more information, please visit:
+  https://flutter.dev/setup/#deploy-to-ios-devices
+
+Or run on an iOS simulator without code signing
+════════════════════════════════════════════════════════════════════════════════
+2020-09-25 17:47:42.435 ios-deploy[21264:195564] [ !! ] Error 0xe8000067: There was an internal API error. AMDeviceSecureInstallApplication(0, device, url, options, install_callback, 0)
+
+```
