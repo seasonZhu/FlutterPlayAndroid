@@ -7,6 +7,7 @@ import 'package:open_file/open_file.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:path_provider/path_provider.dart';
 
+/// 这个页面有点异常
 class UpdateView extends StatefulWidget {
   @override
   _UpdateViewState createState() => _UpdateViewState();
@@ -118,7 +119,7 @@ class _UpgradeDialogState extends State<UpgradeDialog> {
                       ),
               ),
               Center(
-                child: Image.asset('assets/images/upgrade1.png',
+                child: Image.asset('assets/images/saber.jpg',
                     width: 121.5, fit: BoxFit.cover),
               ),
               /// Wrap控件一般都是用于横向排列,当位置不够时会自动换行,

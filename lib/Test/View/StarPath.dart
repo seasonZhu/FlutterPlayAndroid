@@ -80,7 +80,7 @@ class _StartClipState extends State<StartClip>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: Text("五角星"),),
       body: Center(
         child: AnimatedBuilder(
             animation: _animation,

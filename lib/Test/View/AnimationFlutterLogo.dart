@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 class AnimationFlutterLogo extends StatefulWidget {
   final double size;
 
-  AnimationFlutterLogo({Key key, this.size = 100}): super(key: key);
+  AnimationFlutterLogo({Key key, this.size = 100}) : super(key: key);
 
   @override
   _AnimationFlutterLogoState createState() => _AnimationFlutterLogoState();
@@ -77,12 +77,15 @@ class _AnimationFlutterLogoState extends State<AnimationFlutterLogo> {
 
   @override
   Widget build(BuildContext context) {
-    return FlutterLogo(
-      size: widget.size,
-      colors: _colors[Random.secure().nextInt(_colors.length)],
-      textColor: _randomColor(),
-      style: _styles[Random.secure().nextInt(_styles.length)],
-      curve: _curves[Random.secure().nextInt(_curves.length)],
+    return Theme(
+      data: Theme.of(context).copyWith(accentColor: _colors[Random.secure().nextInt(_colors.length)]),
+      child: FlutterLogo(
+        size: widget.size,
+        //colors: _colors[Random.secure().nextInt(_colors.length)],
+        textColor: _randomColor(),
+        style: _styles[Random.secure().nextInt(_styles.length)],
+        curve: _curves[Random.secure().nextInt(_curves.length)],
+      ),
     );
   }
 }

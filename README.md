@@ -292,7 +292,136 @@ isolate： 线程管理使用
 flutter_sound：音频录取和播放
 ***
 
-### 报错异常
+## ThemeData
+
+### ThemeData（Color类型属性）：
+
+accentColor - 前景色（文本、按钮等）
+
+backgroundColor - 与primaryColor对比的颜色(例如 用作进度条的剩余部分)。
+
+bottomAppBarColor - BottomAppBar的默认颜色。
+
+buttonColor - Material中RaisedButtons使用的默认填充色。
+
+canvasColor - MaterialType.canvas Material的默认颜色。
+
+cardColor - Material被用作Card时的颜色。
+
+dialogBackgroundColor - Dialog元素的背景色。
+
+disabledColor - 用于Widget无效的颜色，无论任何状态。例如禁用复选框。
+
+dividerColor - Dividers和PopupMenuDividers的颜色，也用于ListTiles中间，和DataTables的每行中间.
+
+errorColor - 用于输入验证错误的颜色，例如在TextField中。
+
+highlightColor - 用于类似墨水喷溅动画或指示菜单被选中的高亮颜色。
+
+hintColor - 用于提示文本或占位符文本的颜色，例如在TextField中。
+
+indicatorColor - TabBar中选项选中的指示器颜色。
+
+primaryColor - App主要部分的背景色（ToolBar,TabBar等）。
+
+primaryColorDark - primaryColor的较暗版本。
+
+primaryColorLight - primaryColor的较亮版本。
+
+scaffoldBackgroundColor - 作为Scaffold基础的Material默认颜色，典型Material应用或应用内页面的背景颜色。
+
+secondaryHeaderColor - 有选定行时PaginatedDataTable标题的颜色。
+
+selectedRowColor - 选中行时的高亮颜色。
+
+splashColor - 墨水喷溅的颜色。
+
+textSelectionColor - 文本字段中选中文本的颜色，例如TextField。
+
+textSelectionHandleColor - 用于调整当前文本的哪个部分的句柄颜色。
+
+toggleableActiveColor - 用于突出显示切换Widget（如Switch，Radio和Checkbox）的活动状态的颜色。
+
+unselectedWidgetColor - 用于Widget处于非活动（但已启用）状态的颜色。 例如，未选中的复选框。 通常与accentColor形成对比。
+
+focusColor - 焦点获取时的颜色，例如，一些按钮焦点、输入框焦点。
+
+hoverColor - 点击之后徘徊中的颜色，例如，按钮长按，按住之后的颜色。
+
+cursorColor - 输入框光标颜色。
+
+### ThemeData（Theme相关类型属性）：
+
+accentIconTheme - IconThemeData类型，与突出颜色对照的图片主题。
+
+accentTextTheme - TextTheme类型，与突出颜色对照的文本主题。
+
+chipTheme - ChipThemeData类型，用于渲染Chip的颜色和样式。
+
+buttonTheme - ButtonThemeData类型，定义了按钮等控件的默认配置，像RaisedButton和FlatButton。
+
+primaryIconTheme - IconThemeData类型，一个与主色对比的图片主题。
+
+primaryTextTheme - TextThemeData类型，一个与主色对比的文本主题。
+
+iconTheme - IconThemeData类型，与卡片和画布颜色形成对比的图标主题。
+
+inputDecorationTheme - InputDecorationTheme类型，InputDecorator，TextField和TextFormField的默认InputDecoration值基于此主题。
+
+sliderTheme - SliderThemeData类型，用于渲染Slider的颜色和形状。
+
+textTheme - TextTheme类型，与卡片和画布对比的文本颜色。
+
+toggleButtonsTheme - ToggleButtonsThemeData类型，​Flutter 1.9 全新组件 ToggleButtons 的主题。
+
+tabBarTheme - TabBarTheme类型，TabBar的主题样式。
+
+tooltipTheme - TooltipThemeData类型，tooltip提示的主题样式。
+
+cardTheme - CardTheme类型，卡片的主题样式。
+
+pageTransitionsTheme - PageTransitionsTheme类型，页面转场主题样式。
+
+appBarTheme - AppBarTheme类型，AppBar主题样式。
+
+bottomAppBarTheme - BottomAppBarTheme类型，底部导航主题样式。
+
+dialogTheme - DialogTheme类型，对话框主题样式。
+
+floatingActionButtonTheme - FloatingActionButtonThemeData类型，FloatingActionButton的主题样式，也就是Scaffold属性的那个。
+
+cupertinoOverrideTheme - CupertinoThemeData类型，cupertino覆盖的主题样式。
+snackBarTheme - SnackBarThemeData类型，弹出的snackBar的主题样式。
+
+bottomSheetTheme - BottomSheetThemeData类型，底部滑出对话框的主题样式。
+
+popupMenuTheme - PopupMenuThemeData类型，弹出菜单对话框的主题样式。
+
+bannerTheme - MaterialBannerThemeData类型，Material材质的Banner主题样式。
+
+dividerTheme - DividerThemeData类型，Divider组件的主题样式，也就是那个横向线条组件。
+
+### ThemeData（其他类型属性）：
+
+accentColorBrightness - Brightness类型，accentColor的亮度。 用于确定放置在突出颜色顶部的文本和图标的颜色（例如FloatingButton上的图标）。
+
+brightness - Brightness类型，应用程序整体主题的亮度。 由按钮等Widget使用，以确定在不使用主色或强调色时要选择的颜色。
+
+platform - TargetPlatform类型，Widget需要适配的目标类型。
+
+splashFactory - InteractiveInkFeatureFactory类型，定义InkWall和InkResponse生成的墨水喷溅的外观。
+
+primaryColorBrightness - Brightness类型，primaryColor的亮度。
+fontFamily - String类型，字体样式。
+
+applyElevationOverlayColor bool类型，是否应用elevation覆盖颜色。
+
+materialTapTargetSize - MaterialTapTargetSize类型，Chip等组件的尺寸主题设置，如：设置为MaterialTapTargetSize.shrinkWrap时，clip距顶部距离为0；设置为MaterialTapTargetSize.padded时距顶部有一个距离
+colorScheme - ColorScheme类型，scheme组颜色，一组13种颜色，可用于配置大多数组件的颜色属性。
+
+typography - Typography类型,用于配置TextTheme、primaryTextTheme和accentTextTheme的颜色和几何文本主题值。
+
+## 报错异常
 
 ```
 Traceback (most recent call last):

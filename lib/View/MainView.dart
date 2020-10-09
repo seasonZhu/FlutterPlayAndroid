@@ -33,13 +33,13 @@ class _MainViewState extends State<MainView>
   ];
 
   final _bottomNavigationBarItems = [
-    BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("首页")),
+    BottomNavigationBarItem(icon: Icon(Icons.home), label: "首页"),
     BottomNavigationBarItem(
-        icon: Icon(Icons.perm_contact_calendar), title: Text("项目")),
+        icon: Icon(Icons.perm_contact_calendar), label: "项目"),
     BottomNavigationBarItem(
-        icon: Icon(Icons.account_balance_wallet), title: Text("公众号")),
-    BottomNavigationBarItem(icon: Icon(Icons.person), title: Text("我的")),
-    BottomNavigationBarItem(icon: Icon(Icons.train), title: Text("测试")),
+        icon: Icon(Icons.account_balance_wallet), label: "公众号"),
+    BottomNavigationBarItem(icon: Icon(Icons.person), label: "我的"),
+    BottomNavigationBarItem(icon: Icon(Icons.train), label: "测试"),
   ];
 
   get _body {
