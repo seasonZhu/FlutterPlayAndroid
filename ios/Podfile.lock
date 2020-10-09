@@ -13,6 +13,8 @@ PODS:
     - Flutter
   - image_picker (0.0.1):
     - Flutter
+  - open_file (0.0.1):
+    - Flutter
   - path_provider (0.0.1):
     - Flutter
   - r_upgrade (0.0.1):
@@ -34,6 +36,7 @@ DEPENDENCIES:
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - image_gallery_saver (from `.symlinks/plugins/image_gallery_saver/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
+  - open_file (from `.symlinks/plugins/open_file/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - r_upgrade (from `.symlinks/plugins/r_upgrade/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
@@ -58,6 +61,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/image_gallery_saver/ios"
   image_picker:
     :path: ".symlinks/plugins/image_picker/ios"
+  open_file:
+    :path: ".symlinks/plugins/open_file/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
   r_upgrade:
@@ -79,6 +84,7 @@ SPEC CHECKSUMS:
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   image_gallery_saver: 259eab68fb271cfd57d599904f7acdc7832e7ef2
   image_picker: 66aa71bc96850a90590a35d4c4a2907b0d823109
+  open_file: 02eb5cb6b21264bd3a696876f5afbfb7ca4f4b7d
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   r_upgrade: 44d715c61914cce3d01ea225abffe894fd51c114
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d

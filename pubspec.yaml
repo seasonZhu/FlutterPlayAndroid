@@ -92,6 +92,9 @@ dependencies:
   # 升级框架
   r_upgrade:
 
+  #
+  open_file:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

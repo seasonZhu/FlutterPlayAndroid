@@ -35,6 +35,7 @@ import 'package:play_android/Test/View/DataLineView.dart';
 import 'package:play_android/Test/View/StarPath.dart';
 import 'package:play_android/Test/View/PathProviderView.dart';
 import 'package:play_android/Test/View/TweenAnimationView.dart';
+import 'package:play_android/Test/View/UpdateView.dart';
 
 import 'package:play_android/Compose/ErrorView.dart';
 
@@ -103,6 +104,8 @@ abstract class Routes {
 
   static final tweenAnimationView = "/tweenAnimationView";
 
+  static final updateView = "/updateView";
+
   // 路由需要传递的参数
   static var arguments;
 
@@ -150,7 +153,9 @@ abstract class Routes {
       Routes.dataLineView: (context) => DataLineView(),
       Routes.startClip: (context) => StartClip(),
       Routes.pathProviderView: (context) => PathProviderView(),
-      Routes.tweenAnimationView: (context) => CurvedAnimationView(),//TweenAnimationView(title: "简单的缩放动画",)
+      Routes.tweenAnimationView: (context) =>
+          CurvedAnimationView(), //TweenAnimationView(title: "简单的缩放动画",)
+      Routes.updateView: (context) => UpdateView(),
     };
   }
 
