@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 
 import 'package:play_android/Account/AccountManager.dart';
 import 'package:play_android/Compose/ShakeView.dart';
+import 'package:play_android/Compose/ToastView.dart';
 
 class MyDetailView extends StatefulWidget {
   @override
@@ -28,13 +29,27 @@ class _MyDetailViewState extends State<MyDetailView> {
 
   File _image;
 
+  
+
   /// 头像更新
   Future<void> _portraitUpdate() async {
+    
+    try {
+      PickedFile pickedFile = await ImagePicker().getImage(source: ImageSource.gallery, maxWidth: 800);
+      if (pickedFile != null) {
+        setState(() {
+          _image = File(pickedFile.path);
+        });
+      }
+    } catch (e) {
+      ToastView.show('没有权限，无法打开相册！');
+    }
+
     /// 这个方法过期了 但是新方法await ImagePicker().getImage(source: ImageSource.camera); 拿到的Future包裹的东西不知道如何使用
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
-    setState(() {
-      _image = image;
-    });
+    // var image = await ImagePicker.pickImage(source: ImageSource.camera);
+    // setState(() {
+    //   _image = image;
+    // });
   }
 
   /// 我个人认为这个地方的cell布局写的不够好

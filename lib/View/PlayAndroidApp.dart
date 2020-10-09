@@ -8,7 +8,7 @@ import 'SplashView.dart';
 import 'Routes.dart';
 import 'package:play_android/EventBus/EventBus.dart';
 import 'package:play_android/Account/AccountManager.dart';
-import 'package:play_android/DeviceSize/DeviceSize.dart';
+import 'package:play_android/SystemConfig/DeviceSize.dart';
 
 class PlayAndroidApp extends StatefulWidget {
   @override

@@ -50,6 +50,8 @@ dependencies:
   drag_container: ^1.0.1
   # 聊天气泡 Wrapper组件
   wrapper: ^1.0.1
+  # 引导页
+  flutter_intro:
 
   #屏幕适配,没有使用
   flutter_screenutil: ^0.5.3
