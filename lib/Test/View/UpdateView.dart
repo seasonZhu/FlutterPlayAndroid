@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:open_file/open_file.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:play_android/Compose/MaterialProgressIndicator.dart';
 
 /// 这个页面有点异常
 class UpdateView extends StatefulWidget {
@@ -119,7 +120,7 @@ class _UpgradeDialogState extends State<UpgradeDialog> {
                       ),
               ),
               Center(
-                child: Image.asset('assets/images/saber.jpg',
+                child: Image.asset('assets/images/upgrade.png',
                     width: 121.5, fit: BoxFit.cover),
               ),
               /// Wrap控件一般都是用于横向排列,当位置不够时会自动换行,
@@ -231,14 +232,15 @@ class _UpgradeDialogState extends State<UpgradeDialog> {
     if (uploadingFlag == UploadingFlag.uploading && _downloadProgress == 0) {
       return Container(
         alignment: Alignment.center,
-        height: 40,
+        height: 20,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(mainTextColor)),
-            SizedBox(width: 5),
+            MaterialProgressIndicator(size: Size(20, 20), color: mainTextColor,),
+            // CircularProgressIndicator(
+            //     valueColor: AlwaysStoppedAnimation<Color>(mainTextColor)),
+            SizedBox(width: 10),
             Material(
               child: Text(
                 '等待',

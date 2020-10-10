@@ -8,7 +8,6 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 import 'package:play_android/View/Routes.dart';
 
-
 /* 专用的测试界面入口View */
 class TestView extends StatefulWidget {
   @override
@@ -30,11 +29,14 @@ class _TestViewState extends State<TestView> with RouteAware {
     {"tiledLines": Routes.tiledLines},
     {"获取空间位置进行弹窗": Routes.pressLocationView},
     {"DataLine的刷新思路": Routes.dataLineView},
-    {"五角星":Routes.startClip},
+    {"五角星": Routes.startClip},
     {"文件夹路径": Routes.pathProviderView},
     {"简单的缩放动画": Routes.tweenAnimationView},
     {"App更新": Routes.updateView},
   ];
+
+  /// ValueNotifier的简单使用
+  var some = ValueNotifier(0);
 
   @override
   Widget build(BuildContext context) {
@@ -72,11 +74,19 @@ class _TestViewState extends State<TestView> with RouteAware {
 
   /// 一个显示iOS风格的输入框,仅仅是简单实现,
   void _showCupertinoInputAlert() {
+    some.value = some.value + 1;
+
+    var text = ValueListenableBuilder<int>(
+        valueListenable: some,
+        builder: (context, value, _) {
+          return Text('Value is $value');
+        });
+
     showCupertinoDialog(
         context: context,
         builder: (context) {
           return CupertinoAlertDialog(
-            title: Text('提示'),
+            title: text,
             content: Column(
               children: <Widget>[
                 CupertinoTextField(),

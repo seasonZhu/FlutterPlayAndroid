@@ -20,7 +20,7 @@ class MaterialProgressIndicator extends StatelessWidget {
       child: FittedBox(
         fit: BoxFit.contain,
         child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+          valueColor: AlwaysStoppedAnimation<Color>(color),
         ),
       ),
     );

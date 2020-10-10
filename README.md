@@ -127,6 +127,20 @@ flutter pub cache repair (这个也许要很久,久到离谱)
 flutter clean
 ```
 
+### Flutter1.22.1
+#### The named parameter 'vsync' isn't defined.Try correcting the name to an existing named parameter's name, or defining a named
+
+```
+run flutter upgrade
+run flutter pub get
+run flutter clean
+restart IDE
+change flutter channel
+and in this case, change minimum SDK version from 2.7.0 to 2.8.0.
+```
+
+上面是Stack Overflow中答案,我就重启了VSCode就好了
+
 ## 键盘遮挡问题
 
 讨论了一下,由于原生会有键盘遮挡住输入框的情况,需要自己进行管理.
@@ -421,7 +435,7 @@ colorScheme - ColorScheme类型，scheme组颜色，一组13种颜色，可用�
 
 typography - Typography类型,用于配置TextTheme、primaryTextTheme和accentTextTheme的颜色和几何文本主题值。
 
-## 报错异常
+## 报错异常 升级Flutter到1.22.1后,好了
 
 ```
 Traceback (most recent call last):

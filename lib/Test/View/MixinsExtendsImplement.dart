@@ -33,8 +33,11 @@ class _SomeState extends State<Some> {
     return Container();
   }
 
-  /// 只能抽象的泛型使用,不能T with CanFly
-  Future<CanFly> someFunction() {}
+  /// 只能抽象的泛型使用,不能T with CanFly,不过CanFly其实已经可以认为是一种类型接口类型了
+  Future<CanFly> someFunction() async {
+    var s = await Bird(); // Me() 都是可以的
+    return s;
+  }
 }
 
 class User {

@@ -58,11 +58,10 @@ class _InformationFlowWebViewState extends State<InformationFlowWebView> {
   }
 
   Widget loading() {
-    /// 使用FittedBox终于把安卓风格的菊花转兼容到导航栏里面去了
+    /// 使用FittedBox终于把安卓风格的菊花转兼容到导航栏里面去了,MaterialProgressIndicator是对其的一个封装
     return MaterialProgressIndicator(
       size: Size(20, 20),
     );
-
     /// iOS风格的不用了
     // return Container(
     //     width: 10, height: 10, child: CupertinoActivityIndicator());
