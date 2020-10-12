@@ -295,6 +295,14 @@ class _MyViewState extends State<MyView> with AutomaticKeepAliveClientMixin {
   }
 
   void _presentToLoginView() {
+
+    /// 使用全局的navigationGlobalKey进行页面跳转,这个感觉就像是用UIApplication.shared.delegate.rootViewController进行push或者present一样
+    // navigationGlobalKey.currentState.push(
+    //   MaterialPageRoute(
+    //     fullscreenDialog: true,
+    //     builder: (context) => LoginView()),
+    // );
+
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -302,6 +310,7 @@ class _MyViewState extends State<MyView> with AutomaticKeepAliveClientMixin {
         builder: (context) => LoginView(),
       ),
       //CustomRoute(type: TransitionType.scale, widget: LoginView()),
+      //CustomRoute.ios(LoginView(), context, fullscreenDialogfalse: true)
     );
   }
 

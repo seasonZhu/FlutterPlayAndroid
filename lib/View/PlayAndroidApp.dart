@@ -49,6 +49,7 @@ class _PlayAndroidAppState extends State<PlayAndroidApp> {
     print(platform);
     _sizeInfo();
     return MaterialApp(
+      navigatorKey: navigationGlobalKey,
       title: 'Play Android',
       theme: _themeData(),
       home: _home,
