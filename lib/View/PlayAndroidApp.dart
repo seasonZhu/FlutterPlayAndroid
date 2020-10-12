@@ -49,15 +49,30 @@ class _PlayAndroidAppState extends State<PlayAndroidApp> {
     print(platform);
     _sizeInfo();
     return MaterialApp(
-      navigatorKey: navigationGlobalKey,
-      title: 'Play Android',
-      theme: _themeData(),
-      home: _home,
-      routes: Routes.maps(),
-      navigatorObservers: [routeObserver],
-      onUnknownRoute: Routes.unknowMap,
-      //onGenerateRoute: null,
-    );
+        navigatorKey: navigationGlobalKey,
+        title: 'Play Android',
+        theme: _themeData(),
+        home: _home,
+        routes: Routes.maps(),
+        navigatorObservers: [routeObserver],
+        onUnknownRoute: Routes.unknowMap,
+        // 注意onGenerateRoute和onUnknownRoute都是RouteFactory类型 typedef RouteFactory = Route<dynamic> Function(RouteSettings settings);
+        onGenerateRoute: (settings) {
+          // Handle '/'
+          if (settings.name == '/') {
+            return MaterialPageRoute(builder: (context) => SplashView());
+          }
+
+          // Handle '/details/:id'典型的路由
+          var uri = Uri.parse(settings.name);
+          if (uri.pathSegments.length == 2 &&
+              uri.pathSegments.first == 'details') {
+            var _ = uri.pathSegments[1];
+            return MaterialPageRoute(builder: (context) => SplashView());
+          }
+
+          return Routes.unknowMap(settings);
+        });
   }
 
   void _sizeInfo() {
