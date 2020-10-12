@@ -16,9 +16,11 @@ class UpdateView extends StatefulWidget {
 
 class _UpdateViewState extends State<UpdateView> {
   Map mockData = {
-      'isForceUpdate': false,// 是否强制更新
-      'content': '这是更新的内容',
-      'url': 'http://www.flutterj.com/test.apk',// 安装包的链接
+    'isForceUpdate': false, // 是否强制更新
+    'content': '这是更新的内容',
+    'url': 'http://www.flutterj.com/test.apk', // 安装包的链接
+    'iosLink':
+        'https://apps.apple.com/cn/app/%E5%BE%AE%E4%BF%A1/id414478124', // 一个假的AppStore链接
   };
 
   @override
@@ -26,6 +28,7 @@ class _UpdateViewState extends State<UpdateView> {
     super.initState();
     updateAlert(context, mockData);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -123,6 +126,7 @@ class _UpgradeDialogState extends State<UpgradeDialog> {
                 child: Image.asset('assets/images/upgrade.png',
                     width: 121.5, fit: BoxFit.cover),
               ),
+
               /// Wrap控件一般都是用于横向排列,当位置不够时会自动换行,
               /// 通过将Container的width使用double.infinity,基本上可以看成是Column使用,在需要一行多个控件的时候进行配置即可
               Container(
@@ -237,7 +241,10 @@ class _UpgradeDialogState extends State<UpgradeDialog> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            MaterialProgressIndicator(size: Size(20, 20), color: mainTextColor,),
+            MaterialProgressIndicator(
+              size: Size(20, 20),
+              color: mainTextColor,
+            ),
             // CircularProgressIndicator(
             //     valueColor: AlwaysStoppedAnimation<Color>(mainTextColor)),
             SizedBox(width: 10),
@@ -284,7 +291,14 @@ class _UpgradeDialogState extends State<UpgradeDialog> {
   * IOS更新处理，直接打开AppStore链接
   * */
   void _iosUpdate() {
-    launch(widget.updateUrl);
+    /// 这个地方不能使用var修饰,否则就不知道iosLink是什么类型,无法走到if或者else中
+    String iosLink = widget.data['iosLink'];
+    if (iosLink.isNotEmpty) {
+      launch(iosLink);
+      uploadingFlag = UploadingFlag.idle;
+    } else {
+      throw 'iosLink can not use';
+    }
   }
 
   /*
@@ -320,11 +334,12 @@ class _UpgradeDialogState extends State<UpgradeDialog> {
   }
 }
 
+/// 这个枚举其实主要是针对安卓的
 enum UploadingFlag { 
-  uploading, 
-  idle, 
-  uploaded, 
-  uploadingFailed 
+  uploading, //正在升级
+  idle, //初始
+  uploaded, //升级完毕
+  uploadingFailed //升级失败
 }
 
 // 文件工具类

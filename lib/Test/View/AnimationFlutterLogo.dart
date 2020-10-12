@@ -82,7 +82,7 @@ class _AnimationFlutterLogoState extends State<AnimationFlutterLogo> {
       child: FlutterLogo(
         size: widget.size,
         //colors: _colors[Random.secure().nextInt(_colors.length)],
-        textColor: _randomColor(),
+        //textColor: _randomColor(),
         style: _styles[Random.secure().nextInt(_styles.length)],
         curve: _curves[Random.secure().nextInt(_curves.length)],
       ),
