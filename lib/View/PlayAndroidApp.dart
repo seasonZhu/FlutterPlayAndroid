@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 //import 'package:fluwx/fluwx.dart';
+//import 'package:connectivity/connectivity.dart';
+import 'package:play_android/Compose/ToastView.dart';
 
 import 'package:play_android/ThemeUtils/ThemeUtils.dart';
 import 'WelcomeView.dart';
@@ -38,7 +40,7 @@ class _PlayAndroidAppState extends State<PlayAndroidApp> {
     _homeView();
     _themeColorListener();
     _themeModeListener();
-
+    _networkListener();
     // 微信SDK注册 这里只是一个例子,实际还要做双端的配置
     //registerWxApi(appId: "",universalLink: "");
   }
@@ -108,6 +110,16 @@ class _PlayAndroidAppState extends State<PlayAndroidApp> {
         themeBrightness = event.brightnessType;
       });
     });
+  }
+
+  void _networkListener() {
+    // 实时监听
+    // var subscription = Connectivity()
+    //     .onConnectivityChanged
+    //     .listen((ConnectivityResult result) {
+    //   ToastView.show(result.toString());
+    //   print(result);
+    // });
   }
 
   // 主题数据

@@ -74,6 +74,12 @@ dependencies:
   #网络请求库
   dio: ^3.0.9
 
+  #网络监听
+  #connectivity:
+
+  #键盘监听
+  #flutter_keyboard_visibility:
+
   #跳转 拨打电话和浏览器
   url_launcher:
 
@@ -92,7 +98,7 @@ dependencies:
   # 升级框架
   r_upgrade:
 
-  #
+  # 安卓用,打开文件
   open_file:
 
 dev_dependencies:
