@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
+import 'package:play_android/Compose/LoadingView.dart';
+
 class RefreshIndicatorListView extends StatefulWidget {
   @override
   RefreshIndicatorListViewState createState() =>
@@ -31,21 +33,23 @@ class RefreshIndicatorListViewState extends State<RefreshIndicatorListView> {
           scrollController.position.maxScrollExtent) {
         //已经滑到底了
         if (hasData) {
-          //还有数据，加载下一页
-          setState(() {
-            loadMoreText = "正在加载中...";
-            loadMoreTextStyle =
+          loadMoreText = "正在加载中...";
+          loadMoreTextStyle =
                 TextStyle(color: const Color(0xFF4483f6), fontSize: 14.0);
-          });
+          //还有数据，加载下一页
+          // setState(() {
+            
+          // });
           page++;
           print("page=" + page.toString());
           _onLoadMore();
         } else {
-          setState(() {
-            loadMoreText = "没有更多数据";
-            loadMoreTextStyle =
+          loadMoreText = "没有更多数据";
+          loadMoreTextStyle =
                 TextStyle(color: const Color(0xFF999999), fontSize: 14.0);
-          });
+          // setState(() {
+            
+          // });
         }
       }
     });
@@ -57,21 +61,23 @@ class RefreshIndicatorListViewState extends State<RefreshIndicatorListView> {
       appBar: AppBar(
         title: Text('原生刷新思路'),
       ),
-      body: RefreshIndicator(
-          onRefresh: _onRefresh,
-          child: ListView.builder(
-            itemCount: list.length + 1,
-            itemBuilder: (BuildContext context, int index) {
-              if (index == list.length) {
-                return _buildProgressMoreIndicator();
-              } else {
-                return ListTile(
-                  title: Text(list[index]),
-                );
-              }
-            },
-            controller: scrollController,
-          )),
+      body: list.length == 0
+          ? LoadingView()
+          : RefreshIndicator(
+              onRefresh: _onRefresh,
+              child: ListView.builder(
+                itemCount: list.length + 1,
+                itemBuilder: (BuildContext context, int index) {
+                  if (index == list.length) {
+                    return _buildProgressMoreIndicator();
+                  } else {
+                    return ListTile(
+                      title: Text(list[index]),
+                    );
+                  }
+                },
+                controller: scrollController,
+              )),
       floatingActionButton: FloatingActionButton(
         tooltip: 'Increment',
         child: Icon(Icons.account_box),
@@ -93,7 +99,7 @@ class RefreshIndicatorListViewState extends State<RefreshIndicatorListView> {
                 children: [
                   CupertinoActivityIndicator(),
                   SizedBox(
-                    width: 4,
+                    width: 5,
                   ),
                   Text(loadMoreText, style: loadMoreTextStyle),
                 ],
@@ -103,8 +109,9 @@ class RefreshIndicatorListViewState extends State<RefreshIndicatorListView> {
     );
   }
 
+  // 模拟下拉 Future<Null>和Future<Void>是有区别的
   Future<Null> _onRefresh() async {
-    await Future.delayed(Duration(seconds: 3), () {
+    await Future.delayed(Duration(seconds: 2), () {
       print('refresh');
       setState(() {
         list = List.generate(20, (i) => '哈喽，我是下拉刷新的数据 $i');
@@ -113,8 +120,9 @@ class RefreshIndicatorListViewState extends State<RefreshIndicatorListView> {
     });
   }
 
+  // 模拟上拉
   Future<Null> _onLoadMore() async {
-    await Future.delayed(Duration(seconds: 3), () {
+    await Future.delayed(Duration(seconds: 2), () {
       print('loadMore');
       setState(() {
         var newList = List.generate(10, (i) => '哈喽，我是上拉加载的数据 $i');
@@ -128,6 +136,7 @@ class RefreshIndicatorListViewState extends State<RefreshIndicatorListView> {
 
   Future getData() async {
     await Future.delayed(Duration(seconds: 2), () {
+      print('newwork request');
       setState(() {
         list = List.generate(30, (i) => '哈喽，我是原始数据 $i');
       });

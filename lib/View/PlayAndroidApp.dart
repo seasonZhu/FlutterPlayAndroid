@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 //import 'package:fluwx/fluwx.dart';
 //import 'package:connectivity/connectivity.dart';
-import 'package:play_android/Compose/ToastView.dart';
 
 import 'package:play_android/ThemeUtils/ThemeUtils.dart';
 import 'WelcomeView.dart';
