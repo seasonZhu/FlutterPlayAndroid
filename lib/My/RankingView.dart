@@ -190,6 +190,7 @@ class _RankingViewState extends State<RankingView> {
         It is an error to call setState unless mounted is true.
 
         mounted是State<T>类中的属性,这里我可以理解为属性页面,tableView.reloadData()
+        使用if (mounted)是避免Widget已经不在tree中,已经dispose,而调用setState导致的崩溃问题
          */
       if (mounted)
         setState(() {

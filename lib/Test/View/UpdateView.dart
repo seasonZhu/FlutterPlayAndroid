@@ -290,11 +290,12 @@ class _UpgradeDialogState extends State<UpgradeDialog> {
   /*
   * IOS更新处理，直接打开AppStore链接
   * */
-  void _iosUpdate() {
+  void _iosUpdate() async {
     /// 这个地方不能使用var修饰,否则就不知道iosLink是什么类型,无法走到if或者else中
     String iosLink = widget.data['iosLink'];
-    if (iosLink.isNotEmpty) {
-      launch(iosLink);
+    if (await canLaunch(iosLink)) {
+      // 这个下面的方法不能加await 不然不会执行uploadingFlag的赋值运算,状态有问题
+      launch(iosLink, forceSafariVC: true);
       uploadingFlag = UploadingFlag.idle;
     } else {
       throw 'iosLink can not use';
