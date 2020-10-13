@@ -33,23 +33,21 @@ class RefreshIndicatorListViewState extends State<RefreshIndicatorListView> {
           scrollController.position.maxScrollExtent) {
         //已经滑到底了
         if (hasData) {
-          loadMoreText = "正在加载中...";
-          loadMoreTextStyle =
-                TextStyle(color: const Color(0xFF4483f6), fontSize: 14.0);
           //还有数据，加载下一页
-          // setState(() {
-            
-          // });
+          setState(() {
+            loadMoreText = "正在加载中...";
+            loadMoreTextStyle =
+                TextStyle(color: const Color(0xFF4483f6), fontSize: 14.0);
+          });
           page++;
           print("page=" + page.toString());
           _onLoadMore();
         } else {
-          loadMoreText = "没有更多数据";
-          loadMoreTextStyle =
+          setState(() {
+            loadMoreText = "没有更多数据";
+            loadMoreTextStyle =
                 TextStyle(color: const Color(0xFF999999), fontSize: 14.0);
-          // setState(() {
-            
-          // });
+          });
         }
       }
     });
@@ -117,6 +115,7 @@ class RefreshIndicatorListViewState extends State<RefreshIndicatorListView> {
         list = List.generate(20, (i) => '哈喽，我是下拉刷新的数据 $i');
       });
       hasData = true;
+      page = 0;
     });
   }
 
@@ -128,7 +127,7 @@ class RefreshIndicatorListViewState extends State<RefreshIndicatorListView> {
         var newList = List.generate(10, (i) => '哈喽，我是上拉加载的数据 $i');
         list.addAll(newList);
       });
-      if (page == 4) {
+      if (page == 2) {
         hasData = false;
       }
     });
@@ -141,6 +140,7 @@ class RefreshIndicatorListViewState extends State<RefreshIndicatorListView> {
         list = List.generate(30, (i) => '哈喽，我是原始数据 $i');
       });
       hasData = true;
+      page = 0;
     });
   }
 }
