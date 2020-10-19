@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:play_android/Compose/FrostedGlassView.dart';
 
 class DoubleLoadingView extends StatefulWidget {
   @override
@@ -99,7 +100,10 @@ class DoubleLoadingViewState extends State<DoubleLoadingView>
                   ),
                 ],
               ),
-              SizedBox(height: 100,width: 1,),
+              SizedBox(
+                height: 100,
+                width: 1,
+              ),
             ],
           ),
         ),
@@ -151,3 +155,26 @@ class InnerPainter extends CustomPainter {
     return false;
   }
 }
+
+/// 一个
+class FrostedGlassDemo extends StatelessWidget {
+  FrostedGlassDemo({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("毛玻璃效果"),
+      ),
+      body: FrostedGlassView(child: //约束性盒子
+          Container(
+            width: 100,
+            height: 100,
+              child: Image.network(
+                  "http://yanxuan.nosdn.127.net/65091eebc48899298171c2eb6696fe27.jpg",
+                  fit: BoxFit.contain)),)
+    );
+  }
+}
+
+
