@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 //import 'package:fluwx/fluwx.dart';
 //import 'package:connectivity/connectivity.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import 'package:play_android/ThemeUtils/ThemeUtils.dart';
 import 'WelcomeView.dart';
@@ -54,6 +55,11 @@ class _PlayAndroidAppState extends State<PlayAndroidApp> {
         title: 'Play Android',
         theme: _themeData(),
         home: _home,
+        /// builder的使用
+        builder: (BuildContext context, Widget child) {
+          /// 确保 loading 组件能覆盖在其他组件之上.
+          return FlutterEasyLoading(child: child);
+        },
         routes: Routes.maps(),
         navigatorObservers: [routeObserver],
         onUnknownRoute: Routes.unknowMap,
