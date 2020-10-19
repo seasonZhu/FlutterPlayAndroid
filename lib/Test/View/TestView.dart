@@ -33,7 +33,8 @@ class _TestViewState extends State<TestView> with RouteAware {
     {"文件夹路径": Routes.pathProviderView},
     {"简单的缩放动画": Routes.tweenAnimationView},
     {"App更新": Routes.updateView},
-    {"原生刷新思路": Routes.refreshIndicatorListViewState}
+    {"原生刷新思路": Routes.refreshIndicatorListViewState}, 
+    {"双逆向Loading": Routes.doubleLoadingView},
   ];
 
   /// ValueNotifier的简单使用
