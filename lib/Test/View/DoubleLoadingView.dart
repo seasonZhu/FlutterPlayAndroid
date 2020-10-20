@@ -156,25 +156,25 @@ class InnerPainter extends CustomPainter {
   }
 }
 
-/// 一个
+/// 一个毛玻璃效果Demo
 class FrostedGlassDemo extends StatelessWidget {
   FrostedGlassDemo({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("毛玻璃效果"),
-      ),
-      body: FrostedGlassView(child: //约束性盒子
-          Container(
-            width: 100,
-            height: 100,
+        appBar: AppBar(
+          title: Text("毛玻璃效果"),
+        ),
+        body: FrostedGlassView(
+          child: Container(
+              width: 100,
+              height: 100,
               child: Image.network(
                   "http://yanxuan.nosdn.127.net/65091eebc48899298171c2eb6696fe27.jpg",
-                  fit: BoxFit.contain)),)
+                  fit: BoxFit.contain)
+          ),
+        )
     );
   }
 }
-
-

@@ -57,7 +57,7 @@ extension Logic on _MixinCountViewState {
 
 }
 
-mixin _CountLogicMixin < T extends StatefulWidget> on State<T> {
+mixin _CountLogicMixin <T extends StatefulWidget> on State<T> {
   int _counter = 0;
 
   @override
