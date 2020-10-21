@@ -21,7 +21,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> with AutomaticKeepAliveClientMixin {
-  List<DataInfo> _dataSource = List<DataInfo>();
+  List<DataInfo> _dataSource = [];
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
 

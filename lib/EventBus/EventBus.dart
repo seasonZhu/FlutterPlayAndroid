@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:event_bus/event_bus.dart';
 
 // 总线
-EventBus eventBus = EventBus();
+final EventBus eventBus = EventBus();
 
 // 登录事件
 class LoginEvent {}
@@ -14,7 +14,7 @@ class LogoutEvent {}
 // 改变主题颜色(仅对白天模式有效)
 class ChangeThemeEvent {
 
-  Color color;
+  final Color color;
 
   ChangeThemeEvent(this.color);
 
@@ -22,7 +22,7 @@ class ChangeThemeEvent {
 
 // 白天模式或者是黑暗模式
 class ChangeThemeBrightness {
-  Brightness brightnessType;
+  final Brightness brightnessType;
   
   ChangeThemeBrightness(this.brightnessType);
 }

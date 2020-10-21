@@ -24,7 +24,7 @@ class SearchResultView extends StatefulWidget {
 }
 
 class _SearchResultViewState extends State<SearchResultView> {
-  List<DataInfo> _dataSource = List<DataInfo>();
+  List<DataInfo> _dataSource = [];
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
   int _page = 0;

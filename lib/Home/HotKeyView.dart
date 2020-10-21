@@ -120,7 +120,7 @@ class _SearchField extends StatelessWidget {
                 cursorColor: Colors.white,
                 decoration: InputDecoration(
                     focusColor: Colors.white,
-                    hintText: "请输入搜索关键字",
+                    hintText: " 请输入搜索关键字",
                     hintStyle: TextStyle(color: Colors.white, fontSize: 16),
                     border: OutlineInputBorder(
                         borderRadius:
