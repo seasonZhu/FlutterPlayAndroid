@@ -436,6 +436,7 @@ colorScheme - ColorScheme类型，scheme组颜色，一组13种颜色，可用�
 typography - Typography类型,用于配置TextTheme、primaryTextTheme和accentTextTheme的颜色和几何文本主题值。
 
 ## 报错异常 升级Flutter到1.22.1后,好了
+原来的脚本中import lldb,应该是一个本地类,然后XCode升级后就找不到了,升级Flutter了就好了
 
 ```
 Traceback (most recent call last):
@@ -479,3 +480,58 @@ Or run on an iOS simulator without code signing
 2020-09-25 17:47:42.435 ios-deploy[21264:195564] [ !! ] Error 0xe8000067: There was an internal API error. AMDeviceSecureInstallApplication(0, device, url, options, install_callback, 0)
 
 ```
+
+## Dart: final和const区别
+
+final和const共同点
+1.类型声明可以省略
+
+final String a = ‘abc’;
+final a = ‘abc’;
+
+const String a = ‘abc’;
+const a = ‘abc’;
+2.初始化后不能再赋值
+
+final a = ‘aaa’;
+a = ‘abc’; //错误
+
+const b = ‘bbb’;
+a = ‘abc’; //错误
+3.不能和var同时使用
+
+final var a = ‘abc’;//错误
+const var b = ‘abc’;//错误
+final和const区别
+1.类级别的常量，通常用 static const
+
+2.const可以使用其他const常量的值来初始化其值
+
+const width=100;
+const height=50;
+const square=width*height;
+3.需要确定的值
+
+final dt = DateTime.now();//正确，运行时有确定的值
+
+const dt = const DateTime.now();//错误，需要编译时有确定的值
+4. 不可变性可传递
+
+const的不可变性是可传递的，final不是
+
+final List ls = [11, 22, 33];
+ls[1] = 44;//正确
+
+const List ls = [11, 22, 33];
+ls[1] = 44;//错误
+5.内存中重复创建
+
+值相同时final在内存中重复创建，const会引用相同值
+
+final a1 = [11 , 22];
+final a2 = [11 , 22];
+print(identical(a1, a2));//false
+
+const a1 = [11 , 22];
+const a2 = [11 , 22];
+print(identical(a1, a2));//true

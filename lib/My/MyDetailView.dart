@@ -91,7 +91,10 @@ class _MyDetailViewState extends State<MyDetailView> {
                         ),
                       ),
                     ),
-                    onTap: () => _portraitUpdate,
+                    onTap: () {
+                      print("点击了头像");
+                      _portraitUpdate();
+                    },
                   )
                 ],
               ),
