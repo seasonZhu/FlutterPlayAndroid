@@ -26,7 +26,7 @@ class BottomFunctionView extends StatefulWidget {
 }
 
 class _BottomFunctionViewState extends State<BottomFunctionView> {
-  List<BottomFunctionModel> _list = List<BottomFunctionModel>();
+  List<BottomFunctionModel> _list = [];
 
   @override
   void initState() {

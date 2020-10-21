@@ -29,7 +29,7 @@ class InformationFlowListView extends StatefulWidget {
 }
 
 class _InformationFlowListViewState extends State<InformationFlowListView> with  AutomaticKeepAliveClientMixin {
-  List<DataInfo> _dataSource = List<DataInfo>();
+  List<DataInfo> _dataSource = [];
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
   int _page = 0;

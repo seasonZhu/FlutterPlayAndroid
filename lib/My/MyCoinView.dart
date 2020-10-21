@@ -17,7 +17,7 @@ class MyCoinView extends StatefulWidget {
 }
 
 class _MyCoinViewState extends State<MyCoinView> {
-  List<DataElement> _dataSource = List<DataElement>();
+  List<DataElement> _dataSource = [];
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
   int _page = 0;

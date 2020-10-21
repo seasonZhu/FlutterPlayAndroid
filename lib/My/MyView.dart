@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:play_android/HttpUtils/Request.dart';
 import 'package:play_android/Responses/CoinResponse.dart';
 import 'package:play_android/Responses/LogoutResponse.dart';
@@ -116,7 +118,7 @@ class _MyViewState extends State<MyView> with AutomaticKeepAliveClientMixin {
                 style: TextStyle(color: Colors.white, fontSize: 18),
               ),
               SizedBox(
-                height: 5,
+                height: 10,
               ),
               Text(
                 "等级 $_level  排名 $_rank   积分 $_coinCount",
@@ -136,8 +138,8 @@ class _MyViewState extends State<MyView> with AutomaticKeepAliveClientMixin {
     if (AccountManager.getInstance().isLogin) {
       return DecorationImage(
           image: (_icon != null && _icon.isNotEmpty)
-              ? NetworkImage(_icon)
-              : AssetImage("assets/images/saber.jpg"),
+              ? CachedNetworkImage(imageUrl: _icon,)
+              : AssetImage("assets/images/saber.jpg",),
           fit: BoxFit.cover);
     } else {
       return DecorationImage(

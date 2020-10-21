@@ -20,7 +20,7 @@ class MyCollectView extends StatefulWidget {
 }
 
 class _MyCollectViewState extends State<MyCollectView> {
-  List<DataElement> _dataSource = List<DataElement>();
+  List<DataElement> _dataSource = [];
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
   SlidableController _slidableController = SlidableController();

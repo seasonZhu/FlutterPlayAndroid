@@ -19,17 +19,17 @@ class MyCoinViewCell extends StatelessWidget {
         height: 66,
         child: Row(
           children: <Widget>[
-            // Container(
-            //   padding: EdgeInsets.symmetric(horizontal: 15),
-            //   child: Text(_model.reason),
-            // ),
+            Container(
+              padding: EdgeInsets.only(left: 15),
+              child: Text(_model.reason),
+            ),
             Expanded(child: Container(
               padding: EdgeInsets.symmetric(horizontal: 15),
-              child: Text(_model.desc),
+              child: Text(_model.desc, textAlign: TextAlign.start,),
             ),),
             //Space(),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 15),
+              padding: EdgeInsets.only(right: 15),
               child: Text(_model.coinCount.toString()),
             ),
           ],

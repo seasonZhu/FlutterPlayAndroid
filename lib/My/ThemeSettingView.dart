@@ -40,6 +40,7 @@ class _ThemeSettingViewState extends State<ThemeSettingView> {
             padding: const EdgeInsets.all(4.0),
             child: GridView.count(
               crossAxisCount: 4,
+              /// 这个地方我是打算用高阶的map函数的,后来发现没有那么简单
               children: List.generate(colors.length, (index) {
                 return InkWell(
                   onTap: () {

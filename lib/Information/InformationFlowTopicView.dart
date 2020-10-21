@@ -11,17 +11,18 @@ import 'package:play_android/Compose/ToastView.dart';
 class InformationFlowTopicView extends StatefulWidget {
   final InformationType _type;
 
-  InformationFlowTopicView({Key key, @required InformationType type}):  
-    _type = type,
-    super(key: key);
+  InformationFlowTopicView({Key key, @required InformationType type})
+      : _type = type,
+        super(key: key);
 
   @override
-  _InformationFlowTopicViewState createState() => _InformationFlowTopicViewState();
+  _InformationFlowTopicViewState createState() =>
+      _InformationFlowTopicViewState();
 }
 
-class _InformationFlowTopicViewState extends State<InformationFlowTopicView> with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
-
-  List<TopicInfo> _dataSource = List<TopicInfo>();
+class _InformationFlowTopicViewState extends State<InformationFlowTopicView>
+    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
+  List<TopicInfo> _dataSource = [];
 
   TabController _tabController;
 
@@ -37,46 +38,43 @@ class _InformationFlowTopicViewState extends State<InformationFlowTopicView> wit
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return _contentView();//futureBuilder()
+    return _contentView(); //futureBuilder()
   }
 
   Widget futureBuilder() {
     return FutureBuilder(
-      future: _getTopicUseInFutureBuilder(),
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
-        //请求完成
-        if (snapshot.connectionState == ConnectionState.done) {
-          InformationFlowTopicResponse model = snapshot.data;
-          _dataSource = model.data;
-          _tabController = TabController(length: model.data.length, vsync: this);
+        future: _getTopicUseInFutureBuilder(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          //请求完成
+          if (snapshot.connectionState == ConnectionState.done) {
+            InformationFlowTopicResponse model = snapshot.data;
+            _dataSource = model.data;
+            _tabController =
+                TabController(length: model.data.length, vsync: this);
 
-          if (model.errorCode == 0) {
-            return _mainBody();  
-          }else if (model.data.isEmpty) {
-            return EmptyView();
-          }else {
-            ToastView.show(model.errorMsg);
-            return Container();
-          }          
-        }
-        //请求未完成时弹出loading
-        return _loadingBody();
-      }
-    );
+            if (model.errorCode == 0) {
+              return _mainBody();
+            } else if (model.data.isEmpty) {
+              return EmptyView();
+            } else {
+              ToastView.show(model.errorMsg);
+              return Container();
+            }
+          }
+          //请求未完成时弹出loading
+          return _loadingBody();
+        });
   }
 
   Scaffold _mainBody() {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget._type.title, style: TextStyle(color: Colors.white)),
-        iconTheme: IconThemeData(color: Colors.white),
-        elevation: 0.1,
-        bottom: tabBar()
-      ),
-      body: TabBarView(
-          controller: _tabController, 
-          children: _createTabPage()
-      ),
+          title:
+              Text(widget._type.title, style: TextStyle(color: Colors.white)),
+          iconTheme: IconThemeData(color: Colors.white),
+          elevation: 0.1,
+          bottom: tabBar()),
+      body: TabBarView(controller: _tabController, children: _createTabPage()),
     );
   }
 
@@ -106,8 +104,7 @@ class _InformationFlowTopicViewState extends State<InformationFlowTopicView> wit
       indicatorColor: Colors.white,
       indicatorSize: TabBarIndicatorSize.tab,
       labelStyle: TextStyle(color: Colors.white, fontSize: 20),
-      unselectedLabelStyle:
-          TextStyle(color: Colors.grey, fontSize: 18),
+      unselectedLabelStyle: TextStyle(color: Colors.grey, fontSize: 18),
       labelColor: Colors.white,
       labelPadding: EdgeInsets.all(0.0),
       indicatorPadding: EdgeInsets.all(0.0),
@@ -117,11 +114,12 @@ class _InformationFlowTopicViewState extends State<InformationFlowTopicView> wit
   }
 
   List<Widget> _createTabPage() {
-    var widgets = List<Widget>() ;
-    for (var model in _dataSource) {
-      widgets.add(InformationFlowListView(model: model, type: InformationType.publicNumber,));
-    }
-    return widgets;
+    return _dataSource
+        .map((model) => InformationFlowListView(
+              model: model,
+              type: InformationType.publicNumber,
+            ))
+        .toList();
   }
 
   Future<InformationFlowTopicResponse> _getTopicUseInFutureBuilder() async {
@@ -134,9 +132,11 @@ class _InformationFlowTopicViewState extends State<InformationFlowTopicView> wit
     _tabController.dispose();
     super.dispose();
   }
-  
+
   Widget _contentView() {
-    return (_dataSource.isNotEmpty && _tabController != null) ? _mainBody() : _loadingBody();
+    return (_dataSource.isNotEmpty && _tabController != null)
+        ? _mainBody()
+        : _loadingBody();
   }
 
   // 用于initState函数中
@@ -144,14 +144,14 @@ class _InformationFlowTopicViewState extends State<InformationFlowTopicView> wit
     var model = await widget._type.model;
 
     if (model.errorCode == 0) {
-        _dataSource = model.data;
-        if (mounted) {
-          setState(() {
-            _tabController = TabController(length: model.data.length, vsync: this);
-          });
-        }   
+      _dataSource = model.data;
+      if (mounted) {
+        setState(() {
+          _tabController =
+              TabController(length: model.data.length, vsync: this);
+        });
+      }
     }
     return model;
   }
-  
 }

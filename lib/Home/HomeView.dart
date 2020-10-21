@@ -65,15 +65,26 @@ class _HomeViewState extends State<HomeView> with AutomaticKeepAliveClientMixin 
               onRefresh: _onRefresh,
               onLoading: _onLoading,
               child: ListView.builder(
-                itemBuilder: (context, index) => Column(
-                  children: <Widget>[
-                    _sectionHeader(index),
-                    InformationFlowListCell(
-                      model: _dataSource[index],
-                    ),
-                  ],
-                ),
-                itemCount: _dataSource.length,
+                // itemBuilder: (context, index) => Column(
+                //   children: <Widget>[
+                //     _sectionHeader(index),
+                //     InformationFlowListCell(
+                //       model: _dataSource[index],
+                //     ),
+                //   ],
+                // ),
+                // itemCount: _dataSource.length,
+                /// 这样写少包裹了一层Column,但是逻辑变得有些复杂
+                itemBuilder: (context, index) {
+                  if (index == 0) {
+                    return _sectionHeader(index);
+                  } else {
+                    return InformationFlowListCell(
+                      model: _dataSource[index - 1],
+                    );
+                  }
+                },
+                itemCount: _dataSource.length + 1,
               ),
             )
           : LoadingView(),

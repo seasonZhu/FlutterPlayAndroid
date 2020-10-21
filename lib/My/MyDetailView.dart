@@ -29,13 +29,11 @@ class _MyDetailViewState extends State<MyDetailView> {
 
   File _image;
 
-  
-
   /// 头像更新
   Future<void> _portraitUpdate() async {
-    
     try {
-      PickedFile pickedFile = await ImagePicker().getImage(source: ImageSource.gallery, maxWidth: 800);
+      PickedFile pickedFile = await ImagePicker()
+          .getImage(source: ImageSource.gallery, maxWidth: 800);
       if (pickedFile != null) {
         setState(() {
           _image = File(pickedFile.path);
@@ -73,25 +71,28 @@ class _MyDetailViewState extends State<MyDetailView> {
                     '头像',
                     style: TextStyle(fontSize: 16),
                   ),
-                  ShakeView(
-                    child: Container(
-                      width: 60.0,
-                      height: 60.0,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Colors.white,
-                          width: 2.0,
-                        ),
-                        image: DecorationImage(
-                          image: _image == null
-                              ? AssetImage("assets/images/saber.jpg")
-                              : FileImage(_image),
-                          fit: BoxFit.cover,
+                  GestureDetector(
+                    child: ShakeView(
+                      child: Container(
+                        width: 60.0,
+                        height: 60.0,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Colors.white,
+                            width: 2.0,
+                          ),
+                          image: DecorationImage(
+                            image: _image == null
+                                ? AssetImage("assets/images/saber.jpg")
+                                : FileImage(_image),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
-                  ),
+                    onTap: () => _portraitUpdate,
+                  )
                 ],
               ),
             ),

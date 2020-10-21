@@ -17,7 +17,7 @@ class TreeView extends StatefulWidget {
 }
 
 class _TreeViewState extends State<TreeView> with AutomaticKeepAliveClientMixin {
-  List<TopicInfo> _dataSource = List<TopicInfo>();
+  List<TopicInfo> _dataSource = [];
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
 

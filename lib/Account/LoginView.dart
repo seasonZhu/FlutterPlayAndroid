@@ -130,7 +130,7 @@ class _LoginViewState extends State<LoginView> {
                     padding: EdgeInsets.only(top: 20, left: 15, right: 15),
                     child: Container(
                       /// 这个地方可以写宽一点 会被Padding卡住
-                      width: 400,
+                      width: double.infinity,
                       height: 44,
                       child: FlatButton(
                         color: Theme.of(context).primaryColor,
