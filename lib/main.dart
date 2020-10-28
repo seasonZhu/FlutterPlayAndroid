@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-//import 'View/BlocExampleApp.dart';
 import 'View/PlayAndroidApp.dart';
 
 void main() => run();
