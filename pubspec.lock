@@ -652,7 +652,7 @@ packages:
       name: pull_to_refresh
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.6.0"
+    version: "1.6.2"
   quiver:
     dependency: transitive
     description:

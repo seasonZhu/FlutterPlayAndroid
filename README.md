@@ -481,6 +481,10 @@ Or run on an iOS simulator without code signing
 
 ```
 
+## package:flutter/src/widgets/scroll_position.dart': Failed assertion: line 582 pos 12: '_pendingDimensions': is not true
+
+pull_to_refresh需要升级到1.6.2
+
 ## Dart: final和const区别
 
 final和const共同点
