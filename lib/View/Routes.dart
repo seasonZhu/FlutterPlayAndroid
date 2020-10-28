@@ -38,6 +38,7 @@ import 'package:play_android/Test/View/TweenAnimationView.dart';
 import 'package:play_android/Test/View/UpdateView.dart';
 import 'package:play_android/Test/View/RefreshIndicatorListView.dart';
 import 'package:play_android/Test/View/DoubleLoadingView.dart';
+import 'package:play_android/Test/View/UniAppNewsListView.dart';
 
 import 'package:play_android/Compose/ErrorView.dart';
 
@@ -114,6 +115,8 @@ abstract class Routes {
 
   static final doubleLoadingView = "/doubleLoadingView";
 
+  static final uniAppNewsListView = "/uniAppNewsListView";
+
   // 路由需要传递的参数
   static var arguments;
 
@@ -167,6 +170,7 @@ abstract class Routes {
       Routes.refreshIndicatorListViewState: (context) =>
           RefreshIndicatorListView(),
       Routes.doubleLoadingView: (context) => DoubleLoadingView(),
+      Routes.uniAppNewsListView: (context) => UniAppNewsListView(),
     };
   }
 

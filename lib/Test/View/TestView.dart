@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:r_upgrade/r_upgrade.dart';
 import 'package:dio/dio.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
+//import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 import 'package:play_android/View/Routes.dart';
 
@@ -33,8 +33,9 @@ class _TestViewState extends State<TestView> with RouteAware {
     {"文件夹路径": Routes.pathProviderView},
     {"简单的缩放动画": Routes.tweenAnimationView},
     {"App更新": Routes.updateView},
-    {"原生刷新思路": Routes.refreshIndicatorListViewState}, 
+    {"原生刷新思路": Routes.refreshIndicatorListViewState},
     {"双逆向Loading": Routes.doubleLoadingView},
+    {"uni-app的一个例子编写": Routes.uniAppNewsListView}
   ];
 
   /// ValueNotifier的简单使用
@@ -120,9 +121,9 @@ class _TestViewState extends State<TestView> with RouteAware {
         "https://ss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=a62e824376d98d1069d40a31113eb807/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg";
     var response = await Dio()
         .get(url, options: Options(responseType: ResponseType.bytes));
-    final result =
-        await ImageGallerySaver.saveImage(Uint8List.fromList(response.data));
-    print('result:$result');
+    // final result =
+    //     await ImageGallerySaver.saveImage(Uint8List.fromList(response.data));
+    // print('result:$result');
   }
 
   void appUpdate() async {
