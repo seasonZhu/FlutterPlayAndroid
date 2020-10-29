@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+//import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import 'package:play_android/Responses/InformationFlowProtocol.dart';
@@ -18,7 +18,7 @@ class InformationFlowWebView extends StatefulWidget {
 // 使用的WebviewScaffold这个框架中无法支持iOS的侧滑,准确说的是web表现的内容无法侧滑
 // 后面使用了webview_flutter这个框架,最终调用的是原生的WKWebKit框架,效果好,并且支持侧滑
 class _InformationFlowWebViewState extends State<InformationFlowWebView> {
-  FlutterWebviewPlugin _flutterWebviewPlugin = FlutterWebviewPlugin();
+  //FlutterWebviewPlugin _flutterWebviewPlugin = FlutterWebviewPlugin();
 
   final Completer<WebViewController> _controller =
       Completer<WebViewController>();
@@ -62,6 +62,7 @@ class _InformationFlowWebViewState extends State<InformationFlowWebView> {
     return MaterialProgressIndicator(
       size: Size(20, 20),
     );
+
     /// iOS风格的不用了
     // return Container(
     //     width: 10, height: 10, child: CupertinoActivityIndicator());
@@ -143,15 +144,16 @@ class _InformationFlowWebViewState extends State<InformationFlowWebView> {
 
   @override
   void dispose() {
-    if (_timer) {
-      _timer.cancel();
-    }
+    // if (_timer) {
+    //   _timer.cancel();
+    //   _timer = null;
+    // }
     super.dispose();
   }
 
   /* 
   以下方法没有用到
-   */
+  
 
   WebviewScaffold webviewPlugin() {
     return WebviewScaffold(
@@ -184,4 +186,5 @@ class _InformationFlowWebViewState extends State<InformationFlowWebView> {
       }
     });
   }
+  */
 }

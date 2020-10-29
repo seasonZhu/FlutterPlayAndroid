@@ -881,7 +881,7 @@ packages:
       name: webview_flutter
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.3.22+1"
+    version: "1.0.5"
   wrapper:
     dependency: "direct main"
     description:
@@ -905,4 +905,4 @@ packages:
     version: "2.2.1"
 sdks:
   dart: ">=2.10.0-110 <2.11.0"
-  flutter: ">=1.17.0 <2.0.0"
+  flutter: ">=1.22.0 <2.0.0"

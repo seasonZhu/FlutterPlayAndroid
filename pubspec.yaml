@@ -31,7 +31,7 @@ dependencies:
   # webView插件,不支持iOS的侧滑
   flutter_webview_plugin: ^0.3.11
   # 上面那个性能不好 换这个 这个使用原生的WebKit,而且支持侧滑
-  webview_flutter: ^0.3.19+9
+  webview_flutter: ^1.0.5
   # 下拉刷新与上拉加载
   pull_to_refresh: ^1.6.2
   # cell的侧滑删除,还有其他可以使用的地方
