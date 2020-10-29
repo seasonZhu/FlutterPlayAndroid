@@ -180,7 +180,9 @@ abstract class Routes {
     return MaterialPageRoute(
         builder: (context) => Scaffold(
               appBar: AppBar(
-                title: Text("未知路由"),
+                title: Text("未知路由", style: TextStyle(color: Colors.white)),
+                iconTheme: IconThemeData(color: Colors.white),
+                elevation: 0.1,
               ),
               body: ErrorView(),
             ));

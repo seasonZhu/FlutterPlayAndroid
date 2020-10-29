@@ -46,7 +46,9 @@ class _TweenAnimationViewState extends State<TweenAnimationView>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(widget.title, style: TextStyle(color: Colors.white)),
+        iconTheme: IconThemeData(color: Colors.white),
+        elevation: 0.1,
       ),
       body: Center(
         child: Container(
@@ -130,7 +132,9 @@ class AnimatedLogo extends AnimatedWidget {
     final animation = listenable;
     return Scaffold(
       appBar: AppBar(
-        title: Text("曲线动画"),
+        title: Text("曲线动画", style: TextStyle(color: Colors.white)),
+        iconTheme: IconThemeData(color: Colors.white),
+        elevation: 0.1,
       ),
       body: Center(
         child: Opacity(

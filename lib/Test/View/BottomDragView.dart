@@ -21,7 +21,9 @@ class _BottomDragViewState extends State<BottomDragView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("抽屉效果"),
+          title: Text("抽屉效果", style: TextStyle(color: Colors.white)),
+          iconTheme: IconThemeData(color: Colors.white),
+          elevation: 0.1,
       ),
       backgroundColor: Colors.grey,
 

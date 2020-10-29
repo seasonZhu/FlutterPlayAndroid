@@ -17,7 +17,9 @@ class _DataLineViewState extends State<DataLineView> with MultDataLine {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("DataLineView"),
+          title: Text("DataLineView", style: TextStyle(color: Colors.white)),
+          iconTheme: IconThemeData(color: Colors.white),
+          elevation: 0.1,
         ),
         body: ListView(children: [
           GestureDetector(

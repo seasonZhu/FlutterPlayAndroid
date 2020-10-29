@@ -111,7 +111,9 @@ class _UsePartRefreshWidgetState extends State<UsePartRefreshWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("局部更新组件使用"),
+          title: Text("局部更新组件使用", style: TextStyle(color: Colors.white)),
+          iconTheme: IconThemeData(color: Colors.white),
+          elevation: 0.1,
       ),
       body: Center(
         child: Column(

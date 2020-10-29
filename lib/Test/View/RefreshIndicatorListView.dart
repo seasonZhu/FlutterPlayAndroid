@@ -57,7 +57,9 @@ class RefreshIndicatorListViewState extends State<RefreshIndicatorListView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('原生刷新思路'),
+          title: Text("原生刷新思路", style: TextStyle(color: Colors.white)),
+          iconTheme: IconThemeData(color: Colors.white),
+          elevation: 0.1,
       ),
       body: list.length == 0
           ? LoadingView()

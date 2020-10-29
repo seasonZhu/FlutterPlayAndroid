@@ -27,7 +27,9 @@ class _UniAppNewsListViewState extends State<UniAppNewsListView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("uni-app的一个例子编写"),
+          title: Text("uni-app的一个例子编写", style: TextStyle(color: Colors.white)),
+          iconTheme: IconThemeData(color: Colors.white),
+          elevation: 0.1,
         ),
         body: _body());
   }
@@ -149,7 +151,9 @@ class UniAppNewsDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(model.title),
+          title: Text(model.title, style: TextStyle(color: Colors.white)),
+          iconTheme: IconThemeData(color: Colors.white),
+          elevation: 0.1,
       ),
       body: SafeArea(
         child: SingleChildScrollView(

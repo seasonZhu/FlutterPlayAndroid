@@ -58,7 +58,11 @@ class CounterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Counter')),
+      appBar: AppBar(
+        title: Text("Counter", style: TextStyle(color: Colors.white)),
+        iconTheme: IconThemeData(color: Colors.white),
+        elevation: 0.1,
+      ),
       body: BlocBuilder<CounterBloc, int>(
         builder: (_, count) {
           return Center(

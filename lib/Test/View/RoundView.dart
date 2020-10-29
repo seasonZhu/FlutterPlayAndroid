@@ -7,8 +7,9 @@ class RoundView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("倒圆角的几种方式"),
-          centerTitle: true,
+            title: Text("倒圆角的几种方式", style: TextStyle(color: Colors.white)),
+            iconTheme: IconThemeData(color: Colors.white),
+            elevation: 0.1,
         ),
         //  backgroundColor: Colors.grey,
         body: SafeArea(

@@ -99,7 +99,11 @@ class _PathProviderViewState extends State<PathProviderView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("文件路径"),),
+      appBar: AppBar(
+          title: Text("文件路径", style: TextStyle(color: Colors.white)),
+          iconTheme: IconThemeData(color: Colors.white),
+          elevation: 0.1,
+      ),
       body: Center(
         child: ListView(
           itemExtent: 120,

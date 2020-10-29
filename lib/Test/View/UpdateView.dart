@@ -32,7 +32,11 @@ class _UpdateViewState extends State<UpdateView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('App更新')),
+      appBar: AppBar(
+          title: Text("App更新", style: TextStyle(color: Colors.white)),
+          iconTheme: IconThemeData(color: Colors.white),
+          elevation: 0.1,
+      ),
       body: Container(),
     );
   }

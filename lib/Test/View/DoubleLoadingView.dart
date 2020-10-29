@@ -68,7 +68,9 @@ class DoubleLoadingViewState extends State<DoubleLoadingView>
     if (!innerController.isAnimating) innerController.forward();
     return Scaffold(
       appBar: AppBar(
-        title: Text("双逆向Loading"),
+          title: Text("双逆向Loading", style: TextStyle(color: Colors.white)),
+          iconTheme: IconThemeData(color: Colors.white),
+          elevation: 0.1,
       ),
       body: Center(
         child: Container(
@@ -164,7 +166,9 @@ class FrostedGlassDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("毛玻璃效果"),
+          title: Text("毛玻璃效果", style: TextStyle(color: Colors.white)),
+          iconTheme: IconThemeData(color: Colors.white),
+          elevation: 0.1,
         ),
         body: FrostedGlassView(
           child: Container(

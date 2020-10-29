@@ -17,7 +17,9 @@ class _MixinCountViewState extends State<MixinCountView> with _CountLogicMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("通过Mixin进行view与逻辑分离"),
+          title: Text("通过Mixin进行view与逻辑分离", style: TextStyle(color: Colors.white)),
+          iconTheme: IconThemeData(color: Colors.white),
+          elevation: 0.1,
       ),
       body: Center(
         child: Column(

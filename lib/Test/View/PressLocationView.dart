@@ -47,7 +47,11 @@ class PressLocationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('点击位置')),
+      appBar: AppBar(
+          title: Text("点击位置", style: TextStyle(color: Colors.white)),
+          iconTheme: IconThemeData(color: Colors.white),
+          elevation: 0.1,
+      ),
       body: tapView(context), //ListView.builder(itemBuilder: button), //
     );
   }
