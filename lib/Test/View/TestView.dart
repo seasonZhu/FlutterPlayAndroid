@@ -6,6 +6,7 @@ import 'package:dio/dio.dart';
 //import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 import 'package:play_android/View/Routes.dart';
+import 'package:play_android/Compose/PAAppBar.dart';
 
 /* 专用的测试界面入口View */
 class TestView extends StatefulWidget {
@@ -43,10 +44,8 @@ class _TestViewState extends State<TestView> with RouteAware {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("测试界面入口", style: TextStyle(color: Colors.white)),
-        iconTheme: IconThemeData(color: Colors.white),
-        elevation: 0.1,
+      appBar: PAAppBar(
+        title: "测试界面入口",
         actions: <Widget>[
           IconButton(
               icon: Icon(Icons.search),

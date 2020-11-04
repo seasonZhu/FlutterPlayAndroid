@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:flutter/material.dart';
 //import 'package:device_info/device_info.dart';
 
 abstract class DeviceSize {
@@ -44,6 +45,16 @@ abstract class DeviceSize {
     
   /// 按照rpx来设置
   static double setRpx(double size) => DeviceSize.rpx * size;
+
+  // 整屏宽度
+  double winWidth(BuildContext context) {
+    return MediaQuery.of(context).size.width;
+  }
+  
+  // 整屏高度
+  double winHeight(BuildContext context) {
+    return MediaQuery.of(context).size.height;
+  }
 }
 
 /* int分类 */
