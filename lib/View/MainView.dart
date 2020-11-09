@@ -29,7 +29,7 @@ class _MainViewState extends State<MainView>
       type: InformationType.publicNumber,
     ),
     MyView(),
-    TestView()
+    //TestView()
   ];
 
   final _bottomNavigationBarItems = [
@@ -39,7 +39,7 @@ class _MainViewState extends State<MainView>
     BottomNavigationBarItem(
         icon: Icon(Icons.account_balance_wallet), label: "公众号"),
     BottomNavigationBarItem(icon: Icon(Icons.person), label: "我的"),
-    BottomNavigationBarItem(icon: Icon(Icons.train), label: "测试"),
+    //BottomNavigationBarItem(icon: Icon(Icons.train), label: "测试"),
   ];
 
   get _body {
