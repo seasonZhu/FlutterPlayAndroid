@@ -60,6 +60,15 @@ class _PlayAndroidAppState extends State<PlayAndroidApp> {
           /// 确保 loading 组件能覆盖在其他组件之上.
           return FlutterEasyLoading(child: child);
         },
+        /// 去掉全局的上下拉 水波纹效果
+      
+        // builder: (context, child) {
+        //     child= ScrollConfiguration(
+        //       child:  child,
+        //       behavior: RefreshScrollBehavior(),
+        //     );
+        //     return child;
+        // },
         routes: Routes.maps(),
         navigatorObservers: [routeObserver],
         onUnknownRoute: Routes.unknowMap,

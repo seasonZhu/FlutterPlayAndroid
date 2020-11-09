@@ -13,6 +13,7 @@ import 'package:play_android/Compose/ToastView.dart';
 //import 'package:play_android/Compose/EmptyView.dart';
 
 import 'package:play_android/Information/InformationFlowListCell.dart';
+import 'package:play_android/Test/View/TestView.dart';
 import 'BannerView.dart';
 
 class HomeView extends StatefulWidget {
@@ -43,7 +44,21 @@ class _HomeViewState extends State<HomeView> with AutomaticKeepAliveClientMixin 
       appBar: AppBar(
         title: Text("首页", style: TextStyle(color: Colors.white)),
         iconTheme: IconThemeData(color: Colors.white),
+        /// AppBar颜色渐变
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.cyan, Color.fromARGB(255, 28, 135, 251), Colors.blueAccent],
+            ),
+          ),
+        ),
         elevation: 0.1,
+        /// 自定义抽屉按钮
+        leading: Builder(
+          builder: (context) => GestureDetector(
+            child: Icon(Icons.mail),
+            onTap: () => Scaffold.of(context).openDrawer(),
+        )),
         actions: <Widget>[
           IconButton(
               icon: Icon(Icons.search),
@@ -53,6 +68,7 @@ class _HomeViewState extends State<HomeView> with AutomaticKeepAliveClientMixin 
         ],
       ),
       body: _body(),
+      drawer: TestView(),
     );
   }
 
