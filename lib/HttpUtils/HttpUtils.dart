@@ -31,7 +31,7 @@ abstract class HttpUtils {
   // Post请求
   static Future<Map<String, dynamic>> post({String api, Map<String, dynamic> params, Map<String, dynamic> headers = const {}}) async {
     getCookieHeaderOptions().headers.addAll(headers);
-    Response response = await _dio.post(api, queryParameters: params, options: getCookieHeaderOptions());
+    Response response = await _dio.post(api, data: params, options: getCookieHeaderOptions());
     Log._httpLog(response);
     return response.data;
   }
