@@ -20,7 +20,7 @@ class _TweenAnimationViewState extends State<TweenAnimationView>
     super.initState();
 
     controller =
-        AnimationController(duration: const Duration(seconds: 2), vsync: this);
+        AnimationController(duration: const Duration(seconds: 2),);
 
     /// 传入的begin与end必须是相同的类型 看源码里面的泛型T, 要么显示声明类型 要么隐式声明传入的数据类型相同 Tween<double>
     animation = Tween(begin: 0.0, end: 300.0).animate(controller)
@@ -84,7 +84,7 @@ class _CurvedAnimationViewState extends State<CurvedAnimationView>
     super.initState();
 
     controller =
-        AnimationController(duration: const Duration(seconds: 2), vsync: this);
+        AnimationController(duration: const Duration(seconds: 2),);
 
     animation = CurvedAnimation(parent: controller, curve: Curves.bounceIn)
       ..addListener(() {

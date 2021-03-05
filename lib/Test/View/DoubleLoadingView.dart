@@ -26,9 +26,9 @@ class DoubleLoadingViewState extends State<DoubleLoadingView>
   void initState() {
     super.initState();
     outerController = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 3000));
+        duration: Duration(milliseconds: 3000));
     innerController = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 2000));
+        duration: Duration(milliseconds: 2000));
 
     outerAnim = Tween(begin: 0.0, end: 2.0).animate(outerController);
     innerAnim = Tween(begin: 1.0, end: 0.0).animate(innerController);

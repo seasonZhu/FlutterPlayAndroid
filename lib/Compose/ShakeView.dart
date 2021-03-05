@@ -22,7 +22,7 @@ class _ShakeViewState extends State<ShakeView>
     super.initState();
 
     controller = AnimationController(
-        duration: const Duration(milliseconds: 500), vsync: this);
+        duration: const Duration(milliseconds: 500));
     animation = TweenSequence<double>([
       //使用TweenSequence进行多组补间动画
       TweenSequenceItem<double>(tween: Tween(begin: 0, end: 10), weight: 1),

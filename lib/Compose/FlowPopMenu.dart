@@ -34,8 +34,7 @@ class _FlowPopMenuState extends State<FlowPopMenu>
     super.initState();
     _ctrlAnimationPopMenu = AnimationController(
       //必须初始化动画变量
-      duration: const Duration(milliseconds: 250), //动画时长250毫秒
-      vsync: this, //SingleTickerProviderStateMixin的作用
+      duration: const Duration(milliseconds: 250), //动画时长250毫秒 //SingleTickerProviderStateMixin的作用
     );
   }
 

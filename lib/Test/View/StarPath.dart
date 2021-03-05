@@ -64,7 +64,7 @@ class _StartClipState extends State<StartClip>
   @override
   void initState() {
     _controller =
-        AnimationController(duration: Duration(seconds: 2), vsync: this)
+        AnimationController(duration: Duration(seconds: 2),)
           ..addStatusListener((status) {
             if (status == AnimationStatus.completed) {
               _controller.reverse();
