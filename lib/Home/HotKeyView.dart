@@ -77,13 +77,17 @@ class _HotKeyViewState extends State<HotKeyView> {
   Widget _button(Datum data) {
     return Container(
       margin: EdgeInsets.all(5),
-      child: FlatButton(
-        color: ThemeUtils.currentColor,
-        highlightColor: ThemeUtils.currentColor,
-        colorBrightness: Brightness.dark,
-        splashColor: ThemeUtils.currentColor,
+      child: TextButton(
+        style: ButtonStyle(
+          foregroundColor: MaterialStateProperty.all(ThemeUtils.currentColor),
+          overlayColor: MaterialStateProperty.all(ThemeUtils.currentColor),
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+        ),
         child: Text(data.name),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         onPressed: () {
           _pushToSearchResultView(data.name);
         },

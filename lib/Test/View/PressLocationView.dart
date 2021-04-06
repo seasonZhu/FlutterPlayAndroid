@@ -162,7 +162,7 @@ class PopupState extends State<Popup> {
     TextStyle labelStyle = TextStyle(color: Colors.white);
 
     return Expanded(
-      child: FlatButton(
+      child: TextButton(
         //点击Item
         onPressed: () {
           // 如果没接收也返回的花就会报错，所以这里需要判断

@@ -22,7 +22,9 @@ class _ShakeViewState extends State<ShakeView>
     super.initState();
 
     controller = AnimationController(
-        duration: const Duration(milliseconds: 500));
+      duration: const Duration(milliseconds: 500),
+      vsync: this,
+    );
     animation = TweenSequence<double>([
       //使用TweenSequence进行多组补间动画
       TweenSequenceItem<double>(tween: Tween(begin: 0, end: 10), weight: 1),
@@ -38,9 +40,9 @@ class _ShakeViewState extends State<ShakeView>
       child: ShakeAnimateWidget(animation: animation, child: widget.child),
       onTap: () {
         print(controller.status);
-        if (controller.status == AnimationStatus.completed ) {
+        if (controller.status == AnimationStatus.completed) {
           controller.reverse();
-        } else if (controller.status == AnimationStatus.dismissed ) {
+        } else if (controller.status == AnimationStatus.dismissed) {
           controller.forward();
         }
       },

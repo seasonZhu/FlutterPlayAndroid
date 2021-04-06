@@ -41,19 +41,25 @@ class _SplashViewState extends State<SplashView> {
           ),
         ),
         Positioned(
-          right: 20,
-          top: 40,
-          child: FlatButton(
-            child: Text("跳过$seconds" + "s"),
-            color: Colors.grey,
-            shape: RoundedRectangleBorder(
-                side: BorderSide.none,
-                borderRadius: BorderRadius.all(Radius.circular(20))),
-            onPressed: () {
-              _goMainView();
-            },
-          )
-        ),
+            right: 20,
+            top: 40,
+            child: TextButton(
+              child: Text("跳过$seconds" + "s"),
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all(Colors.grey),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    side: BorderSide.none,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(20),
+                    ),
+                  ),
+                ),
+              ),
+              onPressed: () {
+                _goMainView();
+              },
+            )),
       ],
     );
   }

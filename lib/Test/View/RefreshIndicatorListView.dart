@@ -17,7 +17,7 @@ class RefreshIndicatorListViewState extends State<RefreshIndicatorListView> {
   TextStyle loadMoreTextStyle =
       TextStyle(color: const Color(0xFF4483f6), fontSize: 14.0);
 
-  List list = List(); //列表要展示的数据
+  List list = []; //列表要展示的数据
 
   var hasData = true;
 

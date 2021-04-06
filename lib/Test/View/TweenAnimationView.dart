@@ -19,8 +19,10 @@ class _TweenAnimationViewState extends State<TweenAnimationView>
   void initState() {
     super.initState();
 
-    controller =
-        AnimationController(duration: const Duration(seconds: 2),);
+    controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    );
 
     /// 传入的begin与end必须是相同的类型 看源码里面的泛型T, 要么显示声明类型 要么隐式声明传入的数据类型相同 Tween<double>
     animation = Tween(begin: 0.0, end: 300.0).animate(controller)
@@ -83,8 +85,10 @@ class _CurvedAnimationViewState extends State<CurvedAnimationView>
   void initState() {
     super.initState();
 
-    controller =
-        AnimationController(duration: const Duration(seconds: 2),);
+    controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    );
 
     animation = CurvedAnimation(parent: controller, curve: Curves.bounceIn)
       ..addListener(() {
@@ -142,6 +146,7 @@ class AnimatedLogo extends AnimatedWidget {
           child: Container(
             child: FlutterLogo(),
             margin: EdgeInsets.symmetric(vertical: 10),
+
             /// 一个类的静态变量不需要写类名也可以直接在实例方法中使用
             height: AnimatedLogo._sizeTween.evaluate(animation),
             width: _sizeTween.evaluate(listenable),

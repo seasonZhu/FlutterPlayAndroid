@@ -26,7 +26,7 @@ class DismissibleView extends StatelessWidget {
             // what to do after an item has been swiped away.
             onDismissed: (direction) {
               items.removeAt(index);
-              Scaffold.of(context)
+              ScaffoldMessenger.of(context)
                   .showSnackBar(SnackBar(content: Text("$item dismissed")));
             },
             // Show a red background as the item is swiped away

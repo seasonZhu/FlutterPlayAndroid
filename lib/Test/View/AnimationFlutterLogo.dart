@@ -44,7 +44,7 @@ class _AnimationFlutterLogoState extends State<AnimationFlutterLogo> {
   ];
 
   // 取随机颜色
-  Color _randomColor() {
+  Color randomColor() {
     var red = Random.secure().nextInt(255);
     var greed = Random.secure().nextInt(255);
     var blue = Random.secure().nextInt(255);

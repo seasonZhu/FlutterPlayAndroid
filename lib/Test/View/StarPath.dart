@@ -63,15 +63,16 @@ class _StartClipState extends State<StartClip>
 
   @override
   void initState() {
-    _controller =
-        AnimationController(duration: Duration(seconds: 2),)
-          ..addStatusListener((status) {
-            if (status == AnimationStatus.completed) {
-              _controller.reverse();
-            } else if (status == AnimationStatus.dismissed) {
-              _controller.forward();
-            }
-          });
+    _controller = AnimationController(
+      duration: Duration(seconds: 2),
+      vsync: this,
+    )..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          _controller.reverse();
+        } else if (status == AnimationStatus.dismissed) {
+          _controller.forward();
+        }
+      });
     _animation = Tween(begin: 1.0, end: 4.0).animate(_controller);
     _controller.forward();
     super.initState();
@@ -80,10 +81,10 @@ class _StartClipState extends State<StartClip>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-            appBar: AppBar(
-          title: Text("五角星", style: TextStyle(color: Colors.white)),
-          iconTheme: IconThemeData(color: Colors.white),
-          elevation: 0.1,
+      appBar: AppBar(
+        title: Text("五角星", style: TextStyle(color: Colors.white)),
+        iconTheme: IconThemeData(color: Colors.white),
+        elevation: 0.1,
       ),
       body: Center(
         child: AnimatedBuilder(

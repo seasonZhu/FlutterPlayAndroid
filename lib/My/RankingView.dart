@@ -31,7 +31,9 @@ class _RankingViewState extends State<RankingView> {
 
   var _offset = 0.0;
 
-  var _dataSource = List<DataElement>();
+  //var _dataSource = List<DataElement>();
+
+  List<DataElement> _dataSource = [];
 
   var _refreshController = RefreshController(initialRefresh: false);
 

@@ -16,12 +16,14 @@ class ToastView {
 
   // 系统的SnackBar
   static void showSnackBar(BuildContext context, String msg) {
-    Scaffold.of(context).showSnackBar(
-      SnackBar(content: Text("$msg")),
-    );
+    // Scaffold.of(context).showSnackBar(
+    //   SnackBar(content: Text("$msg")),
+    // );
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("$msg")));
   }
 
   static void removeCurrentSnackBar(BuildContext context) {
-    Scaffold.of(context).removeCurrentSnackBar();
+    // Scaffold.of(context).removeCurrentSnackBar();
+    ScaffoldMessenger.of(context).removeCurrentSnackBar();
   }
 }

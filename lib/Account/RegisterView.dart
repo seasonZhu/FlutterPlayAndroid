@@ -142,8 +142,11 @@ class _RegisterViewState extends State<RegisterView> {
                     child: Container(
                       width: double.infinity,
                       height: 44,
-                      child: FlatButton(
-                        color: Theme.of(context).primaryColor,
+                      child: TextButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                              Theme.of(context).primaryColor),
+                        ),
                         child: Text(
                           "注册并登录",
                           style: TextStyle(color: Colors.white, fontSize: 18),
@@ -193,7 +196,8 @@ class _RegisterViewState extends State<RegisterView> {
       return;
     }
 
-    if (_passwordTextFiledDelegate.text.trim().isEmpty != _checkPasswordTextFiledDelegate.text.trim().isEmpty) {
+    if (_passwordTextFiledDelegate.text.trim().isEmpty !=
+        _checkPasswordTextFiledDelegate.text.trim().isEmpty) {
       ToastView.show("两次密码输入不一致!");
       return;
     }

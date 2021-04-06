@@ -26,9 +26,13 @@ class DoubleLoadingViewState extends State<DoubleLoadingView>
   void initState() {
     super.initState();
     outerController = AnimationController(
-        duration: Duration(milliseconds: 3000));
+      duration: Duration(milliseconds: 3000),
+      vsync: this,
+    );
     innerController = AnimationController(
-        duration: Duration(milliseconds: 2000));
+      duration: Duration(milliseconds: 2000),
+      vsync: this,
+    );
 
     outerAnim = Tween(begin: 0.0, end: 2.0).animate(outerController);
     innerAnim = Tween(begin: 1.0, end: 0.0).animate(innerController);
@@ -68,9 +72,9 @@ class DoubleLoadingViewState extends State<DoubleLoadingView>
     if (!innerController.isAnimating) innerController.forward();
     return Scaffold(
       appBar: AppBar(
-          title: Text("双逆向Loading", style: TextStyle(color: Colors.white)),
-          iconTheme: IconThemeData(color: Colors.white),
-          elevation: 0.1,
+        title: Text("双逆向Loading", style: TextStyle(color: Colors.white)),
+        iconTheme: IconThemeData(color: Colors.white),
+        elevation: 0.1,
       ),
       body: Center(
         child: Container(
@@ -176,9 +180,7 @@ class FrostedGlassDemo extends StatelessWidget {
               height: 100,
               child: Image.network(
                   "http://yanxuan.nosdn.127.net/65091eebc48899298171c2eb6696fe27.jpg",
-                  fit: BoxFit.contain)
-          ),
-        )
-    );
+                  fit: BoxFit.contain)),
+        ));
   }
 }

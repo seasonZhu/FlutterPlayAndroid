@@ -20,6 +20,7 @@ class _FlowCircleMenuState extends State<FlowCircleMenu>
         lowerBound: 0,
         upperBound: 80,
         duration: Duration(milliseconds: 300),
+        vsync: this,
         );
     _ctrlAnimationCircle.addListener(() => setState(() {}));
   }

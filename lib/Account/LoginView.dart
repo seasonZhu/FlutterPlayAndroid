@@ -132,8 +132,11 @@ class _LoginViewState extends State<LoginView> {
                       /// 这个地方可以写宽一点 会被Padding卡住
                       width: double.infinity,
                       height: 44,
-                      child: FlatButton(
-                        color: Theme.of(context).primaryColor,
+                      child: TextButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                              Theme.of(context).primaryColor),
+                        ),
                         child: Text(
                           "登录",
                           style: TextStyle(color: Colors.white, fontSize: 18),
@@ -208,7 +211,6 @@ class _LoginViewState extends State<LoginView> {
   }
 
   Future<AccountInfoResponse> login() async {
-
     /// 这里使用setState完全是为了_showLoginView这个方法 刷新页面,但是这样的代价比较高,有更好方法,GlobalKey
     setState(() {
       _isLoginNow = true;

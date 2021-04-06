@@ -59,7 +59,7 @@ class _MainViewState extends State<MainView>
     而使用_body的时候,是我的页面先initState,然后再自动登录,fire,所以能接收到
     优化的方案倒是有,就是在MyView界面直接使用AccountManager单例里面的变量即可
    */
-  get _pages {
+  Widget get pages {
     var pages = PageView(
       physics: ClampingScrollPhysics(),
       children: _views,

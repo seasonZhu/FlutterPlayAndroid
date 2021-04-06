@@ -27,7 +27,7 @@ class Some extends StatefulWidget {
 class _SomeState extends State<Some> {
   @override
   Widget build(BuildContext context) {
-    var some = List<CanFly>()..add(Me())..add(Bird());
+    List<CanFly> some = []..add(Me())..add(Bird());
     some.map((s) => s.fly());
 
     return Container();

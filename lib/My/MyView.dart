@@ -204,11 +204,11 @@ class _MyViewState extends State<MyView> with AutomaticKeepAliveClientMixin {
       title: Text("提示"),
       content: Text("您还没有登录,是否进行登录?"),
       actions: <Widget>[
-        FlatButton(
+        TextButton(
           child: Text("取消", style: _dialogTextStyle()),
           onPressed: () => Navigator.pop(context), //关闭对话框
         ),
-        FlatButton(
+        TextButton(
           child: Text("确定", style: _dialogTextStyle()),
           onPressed: () {
             Navigator.pop(context);
@@ -224,11 +224,11 @@ class _MyViewState extends State<MyView> with AutomaticKeepAliveClientMixin {
       title: Text("提示"),
       content: Text("是否登出?"),
       actions: <Widget>[
-        FlatButton(
+        TextButton(
           child: Text("取消", style: _dialogTextStyle()),
           onPressed: () => Navigator.pop(context), //关闭对话框
         ),
-        FlatButton(
+        TextButton(
           child: Text("确定", style: _dialogTextStyle()),
           onPressed: () {
             Navigator.pop(context);

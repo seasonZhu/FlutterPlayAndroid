@@ -35,7 +35,10 @@ class _WelcomeViewState extends State<WelcomeView> {
     //   "welcome_1.png",
     // ].map((imageName) => _welcomeView(imageName)).toList();
 
-    return [_otherWelcomeView("welcome_2.jpg"), _lastWelcomeView("welcome_1.png"),];
+    return [
+      _otherWelcomeView("welcome_2.jpg"),
+      _lastWelcomeView("welcome_1.png"),
+    ];
   }
 
   @override
@@ -85,17 +88,25 @@ class _WelcomeViewState extends State<WelcomeView> {
           //   ),
           // ),
           child: Opacity(
-              opacity: _selectedIndex == 1 ? 1 : 0,
-              child: FlatButton(
-                child: Text("点击进入"),
-                color: Colors.grey,
-                shape: RoundedRectangleBorder(
+            opacity: _selectedIndex == 1 ? 1 : 0,
+            child: TextButton(
+              child: Text("点击进入"),
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all(Colors.grey),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
                     side: BorderSide.none,
-                    borderRadius: BorderRadius.all(Radius.circular(20))),
-                onPressed: () {
-                  _goMainView();
-                },
-              )),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(20),
+                    ),
+                  ),
+                ),
+              ),
+              onPressed: () {
+                _goMainView();
+              },
+            ),
+          ),
         ),
       ],
     );
@@ -141,12 +152,19 @@ class _WelcomeViewState extends State<WelcomeView> {
           left: 20,
           right: 20,
           bottom: 44,
-          child: FlatButton(
+          child: TextButton(
             child: Text("点击进入"),
-            color: Colors.grey,
-            shape: RoundedRectangleBorder(
-                side: BorderSide.none,
-                borderRadius: BorderRadius.all(Radius.circular(20))),
+            style: ButtonStyle(
+              foregroundColor: MaterialStateProperty.all(Colors.grey),
+              shape: MaterialStateProperty.all(
+                RoundedRectangleBorder(
+                  side: BorderSide.none,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20),
+                  ),
+                ),
+              ),
+            ),
             onPressed: () {
               _goMainView();
             },
