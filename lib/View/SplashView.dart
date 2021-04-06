@@ -46,7 +46,8 @@ class _SplashViewState extends State<SplashView> {
             child: TextButton(
               child: Text("跳过$seconds" + "s"),
               style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all(Colors.grey),
+                foregroundColor: MaterialStateProperty.all(Colors.white),
+                backgroundColor: MaterialStateProperty.all(Colors.grey),
                 shape: MaterialStateProperty.all(
                   RoundedRectangleBorder(
                     side: BorderSide.none,

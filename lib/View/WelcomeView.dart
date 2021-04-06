@@ -155,7 +155,8 @@ class _WelcomeViewState extends State<WelcomeView> {
           child: TextButton(
             child: Text("点击进入"),
             style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all(Colors.grey),
+              backgroundColor: MaterialStateProperty.all(Colors.grey),
+              foregroundColor: MaterialStateProperty.all(Colors.white),
               shape: MaterialStateProperty.all(
                 RoundedRectangleBorder(
                   side: BorderSide.none,

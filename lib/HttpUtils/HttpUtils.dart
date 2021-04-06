@@ -52,9 +52,6 @@ extension Log on HttpUtils {
     try {
       print("----------------Http Log----------------");
       print("----------------request-----------------");
-      print("[requestMethon]:" + response.request.method);
-      print("[requestUrl]:" + response.request.uri.toString());
-      _printDataString("requestData", response.request.data);
       print("----------------response----------------");
       print( "[statusCode]:" + response.statusCode.toString());
       _printDataString("response", response.data);
