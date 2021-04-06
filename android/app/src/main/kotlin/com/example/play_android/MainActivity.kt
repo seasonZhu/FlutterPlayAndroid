@@ -1,4 +1,4 @@
-package com.example.play_android
+package com.lostsakura.www.play_android
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
