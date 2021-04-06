@@ -152,12 +152,12 @@ abstract class Routes {
       Routes.dismissibleView: (context) => DismissibleView(),
       Routes.roundView: (context) => RoundView(),
       Routes.rankingStreamView: (context) => RankingStreamView(),
-      Routes.rankingBlocView: (context) => BlocProvider(
-            create: (_) => RankingBloc(),
-            child: RankingBlocView(),
-          ),
+      // Routes.rankingBlocView: (context) => BlocProvider(
+      //       create: (_) => RankingBloc(),
+      //       child: RankingBlocView(),
+      //     ),
       Routes.calculatorView: (context) => CalculatorView(),
-      Routes.blocExampleApp: (context) => BlocExampleApp(),
+      // Routes.blocExampleApp: (context) => BlocExampleApp(),
       Routes.bottomDragView: (context) => BottomDragView(),
       Routes.tiledLines: (context) => TiledLines(),
       Routes.pressLocationView: (context) => PressLocationView(),

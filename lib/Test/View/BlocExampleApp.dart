@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+/*
 // void main() {
 //   BlocSupervisor.delegate = SimpleBlocDelegate();
 //   runApp(BlocExampleApp());
@@ -261,3 +261,4 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeData> {
     }
   }
 }
+*/

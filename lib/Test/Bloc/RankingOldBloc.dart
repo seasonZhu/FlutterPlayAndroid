@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:play_android/HttpUtils/Request.dart';
 import 'package:play_android/Responses/RankListResponse.dart';
-
+/*
 enum RankingViewEvent { onRefresh, onLoading }
 
 class RankingViewState {
@@ -45,3 +45,4 @@ class RankingOldBloc extends Bloc<RankingViewEvent,RankingViewState>{
     yield RankingViewState(_page, _dataSource);
   }
 }
+*/

@@ -11,8 +11,8 @@ dependencies:
   flutter_swiper: ^1.1.6
   flutter_webview_plugin: ^0.3.11
   webview_flutter: ^1.0.5
-  pull_to_refresh: ^1.6.2
-  flutter_slidable: ^0.5.4
+  pull_to_refresh: ^1.6.4
+  flutter_slidable: ^0.5.7
   flutter_html: ^0.11.1
   image_picker: null
   marquee_flutter: null
