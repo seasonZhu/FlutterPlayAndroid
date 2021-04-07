@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import 'Api.dart';
 import 'package:play_android/Account/AccountManager.dart';
@@ -13,27 +14,39 @@ abstract class HttpUtils {
   // 超时时间 1min dio中是以毫秒计算的
   static var timeout = 60000000;
 
-  static Dio _dio = Dio(BaseOptions(
-    baseUrl: Api.baseUrl,
-    connectTimeout: timeout,
-    receiveTimeout: timeout,
-    headers: {},
-  ));
+  HttpUtils._();
+
+  static Dio _dio = Dio(
+    BaseOptions(
+      baseUrl: Api.baseUrl,
+      connectTimeout: timeout,
+      receiveTimeout: timeout,
+      headers: {},
+    ),
+  ).addPrettyPrint;
 
   // Get请求
-  static Future<Map<String, dynamic>> get({String api, Map<String, dynamic> params, Map<String, dynamic> headers = const {}}) async {
+  static Future<Map<String, dynamic>> get(
+      {String api,
+      Map<String, dynamic> params,
+      Map<String, dynamic> headers = const {}}) async {
     getCookieHeaderOptions().headers.addAll(headers);
-    Response response = await _dio.get(api, queryParameters: params, options: getCookieHeaderOptions());
-    Log._httpLog(response);
-    return response.data;
+    Response response = await _dio.get(api,
+        queryParameters: params, options: getCookieHeaderOptions());
+    Map<String, dynamic> json = response.data;
+    return json;
   }
 
   // Post请求
-  static Future<Map<String, dynamic>> post({String api, Map<String, dynamic> params, Map<String, dynamic> headers = const {}}) async {
+  static Future<Map<String, dynamic>> post(
+      {String api,
+      Map<String, dynamic> params,
+      Map<String, dynamic> headers = const {}}) async {
     getCookieHeaderOptions().headers.addAll(headers);
-    Response response = await _dio.post(api, data: params, options: getCookieHeaderOptions());
-    Log._httpLog(response);
-    return response.data;
+    Response response =
+        await _dio.post(api, data: params, options: getCookieHeaderOptions());
+    Map<String, dynamic> json = response.data;
+    return json;
   }
 
   static Options getCookieHeaderOptions() {
@@ -43,36 +56,18 @@ abstract class HttpUtils {
   }
 }
 
-extension Log on HttpUtils {
-  /// print Http Log.
-  static void _httpLog(Response response) {
-    if (inProduction) {
-      return;
-    }
-    try {
-      print("----------------Http Log----------------");
-      print("----------------request-----------------");
-      print("----------------response----------------");
-      print( "[statusCode]:" + response.statusCode.toString());
-      _printDataString("response", response.data);
-    } catch (error) {
-      print("Http Log" + " error......");
-      print(error);
-    }
-  }
-
-  /// print Data Str.
-  static void _printDataString(String tag, Object value) {
-    String jsonString = value.toString();
-    while (jsonString.isNotEmpty) {
-      if (jsonString.length > 512) {
-        print("[$tag]:" + jsonString.substring(0, 512));
-        jsonString = jsonString.substring(512, jsonString.length);
-      } else {
-        print("[$tag]:" + jsonString);
-        jsonString = "";
-      }
-    }
+extension AddPrettyPrint on Dio {
+  Dio get addPrettyPrint {
+    this.interceptors.add(
+          PrettyDioLogger(
+            requestHeader: false,
+            requestBody: true,
+            responseBody: true,
+            responseHeader: false,
+            compact: false,
+          ),
+        );
+    return this;
   }
 }
 

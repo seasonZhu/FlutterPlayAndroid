@@ -16,33 +16,33 @@ import 'package:play_android/Responses/RankListResponse.dart';
 import 'package:play_android/Responses/MyCoinResponse.dart';
 import 'package:play_android/Responses/CoinResponse.dart';
 
-// Dart的分类需要在Dart2.6以上的版本才能使用,修改了配置文件
+/// Dart的分类需要在Dart2.6以上的版本才能使用,修改了配置文件
 extension Request on HttpUtils {
-  // 获取轮播图数据
+  /// 获取轮播图数据
   static Future<BannerResponse> getBanner() async {
     var json = await HttpUtils.get(api: Api.getBanner);
     return BannerResponse.fromJson(json);
   }
 
-  // 获取首页置顶文章
+  /// 获取首页置顶文章
   static Future<ArticleTopListResponse> getTopArticleList() async {
     var json = await HttpUtils.get(api: Api.getTopArticleList);
     return ArticleTopListResponse.fromJson(json);
   }
 
-  // 通过page获取首页文章
+  /// 通过page获取首页文章
   static Future<InformationFlowListResponse> getArticleList({int page}) async {
     var json = await HttpUtils.get(api: Api.getArticleList + page.toString() + "/json");
     return InformationFlowListResponse.fromJson(json);
   }
 
-  // 搜索热词
+  /// 搜索热词
   static Future<HotKeyResponse> getSearchHotKey() async {
     var json = await HttpUtils.get(api: Api.getSearchHotKey);
     return HotKeyResponse.fromJson(json);
   }
 
-  // 通过关键词与page进行搜索,获取搜索结果
+  /// 通过关键词与page进行搜索,获取搜索结果
   static Future<InformationFlowListResponse> postQueryKey({int page, String keyword}) async {
     var params = <String, String>{};
     params["k"] = keyword;
@@ -50,13 +50,13 @@ extension Request on HttpUtils {
     return InformationFlowListResponse.fromJson(json);
   }
 
-  // 项目分类
+  /// 项目分类
   static Future<InformationFlowTopicResponse> getProjectClassify() async {
     var json = await HttpUtils.get(api: Api.getProjectClassify);
     return InformationFlowTopicResponse.fromJson(json);
   }
 
-  // 通过id与page获取单个项目分类的列表
+  /// 通过id与page获取单个项目分类的列表
   static Future<InformationFlowListResponse> getProjectClassifyList({int page, int id}) async {
     var params = <String, String>{};
     params["cid"] = id.toString();
@@ -64,19 +64,19 @@ extension Request on HttpUtils {
     return InformationFlowListResponse.fromJson(json);
   }
 
-  // 公众号分类
+  /// 公众号分类
   static Future<InformationFlowTopicResponse> getPubilicNumber() async {
     var json = await HttpUtils.get(api: Api.getPubilicNumber);
     return InformationFlowTopicResponse.fromJson(json);
   }
 
-  // 通过id与page获取单个公众号分类的列表
+  /// 通过id与page获取单个公众号分类的列表
   static Future<InformationFlowListResponse> getPubilicNumberList({int page, int id}) async {
     var json = await HttpUtils.get(api: Api.getPubilicNumberList + id.toString() + "/" + page.toString() + "/json");
     return InformationFlowListResponse.fromJson(json);
   }
 
-  // 登录
+  /// 登录
   static Future<AccountInfoResponse> login({String username, String password}) async {
     var params = <String, String>{};
     params["username"] = username;
@@ -85,7 +85,7 @@ extension Request on HttpUtils {
     return AccountInfoResponse.fromJson(json);
   }
 
-  // 注册
+  /// 注册
   static Future<AccountInfoResponse> register({String username, String password, String rePassword}) async {
     var params = <String, String>{};
     params["username"] = username;
@@ -95,55 +95,55 @@ extension Request on HttpUtils {
     return AccountInfoResponse.fromJson(json);
   }
 
-  // 登出
+  /// 登出
   static Future<LogoutResponse> logout() async {
     var json = await HttpUtils.get(api: Api.getLogout);
     return LogoutResponse.fromJson(json);
   }
 
-  // 文章收藏
+  /// 文章收藏
   static Future<CollectArticleActionResponse> collectAction({int id}) async {
     var json = await HttpUtils.post(api: Api.postCollectArticle + id.toString() + "/json");
     return CollectArticleActionResponse.fromJson(json);
   }
 
-  // 取消收藏
+  /// 取消收藏
   static Future<CollectArticleActionResponse> unCollectAction({int originId,}) async {
     var json = await HttpUtils.post(api: Api.postUnCollectArticle + originId.toString() + "/json");
     return CollectArticleActionResponse.fromJson(json);
   }
 
-  // 收藏文章列表
+  /// 收藏文章列表
   static Future<MyCollectResponse> getCollectArticleList({int page}) async {
     var json = await HttpUtils.get(api: Api.getCollectArticleList + page.toString() + "/json");
     return MyCollectResponse.fromJson(json);
   }
   
-  // 积分排行榜
+  /// 积分排行榜
   static Future<RankListResponse> getRankingList({int page}) async {
     var json = await HttpUtils.get(api: Api.getRankingList + page.toString() + "/json");
     return RankListResponse.fromJson(json);
   }
 
-  // 个人获取积分的历史记录
+  /// 个人获取积分的历史记录
   static Future<MyCoinResponse> getCoinList({int page}) async {
     var json = await HttpUtils.get(api: Api.getCoinList + page.toString() + "/json");
     return MyCoinResponse.fromJson(json);
   }
   
-  // 个人积分信息
+  /// 个人积分信息
   static Future<CoinResponse> getUserCoinInfo() async {
     var json = await HttpUtils.get(api: Api.getUserCoinInfo);
     return CoinResponse.fromJson(json);
   }
 
-  // 体系
+  /// 体系
   static Future<InformationFlowTopicResponse> getTree() async {
     var json = await HttpUtils.get(api: Api.getTree);
     return InformationFlowTopicResponse.fromJson(json);
   }
 
-  // 体系详细列表
+  /// 体系详细列表
   static Future<InformationFlowListResponse> getTreeDetailList({int page, int id}) async {
     var json = await HttpUtils.get(api: Api.getTreeDetailList + page.toString() + "/json" + "?cid=" + id.toString());
     return InformationFlowListResponse.fromJson(json);
