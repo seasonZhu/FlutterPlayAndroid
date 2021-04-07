@@ -539,3 +539,10 @@ print(identical(a1, a2));//false
 const a1 = [11 , 22];
 const a2 = [11 , 22];
 print(identical(a1, a2));//true
+
+## 没有使用的轮子
+marquee_flutter: ^0.1.4
+flutter_webview_plugin: ^0.3.11
+
+## 下一步计划
+玩安卓适配Flutter2,并且进行大面积重构

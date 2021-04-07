@@ -9,17 +9,15 @@ dependencies:
   cupertino_icons: ^1.0.2
   fluttertoast: ^3.1.0
   flutter_swiper: ^1.1.6
-  flutter_webview_plugin: ^0.3.11
   webview_flutter: ^1.0.5
   pull_to_refresh: ^1.6.4
   flutter_slidable: ^0.5.7
   flutter_html: ^0.11.1
-  image_picker: null
-  marquee_flutter: null
-  cached_network_image: null
+  image_picker: ^0.7.4
+  cached_network_image: ^3.0.0
   drag_container: ^1.0.1
   wrapper: ^1.0.1
-  flutter_intro: null
+  flutter_intro: ^2.1.0
   flutter_easyloading: ^2.0.0
   flutter_screenutil: ^0.5.3
   device_info: ^2.0.0
@@ -30,10 +28,11 @@ dependencies:
   dio: ^4.0.0
   url_launcher: ^6.0.3
   json_annotation: ^2.0.0
-  flutter_bloc: null
-  image_gallery_saver: null
-  r_upgrade: null
-  open_file: null
+  flutter_bloc: ^7.0.0
+  image_gallery_saver: ^1.6.8
+  r_upgrade: ^0.3.3
+  open_file: ^3.1.0
+  provider: ^5.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

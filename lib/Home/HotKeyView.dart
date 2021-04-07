@@ -79,7 +79,8 @@ class _HotKeyViewState extends State<HotKeyView> {
       margin: EdgeInsets.all(5),
       child: TextButton(
         style: ButtonStyle(
-          foregroundColor: MaterialStateProperty.all(ThemeUtils.currentColor),
+          backgroundColor: MaterialStateProperty.all(ThemeUtils.currentColor),
+          foregroundColor: MaterialStateProperty.all(Colors.white),
           overlayColor: MaterialStateProperty.all(ThemeUtils.currentColor),
           shape: MaterialStateProperty.all(
             RoundedRectangleBorder(
@@ -119,6 +120,7 @@ class _SearchField extends StatelessWidget {
         Container(
           child: Expanded(
             child: TextField(
+                style: TextStyle(color: Colors.white),
                 keyboardType: TextInputType.text,
                 controller: searchKeyCtrl,
                 cursorColor: Colors.white,
@@ -127,8 +129,61 @@ class _SearchField extends StatelessWidget {
                     hintText: " 请输入搜索关键字",
                     hintStyle: TextStyle(color: Colors.white, fontSize: 16),
                     border: OutlineInputBorder(
-                        borderRadius:
-                            const BorderRadius.all(const Radius.circular(4.0))),
+                      ///设置边框四个角的弧度
+                      borderRadius: BorderRadius.all(Radius.circular(4)),
+
+                      ///用来配置边框的样式
+                      borderSide: BorderSide(
+                        ///设置边框的颜色
+                        color: Colors.white,
+
+                        ///设置边框的粗细
+                        width: 1.0,
+                      ),
+                    ),
+
+                    ///设置输入框可编辑时的边框样式
+                    enabledBorder: OutlineInputBorder(
+                      ///设置边框四个角的弧度
+                      borderRadius: BorderRadius.all(Radius.circular(4)),
+
+                      ///用来配置边框的样式
+                      borderSide: BorderSide(
+                        ///设置边框的颜色
+                        color: Colors.white,
+
+                        ///设置边框的粗细
+                        width: 1.0,
+                      ),
+                    ),
+                    disabledBorder: OutlineInputBorder(
+                      ///设置边框四个角的弧度
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+
+                      ///用来配置边框的样式
+                      borderSide: BorderSide(
+                        ///设置边框的颜色
+                        color: Colors.red,
+
+                        ///设置边框的粗细
+                        width: 1.0,
+                      ),
+                    ),
+
+                    ///用来配置输入框获取焦点时的颜色
+                    focusedBorder: OutlineInputBorder(
+                      ///设置边框四个角的弧度
+                      borderRadius: BorderRadius.all(Radius.circular(4)),
+
+                      ///用来配置边框的样式
+                      borderSide: BorderSide(
+                        ///设置边框的颜色
+                        color: Colors.transparent,
+
+                        ///设置边框的粗细
+                        width: 1.0,
+                      ),
+                    ),
                     contentPadding: const EdgeInsets.all(4.0)),
                 onEditingComplete: () {
                   _inputComplete(context);
