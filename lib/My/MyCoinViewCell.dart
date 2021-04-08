@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:play_android/Responses/MyCoinResponse.dart';
-//import 'package:play_android/Compose/Space.dart';
 
 class MyCoinViewCell extends StatelessWidget {
   final DataElement _model;
@@ -23,11 +22,15 @@ class MyCoinViewCell extends StatelessWidget {
               padding: EdgeInsets.only(left: 15),
               child: Text(_model.reason),
             ),
-            Expanded(child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              child: Text(_model.desc, textAlign: TextAlign.start,),
-            ),),
-            //Space(),
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 15),
+                child: Text(
+                  _model.desc,
+                  textAlign: TextAlign.start,
+                ),
+              ),
+            ),
             Container(
               padding: EdgeInsets.only(right: 15),
               child: Text(_model.coinCount.toString()),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:play_android/Compose/CustomRoute.dart';
 import 'package:play_android/Account/AccountManager.dart';
 import 'MainView.dart';
+import 'package:play_android/SystemConfig/Device.dart';
 
 class WelcomeView extends StatefulWidget {
   @override
@@ -35,10 +36,16 @@ class _WelcomeViewState extends State<WelcomeView> {
     //   "welcome_1.png",
     // ].map((imageName) => _welcomeView(imageName)).toList();
 
-    return [
-      _otherWelcomeView("welcome_2.jpg"),
-      _lastWelcomeView("welcome_1.png"),
-    ];
+    if (Device.isWeb) {
+      return [
+        _lastWelcomeView("welcome_1.png"),
+      ];
+    } else {
+      return [
+        _otherWelcomeView("welcome_2.jpg"),
+        _lastWelcomeView("welcome_1.png"),
+      ];
+    }
   }
 
   @override

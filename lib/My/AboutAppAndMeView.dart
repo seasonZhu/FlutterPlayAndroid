@@ -18,21 +18,22 @@ class AboutAppAndMeView extends StatelessWidget {
 
   Widget _buildSingleChildScrollView(BuildContext context) {
     return SingleChildScrollView(
-        child: Column(
-      children: <Widget>[
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 10),
-          child: AnimationFlutterLogo(
-            size: 100,
+      child: Column(
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 10),
+            child: AnimationFlutterLogo(
+              size: 100,
+            ),
           ),
-        ),
-        Divider(),
-        ListTile(
+          Divider(),
+          ListTile(
             leading: Text("玩安卓App Flutter版本"),
             trailing: Text("作者:seasonZhu"),
-            onTap: () {}),
-        Divider(),
-        ListTile(
+            onTap: () {},
+          ),
+          Divider(),
+          ListTile(
             leading: Text("特别感谢: 历时三天，完成了Flutter版本的玩安卓"),
             trailing: Icon(Icons.arrow_forward_ios),
             onTap: () {
@@ -40,9 +41,10 @@ class AboutAppAndMeView extends StatelessWidget {
                   context: context,
                   title: "历时三天，完成了Flutter版本的玩安卓",
                   link: "https://juejin.im/post/5e901fff51882573bd5f3f88");
-            }),
-        Divider(),
-        ListTile(
+            },
+          ),
+          Divider(),
+          ListTile(
             leading: Text("我的简书"),
             trailing: Icon(Icons.arrow_forward_ios),
             onTap: () {
@@ -50,9 +52,10 @@ class AboutAppAndMeView extends StatelessWidget {
                   context: context,
                   title: "我的简书",
                   link: "https://www.jianshu.com/u/a426bd8bbca5");
-            }),
-        Divider(),
-        ListTile(
+            },
+          ),
+          Divider(),
+          ListTile(
             leading: Text("我的GitHub"),
             trailing: Icon(Icons.arrow_forward_ios),
             onTap: () {
@@ -60,25 +63,29 @@ class AboutAppAndMeView extends StatelessWidget {
                   context: context,
                   title: "我的GitHub",
                   link: "https://github.com/seasonZhu");
-            }),
-        Divider(),
-        ListTile(
+            },
+          ),
+          Divider(),
+          ListTile(
             leading: Text("打赏我"),
             trailing: Icon(Icons.arrow_forward_ios),
             onTap: () {
               showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: Center(child: Text("打赏")),
-                      content: Image(
-                        image: AssetImage("assets/images/season_ali_pay.jpg"),
-                      ),
-                    );
-                  });
-            }),
-      ],
-    ));
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: Center(child: Text("打赏")),
+                    content: Image(
+                      image: AssetImage("assets/images/season_ali_pay.jpg"),
+                    ),
+                  );
+                },
+              );
+            },
+          ),
+        ],
+      ),
+    );
   }
 
   void _pushToWebView({BuildContext context, String title, String link}) {

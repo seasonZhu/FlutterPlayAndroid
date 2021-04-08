@@ -20,15 +20,16 @@ class MyCollectViewCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        child: InkWell(
-      onTap: () {
-        _pushToWebView(context);
-      },
-      child: Container(
-        padding: EdgeInsets.all(10),
-        child: _getRow(),
+      child: InkWell(
+        onTap: () {
+          _pushToWebView(context);
+        },
+        child: Container(
+          padding: EdgeInsets.all(10),
+          child: _getRow(),
+        ),
       ),
-    ));
+    );
   }
 
   Widget _imageView() {
