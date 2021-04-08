@@ -54,7 +54,7 @@ class _MyViewState extends State<MyView> with AutomaticKeepAliveClientMixin {
 
     // 黑暗模式和账号没有关系,和设备本地存储有关
     AccountManager.getInstance().getIsOpenDardMode().then((onValue) {
-        _isOpenDarkMode = onValue;
+      _isOpenDarkMode = onValue;
     });
   }
 
@@ -138,8 +138,12 @@ class _MyViewState extends State<MyView> with AutomaticKeepAliveClientMixin {
     if (AccountManager.getInstance().isLogin) {
       return DecorationImage(
           image: (_icon != null && _icon.isNotEmpty)
-              ? CachedNetworkImage(imageUrl: _icon,)
-              : AssetImage("assets/images/saber.jpg",),
+              ? CachedNetworkImage(
+                  imageUrl: _icon,
+                )
+              : AssetImage(
+                  "assets/images/saber.jpg",
+                ),
           fit: BoxFit.cover);
     } else {
       return DecorationImage(
@@ -240,7 +244,11 @@ class _MyViewState extends State<MyView> with AutomaticKeepAliveClientMixin {
   }
 
   TextStyle _dialogTextStyle() {
-    return _isOpenDarkMode ? TextStyle(color: Colors.white) : TextStyle(color: Theme.of(context).primaryColor,);
+    return _isOpenDarkMode
+        ? TextStyle(color: Colors.white)
+        : TextStyle(
+            color: Theme.of(context).primaryColor,
+          );
   }
 
   void _logoutAction() {
@@ -263,7 +271,7 @@ class _MyViewState extends State<MyView> with AutomaticKeepAliveClientMixin {
     if (!AccountManager.getInstance().isLogin &&
         (model.type != TargetType.aboutAppAndMe &&
             model.type != TargetType.themeSetting &&
-            model.type != TargetType.logout && 
+            model.type != TargetType.logout &&
             model.type != TargetType.tree)) {
       _presentToLoginView();
       return;
@@ -297,7 +305,6 @@ class _MyViewState extends State<MyView> with AutomaticKeepAliveClientMixin {
   }
 
   void _presentToLoginView() {
-
     /// 使用全局的navigationGlobalKey进行页面跳转,这个感觉就像是用UIApplication.shared.delegate.rootViewController进行push或者present一样
     // navigationGlobalKey.currentState.push(
     //   MaterialPageRoute(
@@ -318,7 +325,7 @@ class _MyViewState extends State<MyView> with AutomaticKeepAliveClientMixin {
 
   // 随便写了一个NestedScrollView练习用
   Widget nestedScrollView() {
-     return NestedScrollView(
+    return NestedScrollView(
       headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
         return <Widget>[
           SliverAppBar(
@@ -349,23 +356,23 @@ class _MyViewState extends State<MyView> with AutomaticKeepAliveClientMixin {
         ];
       },
       body: ListView.separated(
-        itemBuilder: (context, index) {
-          if (index == 0) {
-            return Container();
-          }
-          return MyViewCell(
-            model: MyListModel.dataSource[index],
-            onTapCallback: (model) {
-              _pushToTargetView(model: model);
-            },
-          );
-        },
-        separatorBuilder: (context, index) {
-          return Divider(
-            height: 1.0,
-          );
-        },
-        itemCount: MyListModel.dataSource.length),
+          itemBuilder: (context, index) {
+            if (index == 0) {
+              return Container();
+            }
+            return MyViewCell(
+              model: MyListModel.dataSource[index],
+              onTapCallback: (model) {
+                _pushToTargetView(model: model);
+              },
+            );
+          },
+          separatorBuilder: (context, index) {
+            return Divider(
+              height: 1.0,
+            );
+          },
+          itemCount: MyListModel.dataSource.length),
     );
   }
 }
