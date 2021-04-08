@@ -8,7 +8,7 @@ import 'package:play_android/Home/HomeView.dart';
 import 'package:play_android/Information/InformationType.dart';
 import 'package:play_android/Information/InformationFlowTopicView.dart';
 import 'package:play_android/My/MyView.dart';
-import 'package:play_android/Test/View/TestView.dart';
+import 'package:play_android/ExampleView/View/TestView.dart';
 
 class MainView extends StatefulWidget {
   @override

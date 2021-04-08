@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:play_android/Test/View/DataLine.dart';
+import 'package:play_android/ExampleView/View/DataLine.dart';
 
 /// 这个页面的销毁还有问题
 class DataLineView extends StatefulWidget {

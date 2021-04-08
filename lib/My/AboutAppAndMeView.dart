@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:play_android/Compose/PAWebView.dart';
-import 'package:play_android/Test/View/AnimationFlutterLogo.dart';
+import 'package:play_android/ExampleView/View/AnimationFlutterLogo.dart';
 
 class AboutAppAndMeView extends StatelessWidget {
   @override

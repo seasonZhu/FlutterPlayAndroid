@@ -13,7 +13,7 @@ import 'package:play_android/Compose/ToastView.dart';
 //import 'package:play_android/Compose/EmptyView.dart';
 
 import 'package:play_android/Information/InformationFlowListCell.dart';
-import 'package:play_android/Test/View/TestView.dart';
+import 'package:play_android/ExampleView/View/TestView.dart';
 import 'BannerView.dart';
 
 class HomeView extends StatefulWidget {

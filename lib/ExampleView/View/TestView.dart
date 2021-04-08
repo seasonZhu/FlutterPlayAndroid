@@ -35,7 +35,8 @@ class _TestViewState extends State<TestView> with RouteAware {
     {"App更新": Routes.updateView},
     {"原生刷新思路": Routes.refreshIndicatorListViewState},
     {"双逆向Loading": Routes.doubleLoadingView},
-    {"uni-app的一个例子编写": Routes.uniAppNewsListView}
+    {"uni-app的一个例子编写": Routes.uniAppNewsListView},
+    {"自定义键盘": Routes.carInputView}
   ];
 
   /// ValueNotifier的简单使用

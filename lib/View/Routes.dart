@@ -19,103 +19,106 @@ import 'package:play_android/Home/SearchResultView.dart';
 import 'package:play_android/Account/LoginView.dart';
 import 'package:play_android/Account/RegisterView.dart';
 
-import 'package:play_android/Test/View/TodayHotNavigatorView.dart';
-import 'package:play_android/Test/View/MixinCountView.dart';
-import 'package:play_android/Test/View/NanigationRailView.dart';
-import 'package:play_android/Test/View/DismissibleView.dart';
-import 'package:play_android/Test/View/RoundView.dart';
-import 'package:play_android/Test/View/RankingStreamView.dart';
-import 'package:play_android/Test/View/RankingBlocView.dart';
-import 'package:play_android/Test/View/CalculatorView.dart';
-import 'package:play_android/Test/View/BlocExampleApp.dart';
-import 'package:play_android/Test/View/BottomDragView.dart';
-import 'package:play_android/Test/View/TiledLines.dart';
-import 'package:play_android/Test/View/PressLocationView.dart';
-import 'package:play_android/Test/View/DataLineView.dart';
-import 'package:play_android/Test/View/StarPath.dart';
-import 'package:play_android/Test/View/PathProviderView.dart';
-import 'package:play_android/Test/View/TweenAnimationView.dart';
-import 'package:play_android/Test/View/UpdateView.dart';
-import 'package:play_android/Test/View/RefreshIndicatorListView.dart';
-import 'package:play_android/Test/View/DoubleLoadingView.dart';
-import 'package:play_android/Test/View/UniAppNewsListView.dart';
+import 'package:play_android/ExampleView/View/TodayHotNavigatorView.dart';
+import 'package:play_android/ExampleView/View/MixinCountView.dart';
+import 'package:play_android/ExampleView/View/NanigationRailView.dart';
+import 'package:play_android/ExampleView/View/DismissibleView.dart';
+import 'package:play_android/ExampleView/View/RoundView.dart';
+import 'package:play_android/ExampleView/View/RankingStreamView.dart';
+import 'package:play_android/ExampleView/View/RankingBlocView.dart';
+import 'package:play_android/ExampleView/View/CalculatorView.dart';
+import 'package:play_android/ExampleView/View/BlocExampleApp.dart';
+import 'package:play_android/ExampleView/View/BottomDragView.dart';
+import 'package:play_android/ExampleView/View/TiledLines.dart';
+import 'package:play_android/ExampleView/View/PressLocationView.dart';
+import 'package:play_android/ExampleView/View/DataLineView.dart';
+import 'package:play_android/ExampleView/View/StarPath.dart';
+import 'package:play_android/ExampleView/View/PathProviderView.dart';
+import 'package:play_android/ExampleView/View/TweenAnimationView.dart';
+import 'package:play_android/ExampleView/View/UpdateView.dart';
+import 'package:play_android/ExampleView/View/RefreshIndicatorListView.dart';
+import 'package:play_android/ExampleView/View/DoubleLoadingView.dart';
+import 'package:play_android/ExampleView/View/UniAppNewsListView.dart';
+import 'package:play_android/ExampleView/View/CarInputView.dart';
 
 import 'package:play_android/Compose/ErrorView.dart';
 
 /// 全局监听路由堆栈的变化使用 RouteObserve
 RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
 
-final navigationGlobalKey = new GlobalKey<NavigatorState>();
+final navigationGlobalKey = GlobalKey<NavigatorState>();
 
 // 路由表
 abstract class Routes {
   // 系统默认'/'是根view,这个不能更改
-  static final root = "/";
+  static const root = "/";
 
   // 使用const也是可以的
-  static final rankingView = "/rankingView";
+  static const rankingView = "/rankingView";
 
-  static final informationFlowWebView = "/informationFlowWebView";
+  static const informationFlowWebView = "/informationFlowWebView";
 
-  static final hotKeyView = "/hotKeyView";
+  static const hotKeyView = "/hotKeyView";
 
-  static final searchResultView = "/searchResultView";
+  static const searchResultView = "/searchResultView";
 
-  static final myDetailView = "/myDetailView";
+  static const myDetailView = "/myDetailView";
 
-  static final myCoinView = "/myCoinView";
+  static const myCoinView = "/myCoinView";
 
-  static final myCollectView = "/myCollectView";
+  static const myCollectView = "/myCollectView";
 
-  static final themeSettingView = "/themeSettingView";
+  static const themeSettingView = "/themeSettingView";
 
-  static final tree = "/tree";
+  static const tree = "/tree";
 
-  static final aboutAppAndMeView = "/aboutAppAndMeView";
+  static const aboutAppAndMeView = "/aboutAppAndMeView";
 
-  static final loginView = "/loginView";
+  static const loginView = "/loginView";
 
-  static final registerView = "/registerView";
+  static const registerView = "/registerView";
 
-  static final todayHotNavigatorView = "/todayHotNavigatorView";
+  static const todayHotNavigatorView = "/todayHotNavigatorView";
 
-  static final mixinCountView = "/mixinCountView";
+  static const mixinCountView = "/mixinCountView";
 
-  static final nanigationRailView = "/nanigationRailView";
+  static const nanigationRailView = "/nanigationRailView";
 
-  static final dismissibleView = "/dismissibleView";
+  static const dismissibleView = "/dismissibleView";
 
-  static final roundView = "/roundView";
+  static const roundView = "/roundView";
 
-  static final rankingStreamView = "/rankingStreamView";
+  static const rankingStreamView = "/rankingStreamView";
 
-  static final rankingBlocView = "/rankingBlocView";
+  static const rankingBlocView = "/rankingBlocView";
 
-  static final calculatorView = "/calculatorView";
+  static const calculatorView = "/calculatorView";
 
-  static final blocExampleApp = "/blocExampleApp";
+  static const blocExampleApp = "/blocExampleApp";
 
-  static final bottomDragView = "/bottomDragView";
+  static const bottomDragView = "/bottomDragView";
 
-  static final tiledLines = "/tiledLines";
+  static const tiledLines = "/tiledLines";
 
-  static final pressLocationView = "/pressLocationView";
+  static const pressLocationView = "/pressLocationView";
 
-  static final dataLineView = "/dataLineView";
+  static const dataLineView = "/dataLineView";
 
-  static final startClip = "/startClip";
+  static const startClip = "/startClip";
 
-  static final pathProviderView = "/pathProviderView";
+  static const pathProviderView = "/pathProviderView";
 
-  static final tweenAnimationView = "/tweenAnimationView";
+  static const tweenAnimationView = "/tweenAnimationView";
 
-  static final updateView = "/updateView";
+  static const updateView = "/updateView";
 
-  static final refreshIndicatorListViewState = "/refreshIndicatorListViewState";
+  static const refreshIndicatorListViewState = "/refreshIndicatorListViewState";
 
-  static final doubleLoadingView = "/doubleLoadingView";
+  static const doubleLoadingView = "/doubleLoadingView";
 
-  static final uniAppNewsListView = "/uniAppNewsListView";
+  static const uniAppNewsListView = "/uniAppNewsListView";
+
+  static const carInputView = "/carInputView";
 
   // 路由需要传递的参数
   static var arguments;
@@ -171,6 +174,7 @@ abstract class Routes {
           RefreshIndicatorListView(),
       Routes.doubleLoadingView: (context) => DoubleLoadingView(),
       Routes.uniAppNewsListView: (context) => UniAppNewsListView(),
+      Routes.carInputView: (context) => CarInputView(),
     };
   }
 
