@@ -14,7 +14,7 @@ run() {
     DeviceOrientation.portraitDown,
   ]);
 
-  TestKeyboard.register();
+  // TestKeyboard.register();
 
   runApp(PlayAndroidApp());
 }

@@ -157,6 +157,20 @@ class _MyViewState extends State<MyView> with AutomaticKeepAliveClientMixin {
           if (index == 0) {
             return _tableHeaderView(MyListModel.dataSource[index]);
           }
+          // if (index == MyListModel.dataSource.length - 1) {
+          //   return Column(
+          //     children: [
+          //       SizedBox(
+          //         height: 44,
+          //       ),
+          //       TextButton(
+          //         child: Text("退出登录"),
+          //         onPressed: () =>
+          //             _pushToTargetView(model: MyListModel.dataSource[index]),
+          //       ),
+          //     ],
+          //   );
+          // }
           return MyViewCell(
             model: MyListModel.dataSource[index],
             onTapCallback: (model) {

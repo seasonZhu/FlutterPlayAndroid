@@ -174,7 +174,7 @@ abstract class Routes {
           RefreshIndicatorListView(),
       Routes.doubleLoadingView: (context) => DoubleLoadingView(),
       Routes.uniAppNewsListView: (context) => UniAppNewsListView(),
-      Routes.carInputView: (context) => CarInputView(),
+      // Routes.carInputView: (context) => CarInputView(),
     };
   }
 

@@ -43,8 +43,9 @@ abstract class HttpUtils {
       Map<String, dynamic> params,
       Map<String, dynamic> headers = const {}}) async {
     getCookieHeaderOptions().headers.addAll(headers);
-    Response response =
-        await _dio.post(api, data: params, options: getCookieHeaderOptions());
+    /// 这个地方必须用queryParameters,用data传入就报错了
+    Response response = await _dio.post(api,
+        queryParameters: params, options: getCookieHeaderOptions());
     Map<String, dynamic> json = response.data;
     return json;
   }
