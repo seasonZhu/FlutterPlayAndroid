@@ -40,6 +40,7 @@ import 'package:play_android/ExampleView/View/RefreshIndicatorListView.dart';
 import 'package:play_android/ExampleView/View/DoubleLoadingView.dart';
 import 'package:play_android/ExampleView/View/UniAppNewsListView.dart';
 import 'package:play_android/ExampleView/View/CarInputView.dart';
+import 'package:play_android/ExampleView/View/AlarmPage.dart';
 
 import 'package:play_android/Compose/ErrorView.dart';
 
@@ -78,6 +79,7 @@ abstract class Routes {
 
   static const registerView = "/registerView";
 
+  /// 以下是TestView中的路由
   static const todayHotNavigatorView = "/todayHotNavigatorView";
 
   static const mixinCountView = "/mixinCountView";
@@ -119,6 +121,8 @@ abstract class Routes {
   static const uniAppNewsListView = "/uniAppNewsListView";
 
   static const carInputView = "/carInputView";
+
+  static const alarmPage = "/alarmPage";
 
   // 路由需要传递的参数
   static var arguments;
@@ -175,6 +179,7 @@ abstract class Routes {
       Routes.doubleLoadingView: (context) => DoubleLoadingView(),
       Routes.uniAppNewsListView: (context) => UniAppNewsListView(),
       // Routes.carInputView: (context) => CarInputView(),
+      Routes.alarmPage: (context) => AlarmPage(),
     };
   }
 
