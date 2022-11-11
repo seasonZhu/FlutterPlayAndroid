@@ -67,15 +67,15 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter/ios"
 
 SPEC CHECKSUMS:
-  device_info: d7d233b645a32c40dfdc212de5cf646ca482f175
+  device_info: 7e7646fcde4c301df8fe414538565c06d2865e3d
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   image_gallery_saver: 259eab68fb271cfd57d599904f7acdc7832e7ef2
   image_picker: 50e7c7ff960e5f58faa4d1f4af84a771c671bc4a
   open_file: 02eb5cb6b21264bd3a696876f5afbfb7ca4f4b7d
-  path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
+  path_provider: d1a68c4065ce2e0f6fd03f8a46d698525dc79f06
   r_upgrade: 44d715c61914cce3d01ea225abffe894fd51c114
-  shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
+  shared_preferences: 5d0fc5691f4e7293ddfc1b599ca398f8af42f5e7
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
   url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
   webview_flutter: d2b4d6c66968ad042ad94cbb791f5b72b4678a96

@@ -158,7 +158,9 @@ class _MainViewState extends State<MainView>
 
   @override
   void dispose() {
-    _pageController.dispose();
+    if (_pageController != null) {
+      _pageController.dispose();
+    } 
     super.dispose();
   }
 }
